@@ -41,7 +41,7 @@ public class PortfolioImpl implements Portfolio{
       this.portfolioName = portfolioName;
     }
 
-    public void AddStockToPortfolio (StockObject stock, float quantity, float costPerShare)
+    public PortfolioBuilder AddStockToPortfolio (StockObject stock, float quantity, float costPerShare)
             throws IllegalArgumentException {
 
       if(quantity <= 0) {
@@ -49,6 +49,8 @@ public class PortfolioImpl implements Portfolio{
       }
 
       stocks.put(stock.getTicker(), new PortfolioItem(stock, quantity, costPerShare));
+
+      return this;
     }
 
     public Portfolio build () {
@@ -91,7 +93,7 @@ public class PortfolioImpl implements Portfolio{
 
   public void savePortfolioToFile () throws FileNotFoundException {
     File outputFile = new File(portfolioFileName);
-    FileOutputStream fileOut = new FileOutputStream(outputFile);
+    FileOutputStream fileOut = new FileOutputStream("portfolioCSVFiles/" + outputFile);
     PrintStream out = new PrintStream(fileOut);
 
     stocks.keySet().forEach(stockTicker -> {

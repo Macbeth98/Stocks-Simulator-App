@@ -48,7 +48,7 @@ public class PortfolioItem {
   public String toString() {
     return this.stock.getTicker() + ","
             + this.getQuantity() + ","
-            + this.getCurrentPrice() + ","
-            + this.getCurrentValue();
+            + this.getCostPerShare() + ","
+            + this.getCost();
   }
 }

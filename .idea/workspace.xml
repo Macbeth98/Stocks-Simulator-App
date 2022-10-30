@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PortfolioItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PortfolioList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -97,7 +99,7 @@
       <updated>1666827436416</updated>
       <workItem from="1666828812773" duration="3120000" />
       <workItem from="1666993237524" duration="13887000" />
-      <workItem from="1667110389766" duration="6280000" />
+      <workItem from="1667110389766" duration="9315000" />
     </task>
     <servers />
   </component>
