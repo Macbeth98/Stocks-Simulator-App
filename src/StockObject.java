@@ -7,12 +7,14 @@ public interface StockObject {
 
   /**
    * Returns the ticker symbol of this stock.
+   *
    * @return the ticker symbol as a string
    */
   String getTicker();
 
   /**
    * Returns the current day price of a single share of a stock.
+   *
    * @return the current price of the stock as a float
    */
   float getCurrentPrice();
@@ -27,6 +29,7 @@ public interface StockObject {
 
   /**
    * returns the current value of the stock, i.e, current price * quantity.
+   *
    * @param quantity quantity of shares present
    * @return the value of the stock as a float
    */
@@ -34,7 +37,8 @@ public interface StockObject {
 
   /**
    * returns the value of the stock for a given date, i.e, price at date * quantity.
-   * @param date date given as input
+   *
+   * @param date     date given as input
    * @param quantity quantity of shares present
    * @return the value of the stock for that date as float
    */
