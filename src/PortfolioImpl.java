@@ -2,9 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class implements the interface Portfolio.
@@ -13,17 +13,49 @@ import java.util.HashSet;
 public class PortfolioImpl implements Portfolio{
 
   private final String portfolioName;
-  private final HashSet<StockObject> stocks;
+  private final Map<String, PortfolioItem> stocks;
 
   private final String portfolioFileName;
 
-  public PortfolioImpl (String portfolioName, StockObject[] stocksArr) {
+  public static PortfolioBuilder getBuilder () {
+    return new PortfolioBuilder();
+  }
+
+  private PortfolioImpl (String portfolioName, Map<String, PortfolioItem> stocks) {
     this.portfolioName = portfolioName;
     this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
 
-    stocks = new HashSet<>();
+    this.stocks = new HashMap<>(stocks);
+  }
 
-    stocks.addAll(Arrays.asList(stocksArr));
+  public static class PortfolioBuilder {
+
+    private String portfolioName;
+    private final Map<String, PortfolioItem> stocks;
+    private PortfolioBuilder() {
+      stocks = new HashMap<>();
+    }
+
+    public void portfolioName(String portfolioName) {
+      // need to check that the portfolio name is unique.
+      this.portfolioName = portfolioName;
+    }
+
+    public void AddStockToPortfolio (StockObject stock, float quantity, float costPerShare)
+            throws IllegalArgumentException {
+
+      if(quantity <= 0) {
+        throw new IllegalArgumentException("The quantity value must be greater than zero.");
+      }
+
+      stocks.put(stock.getTicker(), new PortfolioItem(stock, quantity, costPerShare));
+    }
+
+    public Portfolio build () {
+      return new PortfolioImpl(this.portfolioName, stocks);
+    }
+
+
   }
 
   @Override
@@ -32,24 +64,28 @@ public class PortfolioImpl implements Portfolio{
   }
 
   @Override
-  public StockObject[] getPortfolioComposition() {
-    StockObject[] stocksArr = new StockObject[]{};
-    return stocks.toArray(stocksArr);
+  public PortfolioItem[] getPortfolioComposition() {
+    PortfolioItem[] portfolioItems = new PortfolioItem[]{};
+    return stocks.values().toArray(portfolioItems);
   }
 
   @Override
   public float getPortfolioValue() {
     return stocks
+            .values()
             .stream()
-            .map(StockObject::getCurrentValue)
+            .map(PortfolioItem::getCurrentValue)
             .reduce((float) 0, Float::sum);
   }
 
   @Override
   public float getPortfolioValueAtDate(Date date) {
     return stocks
+            .values()
             .stream()
-            .map(stockObject -> stockObject.getCurrentValueAtDate(date))
+            .map(portfolioItem -> portfolioItem
+                    .getStock()
+                    .getCurrentValueAtDate(date, portfolioItem.getQuantity()))
             .reduce((float) 0, Float::sum);
   }
 
@@ -58,13 +94,10 @@ public class PortfolioImpl implements Portfolio{
     FileOutputStream fileOut = new FileOutputStream(outputFile);
     PrintStream out = new PrintStream(fileOut);
 
-    stocks.forEach(stock -> {
-      String portfolioItem = stock.getTicker() + ","
-              + stock.getQuantity() + ","
-              + stock.getCurrentPrice() + ","
-              + stock.getCurrentValue();
+    stocks.keySet().forEach(stockTicker -> {
+      String portfolioItemStr = stocks.get(stockTicker).toString();
 
-      out.println(portfolioItem);
+      out.println(portfolioItemStr);
     });
   }
 }

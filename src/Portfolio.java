@@ -19,7 +19,7 @@ public interface Portfolio {
    *
    * @return returns the list of stocks available in the current Portfolio.
    */
-  StockObject[] getPortfolioComposition ();
+  PortfolioItem[] getPortfolioComposition ();
 
   /**
    * This method computes the current Portfolio Value based on the composition of its Stocks.
