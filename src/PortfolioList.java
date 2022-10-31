@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 /**
  * This interfaces contains methods which can be used to manage the
@@ -21,5 +22,25 @@ public interface PortfolioList {
    * @throws FileNotFoundException When the given Portfolio file is not found.
    */
   Portfolio getPortfolio(String portfolioName) throws FileNotFoundException;
+
+  /**
+   * Creates a portfolio from manually entered user inputs received from controller.
+   *
+   * @param portfolioName portfolioName of this portfolio
+   * @param stocksMap hashMap containing ticker name and quantity of each stock
+   * @return Portfolio Object containing this information
+   */
+  Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap);
+
+  /**
+   * Creates a portfolio from a user provided file that follows portfolio format.
+   *
+   * @param portfolioName name of the portfolio
+   * @param portfolioFilePath path of the portfolio file to be created
+   * @return Portfolio Object containing this information
+   * @throws FileNotFoundException throws exception if file not found
+   */
+  Portfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+          throws FileNotFoundException;
 
 }

@@ -1,0 +1,100 @@
+Welcome
+
+What do you want to do? Press key
+
+1. Create new PF manually
+2. Create new PF from File
+3. View Portfolio
+4. Get Portfolio value at specific date
+5. Exit
+
+------------------------
+1
+
+What is this portfolio's name?
+Healthcare
+
+What stocks do you want to purchase?
+
+Enter ticker: GOOG
+Enter quantity: 3
+
+Do you want to continue? (Y/N): Y
+
+Enter ticker: TSLA
+Enter quantity: 4
+
+Do you want to continue? (Y/N): N
+
+// BACKEND
+String pName = "Healthcare"
+
+HashMap - {"GOOG": 3, "TSLA": 4}
+------------------------
+
+------------------------
+// ALT SEQUENCE
+3
+
+List Of PF:
+PF1
+PF2
+
+Which portfolio do you want to display?
+IN: PF1
+
+// portfolio p
+// pItems = p.getportfolioComposition
+//
+stock_name, qty
+------------------------
+
+------------------------
+2
+
+Enter Portfolio Name:
+Healthcare
+
+Enter Portfolio Path:
+/filePath
+
+// controller -> String name, String path
+// PortfolioListImplObj.createPortfolioFromFile(name, path)
+
+Portfolio Created!
+------------------------
+
+
+------------------------
+4
+
+List of Portfolios:
+PF1
+PF2
+
+Enter PF NAME:
+PF1
+
+Enter Date for which you want value (mm/dd/yyyy):
+10/12/2002
+
+// controller -> portfolioName, dateObj
+// PortfolioListImplObj.getPortfolioValue(portfolioName, dateObj);
+// returns float
+
+// view gets -> dateobj and value float
+// PortfolioViewImpl.displayValueAtDate(dateObj, value)
+VALUE AT DATE: <date> IS: <float>
+----------------------------
+
+
+render menu
+
+// Controller
+
+
+Portfolio newPortfolio = PortfolioImpl.getBuilder().AddStockToPF(
+    new Stock("ticker),
+    quantity
+).AddStockTopo
+
