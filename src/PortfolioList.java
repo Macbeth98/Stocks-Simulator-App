@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 /**
  * This interfaces contains methods which can be used to manage the
  * available list of Portfolios.
@@ -16,7 +18,8 @@ public interface PortfolioList {
    *
    * @param portfolioName the name of the portfolio that is needed.
    * @return returns the selected Portfolio based on the name.
+   * @throws FileNotFoundException When the given Portfolio file is not found.
    */
-  Portfolio getPortfolio(String portfolioName);
+  Portfolio getPortfolio(String portfolioName) throws FileNotFoundException;
 
 }

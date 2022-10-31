@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
@@ -42,10 +43,23 @@ public class PortfolioImplTest {
     try (Stream<Path> paths = Files.walk(Paths.get(currentDirectory))) {
       paths
               .filter(Files::isRegularFile)
-              .forEach(file -> System.out.println(file.getFileName().toString().split("_")[0]));
+              .forEach(file -> System.out.println(file + "_____" + file.getFileName().toString().split("_")[0]));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+
+  @Test
+  public void readPortfolioFile() throws FileNotFoundException {
+    String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+    try (Scanner scanner = new Scanner(new File(currentDirectory + "output.csv"));) {
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        System.out.println(line);
+      }
+    }
+
   }
 
 }
