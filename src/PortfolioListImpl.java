@@ -39,10 +39,11 @@ public class PortfolioListImpl implements PortfolioList{
     return portfolioFiles.keySet().toArray(new String[0]);
   }
 
-  private Portfolio loadPortfolio (String portfolioName) throws FileNotFoundException {
-    File file = new File(portfolioFiles.get(portfolioName).toUri());
+  private Portfolio loadPortfolio (String portfolioName, String path) throws FileNotFoundException {
+    File file = new File(path);
 
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
+    portfolioBuilder = portfolioBuilder.portfolioName(portfolioName);
 
     try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
@@ -51,8 +52,7 @@ public class PortfolioListImpl implements PortfolioList{
         String[] portfolioItemValues = line.split(",");
         portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
                 new StockObjectImpl(portfolioItemValues[0]),
-                Float.parseFloat(portfolioItemValues[1]),
-                Float.parseFloat(portfolioItemValues[2])
+                Float.parseFloat(portfolioItemValues[1])
         );
       }
     }
@@ -69,14 +69,38 @@ public class PortfolioListImpl implements PortfolioList{
     if(portfolios.containsKey(portfolioName)) {
       return portfolios.get(portfolioName);
     } else {
-      return this.loadPortfolio(portfolioName);
+      return this.loadPortfolio(portfolioName, portfolioFiles.get(portfolioName).toString());
     }
+  }
+
+  @Override
+  public Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap) {
+    PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
+    portfolioBuilder = portfolioBuilder.portfolioName(portfolioName);
+    String[] keys = stocksMap.keySet().toArray(new String[0]);
+    for (String key: keys) {
+      portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
+              new StockObjectImpl(key),
+              stocksMap.get(key)
+      );
+    }
+
+    Portfolio portfolio = portfolioBuilder.build();
+    portfolios.put(portfolioName, portfolio);
+
+    return portfolio;
+  }
+
+  @Override
+  public Portfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+          throws FileNotFoundException {
+    return loadPortfolio(portfolioName, portfolioFilePath);
   }
 
   private void loadAllPortfolioFiles() {
     portfolioFiles.keySet().forEach(portfolioName -> {
       try {
-        loadPortfolio(portfolioName);
+        loadPortfolio(portfolioName, portfolioFiles.get(portfolioName).toString());
       } catch (FileNotFoundException e) {
         // throw new RuntimeException(e);
         System.out.println(portfolioName + "--- File not found -- Error message below!");

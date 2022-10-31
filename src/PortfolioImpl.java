@@ -36,19 +36,20 @@ public class PortfolioImpl implements Portfolio{
       stocks = new HashMap<>();
     }
 
-    public void portfolioName(String portfolioName) {
+    public PortfolioBuilder portfolioName(String portfolioName) {
       // need to check that the portfolio name is unique.
       this.portfolioName = portfolioName;
+      return this;
     }
 
-    public PortfolioBuilder AddStockToPortfolio (StockObject stock, float quantity, float costPerShare)
+    public PortfolioBuilder AddStockToPortfolio (StockObject stock, float quantity)
             throws IllegalArgumentException {
 
       if(quantity <= 0) {
         throw new IllegalArgumentException("The quantity value must be greater than zero.");
       }
 
-      stocks.put(stock.getTicker(), new PortfolioItem(stock, quantity, costPerShare));
+      stocks.put(stock.getTicker(), new PortfolioItem(stock, quantity, stock.getCurrentPrice()));
 
       return this;
     }
