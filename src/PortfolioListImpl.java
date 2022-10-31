@@ -57,7 +57,10 @@ public class PortfolioListImpl implements PortfolioList{
       }
     }
 
-    return portfolioBuilder.build();
+    Portfolio portfolio = portfolioBuilder.build();
+    portfolios.put(portfolioName, portfolio);
+
+    return portfolio;
   }
 
   @Override
