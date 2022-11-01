@@ -16,16 +16,28 @@ public class PortfolioImpl implements Portfolio{
   private final Map<String, PortfolioItem> stocks;
 
   private final String portfolioFileName;
+  private final String currentDirectory;
+
+  private boolean fileStored;
+  private String errMessage;
 
   public static PortfolioBuilder getBuilder () {
     return new PortfolioBuilder();
   }
 
   private PortfolioImpl (String portfolioName, Map<String, PortfolioItem> stocks) {
+    this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     this.portfolioName = portfolioName;
     this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
 
     this.stocks = new HashMap<>(stocks);
+    try {
+      this.savePortfolioToFile();
+      fileStored = true;
+    } catch (FileNotFoundException e) {
+      fileStored = false;
+      errMessage = e.getMessage();
+    }
   }
 
   public static class PortfolioBuilder {
@@ -67,6 +79,13 @@ public class PortfolioImpl implements Portfolio{
   }
 
   @Override
+  public String getPortfolioFIlePath() {
+    return fileStored?
+            this.currentDirectory + this.portfolioFileName
+            : "The Portfolio save file could not be created. Error Message: " + errMessage;
+  }
+
+  @Override
   public PortfolioItem[] getPortfolioComposition() {
     PortfolioItem[] portfolioItems = new PortfolioItem[]{};
     return stocks.values().toArray(portfolioItems);
@@ -92,9 +111,9 @@ public class PortfolioImpl implements Portfolio{
             .reduce((float) 0, Float::sum);
   }
 
-  public void savePortfolioToFile () throws FileNotFoundException {
-    File outputFile = new File(portfolioFileName);
-    FileOutputStream fileOut = new FileOutputStream("portfolioCSVFiles/" + outputFile);
+  private void savePortfolioToFile () throws FileNotFoundException {
+    File outputFile = new File(currentDirectory + portfolioFileName);
+    FileOutputStream fileOut = new FileOutputStream( outputFile);
     PrintStream out = new PrintStream(fileOut);
 
     stocks.keySet().forEach(stockTicker -> {

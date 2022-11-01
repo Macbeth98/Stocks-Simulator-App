@@ -15,6 +15,13 @@ public interface Portfolio {
   String getPortfolioName();
 
   /**
+   * This method gets the saved file path of the Portfolio.
+   *
+   * @return returns the file path of Portfolio.
+   */
+  String getPortfolioFIlePath();
+
+  /**
    * This method gets the list of stocks and its current values in the current Portfolio.
    *
    * @return returns the list of stocks available in the current Portfolio.
@@ -35,12 +42,5 @@ public interface Portfolio {
    * @return returns the Portfolio Value at the given date.
    */
   float getPortfolioValueAtDate(Date date);
-
-  /**
-   * Writes the current Portfolio to a CSV File and saves it.
-   *
-   * @throws FileNotFoundException throws an exception when the file to write is not found.
-   */
-  void savePortfolioToFile() throws FileNotFoundException;
 
 }

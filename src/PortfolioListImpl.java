@@ -20,6 +20,14 @@ public class PortfolioListImpl implements PortfolioList{
 
   public PortfolioListImpl () throws RuntimeException {
     String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+    File directory = new File(currentDirectory);
+
+    if(!directory.exists()) {
+      boolean directoryCreated = directory.mkdir();
+      if(!directoryCreated) {
+        throw new RuntimeException("Directory is not found and cannot be created.");
+      }
+    }
 
     this.portfolioFiles = new HashMap<>();
     this.portfolios = new HashMap<>();
@@ -48,7 +56,6 @@ public class PortfolioListImpl implements PortfolioList{
     try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
-        System.out.println(line);
         String[] portfolioItemValues = line.split(",");
         portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
                 new StockObjectImpl(portfolioItemValues[0]),
