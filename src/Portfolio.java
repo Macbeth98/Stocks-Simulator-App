@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Date;
 
 /**
@@ -41,5 +42,12 @@ public interface Portfolio {
    * @return returns the Portfolio Value at the given date.
    */
   float getPortfolioValueAtDate(Date date);
+
+  /**
+   * Writes the current Portfolio to a CSV File and saves it.
+   *
+   * @throws FileNotFoundException throws an exception when the file to write is not found.
+   */
+  void savePortfolioToFile() throws FileNotFoundException;
 
 }

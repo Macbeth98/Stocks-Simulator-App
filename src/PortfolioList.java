@@ -29,8 +29,10 @@ public interface PortfolioList {
    * @param portfolioName portfolioName of this portfolio
    * @param stocksMap     hashMap containing ticker name and quantity of each stock
    * @return Portfolio Object containing this information
+   * @throws FileNotFoundException When the Portfolio created cannot be saved into a file.
    */
-  Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap);
+  Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap)
+          throws FileNotFoundException;
 
   /**
    * Creates a portfolio from a user provided file that follows portfolio format.

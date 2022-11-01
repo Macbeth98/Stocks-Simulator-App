@@ -18,9 +18,6 @@ public class PortfolioImpl implements Portfolio {
   private final String portfolioFileName;
   private final String currentDirectory;
 
-  private boolean fileStored;
-  private String errMessage;
-
   public static PortfolioBuilder getBuilder() {
     return new PortfolioBuilder();
   }
@@ -31,13 +28,6 @@ public class PortfolioImpl implements Portfolio {
     this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
 
     this.stocks = new HashMap<>(stocks);
-    try {
-      this.savePortfolioToFile();
-      fileStored = true;
-    } catch (FileNotFoundException e) {
-      fileStored = false;
-      errMessage = e.getMessage();
-    }
   }
 
   public static class PortfolioBuilder {
@@ -81,9 +71,7 @@ public class PortfolioImpl implements Portfolio {
 
   @Override
   public String getPortfolioFilePath() {
-    return fileStored ?
-            this.currentDirectory + this.portfolioFileName
-            : "The Portfolio save file could not be created. Error Message: " + errMessage;
+    return this.currentDirectory + this.portfolioFileName;
   }
 
   @Override
@@ -112,7 +100,8 @@ public class PortfolioImpl implements Portfolio {
             .reduce((float) 0, Float::sum);
   }
 
-  private void savePortfolioToFile() throws FileNotFoundException {
+  @Override
+  public void savePortfolioToFile() throws FileNotFoundException {
     File outputFile = new File(currentDirectory + portfolioFileName);
     FileOutputStream fileOut = new FileOutputStream(outputFile);
     PrintStream out = new PrintStream(fileOut);

@@ -46,9 +46,9 @@ public class PortfolioItem {
 
   @Override
   public String toString() {
-    return this.stock.getTicker() + "\t"
-            + this.getQuantity() + "\t"
-            + this.getCostPerShare() + "\t"
+    return this.stock.getTicker() + ","
+            + this.getQuantity() + ","
+            + this.getCostPerShare() + ","
             + this.getCost();
   }
 }

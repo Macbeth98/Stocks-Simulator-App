@@ -81,7 +81,8 @@ public class PortfolioControllerImpl implements PortfolioController {
           pName = scan.next();
 
           view.portfolioFilePathPrompt();
-          String pPath = scan.next();
+          scan.nextLine();
+          String pPath = scan.nextLine();
 
           Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
 
