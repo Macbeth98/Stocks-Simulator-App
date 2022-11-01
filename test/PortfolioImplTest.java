@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class PortfolioImplTest {
 
   @Test
-  public void savePortfolioToFile () throws FileNotFoundException {
+  public void savePortfolioToFile() throws FileNotFoundException {
     String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     System.out.println(currentDirectory);
     File outputFile = new File(currentDirectory + "output_" + new Date().getTime() + ".csv");
@@ -53,7 +53,7 @@ public class PortfolioImplTest {
   @Test
   public void readPortfolioFile() throws FileNotFoundException {
     String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
-    try (Scanner scanner = new Scanner(new File(currentDirectory + "output.csv"));) {
+    try (Scanner scanner = new Scanner(new File(currentDirectory + "output.csv"))) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         System.out.println(line);

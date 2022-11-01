@@ -10,7 +10,7 @@ import java.util.Map;
  * This class implements the interface Portfolio.
  * This class has the list of stock objects.
  */
-public class PortfolioImpl implements Portfolio{
+public class PortfolioImpl implements Portfolio {
 
   private final String portfolioName;
   private final Map<String, PortfolioItem> stocks;
@@ -21,11 +21,11 @@ public class PortfolioImpl implements Portfolio{
   private boolean fileStored;
   private String errMessage;
 
-  public static PortfolioBuilder getBuilder () {
+  public static PortfolioBuilder getBuilder() {
     return new PortfolioBuilder();
   }
 
-  private PortfolioImpl (String portfolioName, Map<String, PortfolioItem> stocks) {
+  private PortfolioImpl(String portfolioName, Map<String, PortfolioItem> stocks) {
     this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     this.portfolioName = portfolioName;
     this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
@@ -44,6 +44,7 @@ public class PortfolioImpl implements Portfolio{
 
     private String portfolioName;
     private final Map<String, PortfolioItem> stocks;
+
     private PortfolioBuilder() {
       stocks = new HashMap<>();
     }
@@ -54,10 +55,10 @@ public class PortfolioImpl implements Portfolio{
       return this;
     }
 
-    public PortfolioBuilder AddStockToPortfolio (StockObject stock, float quantity)
+    public PortfolioBuilder AddStockToPortfolio(StockObject stock, float quantity)
             throws IllegalArgumentException {
 
-      if(quantity <= 0) {
+      if (quantity <= 0) {
         throw new IllegalArgumentException("The quantity value must be greater than zero.");
       }
 
@@ -66,7 +67,7 @@ public class PortfolioImpl implements Portfolio{
       return this;
     }
 
-    public Portfolio build () {
+    public Portfolio build() {
       return new PortfolioImpl(this.portfolioName, stocks);
     }
 
@@ -79,8 +80,8 @@ public class PortfolioImpl implements Portfolio{
   }
 
   @Override
-  public String getPortfolioFIlePath() {
-    return fileStored?
+  public String getPortfolioFilePath() {
+    return fileStored ?
             this.currentDirectory + this.portfolioFileName
             : "The Portfolio save file could not be created. Error Message: " + errMessage;
   }
@@ -111,9 +112,9 @@ public class PortfolioImpl implements Portfolio{
             .reduce((float) 0, Float::sum);
   }
 
-  private void savePortfolioToFile () throws FileNotFoundException {
+  private void savePortfolioToFile() throws FileNotFoundException {
     File outputFile = new File(currentDirectory + portfolioFileName);
-    FileOutputStream fileOut = new FileOutputStream( outputFile);
+    FileOutputStream fileOut = new FileOutputStream(outputFile);
     PrintStream out = new PrintStream(fileOut);
 
     stocks.keySet().forEach(stockTicker -> {

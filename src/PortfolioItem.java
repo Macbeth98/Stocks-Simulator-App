@@ -8,9 +8,9 @@ public class PortfolioItem {
   private final float costPerShare;
   private final float cost;
 
-  public PortfolioItem (StockObject stock, float quantity, float costPerShare)
+  public PortfolioItem(StockObject stock, float quantity, float costPerShare)
           throws IllegalArgumentException {
-    if(quantity <= 0) {
+    if (quantity <= 0) {
       throw new IllegalArgumentException("The quantity value must be greater than zero.");
     }
     this.stock = stock;
@@ -19,7 +19,7 @@ public class PortfolioItem {
     this.cost = costPerShare * quantity;
   }
 
-  public StockObject getStock () {
+  public StockObject getStock() {
     return this.stock;
   }
 
@@ -46,9 +46,9 @@ public class PortfolioItem {
 
   @Override
   public String toString() {
-    return this.stock.getTicker() + ","
-            + this.getQuantity() + ","
-            + this.getCostPerShare() + ","
+    return this.stock.getTicker() + "\t"
+            + this.getQuantity() + "\t"
+            + this.getCostPerShare() + "\t"
             + this.getCost();
   }
 }

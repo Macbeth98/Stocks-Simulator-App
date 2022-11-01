@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioViewImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioViewImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Gh4MnXk4LUl34FNzYdFnyKEASJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -62,9 +67,23 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PortfolioImplTest.savePortfolioToFile">
+  <component name="RunManager" selected="Application.PortfolioApplication">
     <configuration name="AlphaVantageDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AlphaVantageDemo" />
+      <module name="Assignment4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioApplica3tion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PortfolioApplica3tion" />
+      <module name="Assignment4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PortfolioApplication" />
       <module name="Assignment4" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -92,6 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PortfolioApplication" />
+        <item itemvalue="Application.PortfolioApplica3tion" />
         <item itemvalue="JUnit.PortfolioImplTest.savePortfolioToFile" />
         <item itemvalue="JUnit.PortfolioImplTest.readPortfolioFile" />
         <item itemvalue="Application.AlphaVantageDemo" />
@@ -127,5 +148,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/PortfolioListImpl.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

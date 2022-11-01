@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.util.Date;
 
 /**
@@ -19,14 +18,14 @@ public interface Portfolio {
    *
    * @return returns the file path of Portfolio.
    */
-  String getPortfolioFIlePath();
+  String getPortfolioFilePath();
 
   /**
    * This method gets the list of stocks and its current values in the current Portfolio.
    *
    * @return returns the list of stocks available in the current Portfolio.
    */
-  PortfolioItem[] getPortfolioComposition ();
+  PortfolioItem[] getPortfolioComposition();
 
   /**
    * This method computes the current Portfolio Value based on the composition of its Stocks.

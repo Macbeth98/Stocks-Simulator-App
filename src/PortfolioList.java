@@ -27,7 +27,7 @@ public interface PortfolioList {
    * Creates a portfolio from manually entered user inputs received from controller.
    *
    * @param portfolioName portfolioName of this portfolio
-   * @param stocksMap hashMap containing ticker name and quantity of each stock
+   * @param stocksMap     hashMap containing ticker name and quantity of each stock
    * @return Portfolio Object containing this information
    */
   Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap);
@@ -35,7 +35,7 @@ public interface PortfolioList {
   /**
    * Creates a portfolio from a user provided file that follows portfolio format.
    *
-   * @param portfolioName name of the portfolio
+   * @param portfolioName     name of the portfolio
    * @param portfolioFilePath path of the portfolio file to be created
    * @return Portfolio Object containing this information
    * @throws FileNotFoundException throws exception if file not found

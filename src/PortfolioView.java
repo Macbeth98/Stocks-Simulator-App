@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ public interface PortfolioView {
   /**
    * Display initial user menu.
    */
-  void MenuView();
+  void menuView() throws IOException;
 
 
   /*
@@ -29,7 +30,22 @@ public interface PortfolioView {
   /**
    * Ask User for a portfolio name.
    */
-  void PortfolioNamePrompt();
+  void portfolioNamePrompt() throws IOException;
+
+  /**
+   * Ask user for stock ticker name.
+   */
+  void stockNamePrompt() throws IOException;
+
+  /**
+   * Ask user for stock quantity.
+   */
+  void stockQuantityPrompt() throws IOException;
+
+  /**
+   * Ask user if they want to continue
+   */
+  void continuePrompt() throws IOException;
 
   /*
     Display List of Portfolios
@@ -40,7 +56,7 @@ public interface PortfolioView {
    *
    * @param portfolioNames string Array containing portfolio names
    */
-  void displayListOfPortfolios(String[] portfolioNames);
+  void displayListOfPortfolios(String[] portfolioNames) throws IOException;
 
   // Display single portfolio
 
@@ -49,24 +65,29 @@ public interface PortfolioView {
    *
    * @param portfolio portfolio to be displayed
    */
-  void displayPortfolio(Portfolio portfolio);
+  void displayPortfolio(Portfolio portfolio) throws IOException;
 
   // Create portfolio from File
 
   /**
    * Prompt for filepath of user created portfolio.
    */
-  void portfolioFilePathPrompt();
+  void portfolioFilePathPrompt() throws IOException;
 
   /**
    * Ask user for date as input in (mm/dd/yyyy) format.
    */
   // Ask User for date input in (mm/dd/yy)
-  void datePrompt();
+  void datePrompt() throws IOException;
 
   /**
-   * Display value of portfolio at a current date
+   * Display value of portfolio at a current date.
    */
-  void displayValueAtDate(String portfolioName, Date date, float value);
+  void displayValueAtDate(String portfolioName, Date date, float value) throws IOException;
+
+  /**
+   * Display successful portfolio creation.
+   */
+  void displayPortfolioSuccess(String portfolioName, String portfolioPath) throws IOException;
 
 }

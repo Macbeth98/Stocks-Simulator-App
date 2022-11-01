@@ -13,18 +13,18 @@ import java.util.stream.Stream;
  * This class implements the PortfolioList interface.
  * The class implement its method based on the files stored in System.
  */
-public class PortfolioListImpl implements PortfolioList{
+public class PortfolioListImpl implements PortfolioList {
 
   private final Map<String, Path> portfolioFiles;
   private final Map<String, Portfolio> portfolios;
 
-  public PortfolioListImpl () throws RuntimeException {
+  public PortfolioListImpl() throws RuntimeException {
     String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     File directory = new File(currentDirectory);
 
-    if(!directory.exists()) {
+    if (!directory.exists()) {
       boolean directoryCreated = directory.mkdir();
-      if(!directoryCreated) {
+      if (!directoryCreated) {
         throw new RuntimeException("Directory is not found and cannot be created.");
       }
     }
@@ -35,7 +35,7 @@ public class PortfolioListImpl implements PortfolioList{
     try (Stream<Path> paths = Files.walk(Paths.get(currentDirectory))) {
       paths.filter(Files::isRegularFile)
               .forEach(file -> {
-                  portfolioFiles.put(file.getFileName().toString().split("_")[0], file);
+                portfolioFiles.put(file.getFileName().toString().split("_")[0], file);
               });
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -47,7 +47,7 @@ public class PortfolioListImpl implements PortfolioList{
     return portfolioFiles.keySet().toArray(new String[0]);
   }
 
-  private Portfolio loadPortfolio (String portfolioName, String path) throws FileNotFoundException {
+  private Portfolio loadPortfolio(String portfolioName, String path) throws FileNotFoundException {
     File file = new File(path);
 
     Map<String, Float> stocksMap = new HashMap<>();
@@ -66,7 +66,7 @@ public class PortfolioListImpl implements PortfolioList{
   @Override
   public Portfolio getPortfolio(String portfolioName) throws FileNotFoundException {
 
-    if(portfolios.containsKey(portfolioName)) {
+    if (portfolios.containsKey(portfolioName)) {
       return portfolios.get(portfolioName);
     } else {
       return this.loadPortfolio(portfolioName, portfolioFiles.get(portfolioName).toString());
@@ -78,7 +78,7 @@ public class PortfolioListImpl implements PortfolioList{
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
     portfolioBuilder = portfolioBuilder.portfolioName(portfolioName);
     String[] keys = stocksMap.keySet().toArray(new String[0]);
-    for (String key: keys) {
+    for (String key : keys) {
       portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
               new StockObjectImpl(key),
               stocksMap.get(key)
