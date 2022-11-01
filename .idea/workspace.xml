@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667119084278.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667119129751.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667119181304.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667119405407.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667119429910.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/output_1667183046409.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioViewImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioViewImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

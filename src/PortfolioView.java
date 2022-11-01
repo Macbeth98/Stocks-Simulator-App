@@ -90,4 +90,28 @@ public interface PortfolioView {
    */
   void displayPortfolioSuccess(String portfolioName, String portfolioPath) throws IOException;
 
+  /**
+   * Display this message if portfolio with given name already exists.
+   * @param portfolioName given portfolio name
+   */
+  void portfolioExistsMessage(String portfolioName) throws IOException;
+
+  /**
+   * Display this message if there are no portfolios present.
+   */
+  void noPortfoliosMessage() throws IOException;
+
+  /**
+   * Display this message if an invalid portfolio name is given, to be shown.
+   */
+  void portfolioNameErrorMessage() throws IOException;
+
+  /**
+   * Display this message if a given date string doesn't represent a valid date.
+   * @param dateString given date string input
+   */
+  void invalidDateStringMessage(String dateString) throws IOException;
+
+  void invalidChoiceMessage() throws IOException;
+
 }

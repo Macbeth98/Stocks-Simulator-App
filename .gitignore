@@ -30,3 +30,4 @@ bin/
 
 ### Idea folder ###
 .idea/
+.idea/workspace.xml

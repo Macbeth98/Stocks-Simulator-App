@@ -33,7 +33,7 @@ public class PortfolioViewImpl implements PortfolioView {
 
   @Override
   public void stockNamePrompt() throws IOException {
-    this.out.append("\nEnter stock ticker: ");
+    this.out.append("\nEnter stock ticker (will be converted to upper case if not already): ");
   }
 
   @Override
@@ -43,7 +43,7 @@ public class PortfolioViewImpl implements PortfolioView {
 
   @Override
   public void continuePrompt() throws IOException {
-    this.out.append("\nDo you wish to continue? (Y/N): ");
+    this.out.append("\nDo you wish to continue? ((y/Y) | (n/N)): ");
   }
 
   @Override
@@ -55,7 +55,7 @@ public class PortfolioViewImpl implements PortfolioView {
   @Override
   public void displayPortfolio(Portfolio portfolio) throws IOException {
     PortfolioItem[] items = portfolio.getPortfolioComposition();
-    this.out.append("\nTICKER\tQUANTITY\tCOST PER SHARE\tCOST\n");
+    this.out.append("\nTICKER,QUANTITY,COST_PER_SHARE,COST\n");
     for (int i = 0; i < items.length; i++) {
       this.out.append(items[i].toString())
               .append("\n");
@@ -64,7 +64,7 @@ public class PortfolioViewImpl implements PortfolioView {
 
   @Override
   public void portfolioFilePathPrompt() throws IOException {
-    this.out.append("\nEnter portfolio file path: ");
+    this.out.append("\nEnter portfolio file path (absolute path only): ");
   }
 
   @Override
@@ -75,7 +75,7 @@ public class PortfolioViewImpl implements PortfolioView {
   @Override
   public void displayValueAtDate(String portfolioName, Date date, float value) throws IOException {
     SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
-    this.out.append("Value of portfolio: ")
+    this.out.append("\nValue of portfolio: ")
             .append(portfolioName)
             .append(", at Date: ")
             .append(formatter.format(date))
@@ -87,10 +87,38 @@ public class PortfolioViewImpl implements PortfolioView {
   @Override
   public void displayPortfolioSuccess(String portfolioName, String portfolioPath)
           throws IOException {
-    this.out.append("Portfolio: ")
+    this.out.append("\nPortfolio: ")
             .append(portfolioName)
             .append(". Successfully Created! It is stored at: ")
             .append(portfolioPath)
             .append("\n");
+  }
+
+  @Override
+  public void portfolioExistsMessage(String portfolioName) throws IOException {
+    this.out.append("\nPortfolio Name: ")
+            .append(portfolioName)
+            .append(", already exists! ")
+            .append("Please use a different name!\n");
+  }
+
+  @Override
+  public void noPortfoliosMessage() throws IOException {
+    this.out.append("\nNo portfolios present! Please create one first!\n");
+  }
+
+  @Override
+  public void portfolioNameErrorMessage() throws IOException {
+    this.out.append("\nPlease enter valid portfolio name!\n");
+  }
+
+  @Override
+  public void invalidDateStringMessage(String dateString) throws IOException {
+    this.out.append("\nInvalid Date String!: ").append(dateString).append("\n");
+  }
+
+  @Override
+  public void invalidChoiceMessage() throws IOException {
+    this.out.append("Please enter valid choice!\n");
   }
 }

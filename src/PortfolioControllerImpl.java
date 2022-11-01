@@ -21,6 +21,13 @@ public class PortfolioControllerImpl implements PortfolioController {
     return Arrays.asList(pNamesList).contains(pName);
   }
 
+  private boolean toContinue(String flag) {
+    if ((flag.equals("N") || flag.equals("n"))) {
+      return false;
+    }
+    else return flag.equals("Y") || flag.equals("y");
+  }
+
   @Override
   public void go(PortfolioList portfolioList) throws IOException {
 
@@ -38,15 +45,18 @@ public class PortfolioControllerImpl implements PortfolioController {
       switch (scan.next()) {
         case "1":
           // create a new portfolio manually
+
+          String[] pNames = portfolioList.getPortfolioListNames();
+          if (pNames.length > 1) {
+            view.displayListOfPortfolios(pNames);
+          }
+
           while (true) {
             view.portfolioNamePrompt();
-            pName = scan.next();
+            pName = scan.next().toLowerCase();
 
             if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              this.out.append("\nPortfolio Name: ")
-                      .append(pName)
-                      .append(", already exists! ")
-                      .append("Please use a different name!");
+              view.portfolioExistsMessage(pName);
               continue;
             }
 
@@ -56,9 +66,9 @@ public class PortfolioControllerImpl implements PortfolioController {
               String stockName = scan.next();
               view.stockQuantityPrompt();
               float quantity = scan.nextFloat();
-              stockMap.put(stockName, quantity);
+              stockMap.put(stockName.toUpperCase(), quantity);
               view.continuePrompt();
-              if (scan.next().equals("N")) {
+              if (toContinue(scan.next())) {
                 break;
               }
             }
@@ -68,7 +78,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
 
             view.continuePrompt();
-            if (scan.next().equals("N")) {
+            if (!toContinue(scan.next())) {
               break;
             }
           }
@@ -77,28 +87,44 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         case "2":
           // create a new portfolio from a file
-          view.portfolioNamePrompt();
-          pName = scan.next();
+          while (true) {
+            view.portfolioNamePrompt();
+            pName = scan.next().toLowerCase();
 
-          view.portfolioFilePathPrompt();
-          scan.nextLine();
-          String pPath = scan.nextLine();
+            if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
+              view.portfolioExistsMessage(pName);
+              continue;
+            }
 
-          Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
+            view.portfolioFilePathPrompt();
+            scan.nextLine();
+            String pPath = scan.nextLine();
 
-          view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
-          break;
+            Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
+
+            view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
+
+            view.continuePrompt();
+            if (!toContinue(scan.next())) {
+              break;
+            }
+          }
 
         case "3":
           // view a portfolio
-          view.displayListOfPortfolios(portfolioList.getPortfolioListNames());
+          pNames = portfolioList.getPortfolioListNames();
+          if (pNames.length < 1) {
+            view.noPortfoliosMessage();
+            continue;
+          }
+          view.displayListOfPortfolios(pNames);
 
           while (true) {
             view.portfolioNamePrompt();
-            pName = scan.next();
+            pName = scan.next().toLowerCase();
 
             if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              this.out.append("Please enter valid portfolio name!\n");
+              view.portfolioNameErrorMessage();
               continue;
             }
 
@@ -106,7 +132,8 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayPortfolio(portfolio);
 
             view.continuePrompt();
-            if (scan.next().equals("N")) {
+            String continueFlag = scan.next();
+            if (!toContinue(continueFlag)) {
               break;
             }
           }
@@ -115,14 +142,19 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         case "4":
           // get portfolio value on a date
-          view.displayListOfPortfolios(portfolioList.getPortfolioListNames());
+          pNames = portfolioList.getPortfolioListNames();
+          if (pNames.length < 1) {
+            view.noPortfoliosMessage();
+            continue;
+          }
+          view.displayListOfPortfolios(pNames);
 
           while (true) {
             view.portfolioNamePrompt();
-            pName = scan.next();
+            pName = scan.next().toLowerCase();
 
             if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              this.out.append("Please enter valid portfolio name!\n");
+              view.portfolioNameErrorMessage();
               continue;
             }
 
@@ -133,8 +165,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             try {
               date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
             } catch (ParseException e) {
-              this.out.append("\nInvalid Date String!: ")
-                      .append(dateString).append("\n");
+              view.invalidDateStringMessage(dateString);
               continue;
             }
 
@@ -143,7 +174,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayValueAtDate(pName, date, value);
 
             view.continuePrompt();
-            if (scan.next().equals("N")) {
+            if (!toContinue(scan.next())) {
               break;
             }
           }
@@ -152,6 +183,9 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         case "5":
           return;
+
+        default:
+          view.invalidChoiceMessage();
       }
     }
   }
