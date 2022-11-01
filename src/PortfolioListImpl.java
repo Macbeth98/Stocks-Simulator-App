@@ -50,24 +50,17 @@ public class PortfolioListImpl implements PortfolioList{
   private Portfolio loadPortfolio (String portfolioName, String path) throws FileNotFoundException {
     File file = new File(path);
 
-    PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
-    portfolioBuilder = portfolioBuilder.portfolioName(portfolioName);
+    Map<String, Float> stocksMap = new HashMap<>();
 
     try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         String[] portfolioItemValues = line.split(",");
-        portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
-                new StockObjectImpl(portfolioItemValues[0]),
-                Float.parseFloat(portfolioItemValues[1])
-        );
+        stocksMap.put(portfolioItemValues[0], Float.parseFloat(portfolioItemValues[1]));
       }
     }
 
-    Portfolio portfolio = portfolioBuilder.build();
-    portfolios.put(portfolioName, portfolio);
-
-    return portfolio;
+    return this.createPortfolio(portfolioName, stocksMap);
   }
 
   @Override
