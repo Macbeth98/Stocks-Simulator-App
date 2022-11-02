@@ -20,22 +20,36 @@ public class PortfolioImpl implements Portfolio {
   private final String portfolioFileName;
   private final String currentDirectory;
 
+  private boolean fileSaved;
+
+  private String errMessage;
+
   public static PortfolioBuilder getBuilder() {
     return new PortfolioBuilder();
   }
 
   private PortfolioImpl
           (String portfolioName, Map<String, PortfolioItem> stocks, String portfolioFileName) {
+
     this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+
     this.portfolioName = portfolioName;
+
+    this.stocks = new HashMap<>(stocks);
 
     if(portfolioFileName == null) {
       this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
+      try {
+        this.savePortfolioToFile();
+        fileSaved = true;
+      } catch (FileNotFoundException e) {
+        fileSaved = false;
+        errMessage = e.getMessage();
+      }
     } else {
       this.portfolioFileName = portfolioFileName;
+      fileSaved = true;
     }
-
-    this.stocks = new HashMap<>(stocks);
   }
 
   public static class PortfolioBuilder {
@@ -89,7 +103,9 @@ public class PortfolioImpl implements Portfolio {
 
   @Override
   public String getPortfolioFilePath() {
-    return Paths.get(this.currentDirectory + this.portfolioFileName).toString();
+    return this.fileSaved?
+            Paths.get(this.currentDirectory + this.portfolioFileName).toString()
+            : "File Could not be Saved. Error Message: " + this.errMessage;
   }
 
   @Override
@@ -118,8 +134,7 @@ public class PortfolioImpl implements Portfolio {
             .reduce((float) 0, Float::sum);
   }
 
-  @Override
-  public void savePortfolioToFile() throws FileNotFoundException {
+  private void savePortfolioToFile() throws FileNotFoundException {
     File outputFile = new File(currentDirectory + portfolioFileName);
     FileOutputStream fileOut = new FileOutputStream(outputFile);
     PrintStream out = new PrintStream(fileOut);

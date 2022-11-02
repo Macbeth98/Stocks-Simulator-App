@@ -106,7 +106,6 @@ public class PortfolioListImpl implements PortfolioList {
     portfolios.put(portfolioName, portfolio);
 
     if(filepath == null) {
-      portfolio.savePortfolioToFile();
       portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
     }
 

@@ -43,11 +43,4 @@ public interface Portfolio {
    */
   float getPortfolioValueAtDate(Date date);
 
-  /**
-   * Writes the current Portfolio to a CSV File and saves it.
-   *
-   * @throws FileNotFoundException throws an exception when the file to write is not found.
-   */
-  void savePortfolioToFile() throws FileNotFoundException;
-
 }
