@@ -112,6 +112,18 @@ public interface PortfolioView {
    */
   void invalidDateStringMessage(String dateString) throws IOException;
 
+  /**
+   * Display this message if user inputs incorrect menu choice.
+   */
   void invalidChoiceMessage() throws IOException;
 
+  /**
+   * Display this message if user inputs incorrect stock ticker name.
+   */
+  void invalidTickerName() throws IOException;
+
+  /**
+   * Display this message if the user inputs an incorrect float value.
+   */
+  void invalidFloatValue() throws IOException;
 }
