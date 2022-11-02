@@ -23,9 +23,9 @@ public class PortfolioControllerImpl implements PortfolioController {
 
   private boolean toContinue(String flag) {
     if ((flag.equals("N") || flag.equals("n"))) {
-      return false;
+      return true;
     }
-    else return flag.equals("Y") || flag.equals("y");
+    else return !flag.equals("Y") && !flag.equals("y");
   }
 
   @Override
@@ -62,11 +62,26 @@ public class PortfolioControllerImpl implements PortfolioController {
 
             Map<String, Float> stockMap = new HashMap<String, Float>();
             while (true) {
+
               view.stockNamePrompt();
               String stockName = scan.next();
+              if (stockName.length() > 5 || !stockName.matches("[a-zA-Z]+")) {
+                view.invalidTickerName();
+                continue;
+              }
+
+              float quantity;
               view.stockQuantityPrompt();
-              float quantity = scan.nextFloat();
+              try {
+                quantity = Float.parseFloat(scan.next());
+              } catch (Exception e) {
+                view.invalidFloatValue();
+                continue;
+              }
+
+
               stockMap.put(stockName.toUpperCase(), quantity);
+
               view.continuePrompt();
               if (toContinue(scan.next())) {
                 break;
@@ -78,7 +93,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
 
             view.continuePrompt();
-            if (!toContinue(scan.next())) {
+            if (toContinue(scan.next())) {
               break;
             }
           }
@@ -105,7 +120,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
 
             view.continuePrompt();
-            if (!toContinue(scan.next())) {
+            if (toContinue(scan.next())) {
               break;
             }
           }
@@ -133,7 +148,7 @@ public class PortfolioControllerImpl implements PortfolioController {
 
             view.continuePrompt();
             String continueFlag = scan.next();
-            if (!toContinue(continueFlag)) {
+            if (toContinue(continueFlag)) {
               break;
             }
           }
@@ -174,7 +189,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayValueAtDate(pName, date, value);
 
             view.continuePrompt();
-            if (!toContinue(scan.next())) {
+            if (toContinue(scan.next())) {
               break;
             }
           }

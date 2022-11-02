@@ -33,7 +33,7 @@ public class PortfolioViewImpl implements PortfolioView {
 
   @Override
   public void stockNamePrompt() throws IOException {
-    this.out.append("\nEnter stock ticker (will be converted to upper case if not already): ");
+    this.out.append("\nEnter stock ticker (will be converted to uppercase, 5 char max): ");
   }
 
   @Override
@@ -48,8 +48,8 @@ public class PortfolioViewImpl implements PortfolioView {
 
   @Override
   public void displayListOfPortfolios(String[] portfolioNames) throws IOException {
-    this.out.append("\nPortfolios present now: \n" +
-            String.join("\n", portfolioNames) + "\n");
+    this.out.append("\nPortfolios present now: \n")
+            .append(String.join("\n", portfolioNames)).append("\n");
   }
 
   @Override
@@ -120,5 +120,16 @@ public class PortfolioViewImpl implements PortfolioView {
   @Override
   public void invalidChoiceMessage() throws IOException {
     this.out.append("Please enter valid choice!\n");
+  }
+
+  @Override
+  public void invalidTickerName() throws IOException {
+    this.out.append("Invalid Stock Ticker name! " +
+            "Enter a character only string of maximum length 5!");
+  }
+
+  @Override
+  public void invalidFloatValue() throws IOException {
+    this.out.append("Invalid float! Please enter correct float value!\n");
   }
 }
