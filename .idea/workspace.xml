@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioViewImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioViewImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit4 Test Class" />
         <option value="Interface" />
+        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -65,43 +64,52 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PortfolioApplication">
-    <configuration name="AlphaVantageDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AlphaVantageDemo" />
-      <module name="Assignment4" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PortfolioApplica3tion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PortfolioApplica3tion" />
-      <module name="Assignment4" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PortfolioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PortfolioApplication" />
-      <module name="Assignment4" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PortfolioImplTest.readPortfolioFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PortfolioListImplTest.testCreatePortfolioFromInvalidFileContentFormat">
+    <configuration name="PortfolioListImplTest.testCreatePortfolio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioImplTest" />
-      <option name="METHOD_NAME" value="readPortfolioFile" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolio" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortfolioImplTest.savePortfolioToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PortfolioListImplTest.testCreatePortfolioFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioImplTest" />
-      <option name="METHOD_NAME" value="savePortfolioToFile" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolioFromFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioListImplTest.testCreatePortfolioFromFileNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolioFromFileNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioListImplTest.testCreatePortfolioFromInvalidFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolioFromInvalidFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioListImplTest.testCreatePortfolioFromInvalidFileContentFormat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolioFromInvalidFileContentFormat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -109,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PortfolioApplication" />
-        <item itemvalue="Application.PortfolioApplica3tion" />
-        <item itemvalue="JUnit.PortfolioImplTest.savePortfolioToFile" />
-        <item itemvalue="JUnit.PortfolioImplTest.readPortfolioFile" />
-        <item itemvalue="Application.AlphaVantageDemo" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromInvalidFileContentFormat" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromInvalidFile" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromFileNotFound" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromFile" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolio" />
       </list>
     </recent_temporary>
   </component>

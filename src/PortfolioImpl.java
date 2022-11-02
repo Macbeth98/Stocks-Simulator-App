@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +24,16 @@ public class PortfolioImpl implements Portfolio {
     return new PortfolioBuilder();
   }
 
-  private PortfolioImpl(String portfolioName, Map<String, PortfolioItem> stocks) {
+  private PortfolioImpl
+          (String portfolioName, Map<String, PortfolioItem> stocks, String portfolioFileName) {
     this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     this.portfolioName = portfolioName;
-    this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
+
+    if(portfolioFileName == null) {
+      this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
+    } else {
+      this.portfolioFileName = portfolioFileName;
+    }
 
     this.stocks = new HashMap<>(stocks);
   }
@@ -35,13 +43,23 @@ public class PortfolioImpl implements Portfolio {
     private String portfolioName;
     private final Map<String, PortfolioItem> stocks;
 
+    private String portfolioFileName;
+
     private PortfolioBuilder() {
       stocks = new HashMap<>();
+      portfolioFileName = null;
     }
 
     public PortfolioBuilder portfolioName(String portfolioName) {
       // need to check that the portfolio name is unique.
       this.portfolioName = portfolioName;
+      return this;
+    }
+
+    public PortfolioBuilder setPortfolioFileName(Path filepath) {
+      if(filepath != null) {
+        this.portfolioFileName = filepath.getFileName().toString();
+      }
       return this;
     }
 
@@ -58,7 +76,7 @@ public class PortfolioImpl implements Portfolio {
     }
 
     public Portfolio build() {
-      return new PortfolioImpl(this.portfolioName, stocks);
+      return new PortfolioImpl(this.portfolioName, stocks, this.portfolioFileName);
     }
 
 
@@ -71,7 +89,7 @@ public class PortfolioImpl implements Portfolio {
 
   @Override
   public String getPortfolioFilePath() {
-    return this.currentDirectory + this.portfolioFileName;
+    return Paths.get(this.currentDirectory + this.portfolioFileName).toString();
   }
 
   @Override

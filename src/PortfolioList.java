@@ -8,7 +8,8 @@ import java.util.Map;
 public interface PortfolioList {
 
   /**
-   * Fetches the list of PortfolioNames stored.
+   * Fetches the list of PortfolioNames stored. All Portfolio files are saved in a directory
+   * named portfolioCSVFiles.
    *
    * @return returns an array of stored Portfolio names.
    */
