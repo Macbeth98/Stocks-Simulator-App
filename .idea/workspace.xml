@@ -11,10 +11,27 @@
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/PortfolioImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/Alpha_1667291191423.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/Education_1667293292605.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/Healthcare_1667291162948.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest1Portfolio_1667356960048.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest1Portfolio_1667360655329.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest1Portfolio_1667369989206.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest1Portfolio_1667370096849.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest2_1667358707156.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest3_1667358830306.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest3_1667360540791.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest3_1667360660732.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest5_1667360675400.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest5_1667360742098.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest5_1667369989184.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest5_1667370023167.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/NewTest5_1667370091898.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/PortfolioImplTest_1667376006111.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/alpha12_1667378706017.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioCSVFiles/sdfg_1667293242941.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StockObjectImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StockObjectImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioListImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioListImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,27 +61,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "D:/1. Northeastern University/Semester - I/Courses/PDP/IntelliJ Projects/Assignments/Assignment4",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/1. Northeastern University/Semester - I/Courses/PDP/IntelliJ Projects/Assignments/Assignment4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -73,7 +91,14 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.Assignment4.jar">
+  <component name="RunManager" selected="JUnit.PortfolioListImplTest.testCreatePortfolio">
+    <configuration name="PortfolioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PortfolioApplication" />
+      <module name="Assignment4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PortfolioImplTest.testGetPortfolioValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
@@ -104,27 +129,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortfolioListImplTest.testCreatePortfolioFromFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Assignment4" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
-      <option name="METHOD_NAME" value="testCreatePortfolioFromFile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assignment4.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Assignment4_jar/Assignment4.jar" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PortfolioApplication" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolio" />
         <item itemvalue="JAR Application.Assignment4.jar" />
         <item itemvalue="JUnit.PortfolioImplTest.testGetPortfolioValue" />
         <item itemvalue="JUnit.PortfolioImplTest.testPortfolioImplObjectCreation" />
-        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolio" />
-        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromFile" />
       </list>
     </recent_temporary>
   </component>
@@ -142,6 +157,10 @@
       <workItem from="1667181294749" duration="5860000" />
       <workItem from="1667273252584" duration="2422000" />
       <workItem from="1667291118802" duration="2145000" />
+      <workItem from="1667435641452" duration="4486000" />
+      <workItem from="1667441100516" duration="1850000" />
+      <workItem from="1667442981500" duration="81000" />
+      <workItem from="1667443081301" duration="1151000" />
     </task>
     <servers />
   </component>

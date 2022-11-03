@@ -73,7 +73,7 @@ public class PortfolioListImplTest {
     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int charactersLength = characters.length();
 
-    String portfolioName = "NewTest1Portfolio";
+    String portfolioName = "test123";
     Map<String, Float> stocksMap = new HashMap<>();
 
     Random r = new Random();
