@@ -1,7 +1,5 @@
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +14,7 @@ public class StockObjectImpl implements StockObject {
 
   private final String ticker;
 
-  private final float price;
+  private float price;
 
   private final Map<String,Float> priceAtDate;
 
@@ -68,11 +66,14 @@ public class StockObjectImpl implements StockObject {
     Date currentDate = new Date();
     String dateString = getDateString(currentDate);
 
-    priceAtDate.put(dateString, this.price);
-    try {
-      this.writePriceToFile(dateString, price);
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
+    if(priceAtDate.containsKey(dateString)) {
+      this.price = priceAtDate.get(dateString);
+    } else {
+      priceAtDate.put(dateString, this.price);
+      try {
+        this.writePriceToFile(dateString, price);
+      } catch (IOException ignored) {
+      }
     }
   }
 
@@ -110,8 +111,8 @@ public class StockObjectImpl implements StockObject {
 
       try {
         this.writePriceToFile(dateString, priceValue);
-      } catch (IOException e) {
-        System.out.println(e.getMessage());
+      } catch (IOException ignored) {
+
       }
 
       return priceValue;
