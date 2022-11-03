@@ -21,13 +21,17 @@ public class PortfolioViewImplTest {
   @Test
   public void testMenuView() throws IOException {
     view_sample.menuView();
-    String menu = "\n\n-------------------------------" +
-            "\nWelcome!\nWhat do you want to do? Press option key:\n\n"
+    String menu = "\n\n"
+            + "-------------------------------\n"
+            + "Welcome!\n"
+            + "What do you want to do? Press option key:\n"
+            + "\n"
             + "1. Create new Portfolio manually\n"
             + "2. Create new Portfolio from file\n"
             + "3. Examine/View a portfolio\n"
             + "4. Get total value of a portfolio for a date\n"
             + "5. Exit\n"
+            + "\n(Please press 0 at any time to return to main menu)\n"
             + "-------------------------------\n\n";
     assertEquals(menu, out.toString());
   }
@@ -35,7 +39,8 @@ public class PortfolioViewImplTest {
   @Test
   public void testPortfolioNamePrompt() throws IOException {
     view_sample.portfolioNamePrompt();
-    assertEquals("\nEnter portfolio name: ", out.toString());
+    assertEquals("\nEnter portfolio name (will be converted to lowercase): ",
+            out.toString());
   }
 
   @Test
@@ -67,6 +72,7 @@ public class PortfolioViewImplTest {
 
   @Test
   public void testDisplayPortfolio() {
+    // TODO: WRITE THIS TEST!
   }
 
   @Test

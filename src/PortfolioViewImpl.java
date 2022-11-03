@@ -22,13 +22,14 @@ public class PortfolioViewImpl implements PortfolioView {
             + "3. Examine/View a portfolio\n"
             + "4. Get total value of a portfolio for a date\n"
             + "5. Exit\n"
+            + "\n(Please press 0 at any time to return to main menu)\n"
             + "-------------------------------\n\n";
     this.out.append(menu);
   }
 
   @Override
   public void portfolioNamePrompt() throws IOException {
-    this.out.append("\nEnter portfolio name: ");
+    this.out.append("\nEnter portfolio name (will be converted to lowercase): ");
   }
 
   @Override

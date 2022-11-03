@@ -51,20 +51,28 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.displayListOfPortfolios(pNames);
           }
 
+          createPFLoop:
           while (true) {
             view.portfolioNamePrompt();
             pName = scan.next().toLowerCase();
+
+            if (pName.equals("0")) {
+              break;
+            }
 
             if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
               view.portfolioExistsMessage(pName);
               continue;
             }
 
-            Map<String, Float> stockMap = new HashMap<String, Float>();
+            Map<String, Float> stockMap = new HashMap<>();
             while (true) {
 
               view.stockNamePrompt();
               String stockName = scan.next();
+              if (stockName.equals("0")) {
+                break createPFLoop;
+              }
               if (stockName.length() > 5 || !stockName.matches("[a-zA-Z]+")) {
                 view.invalidTickerName();
                 continue;
@@ -74,6 +82,9 @@ public class PortfolioControllerImpl implements PortfolioController {
               view.stockQuantityPrompt();
               try {
                 quantity = Float.parseFloat(scan.next());
+                if (quantity == 0) {
+                  break createPFLoop;
+                }
               } catch (Exception e) {
                 view.invalidFloatValue();
                 continue;
@@ -110,6 +121,9 @@ public class PortfolioControllerImpl implements PortfolioController {
           while (true) {
             view.portfolioNamePrompt();
             pName = scan.next().toLowerCase();
+            if (pName.equals("0")) {
+              break;
+            }
 
             if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
               view.portfolioExistsMessage(pName);
@@ -119,6 +133,9 @@ public class PortfolioControllerImpl implements PortfolioController {
             view.portfolioFilePathPrompt();
             scan.nextLine();
             String pPath = scan.nextLine();
+            if (pPath.equals("0")) {
+              break;
+            }
 
             Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
 
@@ -144,6 +161,9 @@ public class PortfolioControllerImpl implements PortfolioController {
           while (true) {
             view.portfolioNamePrompt();
             pName = scan.next().toLowerCase();
+            if (pName.equals("0")) {
+              break;
+            }
 
             if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
               view.portfolioNameErrorMessage();
@@ -174,6 +194,9 @@ public class PortfolioControllerImpl implements PortfolioController {
           while (true) {
             view.portfolioNamePrompt();
             pName = scan.next().toLowerCase();
+            if (pName.equals("0")) {
+              break;
+            }
 
             if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
               view.portfolioNameErrorMessage();
@@ -182,8 +205,11 @@ public class PortfolioControllerImpl implements PortfolioController {
 
             view.datePrompt();
             String dateString = scan.next();
+            if (dateString.equals("0")) {
+              break;
+            }
 
-            Date date = null;
+            Date date;
             try {
               date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
             } catch (ParseException e) {
