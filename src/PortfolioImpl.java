@@ -22,8 +22,6 @@ public class PortfolioImpl implements Portfolio {
 
   private boolean fileSaved;
 
-  private String errMessage;
-
   public static PortfolioBuilder getBuilder() {
     return new PortfolioBuilder();
   }
@@ -39,13 +37,6 @@ public class PortfolioImpl implements Portfolio {
 
     if(portfolioFileName == null) {
       this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
-      try {
-        this.savePortfolioToFile();
-        fileSaved = true;
-      } catch (FileNotFoundException e) {
-        fileSaved = false;
-        errMessage = e.getMessage();
-      }
     } else {
       this.portfolioFileName = portfolioFileName;
       fileSaved = true;
@@ -105,7 +96,7 @@ public class PortfolioImpl implements Portfolio {
   public String getPortfolioFilePath() {
     return this.fileSaved?
             Paths.get(this.currentDirectory + this.portfolioFileName).toString()
-            : "File Could not be Saved. Error Message: " + this.errMessage;
+            : "File Could not be Saved.";
   }
 
   @Override
@@ -124,7 +115,10 @@ public class PortfolioImpl implements Portfolio {
   }
 
   @Override
-  public float getPortfolioValueAtDate(Date date) {
+  public float getPortfolioValueAtDate(Date date) throws IllegalArgumentException {
+    if (date.getTime() > new Date().getTime()) {
+      throw new IllegalArgumentException("Cannot get the Portfolio value for the future date.");
+    }
     return stocks
             .values()
             .stream()
@@ -134,7 +128,7 @@ public class PortfolioImpl implements Portfolio {
             .reduce((float) 0, Float::sum);
   }
 
-  private void savePortfolioToFile() throws FileNotFoundException {
+  public String savePortfolioToFile() throws FileNotFoundException {
     File outputFile = new File(currentDirectory + portfolioFileName);
     FileOutputStream fileOut = new FileOutputStream(outputFile);
     PrintStream out = new PrintStream(fileOut);
@@ -144,5 +138,8 @@ public class PortfolioImpl implements Portfolio {
 
       out.println(portfolioItemStr);
     });
+
+    this.fileSaved = true;
+    return outputFile.getAbsolutePath();
   }
 }

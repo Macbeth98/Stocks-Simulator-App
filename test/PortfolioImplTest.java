@@ -4,9 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.sound.sampled.Port;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,15 +24,23 @@ public class PortfolioImplTest {
 
   private final String portfolioName = "PortfolioImplTest";
 
-  @Test
-  public void testPortfolioImplObjectCreation () {
+  private Portfolio createPortfolioObject (String name) {
+    if(name == null) {
+      name = this.portfolioName;
+    }
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
-    Portfolio portfolio = portfolioBuilder.portfolioName(this.portfolioName)
+    return portfolioBuilder.portfolioName(name)
             .setPortfolioFileName(null)
             .AddStockToPortfolio(new StockObjectImpl("GOOG"), 87.69f)
             .AddStockToPortfolio(new StockObjectImpl("TSLA"), 43.78f)
             .AddStockToPortfolio(new StockObjectImpl("MAKE"), 87.98f)
             .build();
+  }
+
+  @Test
+  public void testPortfolioImplObjectCreation () {
+
+    Portfolio portfolio = createPortfolioObject(this.portfolioName);
 
     assertEquals(this.portfolioName, portfolio.getPortfolioName());
 
@@ -70,6 +83,63 @@ public class PortfolioImplTest {
     float portfolioValue = portfolioList.getPortfolio(this.portfolioName).getPortfolioValue();
 
     assertEquals(sum, portfolioValue, 0.0001);
+  }
+
+  @Test
+  public void testGetPortfolioValueAtADate () throws ParseException {
+    String portfolioName = "portValueAtDate";
+    Portfolio portfolio = createPortfolioObject(portfolioName);
+
+    String dateString = "09/10/2021";
+
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+    Date date = formatter.parse(dateString);
+
+    float valueAtDate = portfolio.getPortfolioValueAtDate(date);
+
+    PortfolioItem[] portfolioItems = portfolio.getPortfolioComposition();
+
+    float sumDate = 0;
+
+    for (PortfolioItem portfolioItem: portfolioItems) {
+      StockObject stock = portfolioItem.getStock();
+      float value = portfolioItem.getQuantity() * stock.getCurrentPriceAtDate(date);
+      sumDate += value;
+    }
+
+    assertEquals(sumDate, valueAtDate, 0.001);
+  }
+
+  @Test
+  public void testPortfolioSaveToFile () throws FileNotFoundException {
+    String name = "SaveFileTest";
+    Portfolio portfolio = createPortfolioObject(name);
+
+    String filePath = portfolio.savePortfolioToFile();
+
+    File file = new File(filePath);
+
+    Map<String, Float> stocksMap = new HashMap<>();
+
+    stocksMap.put("GOOG", 87.69f);
+    stocksMap.put("TSLA", 43.78f);
+    stocksMap.put("MAKE", 87.98f);
+
+    int linesCount = 0;
+
+    try (Scanner scanner = new Scanner(file)) {
+      while (scanner.hasNextLine()) {
+        String item = scanner.nextLine();
+        String[] portfolioItems = item.split(",");
+
+        assertTrue(stocksMap.containsKey(portfolioItems[0]));
+        assertEquals(stocksMap.get(portfolioItems[0]),
+                Float.parseFloat(portfolioItems[1]), 0.0001);
+        linesCount++;
+      }
+    }
+
+    assertEquals(linesCount, stocksMap.keySet().size());
   }
 
 }

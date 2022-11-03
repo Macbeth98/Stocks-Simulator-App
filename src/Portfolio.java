@@ -43,4 +43,13 @@ public interface Portfolio {
    */
   float getPortfolioValueAtDate(Date date);
 
+  /**
+   * Writes the current Portfolio to a CSV File and saves it and gives the
+   * saved file absolute path.
+   *
+   * @return  returns the absolute path of the saved file.
+   * @throws FileNotFoundException throws an exception when the file to write is not found.
+   */
+  String savePortfolioToFile() throws FileNotFoundException;
+
 }

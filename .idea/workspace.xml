@@ -10,7 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockPrices/GOOG.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stockPrices/GOOG.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stockPrices/TSLA.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stockPrices/TSLA.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioListImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioListImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +77,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PortfolioControllerImplTest.testControllerCreatePortfolioManualExistingPortfolio">
-    <configuration name="PortfolioControllerImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Assignment4" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioControllerImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PortfolioImplTest.testPortfolioSaveToFile">
     <configuration name="PortfolioControllerImplTest.testControllerCreatePortfolioManualExistingPortfolio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
@@ -90,31 +88,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortfolioControllerImplTest.testGoGetPortfolioObject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PortfolioImplTest.testGetPortfolioValueAtADate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioControllerImplTest" />
-      <option name="METHOD_NAME" value="testGoGetPortfolioObject" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioImplTest" />
+      <option name="METHOD_NAME" value="testGetPortfolioValueAtADate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortfolioImplTest.testGetPortfolioValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PortfolioImplTest.testPortfolioSaveToFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="PortfolioImplTest" />
-      <option name="METHOD_NAME" value="testGetPortfolioValue" />
+      <option name="METHOD_NAME" value="testPortfolioSaveToFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortfolioImplTest.testPortfolioImplObjectCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PortfolioListImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment4" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PortfolioImplTest" />
-      <option name="METHOD_NAME" value="testPortfolioImplObjectCreation" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortfolioListImplTest.testCreatePortfolioFromInvalidFileContentFormat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PortfolioListImplTest" />
+      <option name="METHOD_NAME" value="testCreatePortfolioFromInvalidFileContentFormat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -122,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PortfolioImplTest.testPortfolioSaveToFile" />
+        <item itemvalue="JUnit.PortfolioImplTest.testGetPortfolioValueAtADate" />
+        <item itemvalue="JUnit.PortfolioListImplTest.testCreatePortfolioFromInvalidFileContentFormat" />
+        <item itemvalue="JUnit.PortfolioListImplTest" />
         <item itemvalue="JUnit.PortfolioControllerImplTest.testControllerCreatePortfolioManualExistingPortfolio" />
-        <item itemvalue="JUnit.PortfolioControllerImplTest" />
-        <item itemvalue="JUnit.PortfolioControllerImplTest.testGoGetPortfolioObject" />
-        <item itemvalue="JUnit.PortfolioImplTest.testGetPortfolioValue" />
-        <item itemvalue="JUnit.PortfolioImplTest.testPortfolioImplObjectCreation" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +154,8 @@
       <workItem from="1667435641452" duration="4486000" />
       <workItem from="1667441100516" duration="1850000" />
       <workItem from="1667442981500" duration="81000" />
-      <workItem from="1667443081301" duration="3844000" />
+      <workItem from="1667443081301" duration="4075000" />
+      <workItem from="1667510832897" duration="3438000" />
     </task>
     <servers />
   </component>
