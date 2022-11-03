@@ -12,6 +12,11 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * This class is a test class for PortfolioControllerImpl class.
+ * This class contains methods which will test the controller interaction with
+ * Model and View.
+ */
 public class PortfolioControllerImplTest {
 
   private PortfolioController controller;
@@ -280,14 +285,14 @@ public class PortfolioControllerImplTest {
   @Test
   public void testGoGetPortfolioObject() throws IOException {
     StringBuffer out = new StringBuffer();
-    Reader in = new StringReader("4 mockportfolio 11/12/2019 0 5");
+    Reader in = new StringReader("4 sample 11/12/2019 0 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log, uniqueString, portfolio));
+    controller.go(new MockModelPortfolioList(log, "sample", portfolio));
 
     String resultPrompt = "Value of portfolio: sample";
 
-    // assertEquals("mockportfolio\n", log.toString());
+    assertEquals("sample\n", log.toString());
     assertTrue(out.toString().contains(resultPrompt));
   }
 
