@@ -7,11 +7,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * This class contains the implementation of the PortfolioController interface, and its methods.
+ */
 public class PortfolioControllerImpl implements PortfolioController {
 
   final Readable in;
   final Appendable out;
 
+  /**
+   * This method constructs a PortfolioController object taking two arguments for input and output.
+   * @param in input stream object of Readable interface type
+   * @param out output stream object of Appendable interface type
+   */
   PortfolioControllerImpl(Readable in, Appendable out) {
     this.in = in;
     this.out = out;
