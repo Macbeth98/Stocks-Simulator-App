@@ -102,6 +102,11 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         case "2":
           // create a new portfolio from a file
+          pNames = portfolioList.getPortfolioListNames();
+          if (pNames.length > 1) {
+            view.displayListOfPortfolios(pNames);
+          }
+
           while (true) {
             view.portfolioNamePrompt();
             pName = scan.next().toLowerCase();
@@ -124,6 +129,8 @@ public class PortfolioControllerImpl implements PortfolioController {
               break;
             }
           }
+
+          break;
 
         case "3":
           // view a portfolio
