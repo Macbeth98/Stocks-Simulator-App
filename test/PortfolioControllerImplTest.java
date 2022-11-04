@@ -70,10 +70,10 @@ public class PortfolioControllerImplTest {
   @Test
   public void testControllerCreatePortfolioManualExistingPortfolio() throws IOException {
     StringBuffer out = new StringBuffer();
-    Reader in = new StringReader("1 testPortfolio testPortfolioNew 0 5");
+    Reader in = new StringReader("1 sample testPortfolioNew 0 5");
     controller = new PortfolioControllerImpl(in, out);
     controller.go(new PortfolioListImpl());
-    String resultPrompt = "Portfolio Name: testportfolio, already exists! "
+    String resultPrompt = "Portfolio Name: sample, already exists! "
             + "Please use a different name!";
     assertTrue(out.toString().contains(resultPrompt));
   }
