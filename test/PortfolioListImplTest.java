@@ -133,7 +133,8 @@ public class PortfolioListImplTest {
 
   @Test(expected = FileNotFoundException.class)
   public void testCreatePortfolioFromFileNotFound() throws FileNotFoundException {
-    Portfolio portfolio = portfolioList.createPortfolioFromFile("NoFileset", "Users/portfolioCSVFiles/out.csv");
+    Portfolio portfolio = portfolioList.createPortfolioFromFile("NoFileset",
+            "Users/portfolioCSVFiles/out.csv");
   }
 
   @Test(expected = IllegalArgumentException.class)

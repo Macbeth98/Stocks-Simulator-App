@@ -31,8 +31,8 @@ public class PortfolioImpl implements Portfolio {
     return new PortfolioBuilder();
   }
 
-  private PortfolioImpl
-          (String portfolioName, Map<String, PortfolioItem> stocks, String portfolioFileName) {
+  private PortfolioImpl(String portfolioName, Map<String, PortfolioItem> stocks,
+                        String portfolioFileName) {
 
     this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
 
@@ -92,12 +92,12 @@ public class PortfolioImpl implements Portfolio {
      * This method will add a stock to the PortfolioBuilder stocks. And this stocks will be
      * used to build the PortfolioImpl Object.
      *
-     * @param stock the stockObject that needs to be added to the Portfolio.
+     * @param stock    the stockObject that needs to be added to the Portfolio.
      * @param quantity the quantity of the stock that was purchased/invested.
      * @return returns the current PortfolioBuilder Object.
      * @throws IllegalArgumentException if the given quantity value is not valid.
      */
-    public PortfolioBuilder AddStockToPortfolio(StockObject stock, float quantity)
+    public PortfolioBuilder addStockToPortfolio(StockObject stock, float quantity)
             throws IllegalArgumentException {
 
       if (quantity <= 0) {

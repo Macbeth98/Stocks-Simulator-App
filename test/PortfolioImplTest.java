@@ -29,9 +29,9 @@ public class PortfolioImplTest {
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
     return portfolioBuilder.portfolioName(name)
             .setPortfolioFileName(null)
-            .AddStockToPortfolio(new StockObjectImpl("GOOG"), 87.69f)
-            .AddStockToPortfolio(new StockObjectImpl("TSLA"), 43.78f)
-            .AddStockToPortfolio(new StockObjectImpl("MAKE"), 87.98f)
+            .addStockToPortfolio(new StockObjectImpl("GOOG"), 87.69f)
+            .addStockToPortfolio(new StockObjectImpl("TSLA"), 43.78f)
+            .addStockToPortfolio(new StockObjectImpl("MAKE"), 87.98f)
             .build();
   }
 

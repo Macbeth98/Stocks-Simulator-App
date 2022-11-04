@@ -5,8 +5,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * This class is a test class for PortfolioViewImpl.
+ * This class contains methods which tests the methods and properties of PortfolioListImpl.
+ */
 public class PortfolioViewImplTest {
 
   private PortfolioView view_sample;
@@ -68,11 +72,6 @@ public class PortfolioViewImplTest {
     view_sample.displayListOfPortfolios(pNames);
     assertEquals("\nPortfolios present now: \n" + String.join("\n", pNames) + "\n",
             out.toString());
-  }
-
-  @Test
-  public void testDisplayPortfolio() {
-    // TODO: WRITE THIS TEST!
   }
 
   @Test
@@ -146,8 +145,8 @@ public class PortfolioViewImplTest {
   @Test
   public void testStockTickerMessage() throws IOException {
     view_sample.invalidTickerName();
-    assertEquals("Invalid Stock Ticker name! " +
-            "Enter a character only string of maximum length 5!", out.toString());
+    assertEquals("Invalid Stock Ticker name! "
+            + "Enter a character only string of maximum length 5!", out.toString());
   }
 
   @Test
