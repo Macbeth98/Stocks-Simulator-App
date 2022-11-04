@@ -12,8 +12,8 @@ public class PortfolioItem {
    * The method constructs an individual PortfolioItem object that will be in a Portfolio.
    * A PortfolioItem consists of StockObject, quantity and cost per share.
    *
-   * @param stock The StockObject in the Portfolio.
-   * @param quantity the quantity of the stocks purchased.
+   * @param stock        The StockObject in the Portfolio.
+   * @param quantity     the quantity of the stocks purchased.
    * @param costPerShare The cost of each stock.
    * @throws IllegalArgumentException if the given quantity is not greater than zero.
    */

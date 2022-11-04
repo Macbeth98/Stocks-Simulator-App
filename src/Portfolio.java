@@ -47,7 +47,7 @@ public interface Portfolio {
    * Writes the current Portfolio to a CSV File and saves it and gives the
    * saved file absolute path.
    *
-   * @return  returns the absolute path of the saved file.
+   * @return returns the absolute path of the saved file.
    * @throws FileNotFoundException throws an exception when the file to write is not found.
    */
   String savePortfolioToFile() throws FileNotFoundException;

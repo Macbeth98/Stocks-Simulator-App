@@ -20,7 +20,7 @@ public class StockObjectImpl implements StockObject {
 
   private float price;
 
-  private final Map<String,Float> priceAtDate;
+  private final Map<String, Float> priceAtDate;
 
   private final String currentDirectory;
   private final String fileName;
@@ -31,6 +31,7 @@ public class StockObjectImpl implements StockObject {
 
   /**
    * This constructs a StockObjectImpl which takes the stock ticker symbol as argument.
+   *
    * @param ticker stock ticker symbol
    */
   public StockObjectImpl(String ticker) {
@@ -61,7 +62,7 @@ public class StockObjectImpl implements StockObject {
     }
 
     File file = new File(currentDirectory + this.fileName);
-    if(file.exists()){
+    if (file.exists()) {
       try (Scanner scanner = new Scanner(file)) {
         while (scanner.hasNextLine()) {
           String line = scanner.nextLine();
@@ -74,7 +75,7 @@ public class StockObjectImpl implements StockObject {
     Date currentDate = new Date();
     String dateString = getDateString(currentDate);
 
-    if(priceAtDate.containsKey(dateString)) {
+    if (priceAtDate.containsKey(dateString)) {
       this.price = priceAtDate.get(dateString);
     } else {
       priceAtDate.put(dateString, this.price);
@@ -90,7 +91,7 @@ public class StockObjectImpl implements StockObject {
     BufferedWriter bw = new BufferedWriter(fileWriter);
     PrintWriter out = new PrintWriter(bw);
 
-    out.println(dateString+","+price);
+    out.println(dateString + "," + price);
     out.flush();
     out.close();
   }
@@ -111,7 +112,7 @@ public class StockObjectImpl implements StockObject {
 
     String dateString = getDateString(date);
 
-    if(priceAtDate.containsKey(dateString)) {
+    if (priceAtDate.containsKey(dateString)) {
       return priceAtDate.get(dateString);
     } else {
       float priceValue = r.nextFloat();

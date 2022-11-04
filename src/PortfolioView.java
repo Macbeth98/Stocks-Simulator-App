@@ -92,6 +92,7 @@ public interface PortfolioView {
 
   /**
    * Display this message if portfolio with given name already exists.
+   *
    * @param portfolioName given portfolio name
    */
   void portfolioExistsMessage(String portfolioName) throws IOException;
@@ -108,6 +109,7 @@ public interface PortfolioView {
 
   /**
    * Display this message if a given date string doesn't represent a valid date.
+   *
    * @param dateString given date string input
    */
   void invalidDateStringMessage(String dateString) throws IOException;

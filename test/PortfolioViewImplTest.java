@@ -95,7 +95,7 @@ public class PortfolioViewImplTest {
     view_sample.displayValueAtDate(pName, date, value);
     SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
     String result = "\nValue of portfolio: " + pName + ", at Date: "
-            + formatter.format(date) +" IS : " + value + "\n";
+            + formatter.format(date) + " IS : " + value + "\n";
     assertEquals(result, out.toString());
   }
 

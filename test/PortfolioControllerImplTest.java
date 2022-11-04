@@ -113,7 +113,8 @@ public class PortfolioControllerImplTest {
   @Test(expected = FileNotFoundException.class)
   public void testControllerCreatePortfolioFromFileInvalidPath() throws IOException {
     StringBuffer out = new StringBuffer();
-    String pPath = System.getProperty("user.dir") + "/portfolioCSVFiles/InvalidSample_1667366700000.csv";
+    String pPath = System.getProperty("user.dir")
+            + "/portfolioCSVFiles/InvalidSample_1667366700000.csv";
     Reader in = new StringReader("2 portfoliofromfile \n" + pPath + "\n n 5");
     controller = new PortfolioControllerImpl(in, out);
     controller.go(new PortfolioListImpl());
@@ -147,7 +148,7 @@ public class PortfolioControllerImplTest {
     try (Scanner sc = new Scanner(file)) {
       while (sc.hasNextLine()) {
         String[] item = sc.nextLine().split(",");
-        assertTrue(out.toString().contains(item[0]+","+item[1]));
+        assertTrue(out.toString().contains(item[0] + "," + item[1]));
       }
     }
   }
@@ -201,9 +202,9 @@ public class PortfolioControllerImplTest {
 
     private final StringBuilder log;
     private final String uniqueString;
-    private final Portfolio  portfolio;
+    private final Portfolio portfolio;
 
-    public MockModelPortfolioList (StringBuilder log, String uniqueString, Portfolio portfolio) {
+    public MockModelPortfolioList(StringBuilder log, String uniqueString, Portfolio portfolio) {
       this.log = log;
       this.uniqueString = uniqueString;
       this.portfolio = portfolio;
@@ -244,7 +245,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("1 mockportfolio goog 5.65 y tsla 7.89 n n 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log,uniqueString, portfolio));
+    controller.go(new MockModelPortfolioList(log, uniqueString, portfolio));
 
     String resultPrompt = "mockportfolio\n"
             + "GOOG,5.65\n"

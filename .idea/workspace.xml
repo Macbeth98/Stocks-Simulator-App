@@ -10,10 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/DESIGN-README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/DESIGN-README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/sample_1667366700000.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Portfolio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioViewImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioViewImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StockObjectImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StockObjectImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/PortfolioImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/PortfolioListImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioListImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioViewImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioViewImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +165,7 @@
       <workItem from="1667442981500" duration="81000" />
       <workItem from="1667443081301" duration="4075000" />
       <workItem from="1667510832897" duration="3782000" />
-      <workItem from="1667518358879" duration="2355000" />
+      <workItem from="1667518358879" duration="3709000" />
     </task>
     <servers />
   </component>

@@ -11,6 +11,7 @@ public class PortfolioViewImpl implements PortfolioView {
 
   /**
    * This constructor constructs a view object that is used to render the text based interface.
+   *
    * @param out output stream variable of Appendable interface type
    */
   public PortfolioViewImpl(Appendable out) {

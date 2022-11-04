@@ -35,7 +35,7 @@ public class PortfolioListImplTest {
   }
 
   @Test
-  public void testGetPortfolioFileNames () {
+  public void testGetPortfolioFileNames() {
 
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
@@ -47,7 +47,7 @@ public class PortfolioListImplTest {
               .forEach(file -> {
                 String filePath = file.toString();
                 String fileExt = filePath.substring(filePath.lastIndexOf(".") + 1);
-                if("csv".equalsIgnoreCase(fileExt)) {
+                if ("csv".equalsIgnoreCase(fileExt)) {
                   assertTrue(fileNames.contains(file.getFileName().toString().split("_")[0]));
                 }
               });
@@ -60,7 +60,7 @@ public class PortfolioListImplTest {
   public void testGetPortfolio() throws FileNotFoundException {
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
-    for (String portfolioName: portfolioNames) {
+    for (String portfolioName : portfolioNames) {
       Portfolio portfolio = portfolioList.getPortfolio(portfolioName);
       assertEquals(portfolioName, portfolio.getPortfolioName());
     }
@@ -88,13 +88,13 @@ public class PortfolioListImplTest {
       StringBuilder ticker = new StringBuilder();
       while (tickerLength > 0) {
         ticker.append(characters.charAt(
-                Utils.getNextRandomInteger(r, 0, charactersLength-1)
+                Utils.getNextRandomInteger(r, 0, charactersLength - 1)
         ));
         tickerLength--;
       }
 
-      float quantity = (float)Utils.getNextRandomInteger(r, 1, 1000)
-              + ((float)(Utils.getNextRandomInteger(r, 0, 1000)) / 1000);
+      float quantity = (float) Utils.getNextRandomInteger(r, 1, 1000)
+              + ((float) (Utils.getNextRandomInteger(r, 0, 1000)) / 1000);
       stocksMap.put(ticker.toString(), quantity);
       stocksCount--;
     }
@@ -113,7 +113,7 @@ public class PortfolioListImplTest {
   }
 
   @Test
-  public void testCreatePortfolioFromFile () throws FileNotFoundException {
+  public void testCreatePortfolioFromFile() throws FileNotFoundException {
     Portfolio oldPortfolio = portfolioList.getPortfolio(portfolioList.getPortfolioListNames()[0]);
     String path = oldPortfolio.getPortfolioFilePath();
 

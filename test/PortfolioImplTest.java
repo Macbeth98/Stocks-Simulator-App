@@ -22,8 +22,8 @@ public class PortfolioImplTest {
 
   private final String portfolioName = "PortfolioImplTest";
 
-  private Portfolio createPortfolioObject (String name) {
-    if(name == null) {
+  private Portfolio createPortfolioObject(String name) {
+    if (name == null) {
       name = this.portfolioName;
     }
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
@@ -36,7 +36,7 @@ public class PortfolioImplTest {
   }
 
   @Test
-  public void testPortfolioImplObjectCreation () throws FileNotFoundException {
+  public void testPortfolioImplObjectCreation() throws FileNotFoundException {
 
     Portfolio portfolio = createPortfolioObject(this.portfolioName);
     String filePath = portfolio.savePortfolioToFile();
@@ -53,7 +53,7 @@ public class PortfolioImplTest {
     stockMaps.put("TSLA", 43.78f);
     stockMaps.put("MAKE", 87.98f);
 
-    for (PortfolioItem portfolioItem: portfolioItems) {
+    for (PortfolioItem portfolioItem : portfolioItems) {
       String ticker = portfolioItem.getStock().getTicker();
       assertTrue(stockMaps.containsKey(ticker));
       assertEquals(stockMaps.get(ticker), portfolioItem.getQuantity(), 0.0001);
@@ -84,7 +84,7 @@ public class PortfolioImplTest {
   }
 
   @Test
-  public void testGetPortfolioValueAtADate () throws ParseException {
+  public void testGetPortfolioValueAtADate() throws ParseException {
     String portfolioName = "portValueAtDate";
     Portfolio portfolio = createPortfolioObject(portfolioName);
 
@@ -99,7 +99,7 @@ public class PortfolioImplTest {
 
     float sumDate = 0;
 
-    for (PortfolioItem portfolioItem: portfolioItems) {
+    for (PortfolioItem portfolioItem : portfolioItems) {
       StockObject stock = portfolioItem.getStock();
       float value = portfolioItem.getQuantity() * stock.getCurrentPriceAtDate(date);
       sumDate += value;
@@ -109,7 +109,7 @@ public class PortfolioImplTest {
   }
 
   @Test
-  public void testPortfolioSaveToFile () throws FileNotFoundException {
+  public void testPortfolioSaveToFile() throws FileNotFoundException {
     String name = "SaveFileTest";
     Portfolio portfolio = createPortfolioObject(name);
 

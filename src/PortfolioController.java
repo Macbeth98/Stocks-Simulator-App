@@ -6,6 +6,7 @@ import java.io.IOException;
 public interface PortfolioController {
   /**
    * This method is called by the controller to initiate the application.
+   *
    * @param portfolioList model input variable of PortfolioList type used by the controller
    * @throws IOException thrown by input stream
    */

@@ -17,7 +17,8 @@ public class PortfolioControllerImpl implements PortfolioController {
 
   /**
    * This method constructs a PortfolioController object taking two arguments for input and output.
-   * @param in input stream object of Readable interface type
+   *
+   * @param in  input stream object of Readable interface type
    * @param out output stream object of Appendable interface type
    */
   PortfolioControllerImpl(Readable in, Appendable out) {
@@ -32,8 +33,7 @@ public class PortfolioControllerImpl implements PortfolioController {
   private boolean toContinue(String flag) {
     if ((flag.equals("N") || flag.equals("n"))) {
       return true;
-    }
-    else return !flag.equals("Y") && !flag.equals("y");
+    } else return !flag.equals("Y") && !flag.equals("y");
   }
 
   @Override
