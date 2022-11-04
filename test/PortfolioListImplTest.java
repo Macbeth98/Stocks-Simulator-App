@@ -1,8 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -142,8 +145,15 @@ public class PortfolioListImplTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testCreatePortfolioFromInvalidFileContentFormat() throws FileNotFoundException {
-    String path = "D:\\1. Northeastern University\\Semester - I\\Courses\\PDP\\IntelliJ "
-            + "Projects\\Assignments\\Assignment4\\portfolioCSVFiles\\NewTest5_1667513470769.csv";
+    String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+    String portfolioFileName = "invalidContentFormat.csv";
+    File outputFile = new File(currentDirectory + portfolioFileName);
+    FileOutputStream fileOut = new FileOutputStream(outputFile);
+    PrintStream out = new PrintStream(fileOut);
+
+    out.println("24.87,GOOG,1.908,56.78");
+
+    String path = outputFile.getAbsolutePath();
     Portfolio portfolio = portfolioList.createPortfolioFromFile("InvalidTest", path);
   }
 

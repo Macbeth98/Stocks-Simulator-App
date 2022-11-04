@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.sound.sampled.Port;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -38,9 +36,10 @@ public class PortfolioImplTest {
   }
 
   @Test
-  public void testPortfolioImplObjectCreation () {
+  public void testPortfolioImplObjectCreation () throws FileNotFoundException {
 
     Portfolio portfolio = createPortfolioObject(this.portfolioName);
+    String filePath = portfolio.savePortfolioToFile();
 
     assertEquals(this.portfolioName, portfolio.getPortfolioName());
 
@@ -63,9 +62,8 @@ public class PortfolioImplTest {
 
   @Test
   public void testGetPortfolioValue() throws FileNotFoundException {
-    Path filepath = Paths.get("D:\\1. Northeastern University\\Semester "
-            + "- I\\Courses\\PDP\\IntelliJ Projects\\Assignments\\Assignment4\\"
-            + "portfolioCSVFiles\\PortfolioImplTest_1667445567057.csv");
+    Portfolio portfolio = createPortfolioObject("testPortfolioValue");
+    Path filepath = Paths.get(portfolio.savePortfolioToFile());
 
     float sum = 0.00f;
 
