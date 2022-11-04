@@ -137,13 +137,6 @@ public class PortfolioListImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testCreatePortfolioFromInvalidFileContent() throws FileNotFoundException {
-    String path = "D:\\1. Northeastern University\\Semester - I\\Courses\\PDP\\IntelliJ "
-            + "Projects\\Assignments\\Assignment4\\Scratch.txt";
-    Portfolio portfolio = portfolioList.createPortfolioFromFile("InvalidTest", path);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
   public void testCreatePortfolioFromInvalidFileContentFormat() throws FileNotFoundException {
     String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
     String portfolioFileName = "invalidContentFormat.csv";

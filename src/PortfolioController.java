@@ -10,5 +10,5 @@ public interface PortfolioController {
    * @param portfolioList model input variable of PortfolioList type used by the controller
    * @throws IOException thrown by input stream
    */
-  void go(PortfolioList portfolioList) throws IOException;
+  void goController(PortfolioList portfolioList) throws IOException;
 }

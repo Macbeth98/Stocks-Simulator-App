@@ -53,7 +53,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     assertEquals(menuString, out.toString());
   }
 
@@ -62,7 +62,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("1 testPortfolio GOOG 2.55 y TSLA 4.55 n n 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Portfolio: testportfolio. Successfully Created!";
     assertTrue(out.toString().contains(resultPrompt));
   }
@@ -72,7 +72,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("1 sample testPortfolioNew 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Portfolio Name: sample, already exists! "
             + "Please use a different name!";
     assertTrue(out.toString().contains(resultPrompt));
@@ -83,7 +83,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("1 invalidstock 789yy 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Invalid Stock Ticker name! Enter a character "
             + "only string of maximum length 5!";
     assertTrue(out.toString().contains(resultPrompt));
@@ -94,7 +94,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("1 invalidquantity goog 56.65th 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Invalid float! Please enter correct float value!";
     assertTrue(out.toString().contains(resultPrompt));
   }
@@ -105,7 +105,7 @@ public class PortfolioControllerImplTest {
     String pPath = System.getProperty("user.dir") + "/portfolioCSVFiles/sample_1667366700000.csv";
     Reader in = new StringReader("2 portfoliofromfile \n" + pPath + "\n n 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Portfolio: portfoliofromfile. Successfully Created!";
     assertTrue(out.toString().contains(resultPrompt));
   }
@@ -117,7 +117,7 @@ public class PortfolioControllerImplTest {
             + "/portfolioCSVFiles/InvalidSample_1667366700000.csv";
     Reader in = new StringReader("2 portfoliofromfile \n" + pPath + "\n n 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Portfolio: portfoliofromfile. Successfully Created!";
     assertTrue(out.toString().contains(resultPrompt));
   }
@@ -129,9 +129,10 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("2 portfoliofromfile portfoliofromfilenew \n"
             + pPath + "\n n 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
     String resultPrompt = "Portfolio Name: portfoliofromfile, already exists! "
             + "Please use a different name!";
+    System.out.println(out);
     assertTrue(out.toString().contains(resultPrompt));
   }
 
@@ -141,7 +142,7 @@ public class PortfolioControllerImplTest {
     String pPath = System.getProperty("user.dir") + "/portfolioCSVFiles/sample_1667366700000.csv";
     Reader in = new StringReader("3 sample 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
 
     File file = new File(pPath);
 
@@ -158,7 +159,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("3 sample123 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
 
     String resultPrompt = "Please enter valid portfolio name!";
     assertTrue(out.toString().contains(resultPrompt));
@@ -169,7 +170,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("4 sample 11/12/2019 n 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
 
     String resultPrompt = "Value of portfolio: sample, at Date: 12 November 2019 IS :";
     assertTrue(out.toString().contains(resultPrompt));
@@ -180,7 +181,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("4 sample foobardate 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
 
     String resultPrompt = "Invalid Date String!: foobardate";
     assertTrue(out.toString().contains(resultPrompt));
@@ -191,7 +192,7 @@ public class PortfolioControllerImplTest {
     StringBuffer out = new StringBuffer();
     Reader in = new StringReader("4 invalidSample 0 5");
     controller = new PortfolioControllerImpl(in, out);
-    controller.go(new PortfolioListImpl());
+    controller.goController(new PortfolioListImpl());
 
     String resultPrompt = "Please enter valid portfolio name!";
     assertTrue(out.toString().contains(resultPrompt));
@@ -245,7 +246,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("1 mockportfolio goog 5.65 y tsla 7.89 n n 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log, uniqueString, portfolio));
+    controller.goController(new MockModelPortfolioList(log, uniqueString, portfolio));
 
     String resultPrompt = "mockportfolio\n"
             + "GOOG,5.65\n"
@@ -263,7 +264,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("2 mockportfoliofromfile \n" + pPath + "\n n 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log, uniqueString, portfolio));
+    controller.goController(new MockModelPortfolioList(log, uniqueString, portfolio));
 
     String resultPrompt = "mockportfoliofromfile\n" + pPath;
 
@@ -278,7 +279,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("3 0 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log, uniqueString, portfolio));
+    controller.goController(new MockModelPortfolioList(log, uniqueString, portfolio));
 
     assertTrue(out.toString().contains(this.uniqueString));
   }
@@ -289,7 +290,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("4 sample 11/12/2019 0 5");
     PortfolioController controller = new PortfolioControllerImpl(in, out);
     StringBuilder log = new StringBuilder();
-    controller.go(new MockModelPortfolioList(log, "sample", portfolio));
+    controller.goController(new MockModelPortfolioList(log, "sample", portfolio));
 
     String resultPrompt = "Value of portfolio: sample";
 

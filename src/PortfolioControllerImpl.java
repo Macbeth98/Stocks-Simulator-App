@@ -33,11 +33,13 @@ public class PortfolioControllerImpl implements PortfolioController {
   private boolean toContinue(String flag) {
     if ((flag.equals("N") || flag.equals("n"))) {
       return true;
-    } else return !flag.equals("Y") && !flag.equals("y");
+    } else {
+      return !flag.equals("Y") && !flag.equals("y");
+    }
   }
 
   @Override
-  public void go(PortfolioList portfolioList) throws IOException {
+  public void goController(PortfolioList portfolioList) throws IOException {
 
     // create view object -> view
     PortfolioView view = new PortfolioViewImpl(this.out);

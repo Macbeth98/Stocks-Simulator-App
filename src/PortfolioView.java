@@ -43,7 +43,7 @@ public interface PortfolioView {
   void stockQuantityPrompt() throws IOException;
 
   /**
-   * Ask user if they want to continue
+   * Ask user if they want to continue.
    */
   void continuePrompt() throws IOException;
 
