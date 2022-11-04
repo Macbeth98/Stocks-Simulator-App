@@ -5,6 +5,10 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class is a test class for StockObjectImpl.
+ * This class contains methods which tests the methods and properties of StockObjectImpl.
+ */
 public class StockObjectImplTest {
 
   private StockObject stock;

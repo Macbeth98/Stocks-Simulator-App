@@ -102,7 +102,7 @@ public class PortfolioListImpl implements PortfolioList {
             .setPortfolioFileName(filepath);
     String[] keys = stocksMap.keySet().toArray(new String[0]);
     for (String key : keys) {
-      portfolioBuilder = portfolioBuilder.AddStockToPortfolio(
+      portfolioBuilder = portfolioBuilder.addStockToPortfolio(
               new StockObjectImpl(key),
               stocksMap.get(key)
       );
