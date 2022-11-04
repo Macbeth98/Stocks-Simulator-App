@@ -10,6 +10,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * This class contains the implementation for the StockObject interface.
+ * Implements the interface methods and consists of a public constructor.
+ */
 public class StockObjectImpl implements StockObject {
 
   private final String ticker;
@@ -25,6 +29,10 @@ public class StockObjectImpl implements StockObject {
     return new SimpleDateFormat("MM/dd/yyyy").format(date);
   }
 
+  /**
+   * This constructs a StockObjectImpl which takes the stock ticker symbol as argument.
+   * @param ticker stock ticker symbol
+   */
   public StockObjectImpl(String ticker) {
     this.ticker = ticker;
     Random r = new Random();

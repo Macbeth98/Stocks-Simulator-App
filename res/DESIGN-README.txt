@@ -21,8 +21,13 @@ But once a price is assigned for a stock at a date, that price will persist.
 
 Controller:
 
--
+- The controller interface is defined in src/PortfolioController.java.
+- It contains only a single method(void go()) that the controller class, src/PortfolioControllerImpl.java, implements.
+- This class has a public constructor which takes two arguments, of Reader and Appendable interface types respectively.
 
 View:
 
--
+- The view interface is defined in src/PortfolioView.java.
+- The methods defined in the view interface as used to render the text based user interface in the application.
+- The implementation of this interface is in the class, src/PortfolioListImpl.java.
+- The view class has a public constructor which takes one argument, of Appendable interface type.
