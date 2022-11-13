@@ -14,13 +14,13 @@ import java.util.Map;
  */
 public class PortfolioImpl implements Portfolio {
 
-  private final String portfolioName;
-  private final Map<String, PortfolioItem> stocks;
+  protected final String portfolioName;
+  protected final Map<String, PortfolioItem> stocks;
 
-  private final String portfolioFileName;
-  private final String currentDirectory;
+  protected final String portfolioFileName;
+  protected final String currentDirectory;
 
-  private boolean fileSaved;
+  protected boolean fileSaved;
 
   /**
    * This method constructs a builder object that can be used to build the PortfolioImpl.
@@ -29,6 +29,21 @@ public class PortfolioImpl implements Portfolio {
    */
   public static PortfolioBuilder getBuilder() {
     return new PortfolioBuilder();
+  }
+
+  protected PortfolioImpl(String portfolioName, String portfolioFileName) {
+    this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+
+    this.portfolioName = portfolioName;
+
+    this.stocks = new HashMap<>();
+
+    if (portfolioFileName == null) {
+      this.portfolioFileName = portfolioName + "_" + new Date().getTime() + ".csv";
+    } else {
+      this.portfolioFileName = portfolioFileName;
+      fileSaved = true;
+    }
   }
 
   private PortfolioImpl(String portfolioName, Map<String, PortfolioItem> stocks,
