@@ -3,7 +3,7 @@ import java.util.Objects;
 
 public class PortfolioItemTransaction extends PortfolioItem {
 
-  private final String type;
+  private final TransactionType type;
   private final float commission;
   private final Date date;
 
@@ -17,13 +17,9 @@ public class PortfolioItemTransaction extends PortfolioItem {
    * @param commission The commission that was charged while purchasing the stock.
    * @throws IllegalArgumentException if the given quantity is not greater than zero.
    */
-  public PortfolioItemTransaction(String type, StockObject stock, float quantity, Date date, float commission)
+  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity, Date date, float commission)
           throws IllegalArgumentException {
     super(stock, quantity, stock.getCurrentPriceAtDate(date));
-
-    if(!Objects.equals(type, "buy") && !Objects.equals(type, "sell")) {
-      throw new IllegalArgumentException("The type can only be buy or sell.");
-    }
 
     this.type = type;
 
@@ -35,13 +31,15 @@ public class PortfolioItemTransaction extends PortfolioItem {
     this.date = date;
   }
 
-  public String getType() {
+  public TransactionType getType() {
     return this.type;
   }
 
   @Override
   public float getQuantity() {
-    return Objects.equals(this.type, "buy") ? super.getQuantity(): -1 * super.getQuantity();
+    return Objects.equals(this.type, TransactionType.BUY)
+            ? super.getQuantity()
+            : -1 * super.getQuantity();
   }
 
 
@@ -71,7 +69,9 @@ public class PortfolioItemTransaction extends PortfolioItem {
    * @return returns the total cost of the purchasing the stock including the commission paid.
    */
   public float getTotalCost() {
-    return this.getCost() + this.commission;
+    return Objects.equals(this.type, TransactionType.BUY)
+            ? this.getCost() + this.commission
+            : this.getCost() - this.commission;
   }
 
   @Override

@@ -34,7 +34,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     StockObject  stock = new StockObjectImpl(stockTicker);
 
     PortfolioItemTransaction portfolioItemTransaction = new PortfolioItemTransaction(
-            "buy", stock, quantity, purchaseDate, commission
+            TransactionType.BUY, stock, quantity, purchaseDate, commission
     );
 
     float existingQuantity = 0;
@@ -66,7 +66,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     StockObject stock = new StockObjectImpl(stockTicker);
 
     PortfolioItemTransaction portfolioItemTransaction = new PortfolioItemTransaction(
-            "sell", stock, quantity, saleDate, commission
+            TransactionType.SELL, stock, quantity, saleDate, commission
     );
 
     float existingQuantity = 0;
@@ -121,6 +121,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   public float getCostBasis(Date tillDate) {
     return portfolioItemTransactions
             .stream()
+            .filter(PortfolioItemTransaction ->
+                    PortfolioItemTransaction.getType() == TransactionType.BUY)
             .map(PortfolioItemTransaction::getTotalCost)
             .reduce((float) 0, Float::sum);
   }
