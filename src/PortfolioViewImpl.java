@@ -135,7 +135,7 @@ public class PortfolioViewImpl implements PortfolioView {
   }
 
   @Override
-  public void invalidFloatValue() throws IOException {
-    this.out.append("Invalid float! Please enter correct float value!\n");
+  public void invalidQuantityValue() throws IOException {
+    this.out.append("Invalid value! Please enter correct integer value!\n");
   }
 }

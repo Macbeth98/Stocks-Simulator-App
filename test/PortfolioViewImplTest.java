@@ -150,8 +150,8 @@ public class PortfolioViewImplTest {
   }
 
   @Test
-  public void testInvalidFloatMessage() throws IOException {
-    view_sample.invalidFloatValue();
-    assertEquals("Invalid float! Please enter correct float value!\n", out.toString());
+  public void testInvalidQuantityMessage() throws IOException {
+    view_sample.invalidQuantityValue();
+    assertEquals("Invalid value! Please enter correct integer value!\n", out.toString());
   }
 }
