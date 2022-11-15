@@ -31,8 +31,8 @@ public class PortfolioImpl implements Portfolio {
     return new PortfolioBuilder();
   }
 
-  protected PortfolioImpl(String portfolioName, String portfolioFileName) {
-    this.currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+  protected PortfolioImpl(String portfolioName, String portfolioFileName, String currentDirectory) {
+    this.currentDirectory = currentDirectory;
 
     this.portfolioName = portfolioName;
 

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -13,9 +15,7 @@ import java.util.stream.Stream;
  * This class implements the PortfolioList interface.
  * The class implement its method based on the files stored in System.
  */
-public class PortfolioListImpl implements PortfolioList {
-
-  private final Map<String, Path> portfolioFiles;
+public class PortfolioListImpl extends AbstractPortfolioListImpl implements PortfolioList {
   private final Map<String, Portfolio> portfolios;
 
   /**
@@ -25,57 +25,29 @@ public class PortfolioListImpl implements PortfolioList {
    * @throws RuntimeException when the directory where the portfolios cannot be created.
    */
   public PortfolioListImpl() throws RuntimeException {
-    String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
-    File directory = new File(currentDirectory);
+    super("/portfolioCSVFiles/");
 
-    if (!directory.exists()) {
-      boolean directoryCreated = directory.mkdir();
-      if (!directoryCreated) {
-        throw new RuntimeException("Directory is not found and cannot be created.");
-      }
-    }
-
-    this.portfolioFiles = new HashMap<>();
     this.portfolios = new HashMap<>();
-
-    try (Stream<Path> paths = Files.walk(Paths.get(currentDirectory))) {
-      paths.filter(Files::isRegularFile)
-              .forEach(file -> {
-                String filePath = file.toString();
-                String fileExt = filePath.substring(filePath.lastIndexOf(".") + 1);
-                if ("csv".equalsIgnoreCase(fileExt)) {
-                  portfolioFiles.put(file.getFileName().toString().split("_")[0], file);
-                }
-              });
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  @Override
-  public String[] getPortfolioListNames() {
-    return portfolioFiles.keySet().toArray(new String[0]);
   }
 
   private Portfolio loadPortfolio(String portfolioName, String path, Path filepath)
-          throws FileNotFoundException {
-    File file = new File(Paths.get(path).toString());
+          throws IllegalArgumentException {
 
     Map<String, Float> stocksMap = new HashMap<>();
 
-    try (Scanner scanner = new Scanner(file)) {
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        String[] portfolioItemValues = line.split(",");
-        if (portfolioItemValues.length != 4) {
-          throw new IllegalArgumentException("The file given is not in valid format.");
-        }
-        try {
-          stocksMap.put(portfolioItemValues[0], Float.parseFloat(portfolioItemValues[1]));
-        } catch (NumberFormatException e) {
-          throw new IllegalArgumentException("The file given is not Valid format. "
-                  + "NumberException Occurred.");
-        }
+    List<String> portfolioLines = this.loadPortfolioData(path);
+
+    for (String line: portfolioLines) {
+      String[] portfolioItemValues = line.split(",");
+      if (portfolioItemValues.length != 4) {
+        throw new IllegalArgumentException("The file given is not in valid format.");
+      }
+
+      try {
+        stocksMap.put(portfolioItemValues[0], Float.parseFloat(portfolioItemValues[1]));
+      } catch (NumberFormatException e) {
+        throw new IllegalArgumentException("The file given is not Valid format. "
+                + "NumberException Occurred.");
       }
     }
 
@@ -83,7 +55,7 @@ public class PortfolioListImpl implements PortfolioList {
   }
 
   @Override
-  public Portfolio getPortfolio(String portfolioName) throws FileNotFoundException {
+  public Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException {
 
     if (portfolios.containsKey(portfolioName)) {
       return portfolios.get(portfolioName);
@@ -91,12 +63,12 @@ public class PortfolioListImpl implements PortfolioList {
       Path filepath = portfolioFiles.get(portfolioName);
       return this.loadPortfolio(portfolioName, filepath.toString(), filepath);
     } else {
-      throw new FileNotFoundException("The corresponding Portfolio File is not Found!");
+      throw new IllegalArgumentException("The corresponding Portfolio File is not Found!");
     }
   }
 
   private Portfolio createPortfolioImpl(String portfolioName, Map<String, Float> stocksMap,
-                                        Path filepath) throws FileNotFoundException {
+                                        Path filepath) throws IllegalArgumentException {
     PortfolioImpl.PortfolioBuilder portfolioBuilder = PortfolioImpl.getBuilder();
     portfolioBuilder = portfolioBuilder.portfolioName(portfolioName)
             .setPortfolioFileName(filepath);
@@ -112,8 +84,13 @@ public class PortfolioListImpl implements PortfolioList {
     portfolios.put(portfolioName, portfolio);
 
     if (filepath == null) {
-      String pathToFile = portfolio.savePortfolioToFile();
-      portfolioFiles.put(portfolioName, Paths.get(pathToFile));
+      try {
+        String pathToFile = portfolio.savePortfolioToFile();
+        portfolioFiles.put(portfolioName, Paths.get(pathToFile));
+      } catch (FileNotFoundException e) {
+        throw new IllegalArgumentException("Storing of file error: " + e.getMessage());
+      }
+
       // portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
     }
 
@@ -121,15 +98,21 @@ public class PortfolioListImpl implements PortfolioList {
   }
 
   @Override
-  public Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap)
-          throws FileNotFoundException {
-    return this.createPortfolioImpl(portfolioName, stocksMap, null);
+  public String createPortfolio(String portfolioName, Map<String, Float> stocksMap)
+          throws IllegalArgumentException {
+    return this.createPortfolioImpl(portfolioName, stocksMap, null).getPortfolioFilePath();
   }
 
   @Override
-  public Portfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
-          throws FileNotFoundException {
-    return loadPortfolio(portfolioName, portfolioFilePath, null);
+  public String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+          throws IllegalArgumentException {
+    return loadPortfolio(portfolioName, portfolioFilePath, null).getPortfolioFilePath();
+  }
+
+  @Override
+  public float getPortfolioValueAtDate(String portfolioName, Date date) {
+    Portfolio portfolio = this.getPortfolio(portfolioName);
+    return portfolio.getPortfolioValueAtDate(date);
   }
 
   private void loadAllPortfolioFiles() {
@@ -137,7 +120,7 @@ public class PortfolioListImpl implements PortfolioList {
       try {
         Path filepath = portfolioFiles.get(portfolioName);
         loadPortfolio(portfolioName, filepath.toString(), filepath);
-      } catch (FileNotFoundException e) {
+      } catch (IllegalArgumentException e) {
         // throw new RuntimeException(e);
         System.out.println(portfolioName + "--- File not found -- Error message below!");
         System.out.println(e.getMessage());

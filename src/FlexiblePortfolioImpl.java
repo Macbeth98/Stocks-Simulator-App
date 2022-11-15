@@ -7,15 +7,20 @@ import java.util.List;
 public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePortfolio {
 
   private final List<PortfolioItemTransaction> portfolioItemTransactions;
-  private final String transactionDirectory;
 
-  protected FlexiblePortfolioImpl(String portfolioName, String portfolioFileName) {
-    super(portfolioName, portfolioFileName);
+  public FlexiblePortfolioImpl(String portfolioName) {
+    super(portfolioName, null,
+            System.getProperty("user.dir") + "/portfolioTxnFiles/");
 
     portfolioItemTransactions = new ArrayList<>();
-    transactionDirectory = System.getProperty("user.dir") + "/portfolioTxnFiles/";
+  }
 
-    // read the transactions from file and push into portfolioItemTransactions.
+  public FlexiblePortfolioImpl(String portfolioName, String fileName,
+                               List<PortfolioItemTransaction> portfolioItemTransactions) {
+    super(portfolioName, fileName,
+            System.getProperty("user.dir") + "/portfolioTxnFiles/");
+
+    this.portfolioItemTransactions = new ArrayList<>(portfolioItemTransactions);
   }
 
   private void sortByDate() {
@@ -128,33 +133,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public String getPortfolioName() {
-    return null;
-  }
-
-  @Override
-  public String getPortfolioFilePath() {
-    return null;
-  }
-
-  @Override
-  public PortfolioItem[] getPortfolioComposition() {
+  public PortfolioItem[] getPortfolioCompositionAtDate(Date date) {
     return new PortfolioItem[0];
-  }
-
-  @Override
-  public float getPortfolioValue() {
-    return 0;
-  }
-
-  @Override
-  public float getPortfolioValueAtDate(Date date) {
-    return 0;
-  }
-
-  @Override
-  public String savePortfolioToFile() throws FileNotFoundException {
-    return null;
   }
 
 }

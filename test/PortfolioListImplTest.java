@@ -99,9 +99,12 @@ public class PortfolioListImplTest {
       stocksCount--;
     }
 
-    Portfolio portfolio = portfolioList.createPortfolio(portfolioName, stocksMap);
+    String portfolioFilePath = portfolioList.createPortfolio(portfolioName, stocksMap);
+
+    Portfolio portfolio = portfolioList.getPortfolio(portfolioName);
 
     assertEquals(portfolioName, portfolio.getPortfolioName());
+    assertEquals(portfolioFilePath, portfolio.getPortfolioFilePath());
 
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
@@ -118,9 +121,7 @@ public class PortfolioListImplTest {
     String path = oldPortfolio.getPortfolioFilePath();
 
     String portfolioName = "NewTest5";
-    Portfolio portfolio = portfolioList.createPortfolioFromFile(portfolioName, path);
-
-    assertEquals(portfolioName, portfolio.getPortfolioName());
+    String portfolioFilePath = portfolioList.createPortfolioFromFile(portfolioName, path);
 
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
@@ -128,12 +129,15 @@ public class PortfolioListImplTest {
 
     assertTrue(portfolioNamesList.contains(portfolioName));
 
-    assertEquals(portfolio, portfolioList.getPortfolio(portfolioName));
+    Portfolio portfolio = portfolioList.getPortfolio(portfolioName);
+
+    assertEquals(portfolioName, portfolio.getPortfolioName());
+    assertEquals(portfolioFilePath, portfolio.getPortfolioFilePath());
   }
 
   @Test(expected = FileNotFoundException.class)
   public void testCreatePortfolioFromFileNotFound() throws FileNotFoundException {
-    Portfolio portfolio = portfolioList.createPortfolioFromFile("NoFileset",
+    String portfolioFilePath = portfolioList.createPortfolioFromFile("NoFileset",
             "Users/portfolioCSVFiles/out.csv");
   }
 
@@ -148,7 +152,7 @@ public class PortfolioListImplTest {
     out.println("24.87,GOOG,1.908,56.78");
 
     String path = outputFile.getAbsolutePath();
-    Portfolio portfolio = portfolioList.createPortfolioFromFile("InvalidTest", path);
+    String portfolioFilePath = portfolioList.createPortfolioFromFile("InvalidTest", path);
   }
 
 }

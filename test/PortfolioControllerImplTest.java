@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -217,26 +218,41 @@ public class PortfolioControllerImplTest {
     }
 
     @Override
-    public Portfolio getPortfolio(String portfolioName) throws FileNotFoundException {
+    public Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException {
       log.append(portfolioName).append("\n");
       return portfolio;
     }
 
     @Override
-    public Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap)
-            throws FileNotFoundException {
+    public String createPortfolio(String portfolioName, Map<String, Float> stocksMap)
+            throws IllegalArgumentException {
       log.append(portfolioName).append("\n");
       stocksMap.keySet().forEach(stock -> {
         log.append(stock).append(",").append(stocksMap.get(stock)).append("\n");
       });
-      return portfolio;
+      return uniqueString;
     }
 
     @Override
-    public Portfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
-            throws FileNotFoundException {
+    public String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+            throws IllegalArgumentException {
       log.append(portfolioName).append("\n").append(portfolioFilePath);
-      return portfolio;
+      return uniqueString;
+    }
+
+    @Override
+    public PortfolioItem[] getPortfolioComposition(String portfolioName) {
+      return new PortfolioItem[0];
+    }
+
+    @Override
+    public float getPortfolioValueAtDate(String portfolioName, Date date) {
+      return 0;
+    }
+
+    @Override
+    public String getPortfolioFilePath(String portfolioName) {
+      return null;
     }
   }
 

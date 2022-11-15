@@ -10,8 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71677730-b325-4ffd-a047-f57e91aa04c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment4.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlexiblePortfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlexiblePortfolio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FlexiblePortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlexiblePortfolioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GenericPortfolioList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericPortfolioList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PortfolioItemTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioItemTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PortfolioListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioControllerImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PortfolioListImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PortfolioListImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit4 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -41,28 +50,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "last_opened_file_path": "D:/1. Northeastern University/Semester - I/Courses/PDP/IntelliJ Projects/Assignments/Assignment5",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pathVariables"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/1. Northeastern University/Semester - I/Courses/PDP/IntelliJ Projects/Assignments/Assignment3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -150,7 +159,9 @@
       <workItem from="1667443081301" duration="4075000" />
       <workItem from="1667510832897" duration="3782000" />
       <workItem from="1667518358879" duration="4366000" />
-      <workItem from="1668303766304" duration="10500000" />
+      <workItem from="1668303766304" duration="11130000" />
+      <workItem from="1668364693534" duration="16834000" />
+      <workItem from="1668439649110" duration="14773000" />
     </task>
     <servers />
   </component>

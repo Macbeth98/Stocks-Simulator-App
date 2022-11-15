@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -20,30 +21,56 @@ public interface PortfolioList {
    *
    * @param portfolioName the name of the portfolio that is needed.
    * @return returns the selected Portfolio based on the name.
-   * @throws FileNotFoundException When the given Portfolio file is not found.
+   * @throws IllegalArgumentException When the given Portfolio file is not found.
    */
-  Portfolio getPortfolio(String portfolioName) throws FileNotFoundException;
+  Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException;
 
   /**
    * Creates a portfolio from manually entered user inputs received from controller.
    *
    * @param portfolioName portfolioName of this portfolio
    * @param stocksMap     hashMap containing ticker name and quantity of each stock
-   * @return Portfolio Object containing this information
-   * @throws FileNotFoundException When the Portfolio created cannot be saved into a file.
+   * @return returns the Absolute Path of SavePortfolio.
+   * @throws IllegalArgumentException When the Portfolio created cannot be saved into a file.
    */
-  Portfolio createPortfolio(String portfolioName, Map<String, Float> stocksMap)
-          throws FileNotFoundException;
+  String createPortfolio(String portfolioName, Map<String, Float> stocksMap)
+          throws IllegalArgumentException;
 
   /**
    * Creates a portfolio from a user provided file that follows portfolio format.
    *
    * @param portfolioName     name of the portfolio
    * @param portfolioFilePath path of the portfolio file to be created
-   * @return Portfolio Object containing this information
-   * @throws FileNotFoundException throws exception if file not found
+   * @return returns the Absolute Path of SavePortfolio.
+   * @throws IllegalArgumentException throws exception if file not found
    */
-  Portfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
-          throws FileNotFoundException;
+  String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+          throws IllegalArgumentException;
+
+  /**
+   * Get the composition for a single Portfolio.
+   *
+   * @param portfolioName the name of the Portfolio.
+   * @return returns the list of Portfolio Items.
+   */
+  PortfolioItem[] getPortfolioComposition(String portfolioName);
+
+
+  /**
+   * Gets  the Portfolio value at the given date.
+   *
+   * @param portfolioName the name of portfolio that needs to be fetched.
+   * @param date the date at which the value of the Portfolio Needs to be fetched.
+   * @return
+   */
+  float getPortfolioValueAtDate (String portfolioName, Date date);
+
+  /**
+   * Gets the given Portfolio Stored File path.
+   *
+   * @param portfolioName the name of the portfolio for which the saved file needs to be fetched.
+   * @return returns the Absolute path of the Portfolio in the string form.
+   */
+  String getPortfolioFilePath (String portfolioName);
 
 }

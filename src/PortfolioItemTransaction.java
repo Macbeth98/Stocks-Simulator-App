@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -76,13 +77,13 @@ public class PortfolioItemTransaction extends PortfolioItem {
 
   @Override
   public String toString() {
-    return this.getDate() + ","
+    return this.getType() + ","
             + this.getStock().getTicker() + ","
-            + this.getType() + ","
             + this.getQuantity() + ","
+            + new SimpleDateFormat("MM/dd/yyyy").format(this.getDate()) + ","
+            + this.getCommission() + ","
             + this.getCostPerShare() + ","
             + this.getCost() + ","
-            + this.getCommission() + ","
             + this.getTotalCost();
   }
 }
