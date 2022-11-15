@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.file.Path;
@@ -14,26 +15,38 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   private final List<PortfolioItemTransaction> portfolioItemTransactions;
 
-  public FlexiblePortfolioImpl(String portfolioName) {
+  public FlexiblePortfolioImpl(String portfolioName) throws IllegalArgumentException {
     super(portfolioName, null,
             System.getProperty("user.dir") + "/portfolioTxnFiles/");
 
     portfolioItemTransactions = new ArrayList<>();
+    try {
+      this.savePortfolioToFile();
+    } catch (FileNotFoundException e) {
+      throw new IllegalArgumentException("File Saving error..." + e.getMessage());
+    }
   }
 
   public FlexiblePortfolioImpl(String portfolioName, String fileName,
-                               List<PortfolioItemTransaction> portfolioItemTransactions) {
+                               List<PortfolioItemTransaction> portfolioItemTransactions)
+          throws IllegalArgumentException {
     super(portfolioName, fileName,
             System.getProperty("user.dir") + "/portfolioTxnFiles/");
 
     this.portfolioItemTransactions = new ArrayList<>(portfolioItemTransactions);
+    try {
+      this.savePortfolioToFile();
+    } catch (FileNotFoundException e) {
+      throw new IllegalArgumentException("File Saving error..." + e.getMessage());
+    }
+
   }
 
   private void sortByDate() {
     this.portfolioItemTransactions.sort(Comparator.comparing(PortfolioItemTransaction::getDate));
   }
 
-  private void saveTransactionToFile(PortfolioItemTransaction txn) throws FileNotFoundException {
+  private void saveTransactionToFile() throws FileNotFoundException {
     // call save to file.
     this.sortByDate();
     PrintStream out = this.getFileOutStream(this.getSaveFilePath());
@@ -75,7 +88,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     portfolioItemTransactions.add(portfolioItemTransaction);
 
-    this.saveTransactionToFile(portfolioItemTransaction);
+    this.saveTransactionToFile();
 
     return this;
   }
@@ -133,7 +146,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     // this.savePortfolioToFile();
 
-    this.saveTransactionToFile(portfolioItemTransaction);
+    this.saveTransactionToFile();
 
     return this;
   }

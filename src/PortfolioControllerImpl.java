@@ -109,9 +109,9 @@ public class PortfolioControllerImpl implements PortfolioController {
               }
             }
 
-            Portfolio createdPortfolio = portfolioList.createPortfolio(pName, stockMap);
+            //Portfolio createdPortfolio = portfolioList.createPortfolio(pName, stockMap);
 
-            view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
+            view.displayPortfolioSuccess(pName, portfolioList.createPortfolio(pName, stockMap));
 
             view.continuePrompt();
             if (toContinue(scan.next())) {
@@ -147,9 +147,9 @@ public class PortfolioControllerImpl implements PortfolioController {
               break;
             }
 
-            Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
+            //Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
 
-            view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
+            view.displayPortfolioSuccess(pName, portfolioList.createPortfolioFromFile(pName, pPath));
 
             view.continuePrompt();
             if (toContinue(scan.next())) {
