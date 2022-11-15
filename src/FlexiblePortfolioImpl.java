@@ -35,7 +35,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     this.portfolioItemTransactions = new ArrayList<>(portfolioItemTransactions);
     try {
-      this.savePortfolioToFile();
+      this.saveTransactionToFile();
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File Saving error..." + e.getMessage());
     }

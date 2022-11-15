@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -44,7 +41,6 @@ public class PortfolioControllerImpl implements PortfolioController {
 
     // Scanner scans input
     Scanner scan = new Scanner(this.in);
-    String pName;
     PortfolioControllerCommand cmd;
 
     while (true) {

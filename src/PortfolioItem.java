@@ -91,4 +91,9 @@ public class PortfolioItem {
             + this.getCostPerShare() + ","
             + this.getCost();
   }
+
+  public String compositionString() {
+    return this.stock.getTicker()
+            + "," + this.getQuantity();
+  }
 }
