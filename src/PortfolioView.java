@@ -125,7 +125,7 @@ public interface PortfolioView {
   void invalidTickerName() throws IOException;
 
   /**
-   * Display this message if the user inputs an incorrect float value.
+   * Display this message if the user inputs an incorrect quantity value.
    */
-  void invalidFloatValue() throws IOException;
+  void invalidQuantityValue() throws IOException;
 }

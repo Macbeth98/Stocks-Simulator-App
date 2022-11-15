@@ -91,12 +91,12 @@ public class PortfolioControllerImpl implements PortfolioController {
               float quantity;
               view.stockQuantityPrompt();
               try {
-                quantity = Float.parseFloat(scan.next());
+                quantity = Integer.parseInt(scan.next());
                 if (quantity == 0) {
                   break createPFLoop;
                 }
               } catch (Exception e) {
-                view.invalidFloatValue();
+                view.invalidQuantityValue();
                 continue;
               }
 
