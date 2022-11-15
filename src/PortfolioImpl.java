@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -179,11 +180,20 @@ public class PortfolioImpl implements Portfolio {
             .reduce((float) 0, Float::sum);
   }
 
+  protected PrintStream getFileOutStream (Path filepath) throws FileNotFoundException {
+    File outputFile = new File(filepath.toUri());
+    FileOutputStream fileOut = new FileOutputStream(outputFile);
+    return new PrintStream(fileOut);
+  }
+
+  protected Path getSaveFilePath() {
+    return Paths.get(currentDirectory + portfolioFileName);
+  }
+
   @Override
   public String savePortfolioToFile() throws FileNotFoundException {
-    File outputFile = new File(currentDirectory + portfolioFileName);
-    FileOutputStream fileOut = new FileOutputStream(outputFile);
-    PrintStream out = new PrintStream(fileOut);
+    Path filepath = getSaveFilePath();
+    PrintStream out = this.getFileOutStream(filepath);
 
     stocks.keySet().forEach(stockTicker -> {
       String portfolioItemStr = stocks.get(stockTicker).toString();
@@ -192,6 +202,6 @@ public class PortfolioImpl implements Portfolio {
     });
 
     this.fileSaved = true;
-    return outputFile.getAbsolutePath();
+    return filepath.toString();
   }
 }
