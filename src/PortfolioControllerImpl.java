@@ -3,8 +3,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -47,6 +45,7 @@ public class PortfolioControllerImpl implements PortfolioController {
     // Scanner scans input
     Scanner scan = new Scanner(this.in);
     String pName;
+    PortfolioControllerCommand cmd;
 
     while (true) {
       // view.menu()
@@ -54,191 +53,21 @@ public class PortfolioControllerImpl implements PortfolioController {
 
       switch (scan.next()) {
         case "1":
-          // create a new portfolio manually
-
-          String[] pNames = portfolioList.getPortfolioListNames();
-          if (pNames.length > 1) {
-            view.displayListOfPortfolios(pNames);
-          }
-
-          createPFLoop:
-          while (true) {
-            view.portfolioNamePrompt();
-            pName = scan.next().toLowerCase();
-
-            if (pName.equals("0")) {
-              break;
-            }
-
-            if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              view.portfolioExistsMessage(pName);
-              continue;
-            }
-
-            Map<String, Float> stockMap = new HashMap<>();
-            while (true) {
-
-              view.stockNamePrompt();
-              String stockName = scan.next();
-              if (stockName.equals("0")) {
-                break createPFLoop;
-              }
-              if (stockName.length() > 5 || !stockName.matches("[a-zA-Z]+")) {
-                view.invalidTickerName();
-                continue;
-              }
-
-              float quantity;
-              view.stockQuantityPrompt();
-              try {
-                quantity = Integer.parseInt(scan.next());
-                if (quantity == 0) {
-                  break createPFLoop;
-                }
-              } catch (Exception e) {
-                view.invalidQuantityValue();
-                continue;
-              }
-
-
-              stockMap.put(stockName.toUpperCase(), quantity);
-
-              view.continuePrompt();
-              if (toContinue(scan.next())) {
-                break;
-              }
-            }
-
-            Portfolio createdPortfolio = portfolioList.createPortfolio(pName, stockMap);
-
-            view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
-
-            view.continuePrompt();
-            if (toContinue(scan.next())) {
-              break;
-            }
-          }
-
+          cmd = new CreatePortfolio(portfolioList, view);
+          cmd.go(scan);
           break;
-
         case "2":
-          // create a new portfolio from a file
-          pNames = portfolioList.getPortfolioListNames();
-          if (pNames.length > 1) {
-            view.displayListOfPortfolios(pNames);
-          }
-
-          while (true) {
-            view.portfolioNamePrompt();
-            pName = scan.next().toLowerCase();
-            if (pName.equals("0")) {
-              break;
-            }
-
-            if (validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              view.portfolioExistsMessage(pName);
-              continue;
-            }
-
-            view.portfolioFilePathPrompt();
-            scan.nextLine();
-            String pPath = scan.nextLine();
-            if (pPath.equals("0")) {
-              break;
-            }
-
-            Portfolio createdPortfolio = portfolioList.createPortfolioFromFile(pName, pPath);
-
-            view.displayPortfolioSuccess(pName, createdPortfolio.getPortfolioFilePath());
-
-            view.continuePrompt();
-            if (toContinue(scan.next())) {
-              break;
-            }
-          }
-
+          cmd = new CreatePortfolioFromFile(portfolioList, view);
+          cmd.go(scan);
           break;
-
         case "3":
-          // view a portfolio
-          pNames = portfolioList.getPortfolioListNames();
-          if (pNames.length < 1) {
-            view.noPortfoliosMessage();
-            continue;
-          }
-          view.displayListOfPortfolios(pNames);
-
-          while (true) {
-            view.portfolioNamePrompt();
-            pName = scan.next().toLowerCase();
-            if (pName.equals("0")) {
-              break;
-            }
-
-            if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              view.portfolioNameErrorMessage();
-              continue;
-            }
-
-            Portfolio portfolio = portfolioList.getPortfolio(pName);
-            view.displayPortfolio(portfolio);
-
-            view.continuePrompt();
-            String continueFlag = scan.next();
-            if (toContinue(continueFlag)) {
-              break;
-            }
-          }
-
+          cmd = new ViewPortfolio(portfolioList, view);
+          cmd.go(scan);
           break;
-
         case "4":
-          // get portfolio value on a date
-          pNames = portfolioList.getPortfolioListNames();
-          if (pNames.length < 1) {
-            view.noPortfoliosMessage();
-            continue;
-          }
-          view.displayListOfPortfolios(pNames);
-
-          while (true) {
-            view.portfolioNamePrompt();
-            pName = scan.next().toLowerCase();
-            if (pName.equals("0")) {
-              break;
-            }
-
-            if (!validPortfolioName(portfolioList.getPortfolioListNames(), pName)) {
-              view.portfolioNameErrorMessage();
-              continue;
-            }
-
-            view.datePrompt();
-            String dateString = scan.next();
-            if (dateString.equals("0")) {
-              break;
-            }
-
-            Date date;
-            try {
-              date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
-            } catch (ParseException e) {
-              view.invalidDateStringMessage(dateString);
-              continue;
-            }
-
-            float value = portfolioList.getPortfolio(pName).getPortfolioValueAtDate(date);
-
-            view.displayValueAtDate(pName, date, value);
-
-            view.continuePrompt();
-            if (toContinue(scan.next())) {
-              break;
-            }
-          }
-
+          cmd = new GetPortfolioValueOnDate(portfolioList, view);
+          cmd.go(scan);
           break;
-
         case "5":
           return;
 

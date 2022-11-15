@@ -29,5 +29,4 @@ bin/
 .DS_Store
 
 ### Idea folder ###
-.idea/
-.idea/workspace.xml
+.idea/*

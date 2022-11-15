@@ -74,9 +74,17 @@ public class AlphaVantageSource implements DataSource {
 
     String jsonString = output.toString();
     JSONObject jsonObj = new JSONObject(jsonString);
-    String priceOnDate = jsonObj.getJSONObject("Time Series (Daily)")
-            .getJSONObject(strDate)
-            .getString("4. close");
+    String priceOnDate = "";
+    try {
+      priceOnDate = jsonObj.getJSONObject("Time Series (Daily)")
+              .getJSONObject(strDate)
+              .getString("4. close");
+    }
+    catch (Exception e) {
+      throw new IllegalArgumentException("Stock " + ticker + " value not found for date: "
+              + strDate);
+    }
+
 
     float price = Float.parseFloat(priceOnDate);
 

@@ -18,8 +18,15 @@ public class StockObjectImpl implements StockObject {
   public StockObjectImpl(String ticker) {
     this.ticker = ticker;
 
+    float temp;
     Date date = new Date();
-    this.price = new AlphaVantageSource().getPriceAtDate(ticker, date);
+    try {
+      temp = new AlphaVantageSource().getPriceAtDate(ticker, date);
+    }
+    catch (Exception e) {
+      temp = 0;
+    }
+    this.price = temp;
   }
 
   @Override
