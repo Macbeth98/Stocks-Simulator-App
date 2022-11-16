@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +35,7 @@ public class StockObjectImplTest {
   // test getting price at a date
   @Test
   public void testGettingPriceAtDate() {
-    Date date = new Date();
+    LocalDate date = LocalDate.now();
     float price = stock.getCurrentPriceAtDate(date);
     assertEquals(price, price, 0.01);
   }
@@ -51,7 +52,7 @@ public class StockObjectImplTest {
   // test getting current value at a date
   @Test
   public void testGettingValueAtDate() {
-    Date date = new Date();
+    LocalDate date = LocalDate.now();
     float value = stock.getCurrentValueAtDate(date, 1);
     assertEquals(value, value, 0.01);
   }

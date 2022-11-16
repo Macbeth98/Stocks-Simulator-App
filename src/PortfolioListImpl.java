@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -110,7 +111,7 @@ public class PortfolioListImpl extends AbstractPortfolioListImpl implements Port
   }
 
   @Override
-  public float getPortfolioValueAtDate(String portfolioName, Date date) {
+  public float getPortfolioValueAtDate(String portfolioName, LocalDate date) {
     Portfolio portfolio = this.getPortfolio(portfolioName);
     return portfolio.getPortfolioValueAtDate(date);
   }

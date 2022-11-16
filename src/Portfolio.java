@@ -1,5 +1,5 @@
 import java.io.FileNotFoundException;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * The interface represents a Portfolio Object and the operations that can be performed
@@ -41,7 +41,7 @@ public interface Portfolio {
    * @param date the date at which the value of Portfolio is needed.
    * @return returns the Portfolio Value at the given date.
    */
-  float getPortfolioValueAtDate(Date date);
+  float getPortfolioValueAtDate(LocalDate date);
 
   /**
    * Writes the current Portfolio to a CSV File and saves it and gives the

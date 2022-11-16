@@ -1,7 +1,5 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -88,7 +86,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   @Override
   public FlexiblePortfolio addStock(String stockTicker, float quantity,
-                                    Date purchaseDate, float commission)
+                                    LocalDate purchaseDate, float commission)
           throws FileNotFoundException {
 
     StockObject  stock = new StockObjectImpl(stockTicker);
@@ -115,7 +113,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   @Override
   public FlexiblePortfolio sellStock(String stockTicker, float quantity,
-                                     Date saleDate, float commission) throws FileNotFoundException {
+                                     LocalDate saleDate, float commission) throws FileNotFoundException {
 
     StockObject stock = new StockObjectImpl(stockTicker);
 
@@ -141,7 +139,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     float tillDateQuantity = 0;
 
     for (PortfolioItemTransaction txn : portfolioItemTransactions) {
-      if (txn.getDate().getTime() > saleDate.getTime()) {
+      if (txn.getDate().compareTo(saleDate) > 0) {
         break;
       }
 
@@ -174,27 +172,27 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public float getCostBasis(Date tillDate) {
+  public float getCostBasis(LocalDate tillDate) {
     return portfolioItemTransactions
             .stream()
             .map(PortfolioItemTransaction::getCostBasis)
             .reduce((float) 0, Float::sum);
   }
 
-  private boolean isToday(Date date) {
+  private boolean isToday(LocalDate date) {
     String currentDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
     String givenDate = new SimpleDateFormat("MM/dd/yyyy").format(date);
 
     return currentDate.equals(givenDate);
   }
 
-  private Map<StockObject, Float> getPortfolioTillDate(Date date) {
+  private Map<StockObject, Float> getPortfolioTillDate(LocalDate date) {
     this.sortByDate();
 
     Map<StockObject, Float> stocks = new HashMap<>();
 
     for (PortfolioItemTransaction item: portfolioItemTransactions) {
-      if(item.getDate().getTime() <= date.getTime()) {
+      if(item.getDate().compareTo(date) <= 0) {
         float stockAmount = 0;
 
         if(stocks.containsKey(item.getStock())) {
@@ -230,7 +228,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public PortfolioItem[] getPortfolioCompositionAtDate(Date date) throws IllegalArgumentException {
+  public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date) throws IllegalArgumentException {
 
     if(isToday(date)) {
       return super.getPortfolioComposition();
@@ -249,7 +247,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public float getPortfolioValueAtDate(Date date) throws IllegalArgumentException {
+  public float getPortfolioValueAtDate(LocalDate date) throws IllegalArgumentException {
 
     if(isToday(date)) {
       return super.getPortfolioValueAtDate(date);

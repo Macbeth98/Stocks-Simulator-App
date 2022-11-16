@@ -2,6 +2,8 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,11 +44,11 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
                         type,
                         new StockObjectImpl(portfolioItemValues[1]),
                         Float.parseFloat(portfolioItemValues[2]),
-                        new SimpleDateFormat("MM/dd/yyyy").parse(portfolioItemValues[3]),
+                        LocalDate.parse(portfolioItemValues[3], DateTimeFormatter.ofPattern("MM/dd/yyyy")),
                         Float.parseFloat(portfolioItemValues[4])
                 )
         );
-      } catch (ParseException e) {
+      } catch (Exception e) {
         throw new IllegalArgumentException("The File format is not valid.");
       }
 
@@ -89,20 +91,20 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   }
 
   @Override
-  public float getPortfolioValueAtDate(String portfolioName, Date date) {
+  public float getPortfolioValueAtDate(String portfolioName, LocalDate date) {
     FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
     return portfolio.getPortfolioValueAtDate(date);
   }
 
   @Override
-  public PortfolioItem[] getPortfolioCompositionAtDate(String portfolioName, Date date) {
+  public PortfolioItem[] getPortfolioCompositionAtDate(String portfolioName, LocalDate date) {
     FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
     return portfolio.getPortfolioCompositionAtDate(date);
   }
 
   @Override
   public void addTransactionToPortfolio(String portfolioName, TransactionType type,
-                                        String stockTicker, float quantity, Date date,
+                                        String stockTicker, float quantity, LocalDate date,
                                         float commission) throws IllegalArgumentException {
       FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
       try {
@@ -119,7 +121,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   }
 
   @Override
-  public float getCostBasis(String portfolioName, Date tillDate) throws IllegalArgumentException {
+  public float getCostBasis(String portfolioName, LocalDate tillDate) throws IllegalArgumentException {
     FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
     return portfolio.getCostBasis(tillDate);
   }

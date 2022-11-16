@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface FlexiblePortfolioView extends PortfolioView {
   /**
@@ -30,7 +30,7 @@ public interface FlexiblePortfolioView extends PortfolioView {
    * @param quantity quantity of stock
    * @param date date of transaction
    */
-  void transactionSuccessMessage(String pName, TransactionType type, String stockName, float quantity, Date date) throws IOException;
+  void transactionSuccessMessage(String pName, TransactionType type, String stockName, float quantity, LocalDate date) throws IOException;
 
   /**
    * Display flexible portfolio's composition.

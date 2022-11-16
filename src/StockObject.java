@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * An interface that represents a single stock object and its operations.
@@ -25,7 +25,7 @@ public interface StockObject {
    * @param date date given as input
    * @return the price of the stock for the given date as a float
    */
-  float getCurrentPriceAtDate(Date date);
+  float getCurrentPriceAtDate(LocalDate date);
 
   /**
    * returns the current value of the stock, i.e, current price * quantity.
@@ -42,5 +42,5 @@ public interface StockObject {
    * @param quantity quantity of shares present
    * @return the value of the stock for that date as float
    */
-  float getCurrentValueAtDate(Date date, float quantity);
+  float getCurrentValueAtDate(LocalDate date, float quantity);
 }

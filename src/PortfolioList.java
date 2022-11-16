@@ -1,5 +1,5 @@
 import java.io.FileNotFoundException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -63,7 +63,7 @@ public interface PortfolioList {
    * @param date the date at which the value of the Portfolio Needs to be fetched.
    * @return
    */
-  float getPortfolioValueAtDate (String portfolioName, Date date);
+  float getPortfolioValueAtDate (String portfolioName, LocalDate date);
 
   /**
    * Gets the given Portfolio Stored File path.

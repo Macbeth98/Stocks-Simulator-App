@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -96,7 +97,7 @@ public class PortfolioControllerImplTest {
     Reader in = new StringReader("1 invalidquantity goog 56.65th 0 5");
     controller = new PortfolioControllerImpl(in, out);
     controller.goController(new PortfolioListImpl());
-    String resultPrompt = "Invalid float! Please enter correct float value!";
+    String resultPrompt = "Invalid value! Please enter correct integer value!\n";
     assertTrue(out.toString().contains(resultPrompt));
   }
 
@@ -246,7 +247,7 @@ public class PortfolioControllerImplTest {
     }
 
     @Override
-    public float getPortfolioValueAtDate(String portfolioName, Date date) {
+    public float getPortfolioValueAtDate(String portfolioName, LocalDate date) {
       return 0;
     }
 

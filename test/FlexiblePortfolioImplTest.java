@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -21,18 +23,18 @@ public class FlexiblePortfolioImplTest {
 
     String dateString = "09/10/2021";
 
-    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-    Date date = formatter.parse(dateString);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    LocalDate date = LocalDate.parse(dateString, formatter);
 
     portfolio = portfolio.addStock("GOOG", 89, date, 10);
 
     dateString = "08/10/2021";
-    date = formatter.parse(dateString);
+    date = LocalDate.parse(dateString, formatter);
 
     portfolio.addStock("TSLA", 10, date, 5);
 
-    dateString = "09/12/2021";
-    date = formatter.parse(dateString);
+    dateString = "11/08/2021";
+    date = LocalDate.parse(dateString, formatter);
 
     portfolio.addStock("GOOG", 11, date, 5);
 
