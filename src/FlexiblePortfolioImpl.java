@@ -179,10 +179,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   private boolean isToday(LocalDate date) {
-    String currentDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
-    String givenDate = new SimpleDateFormat("MM/dd/yyyy").format(date);
-
-    return currentDate.equals(givenDate);
+    return date.equals(LocalDate.now());
   }
 
   private Map<StockObject, Float> getPortfolioTillDate(LocalDate date) {

@@ -31,7 +31,7 @@ public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
 
   @Override
   public void go(Scanner scan) throws IOException {
-    // get portfolio value on a date
+    // get portfolio cost basis on a date
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {
       view.noPortfoliosMessage();
@@ -67,7 +67,7 @@ public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
       }
 
       float value = fpList.getCostBasis(pName, date);
-      SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
       view.displayCostBasis(pName, value, formatter.format(date));
 

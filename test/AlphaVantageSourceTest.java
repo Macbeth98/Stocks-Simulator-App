@@ -38,6 +38,17 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
+  public void getPriceAtRecentDateAPITest2 () {
+    String dateString = "2022-11-13";
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
+    float result = testSource.getPriceAtDate("COKE", date);
+
+    assertEquals(468.9800, result, 0.001);
+  }
+
+  @Test
   public void testAddPriceToCache () {
 
     String dateString = "2000-05-25";
