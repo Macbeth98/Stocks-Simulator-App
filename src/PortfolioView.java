@@ -128,32 +128,4 @@ public interface PortfolioView {
    * Display this message if the user inputs an incorrect quantity value.
    */
   void invalidQuantityValue() throws IOException;
-
-  /**
-   * Display portfolio creation menu for flexible portfolio.
-   */
-  void portfolioCreateMenu() throws IOException;
-
-  /**
-   * Display prompt asking for user to enter transaction date.
-   */
-  void transactionDatePrompt() throws IOException;
-
-  /**
-   * Display prompt asking for user to enter commission fee.
-   */
-  void commissionFeePrompt() throws IOException;
-
-  /**
-   * Display message if commission value is invalid.
-   */
-  void invalidCommissionValue() throws IOException;
-
-  void transactionSuccessMessage(String pName, TransactionType type, String stockName, float quantity, Date date) throws IOException;
-
-  /**
-   * Display flexible portfolio's composition.
-   * @param portfolioItems items present in flexible portfolio
-   */
-  void displayFlexiblePortfolio(PortfolioItem[] portfolioItems) throws IOException;
 }

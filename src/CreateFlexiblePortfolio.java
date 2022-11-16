@@ -9,9 +9,9 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
 
   FlexiblePortfolioList flexiblePortfolioList;
 
-  PortfolioView view;
+  FlexiblePortfolioView view;
 
-  public CreateFlexiblePortfolio(FlexiblePortfolioList fpList, PortfolioView view) {
+  public CreateFlexiblePortfolio(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.flexiblePortfolioList = fpList;
     this.view = view;
   }
@@ -149,7 +149,7 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
             }
 
             try {
-              flexiblePortfolioList.addTransactionToPortfolio(pName, TransactionType.BUY,
+              flexiblePortfolioList.addTransactionToPortfolio(pName, TransactionType.SELL,
                       stockName, quantity, date, commission);
             } catch (IllegalArgumentException e) {
               throw new IllegalArgumentException(e.getMessage());

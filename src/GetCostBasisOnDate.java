@@ -1,15 +1,17 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
-public class GetFlexPortfolioValueOnDate implements FlexiblePortfolioControllerCommand {
+public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
-  private final PortfolioView view;
-  public GetFlexPortfolioValueOnDate(FlexiblePortfolioList fpList, PortfolioView view) {
+
+  private final FlexiblePortfolioView view;
+  public GetCostBasisOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
   }
@@ -62,9 +64,10 @@ public class GetFlexPortfolioValueOnDate implements FlexiblePortfolioControllerC
         continue;
       }
 
-      float value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
+      float value = fpList.getCostBasis(pName, date);
+      SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 
-      view.displayValueAtDate(pName, date, value);
+      view.displayCostBasis(pName, value, formatter.format(date));
 
       view.continuePrompt();
       if (toContinue(scan.next())) {
