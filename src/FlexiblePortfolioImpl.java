@@ -34,6 +34,9 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
             System.getProperty("user.dir") + "/portfolioTxnFiles/");
 
     this.portfolioItemTransactions = new ArrayList<>(portfolioItemTransactions);
+
+    this.constructPortfolio();
+
     try {
       this.saveTransactionToFile();
     } catch (FileNotFoundException e) {
@@ -60,6 +63,27 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     this.fileSaved = true;
   }
 
+  private float getUpdatedStockQuantity(String ticker, float quantity) {
+    float existingQuantity = 0;
+
+    if (this.stocks.containsKey(ticker)) {
+      existingQuantity = this.stocks.get(ticker).getQuantity();
+    }
+
+    return existingQuantity + quantity;
+  }
+
+  private void constructPortfolio() {
+    for (PortfolioItemTransaction item: portfolioItemTransactions) {
+      float quantity = getUpdatedStockQuantity(item.getStock().getTicker(), item.getQuantity());
+
+      PortfolioItem portfolioItem = new PortfolioItem(item.getStock(), quantity,
+              item.getStock().getCurrentPriceAtDate(item.getDate()));
+
+      this.stocks.put(item.getStock().getTicker(), portfolioItem);
+    }
+  }
+
   @Override
   public FlexiblePortfolio addStock(String stockTicker, float quantity,
                                     Date purchaseDate, float commission)
@@ -71,13 +95,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
             TransactionType.BUY, stock, quantity, purchaseDate, commission
     );
 
-    float existingQuantity = 0;
-
-    if (this.stocks.containsKey(stock.getTicker())) {
-      existingQuantity = this.stocks.get(stock.getTicker()).getQuantity();
-    }
-
-    float cumulativeQuantity = existingQuantity + quantity;
+    float cumulativeQuantity = getUpdatedStockQuantity(stockTicker, quantity);
 
     PortfolioItem portfolioItem = new PortfolioItem(stock, cumulativeQuantity,
             stock.getCurrentPriceAtDate(purchaseDate));
@@ -107,8 +125,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     if(this.stocks.containsKey(stock.getTicker())) {
       existingQuantity = this.stocks.get(stock.getTicker()).getQuantity();
-    } else  {
-      return  this;
+    } else {
+      throw new IllegalArgumentException("There is not a previous buy transaction for this Stock.");
     }
 
     if (existingQuantity < quantity) {
@@ -143,6 +161,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
       this.stocks.put(stock.getTicker(), portfolioItem);
     }
+
+    portfolioItemTransactions.add(portfolioItemTransaction);
 
     // this.savePortfolioToFile();
 
