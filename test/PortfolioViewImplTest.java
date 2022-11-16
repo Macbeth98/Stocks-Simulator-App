@@ -3,6 +3,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -89,12 +91,12 @@ public class PortfolioViewImplTest {
   @Test
   public void testDisplayValueAtDate() throws IOException {
     String pName = "testPortfolio";
-    Date date = new Date();
+    LocalDate date = LocalDate.now();
     float value = 100.0f;
     view_sample.displayValueAtDate(pName, date, value);
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     String result = "\nValue of portfolio: " + pName + ", at Date: "
-            + formatter.format(date) + " IS : " + value + "\n";
+            + formatter.format(date) + " IS : $" + value + "\n";
     assertEquals(result, out.toString());
   }
 

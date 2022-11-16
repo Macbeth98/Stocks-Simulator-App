@@ -1,9 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.Assert.*;
 
@@ -17,29 +16,34 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void getPriceAtDateAPITest () throws ParseException {
+  public void getPriceAtDateAPITest () {
     String dateString = "1999-11-01";
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Date date = formatter.parse(dateString);
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
     float result = testSource.getPriceAtDate("COKE", date);
 
     assertEquals(52.00, result, 0.001);
   }
 
   @Test
-  public void getPriceAtCurrentDateAPITest () throws ParseException {
-    Date date = new Date();
+  public void getPriceAtRecentDateAPITest () {
+    String dateString = "2022-11-15";
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
     float result = testSource.getPriceAtDate("COKE", date);
 
-    assertEquals(52.00, result, 0.001);
+    assertEquals(465.9500, result, 0.001);
   }
 
   @Test
-  public void testAddPriceToCache () throws ParseException {
+  public void testAddPriceToCache () {
 
     String dateString = "2000-05-25";
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Date date = formatter.parse(dateString);
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
     float result = testSource.getPriceAtDate("COKE", date);
 
     assertEquals(49.13, result, 0.001);
@@ -47,11 +51,11 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void testCachedPrices () throws ParseException {
+  public void testCachedPrices () {
 
     String dateString = "1999-11-01";
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    Date date = formatter.parse(dateString);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
     float result = testSource.getPriceAtDate("COKE", date);
 
     assertEquals(52.00, result, 0.001);

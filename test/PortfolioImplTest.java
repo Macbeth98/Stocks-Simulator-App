@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -90,8 +92,8 @@ public class PortfolioImplTest {
 
     String dateString = "09/10/2021";
 
-    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-    Date date = formatter.parse(dateString);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    LocalDate date = LocalDate.parse(dateString, formatter);
 
     float valueAtDate = portfolio.getPortfolioValueAtDate(date);
 
