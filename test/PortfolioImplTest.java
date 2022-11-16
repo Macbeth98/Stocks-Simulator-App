@@ -109,6 +109,14 @@ public class PortfolioImplTest {
   }
 
   @Test
+  public void testPortfolioAtFutureDate() {
+    String portfolioName = "portValueAtInvalidDate";
+    Portfolio portfolio = createPortfolioObject(portfolioName);
+
+    // need to test this.
+  }
+
+  @Test
   public void testPortfolioSaveToFile() throws FileNotFoundException {
     String name = "SaveFileTest";
     Portfolio portfolio = createPortfolioObject(name);
