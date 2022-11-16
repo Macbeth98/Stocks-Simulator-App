@@ -77,11 +77,22 @@ public class PortfolioItemTransaction extends PortfolioItem {
             : this.getCost() - this.commission;
   }
 
+  /**
+   * Computes the cost basis for this Portfolio Transaction.
+   *
+   * @return returns the computed cost basis for this Portfolio transaction.
+   */
+  public float getCostBasis() {
+    return Objects.equals(this.type, TransactionType.BUY)
+            ? this.getCost() + this.commission
+            : this.commission;
+  }
+
   @Override
   public String toString() {
     return this.getType() + ","
             + this.getStock().getTicker() + ","
-            + this.getQuantity() + ","
+            + super.getQuantity() + ","
             + this.getDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + ","
             + this.getCommission() + ","
             + this.getCostPerShare() + ","
