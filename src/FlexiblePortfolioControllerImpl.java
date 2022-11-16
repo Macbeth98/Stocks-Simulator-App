@@ -19,7 +19,7 @@ public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioControl
 
   @Override
   public void goController(FlexiblePortfolioList fpList) throws IOException {
-    PortfolioView view = new FlexiblePortfolioView(this.out);
+    FlexiblePortfolioView view = new FlexiblePortfolioViewImpl(this.out);
 
     // Scanner scans input
     Scanner scan = new Scanner(this.in);
@@ -43,16 +43,16 @@ public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioControl
           cmd.go(scan);
           break;
         case "4":
-          cmd = new GetFlexPortfolioValueOnDate(fpList, view);
+          cmd = new GetFlexiblePortfolioValueOnDate(fpList, view);
           cmd.go(scan);
           break;
         case "5":
-//            cmd = new GetCostBasisOnDate(fpList, view);
-//            cmd.go(scan);
-            break;
+          cmd = new GetCostBasisOnDate(fpList, view);
+          cmd.go(scan);
+          break;
         case "6":
-//          cmd = new GetPortfolioValueOnDate(fpList, view);
-//          cmd.go(scan);
+          cmd = new GetFlexiblePortfolioPerformanceGraph(fpList, view);
+          cmd.go(scan);
           break;
         case "7":
           return;

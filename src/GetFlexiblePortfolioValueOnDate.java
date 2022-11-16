@@ -5,13 +5,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
-public class FlexiblePortfolioComposition implements FlexiblePortfolioControllerCommand {
+public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
-
   private final FlexiblePortfolioView view;
-
-  public FlexiblePortfolioComposition(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
+  public GetFlexiblePortfolioValueOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
   }
@@ -30,6 +28,7 @@ public class FlexiblePortfolioComposition implements FlexiblePortfolioController
 
   @Override
   public void go(Scanner scan) throws IOException {
+    // get portfolio value on a date
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {
       view.noPortfoliosMessage();
@@ -63,12 +62,12 @@ public class FlexiblePortfolioComposition implements FlexiblePortfolioController
         continue;
       }
 
-      PortfolioItem[] portfolioItems = fpList.getPortfolioCompositionAtDate(pName, date);
-      view.displayFlexiblePortfolio(portfolioItems);
+      float value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
+
+      view.displayValueAtDate(pName, date, value);
 
       view.continuePrompt();
-      String continueFlag = scan.next();
-      if (toContinue(continueFlag)) {
+      if (toContinue(scan.next())) {
         break;
       }
     }

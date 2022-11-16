@@ -6,9 +6,9 @@ public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControl
 
   FlexiblePortfolioList flexiblePortfolioList;
 
-  PortfolioView view;
+  FlexiblePortfolioView view;
 
-  public CreateFlexiblePortfolioFromFile(FlexiblePortfolioList fpList, PortfolioView view) {
+  public CreateFlexiblePortfolioFromFile(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.flexiblePortfolioList = fpList;
     this.view = view;
   }
