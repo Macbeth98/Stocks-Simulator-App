@@ -175,9 +175,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   public float getCostBasis(Date tillDate) {
     return portfolioItemTransactions
             .stream()
-            .filter(PortfolioItemTransaction ->
-                    PortfolioItemTransaction.getType() == TransactionType.BUY)
-            .map(PortfolioItemTransaction::getTotalCost)
+            .map(PortfolioItemTransaction::getCostBasis)
             .reduce((float) 0, Float::sum);
   }
 
