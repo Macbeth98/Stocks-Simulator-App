@@ -1,5 +1,8 @@
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public interface FlexiblePortfolio extends Portfolio {
   FlexiblePortfolio addStock(String stockTicker, float quantity, Date purchaseDate, float commission)
@@ -16,4 +19,7 @@ public interface FlexiblePortfolio extends Portfolio {
    * @return returns the composition of portfolio in Portfolio Item format.
    */
   PortfolioItem[] getPortfolioCompositionAtDate(Date date);
+
+  List<Map<String, Float>> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
+          throws IllegalArgumentException;
 }
