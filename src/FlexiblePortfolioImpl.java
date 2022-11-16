@@ -3,6 +3,7 @@ import java.io.PrintStream;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -258,5 +259,44 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     Portfolio portfolio = this.buildPortfolio(stocks);
 
     return portfolio.getPortfolioValueAtDate(date);
+  }
+
+  @Override
+  public List<Map<String, Float>> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
+          throws IllegalArgumentException  {
+
+    if (fromDate.isEqual(toDate)) {
+      throw new IllegalArgumentException("From date and To Date cannot be equal.");
+    }
+
+    if(fromDate.isAfter(toDate)) {
+      throw new IllegalArgumentException("From Date and To Date given are not valid.");
+    }
+
+    Date date1 = Date.from(fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    Date date2 = Date.from(toDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+    if(date2.getTime() > new Date().getTime()) {
+      throw new IllegalArgumentException("The To Date is in the future. "
+              + "Cannot get performance for future.");
+    }
+
+    int timeHour = 60 * 60 * 1000;
+    int timeDay = 24 * timeHour;
+    int timeWeek = 7 * timeDay;
+    int timeMonth = 30 * timeDay;
+    int timeYear = 365 * timeDay;
+
+    long spanTime = date2.getTime() - date1.getTime();
+
+    long spanHours = (spanTime / timeHour);
+    int spanDays = (int) (spanTime / timeDay);
+
+    if(spanDays >= 5 && spanDays <= 30) {
+
+    }
+
+
+    return null;
   }
 }
