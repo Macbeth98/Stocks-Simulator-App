@@ -8,7 +8,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class AlphaVantageSource implements DataSource {
@@ -30,10 +31,10 @@ public class AlphaVantageSource implements DataSource {
   }
 
   @Override
-  public float getPriceAtDate(String ticker, Date date) {
+  public float getPriceAtDate(String ticker, LocalDate date) {
 
     // convert date to string
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String strDate = formatter.format(date);
 
     // load price from file if it exists

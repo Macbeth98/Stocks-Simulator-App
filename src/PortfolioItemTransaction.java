@@ -1,4 +1,6 @@
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -6,7 +8,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
 
   private final TransactionType type;
   private final float commission;
-  private final Date date;
+  private final LocalDate date;
 
   /**
    * The method constructs an individual PortfolioItem object that will be in a Portfolio.
@@ -18,7 +20,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
    * @param commission The commission that was charged while purchasing the stock.
    * @throws IllegalArgumentException if the given quantity is not greater than zero.
    */
-  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity, Date date, float commission)
+  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity, LocalDate date, float commission)
           throws IllegalArgumentException {
     super(stock, quantity, stock.getCurrentPriceAtDate(date));
 
@@ -58,7 +60,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
    *
    * @return returns the date the stock was purchased.
    */
-  public Date getDate() {
+  public LocalDate getDate() {
     return date;
   }
 
@@ -80,7 +82,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
     return this.getType() + ","
             + this.getStock().getTicker() + ","
             + this.getQuantity() + ","
-            + new SimpleDateFormat("MM/dd/yyyy").format(this.getDate()) + ","
+            + this.getDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + ","
             + this.getCommission() + ","
             + this.getCostPerShare() + ","
             + this.getCost() + ","

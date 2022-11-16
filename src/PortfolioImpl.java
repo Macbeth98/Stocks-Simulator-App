@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -167,8 +168,8 @@ public class PortfolioImpl implements Portfolio {
   }
 
   @Override
-  public float getPortfolioValueAtDate(Date date) throws IllegalArgumentException {
-    if (date.getTime() > new Date().getTime()) {
+  public float getPortfolioValueAtDate(LocalDate date) throws IllegalArgumentException {
+    if (date.compareTo(LocalDate.now()) > 0) {
       throw new IllegalArgumentException("Cannot get the Portfolio value for the future date.");
     }
     return stocks

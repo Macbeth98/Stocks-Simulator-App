@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements FlexiblePortfolioView {
@@ -52,15 +54,15 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
 
   @Override
   public void transactionSuccessMessage(String pName, TransactionType type, String stockName,
-                                        float quantity, Date date) throws IOException {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+                                        float quantity, LocalDate date) throws IOException {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     this.out.append("Transaction: ")
             .append(type.toString())
             .append(" successfully executed for ")
             .append(String.valueOf(quantity))
             .append(" no of ").append(stockName)
             .append(" stocks on date: ")
-            .append(formatter.format(date));
+            .append(date.format(formatter));
   }
 
   @Override

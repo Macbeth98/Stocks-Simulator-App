@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * This interface contains the text based user interface parts of the view and its operations.
@@ -83,7 +83,7 @@ public interface PortfolioView {
   /**
    * Display value of portfolio at a current date.
    */
-  void displayValueAtDate(String portfolioName, Date date, float value) throws IOException;
+  void displayValueAtDate(String portfolioName, LocalDate date, float value) throws IOException;
 
   /**
    * Display successful portfolio creation.

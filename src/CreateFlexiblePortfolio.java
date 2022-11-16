@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -77,10 +79,11 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
               break;
             }
 
-            Date date;
+            LocalDate date;
             try {
-              date = new SimpleDateFormat("MM/dd/yyyy").parse(transactionDate);
-            } catch (ParseException e) {
+              DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+              date = LocalDate.parse(transactionDate, formatter);
+            } catch (Exception e) {
               view.invalidDateStringMessage(transactionDate);
               continue;
             }
@@ -133,8 +136,9 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
             }
 
             try {
-              date = new SimpleDateFormat("MM/dd/yyyy").parse(transactionDate);
-            } catch (ParseException e) {
+              DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+              date = LocalDate.parse(transactionDate, formatter);
+            } catch (Exception e) {
               view.invalidDateStringMessage(transactionDate);
               continue;
             }

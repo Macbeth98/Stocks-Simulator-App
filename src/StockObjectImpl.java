@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * This class contains the implementation for the StockObject interface.
@@ -19,7 +19,7 @@ public class StockObjectImpl implements StockObject {
     this.ticker = ticker;
 
     float temp;
-    Date date = new Date();
+    LocalDate date = LocalDate.now();
     try {
       temp = new AlphaVantageSource().getPriceAtDate(ticker, date);
     }
@@ -40,7 +40,7 @@ public class StockObjectImpl implements StockObject {
   }
 
   @Override
-  public float getCurrentPriceAtDate(Date date) {
+  public float getCurrentPriceAtDate(LocalDate date) {
     return new AlphaVantageSource().getPriceAtDate(this.ticker, date);
   }
 
@@ -50,7 +50,7 @@ public class StockObjectImpl implements StockObject {
   }
 
   @Override
-  public float getCurrentValueAtDate(Date date, float quantity) {
+  public float getCurrentValueAtDate(LocalDate date, float quantity) {
     return quantity * this.getCurrentPriceAtDate(date);
   }
 }

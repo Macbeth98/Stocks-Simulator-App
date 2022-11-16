@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -79,12 +81,12 @@ public class PortfolioViewImpl implements PortfolioView {
   }
 
   @Override
-  public void displayValueAtDate(String portfolioName, Date date, float value) throws IOException {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
+  public void displayValueAtDate(String portfolioName, LocalDate date, float value) throws IOException {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     this.out.append("\nValue of portfolio: ")
             .append(portfolioName)
             .append(", at Date: ")
-            .append(formatter.format(date))
+            .append(date.format(formatter))
             .append(" IS : $")
             .append(String.valueOf(value))
             .append("\n");

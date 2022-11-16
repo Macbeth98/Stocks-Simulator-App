@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -54,10 +56,11 @@ public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControl
         break;
       }
 
-      Date date;
+      LocalDate date;
       try {
-        date = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
-      } catch (ParseException e) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        date = LocalDate.parse(dateString, formatter);
+      } catch (Exception e) {
         view.invalidDateStringMessage(dateString);
         continue;
       }

@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -69,7 +70,7 @@ public interface FlexiblePortfolioList extends PortfolioList {
    * @param date the date at which the composition needs to be returned.
    * @return returns the list of stocks data in the form of PortfolioItem.
    */
-  PortfolioItem[] getPortfolioCompositionAtDate (String portfolioName, Date date);
+  PortfolioItem[] getPortfolioCompositionAtDate (String portfolioName, LocalDate date);
 
 
   /**
@@ -83,7 +84,7 @@ public interface FlexiblePortfolioList extends PortfolioList {
    * @throws IllegalArgumentException if any of the given arguments are not valid.
    */
   void addTransactionToPortfolio(String portfolioName, TransactionType type, String stockTicker,
-                                 float quantity, Date date, float commission)
+                                 float quantity, LocalDate date, float commission)
           throws IllegalArgumentException;
 
 
@@ -94,6 +95,6 @@ public interface FlexiblePortfolioList extends PortfolioList {
    * @param tillDate the date at which the cost basis needs to be calculated.
    * @return returns the amount of money invested in the portfolio.
    */
-  float getCostBasis(String portfolioName, Date tillDate);
+  float getCostBasis(String portfolioName, LocalDate tillDate);
 
 }
