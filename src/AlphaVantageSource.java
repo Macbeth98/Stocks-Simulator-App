@@ -74,15 +74,18 @@ public class AlphaVantageSource implements DataSource {
     }
 
     String jsonString = output.toString();
+    if (jsonString.contains("Error Message")) {
+      throw new IllegalArgumentException("Stock ticker invalid!");
+    }
     JSONObject jsonObj = new JSONObject(jsonString);
     String priceOnDate = "";
-    // if value not present for given date, take value of previous day
-    while (priceOnDate.length() == 0) {
+    while(priceOnDate.length() == 0) {
       try {
         priceOnDate = jsonObj.getJSONObject("Time Series (Daily)")
                 .getJSONObject(strDate)
                 .getString("4. close");
-      } catch (Exception e) {
+      }
+      catch (Exception ignored) {
         date = date.minusDays(1);
         strDate = formatter.format(date);
       }

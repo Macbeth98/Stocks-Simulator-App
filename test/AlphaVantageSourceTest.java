@@ -38,7 +38,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void getPriceAtRecentDateAPITest2 () {
+  public void getPriceAtRecentInvalidDateAPITest () {
     String dateString = "2022-11-13";
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -68,6 +68,18 @@ public class AlphaVantageSourceTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate date = LocalDate.parse(dateString, formatter);
     float result = testSource.getPriceAtDate("COKE", date);
+
+    assertEquals(52.00, result, 0.001);
+
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidTicker () {
+
+    String dateString = "1999-11-01";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(dateString, formatter);
+    float result = testSource.getPriceAtDate("GOOGLE", date);
 
     assertEquals(52.00, result, 0.001);
 

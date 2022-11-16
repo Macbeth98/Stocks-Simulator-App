@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements FlexiblePortfolioView {
 
-  protected FlexiblePortfolioViewImpl(Appendable out) {
+  public FlexiblePortfolioViewImpl(Appendable out) {
     super(out);
   }
 
