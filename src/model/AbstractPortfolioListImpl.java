@@ -1,16 +1,11 @@
 package model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import fileinout.FileIO;
-import fileinout.GeneralFIleIO;
+import fileinout.SaveToCSV;
 import model.portfolio.Portfolio;
 import model.portfolio.PortfolioItem;
 import model.portfolio.PortfolioList;
@@ -23,18 +18,9 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
   protected AbstractPortfolioListImpl(String directoryName) throws RuntimeException {
     this.currentDirectory = System.getProperty("user.dir") + directoryName;
 
-    FileIO fileIO = new GeneralFIleIO();
+    FileIO fileIO = new SaveToCSV();
 
     fileIO.checkDirectory(currentDirectory);
-
-    File directory = new File(currentDirectory);
-
-    if (!directory.exists()) {
-      boolean directoryCreated = directory.mkdir();
-      if (!directoryCreated) {
-        throw new RuntimeException("Directory is not found and cannot be created.");
-      }
-    }
 
     portfolioFiles = fileIO.getFilesInDirectory(currentDirectory);
   }
@@ -48,20 +34,9 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
   abstract public Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException ;
 
   protected List<String> loadPortfolioData(String path) throws IllegalArgumentException {
-    File file = new File(Paths.get(path).toString());
+    FileIO fileIO = new SaveToCSV();
 
-    List<String> portfolioLines = new ArrayList<>();
-
-    try (Scanner scanner = new Scanner(file)) {
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        portfolioLines.add(line);
-      }
-    } catch (FileNotFoundException e) {
-      throw new IllegalArgumentException("File not found!");
-    }
-
-    return portfolioLines;
+    return fileIO.readData(path);
   }
 
   @Override

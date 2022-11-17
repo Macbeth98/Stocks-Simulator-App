@@ -1,7 +1,7 @@
 package model.flexibleportfolio;
 
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fileinout.FileIO;
+import fileinout.SaveToCSV;
 import model.TransactionType;
 import model.portfolio.Portfolio;
 import model.portfolio.PortfolioImpl;
@@ -46,7 +48,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     this.constructPortfolio();
 
     try {
-      this.saveTransactionToFile();
+      this.saveTransactionsToFile();
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File Saving error..." + e.getMessage());
     }
@@ -57,18 +59,28 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     this.portfolioItemTransactions.sort(Comparator.comparing(PortfolioItemTransaction::getDate));
   }
 
-  private void saveTransactionToFile() throws FileNotFoundException {
+  private void saveTransactionsToFile() throws FileNotFoundException {
     // call save to file.
     this.sortByDate();
-    PrintStream out = this.getFileOutStream(this.getSaveFilePath());
 
-    portfolioItemTransactions.forEach(itemTxn -> {
-      String itemTxnStr = itemTxn.toString();
+    Path filepath = getSaveFilePath();
 
-      out.println(itemTxnStr);
-    });
+    PortfolioItemTransaction[] items = portfolioItemTransactions
+            .toArray(new PortfolioItemTransaction[0]);
+
+    FileIO fileIO = new SaveToCSV();
+    fileIO.writeData(filepath.toString(), items);
 
     this.fileSaved = true;
+  }
+
+  private void saveATransactionToFile(PortfolioItemTransaction item) throws FileNotFoundException {
+    Path filepath = getSaveFilePath();
+
+    PortfolioItemTransaction[] items = new PortfolioItemTransaction[]{item};
+
+    FileIO fileIO = new SaveToCSV();
+    fileIO.appendData(filepath.toString(), items);
   }
 
   private float getUpdatedStockQuantity(String ticker, float quantity) {
@@ -114,7 +126,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     portfolioItemTransactions.add(portfolioItemTransaction);
 
-    this.saveTransactionToFile();
+    this.saveATransactionToFile(portfolioItemTransaction);
 
     return this;
   }
@@ -174,7 +186,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     // this.savePortfolioToFile();
 
-    this.saveTransactionToFile();
+    this.saveATransactionToFile(portfolioItemTransaction);
 
     return this;
   }
@@ -183,6 +195,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   public float getCostBasis(LocalDate tillDate) {
     return portfolioItemTransactions
             .stream()
+            .filter(item -> item.getDate().isBefore(tillDate) || item.getDate().isEqual(tillDate))
             .map(PortfolioItemTransaction::getCostBasis)
             .reduce((float) 0, Float::sum);
   }
@@ -191,24 +204,24 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     return date.equals(LocalDate.now());
   }
 
-  private Map<StockObject, Float> getPortfolioTillDate(LocalDate date) {
+  private Map<String, Float> getPortfolioTillDate(LocalDate date) {
     this.sortByDate();
 
-    Map<StockObject, Float> stocks = new HashMap<>();
+    Map<String, Float> stocks = new HashMap<>();
 
     for (PortfolioItemTransaction item: portfolioItemTransactions) {
       if(item.getDate().compareTo(date) <= 0) {
         float stockAmount = 0;
 
-        if(stocks.containsKey(item.getStock())) {
-          stockAmount = stocks.get(item.getStock());
+        if(stocks.containsKey(item.getStock().getTicker())) {
+          stockAmount = stocks.get(item.getStock().getTicker());
         }
 
         stockAmount += item.getQuantity();
         if(stockAmount <= 0) {
-          stocks.remove(item.getStock());
+          stocks.remove(item.getStock().getTicker());
         }
-        stocks.put(item.getStock(), stockAmount);
+        stocks.put(item.getStock().getTicker(), stockAmount);
       } else {
         break;
       }
@@ -217,16 +230,17 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     return stocks;
   }
 
-  private Portfolio buildPortfolio(Map<StockObject, Float> stocks) {
+  private Portfolio buildPortfolio(Map<String, Float> stocks) {
     PortfolioImpl.PortfolioBuilder builder = PortfolioImpl.getBuilder();
 
     builder = builder.portfolioName(this.portfolioName)
             .setPortfolioFileName(Paths.get(this.getPortfolioFilePath()));
 
-    StockObject[] stockObjects = stocks.keySet().toArray(new StockObject[0]);
+    String[] stockTickers = stocks.keySet().toArray(new String[0]);
 
-    for (StockObject stockObject: stockObjects) {
-      builder = builder.addStockToPortfolio(stockObject, stocks.get(stockObject));
+    for (String stockTicker: stockTickers) {
+      StockObject stockObject = new StockObjectImpl(stockTicker);
+      builder = builder.addStockToPortfolio(stockObject, stocks.get(stockTicker));
     }
 
     return builder.build();
@@ -239,7 +253,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
       return super.getPortfolioComposition();
     }
 
-    Map<StockObject, Float> stocks = this.getPortfolioTillDate(date);
+    Map<String , Float> stocks = this.getPortfolioTillDate(date);
     int txnCount = stocks.size();
 
     if (txnCount == 0) {
@@ -258,7 +272,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
       return super.getPortfolioValueAtDate(date);
     }
 
-    Map<StockObject, Float> stocks = this.getPortfolioTillDate(date);
+    Map<String, Float> stocks = this.getPortfolioTillDate(date);
 
     if(stocks.size() == 0) {
       return 0;
@@ -267,12 +281,6 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     Portfolio portfolio = this.buildPortfolio(stocks);
 
     return portfolio.getPortfolioValueAtDate(date);
-  }
-
-  private Map<String, Float> performanceHelper (String period, int increment) {
-    Map<String, Float> timeMaps = new HashMap<>();
-
-    return timeMaps;
   }
 
   @Override

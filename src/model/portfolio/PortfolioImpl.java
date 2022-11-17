@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import fileinout.FileIO;
+import fileinout.SaveToCSV;
 import model.stock.StockObject;
 
 /**
@@ -151,7 +153,7 @@ public class PortfolioImpl implements Portfolio {
   @Override
   public String getPortfolioFilePath() {
     return this.fileSaved ?
-            Paths.get(this.currentDirectory + this.portfolioFileName).toString()
+            this.getSaveFilePath().toString()
             : "File Could not be Saved.";
   }
 
@@ -184,28 +186,22 @@ public class PortfolioImpl implements Portfolio {
             .reduce((float) 0, Float::sum);
   }
 
-  protected PrintStream getFileOutStream (Path filepath) throws FileNotFoundException {
-    File outputFile = new File(filepath.toUri());
-    FileOutputStream fileOut = new FileOutputStream(outputFile);
-    return new PrintStream(fileOut);
-  }
-
   protected Path getSaveFilePath() {
-    return Paths.get(currentDirectory + portfolioFileName);
+    FileIO fileIO = new SaveToCSV();
+    return fileIO.getFilePathFromString(currentDirectory + portfolioFileName);
   }
 
   @Override
   public String savePortfolioToFile() throws FileNotFoundException {
     Path filepath = getSaveFilePath();
-    PrintStream out = this.getFileOutStream(filepath);
 
-    stocks.keySet().forEach(stockTicker -> {
-      String portfolioItemStr = stocks.get(stockTicker).toString();
+    PortfolioItem[] items =  stocks.values().toArray(new PortfolioItem[0]);
 
-      out.println(portfolioItemStr);
-    });
+    FileIO fileIO = new SaveToCSV();
+
+    String path = fileIO.writeData(filepath.toString(), items);
 
     this.fileSaved = true;
-    return filepath.toString();
+    return path;
   }
 }

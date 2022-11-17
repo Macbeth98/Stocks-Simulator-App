@@ -2,6 +2,7 @@ package model.flexibleportfolio;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   public String createPortfolio(String portfolioName, Map<String, Float> ignored) {
     FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName);
     portfolios.put(portfolioName, portfolio);
+    this.portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
     return portfolio.getPortfolioFilePath();
   }
 
@@ -91,6 +93,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
     List<PortfolioItemTransaction> pITxnS = this.loadPortfolio(portfolioFilePath);
     FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName, null, pITxnS);
     portfolios.put(portfolioName, portfolio);
+    this.portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
     return  portfolio.getPortfolioFilePath();
   }
 

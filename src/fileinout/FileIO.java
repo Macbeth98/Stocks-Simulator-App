@@ -1,6 +1,9 @@
 package fileinout;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,12 +12,17 @@ import java.util.Map;
 public interface FileIO {
 
   String getFileType();
+
+  Path getFilePathFromString(String filepath);
+
   void checkDirectory(String directoryPath) throws RuntimeException;
 
   Map<String, Path> getFilesInDirectory (String directoryPath) throws RuntimeException;
 
-  String[] readData(String filepath);
+  List<String> readData(String filepath);
 
-  void writeData(String filepath);
+  String writeData(String filepath, Object[] data) throws FileNotFoundException;
+
+  String appendData(String filepath, Object[] data) throws FileNotFoundException;
 
 }
