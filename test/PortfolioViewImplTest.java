@@ -2,10 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import view.portfolio.PortfolioView;
+import view.portfolio.PortfolioViewImpl;
 
 import static org.junit.Assert.assertEquals;
 

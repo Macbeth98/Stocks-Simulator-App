@@ -2,7 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Date;
+
+import model.stock.StockObject;
+import model.stock.StockObjectImpl;
 
 import static org.junit.Assert.assertEquals;
 

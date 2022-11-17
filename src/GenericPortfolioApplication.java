@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import controller.GenericPortfolioControllerImpl;
+import model.GenericPortfolioListImpl;
+
 public class GenericPortfolioApplication {
   public static void main(String[] args) {
     try {

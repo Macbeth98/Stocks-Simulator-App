@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import controller.flexibleportfolio.FlexiblePortfolioControllerImpl;
+import model.flexibleportfolio.FlexiblePortfolioListImpl;
+
 public class PApplicationFlex {
   public static void main(String[] args) {
     try {

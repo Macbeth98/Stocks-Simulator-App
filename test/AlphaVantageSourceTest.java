@@ -4,6 +4,8 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import model.AlphaVantageSource;
+
 import static org.junit.Assert.*;
 
 public class AlphaVantageSourceTest {

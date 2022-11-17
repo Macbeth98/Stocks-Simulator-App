@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import controller.portfolio.PortfolioControllerImpl;
+import model.portfolio.PortfolioListImpl;
+
 /**
  * This is the main class which calls the main(String[] args) method.
  */

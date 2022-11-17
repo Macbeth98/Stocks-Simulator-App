@@ -5,13 +5,19 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import model.portfolio.Portfolio;
+import model.portfolio.PortfolioImpl;
+import model.portfolio.PortfolioItem;
+import model.portfolio.PortfolioList;
+import model.portfolio.PortfolioListImpl;
+import model.stock.StockObject;
+import model.stock.StockObjectImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
