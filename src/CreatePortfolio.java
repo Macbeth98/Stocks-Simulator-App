@@ -72,6 +72,10 @@ public class CreatePortfolio implements PortfolioControllerCommand{
           view.invalidQuantityValue();
           continue;
         }
+        if (quantity < 0) {
+          view.invalidQuantityValue();
+          continue;
+        }
 
 
         stockMap.put(stockName.toUpperCase(), quantity);
@@ -82,7 +86,13 @@ public class CreatePortfolio implements PortfolioControllerCommand{
         }
       }
 
-      String portfolioPath = portfolioList.createPortfolio(pName, stockMap);
+      String portfolioPath = "";
+      try{
+        portfolioPath = portfolioList.createPortfolio(pName, stockMap);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Portfolio Creation Failed! Error: " + e);
+        continue;
+      }
 
       view.displayPortfolioSuccess(pName, portfolioPath);
 

@@ -128,4 +128,10 @@ public interface PortfolioView {
    * Display this message if the user inputs an incorrect quantity value.
    */
   void invalidQuantityValue() throws IOException;
+
+  /**
+   * Display any error info from controller.
+   * @param s string containing error info
+   */
+  void displayErrorPrompt(String s) throws IOException;
 }

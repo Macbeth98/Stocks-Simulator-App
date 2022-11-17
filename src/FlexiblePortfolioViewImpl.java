@@ -16,11 +16,12 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
             "\nWelcome!\nWhat do you want to do? Press option key:\n\n"
             + "1. Create new Portfolio manually\n"
             + "2. Create new Portfolio from file\n"
-            + "3. Examine/View a portfolio\n"
-            + "4. Get total value of a portfolio for a date\n"
-            + "5. Get Cost Basis of a portfolio for a date\n"
-            + "6. Get a portfolio's performance graph\n"
-            + "7. Exit\n"
+            + "3. Modify a portfolio\n"
+            + "4. Examine/View a portfolio\n"
+            + "5. Get total value of a portfolio for a date\n"
+            + "6. Get Cost Basis of a portfolio for a date\n"
+            + "7. Get a portfolio's performance graph\n"
+            + "8. Exit\n"
             + "\n(Please press 0 at any time to return to main menu)\n"
             + "-------------------------------\n\n";
     this.out.append(menu);
@@ -56,21 +57,21 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
   public void transactionSuccessMessage(String pName, TransactionType type, String stockName,
                                         float quantity, LocalDate date) throws IOException {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-    this.out.append("Transaction: ")
+    this.out.append("\nTransaction: ")
             .append(type.toString())
             .append(" successfully executed for ")
             .append(String.valueOf(quantity))
             .append(" no of ").append(stockName)
             .append(" stocks on date: ")
-            .append(date.format(formatter));
+            .append(date.format(formatter))
+            .append("\n");
   }
 
   @Override
   public void displayFlexiblePortfolio(PortfolioItem[] portfolioItems) throws IOException {
-    System.out.println("I AM HERE FLEX" + portfolioItems.length);
     StringBuilder s = new StringBuilder();
     for (PortfolioItem portfolioItem : portfolioItems) {
-      s.append(portfolioItem.compositionString());
+      s.append(portfolioItem.compositionString()).append("\n");
     }
     this.out.append(s.toString());
   }

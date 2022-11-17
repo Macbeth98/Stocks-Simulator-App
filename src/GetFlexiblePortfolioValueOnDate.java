@@ -65,7 +65,13 @@ public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControl
         continue;
       }
 
-      float value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
+      float value;
+      try {
+       value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Flexible Portfolio Value on Date Failed! Error: " + e);
+        continue;
+      }
 
       view.displayValueAtDate(pName, date, value);
 

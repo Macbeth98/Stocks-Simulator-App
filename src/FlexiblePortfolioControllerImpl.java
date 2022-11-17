@@ -39,22 +39,26 @@ public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioControl
           cmd.go(scan);
           break;
         case "3":
-          cmd = new FlexiblePortfolioComposition(fpList, view);
+          cmd = new ModifyFlexiblePortfolio(fpList, view);
           cmd.go(scan);
           break;
         case "4":
-          cmd = new GetFlexiblePortfolioValueOnDate(fpList, view);
+          cmd = new FlexiblePortfolioComposition(fpList, view);
           cmd.go(scan);
           break;
         case "5":
-          cmd = new GetCostBasisOnDate(fpList, view);
+          cmd = new GetFlexiblePortfolioValueOnDate(fpList, view);
           cmd.go(scan);
           break;
         case "6":
-          cmd = new GetFlexiblePortfolioPerformanceGraph(fpList, view);
+          cmd = new GetCostBasisOnDate(fpList, view);
           cmd.go(scan);
           break;
         case "7":
+          cmd = new GetFlexiblePortfolioPerformanceGraph(fpList, view);
+          cmd.go(scan);
+          break;
+        case "8":
           return;
         default:
           view.invalidChoiceMessage();

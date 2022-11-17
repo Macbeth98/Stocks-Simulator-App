@@ -66,7 +66,13 @@ public class GetPortfolioValueOnDate implements PortfolioControllerCommand{
         continue;
       }
 
-      float value = portfolioList.getPortfolio(pName).getPortfolioValueAtDate(date);
+      float value;
+      try {
+        value = portfolioList.getPortfolio(pName).getPortfolioValueAtDate(date);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Inflexible Portfolio Value at Date Failed! Error: " + e);
+        continue;
+      }
 
       view.displayValueAtDate(pName, date, value);
 

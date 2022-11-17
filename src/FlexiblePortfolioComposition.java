@@ -66,7 +66,13 @@ public class FlexiblePortfolioComposition implements FlexiblePortfolioController
         continue;
       }
 
-      PortfolioItem[] portfolioItems = fpList.getPortfolioCompositionAtDate(pName, date);
+      PortfolioItem[] portfolioItems;
+      try {
+        portfolioItems = fpList.getPortfolioCompositionAtDate(pName, date);
+      } catch (Exception e) {
+        view.displayErrorPrompt("Flexible Portfolio Composition on Date Failed! Error: " + e);
+        continue;
+      }
       view.displayFlexiblePortfolio(portfolioItems);
 
       view.continuePrompt();

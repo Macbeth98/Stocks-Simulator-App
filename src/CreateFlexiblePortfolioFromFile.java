@@ -52,7 +52,13 @@ public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControl
         break;
       }
 
-      String portfolioPath = flexiblePortfolioList.createPortfolioFromFile(pName, pPath);
+      String portfolioPath = "";
+      try{
+        portfolioPath = flexiblePortfolioList.createPortfolioFromFile(pName, pPath);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Flexible Portfolio Creation From File, Failed! Error: " + e);
+        continue;
+      }
 
       view.displayPortfolioSuccess(pName, portfolioPath);
 

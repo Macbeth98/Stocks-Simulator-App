@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -75,7 +74,7 @@ public class AlphaVantageSource implements DataSource {
 
     String jsonString = output.toString();
     if (jsonString.contains("Error Message")) {
-      throw new IllegalArgumentException("Stock ticker invalid!");
+      throw new IllegalArgumentException("Stock ticker: " + ticker + " is invalid!");
     }
     JSONObject jsonObj = new JSONObject(jsonString);
     String priceOnDate = "";

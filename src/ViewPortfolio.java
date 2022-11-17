@@ -46,7 +46,13 @@ public class ViewPortfolio implements PortfolioControllerCommand{
         continue;
       }
 
-      Portfolio portfolio = portfolioList.getPortfolio(pName);
+      Portfolio portfolio;
+      try {
+        portfolio = portfolioList.getPortfolio(pName);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Inflexible Portfolio Composition Failed! Error: " + e);
+        continue;
+      }
       view.displayPortfolio(portfolio);
 
       view.continuePrompt();

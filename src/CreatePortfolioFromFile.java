@@ -49,7 +49,13 @@ public class CreatePortfolioFromFile implements PortfolioControllerCommand {
         break;
       }
 
-      String portfolioPath = portfolioList.createPortfolioFromFile(pName, pPath);
+      String portfolioPath = "";
+      try{
+        portfolioPath = portfolioList.createPortfolioFromFile(pName, pPath);
+      } catch (IllegalArgumentException e) {
+        view.displayErrorPrompt("Portfolio Creation From File, Failed! Error: " + e);
+        continue;
+      }
 
       view.displayPortfolioSuccess(pName, portfolioPath);
 

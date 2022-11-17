@@ -66,7 +66,14 @@ public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
         continue;
       }
 
-      float value = fpList.getCostBasis(pName, date);
+      float value;
+      try {
+        value = fpList.getCostBasis(pName, date);
+      } catch (Exception e) {
+        view.displayErrorPrompt("Flexible Portfolio Cost Basis on Date Failed! Error: " + e);
+        continue;
+      }
+
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
       view.displayCostBasis(pName, value, formatter.format(date));

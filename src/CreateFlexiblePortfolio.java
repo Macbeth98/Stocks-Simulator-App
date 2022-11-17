@@ -1,10 +1,7 @@
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerCommand {
@@ -45,7 +42,7 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
       String filePath = flexiblePortfolioList.createPortfolio(pName, null);
       view.displayPortfolioSuccess(pName, filePath);
 
-      while(true) {
+      while (true) {
         view.portfolioCreateMenu();
 
         switch (scan.next()) {
@@ -69,6 +66,10 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
                 break;
               }
             } catch (Exception e) {
+              view.invalidQuantityValue();
+              continue;
+            }
+            if (quantity < 0) {
               view.invalidQuantityValue();
               continue;
             }
@@ -101,7 +102,8 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
               flexiblePortfolioList.addTransactionToPortfolio(pName, TransactionType.BUY,
                       stockName, quantity, date, commission);
             } catch (IllegalArgumentException e) {
-              throw new IllegalArgumentException(e.getMessage());
+              view.displayErrorPrompt("Flexible Portfolio Creation Failed! Error: " + e);
+              continue;
             }
 
             view.transactionSuccessMessage(pName, TransactionType.BUY, stockName, quantity, date);
@@ -156,7 +158,8 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
               flexiblePortfolioList.addTransactionToPortfolio(pName, TransactionType.SELL,
                       stockName, quantity, date, commission);
             } catch (IllegalArgumentException e) {
-              throw new IllegalArgumentException(e.getMessage());
+              view.displayErrorPrompt("Flexible Portfolio Transaction Failed! Error: " + e);
+              continue;
             }
 
             view.transactionSuccessMessage(pName, TransactionType.SELL, stockName, quantity, date);
@@ -164,8 +167,11 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
 
           case "3":
             return;
-          }
+
+          default:
+            view.invalidChoiceMessage();
         }
+      }
     }
   }
 }

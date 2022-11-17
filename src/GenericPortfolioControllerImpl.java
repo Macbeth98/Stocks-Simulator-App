@@ -24,7 +24,6 @@ public class GenericPortfolioControllerImpl implements GenericPortfolioControlle
     // Scanner scans input
     Scanner scan = new Scanner(this.in);
     while (true) {
-      // view.menu()
       view.menuView();
 
       switch (scan.next()) {
