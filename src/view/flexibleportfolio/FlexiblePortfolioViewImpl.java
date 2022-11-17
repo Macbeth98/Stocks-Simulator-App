@@ -3,6 +3,11 @@ package view.flexibleportfolio;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 import model.TransactionType;
 import model.portfolio.PortfolioItem;
@@ -88,6 +93,39 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
             .append(date).append(" Is: $")
             .append(String.valueOf(costBasis))
             .append(".\n");
+  }
+
+  @Override
+  public void rangeFromDatePrompt() throws IOException {
+    this.out.append("\nEnter start date in (mm/dd/yyyy) format: ");
+  }
+
+  @Override
+  public void rangeToDatePrompt() throws IOException {
+    this.out.append("\nEnter end date in (mm/dd/yyyy) format: ");
+  }
+
+  @Override
+  public void displayPerformanceGraph(Map<String, Float> portfolioPerformance,
+                                      String startDate, String endDate,
+                                      String portfolioName) throws IOException {
+    this.out.append("\nPerformance of portfolio: ")
+            .append(portfolioName).append(" from ")
+            .append(startDate)
+            .append(" to ")
+            .append(endDate)
+            .append("\n\n");
+    float scale = portfolioPerformance.remove("scale");
+    List<String> datesList = new ArrayList<>(portfolioPerformance.keySet());
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    datesList.sort(Comparator.comparing(s -> LocalDate.parse(s, formatter)));
+    for (String dateStr: datesList) {
+      String graphLine = dateStr + ": ";
+      int numOfStars = (int) Math.ceil(portfolioPerformance.get(dateStr)/scale);
+      graphLine += "*".repeat(numOfStars) + "\n";
+      this.out.append(graphLine);
+    }
+    this.out.append("\nScale: * = ").append(String.valueOf(scale)).append("\n");
   }
 
 }

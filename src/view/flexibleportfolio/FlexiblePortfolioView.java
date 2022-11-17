@@ -2,6 +2,7 @@ package view.flexibleportfolio;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Map;
 
 import model.TransactionType;
 import model.portfolio.PortfolioItem;
@@ -54,4 +55,25 @@ public interface FlexiblePortfolioView extends PortfolioView {
    * @param date      date until which cost basis
    */
   void displayCostBasis(String pName, float costBasis, String date) throws IOException;
+
+  /**
+   * Prompt user for START date in graph's date range.
+   */
+  void rangeFromDatePrompt() throws IOException;
+
+  /**
+   * Prompt user for END date in graph's date range.
+   */
+  void rangeToDatePrompt() throws IOException;
+
+  /**
+   * Display the performance graph of a portfolio using a map denoting values and timestamps.
+   * @param portfolioPerformance map for the performance graph that contains dates and values
+   * @param startDate start date of date range
+   * @param endDate end date of date range
+   * @param portfolioName name of given portfolio
+   */
+  void displayPerformanceGraph(Map<String, Float> portfolioPerformance,
+                               String startDate, String endDate,
+                               String portfolioName) throws IOException;
 }
