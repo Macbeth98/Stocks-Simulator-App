@@ -16,7 +16,7 @@ public class FlexiblePortfolioImplTest {
   public void testCreationOfFlexiblePortfolio() throws ParseException, FileNotFoundException {
     FlexiblePortfolioList portfolioList = new FlexiblePortfolioListImpl();
 
-    String portfolioName = "flexibleTest1";
+    String portfolioName = "flexibletest1";
     FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName);
 
     String filepath = System.getProperty("user.dir") + "/portfolioTxnFiles/";
