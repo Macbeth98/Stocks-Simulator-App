@@ -5,9 +5,11 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import model.TransactionType;
 import model.flexibleportfolio.FlexiblePortfolio;
@@ -73,16 +75,59 @@ public class FlexiblePortfolioImplTest {
 
   @Test
   public void testCreatePortfolioByGivingTransactions() {
-    String portfolioName = "testportfoliofromfile";
+    String portfolioName = "testportfoliotxns";
 
     List<PortfolioItemTransaction> items = new ArrayList<>();
 
     String[] transactions = new String[] {
-            "BUY_GOOG_98_08/10/2021_7"
+            "BUY_GOOG_98_08/10/2021_7",
+            "BUY_TSLA_100_09/10/2021_9",
+            "BUY_MSFT_90_11/11/2021_5",
+            "SELL_GOOG_8_09/11/2021_7",
+            "SELL_MSFT_9_04/03/2022_10"
     };
 
+    Map<String, Float> stocks = new HashMap<>();
+    stocks.put("GOOG", 90f);
+    stocks.put("TSLA", 100f);
+    stocks.put("MSFT", 81f);
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
+    for (String transaction : transactions) {
+      String[] values = transaction.split("_");
+      items.add(
+              new PortfolioItemTransaction(
+                      Objects.equals(TransactionType.BUY.toString(), values[0])
+                              ? TransactionType.BUY: TransactionType.SELL,
+                      new StockObjectImpl(values[1]),
+                      Float.parseFloat(values[2]),
+                      LocalDate.parse(values[3], formatter),
+                      Float.parseFloat(values[4])
+              )
+      );
+    }
+
+    FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName, null, items);
+
+    assertEquals(portfolioName, portfolio.getPortfolioName());
+
+    PortfolioItem[] portfolioItems = portfolio.getPortfolioComposition();
+    PortfolioItem[] portfolioItemsAtDate = portfolio.getPortfolioCompositionAtDate(
+            LocalDate.now().minusDays(5));
+
+    assertEquals(portfolioItems.length, portfolioItemsAtDate.length);
+
+    for (int i = 0; i < portfolioItems.length; i++) {
+      PortfolioItem item = portfolioItems[i];
+      PortfolioItem itemAtDate = portfolioItemsAtDate[i];
+
+      assertEquals(item.getStock().getTicker(), itemAtDate.getStock().getTicker());
+      assertEquals(item.getQuantity(), itemAtDate.getQuantity(), 0.01);
+
+      String ticker = item.getStock().getTicker();
+      assertEquals(stocks.get(ticker), itemAtDate.getQuantity(), 0.01);
+    }
 
   }
 

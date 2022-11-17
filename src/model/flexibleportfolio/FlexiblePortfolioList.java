@@ -12,52 +12,52 @@ import model.portfolio.PortfolioList;
  * available list of Flexible Portfolios.
  */
 public interface FlexiblePortfolioList extends PortfolioList {
-/*
-  /**
-   * Fetches the list of Flexible Portfolio Names Available.
-   *
-   * @return returns the list of Flexible Portfolio names.
-   * /
-  String[] getPortfolioListNames();
+  /*
+    /**
+     * Fetches the list of Flexible Portfolio Names Available.
+     *
+     * @return returns the list of Flexible Portfolio names.
+     * /
+    String[] getPortfolioListNames();
 
-  /**
-   * Gets the FlexiblePortfolio from the given Portfolio Name.
-   *
-   * @param portfolioName the portfolio that needs to be fetched.
-   * @return returns the FlexiblePortfolio for the given portfolioName.
-   * /
-  FlexiblePortfolio getPortfolio(String portfolioName) throws FileNotFoundException;
+    /**
+     * Gets the FlexiblePortfolio from the given Portfolio Name.
+     *
+     * @param portfolioName the portfolio that needs to be fetched.
+     * @return returns the FlexiblePortfolio for the given portfolioName.
+     * /
+    FlexiblePortfolio getPortfolio(String portfolioName) throws FileNotFoundException;
 
-  /**
-   * Creates a Flexible Portfolio by Manually entering Portfolio Details.
-   * Flexible Portfolio supports the creation of empty Portfolio.
-   *
-   * @param portfolioName the unique name of the Portfolio that needs to be created.
-   * @return returns the created Flexible Portfolio.
-   * /
-  FlexiblePortfolio createPortfolio(String portfolioName);
+    /**
+     * Creates a Flexible Portfolio by Manually entering Portfolio Details.
+     * Flexible Portfolio supports the creation of empty Portfolio.
+     *
+     * @param portfolioName the unique name of the Portfolio that needs to be created.
+     * @return returns the created Flexible Portfolio.
+     * /
+    FlexiblePortfolio createPortfolio(String portfolioName);
 
-  /**
-   * Creates a Flexible Portfolio from the user given file. The file needs to be in a specific
-   * format that is mentioned in the read me of the project documentation.
-   *
-   * @param portfolioName the portfolio Name to be assigned for the created Portfolio from the file.
-   * @param portfolioFilePath the filepath from where the Portfolio needs to be loaded.
-   * @return
-   * @throws FileNotFoundException if the given file is not found.
-   * /
-  FlexiblePortfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
-          throws FileNotFoundException;
+    /**
+     * Creates a Flexible Portfolio from the user given file. The file needs to be in a specific
+     * format that is mentioned in the read me of the project documentation.
+     *
+     * @param portfolioName the portfolio Name to be assigned for the created Portfolio from the file.
+     * @param portfolioFilePath the filepath from where the Portfolio needs to be loaded.
+     * @return
+     * @throws FileNotFoundException if the given file is not found.
+     * /
+    FlexiblePortfolio createPortfolioFromFile(String portfolioName, String portfolioFilePath)
+            throws FileNotFoundException;
 
 
-  /**
-   * Get the composition for a single Portfolio.
-   *
-   * @param portfolioName the name of the Portfolio.
-   * @return returns the list of Portfolio Items.
-   * /
-  PortfolioItem[] getPortfolioComposition(String portfolioName);
-*/
+    /**
+     * Get the composition for a single Portfolio.
+     *
+     * @param portfolioName the name of the Portfolio.
+     * @return returns the list of Portfolio Items.
+     * /
+    PortfolioItem[] getPortfolioComposition(String portfolioName);
+  */
 
 
   /**

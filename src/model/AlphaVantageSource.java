@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
 import static java.nio.file.Files.readString;
@@ -133,15 +134,7 @@ public class AlphaVantageSource implements DataSource {
   private boolean priceExistsOnFile(String ticker, String strDate) throws IOException {
     String filePath = pricesDirectory + ticker + ".json";
     File file = new File(filePath);
-    String pricesJson;
-    Path pricesFilePath = Path.of(filePath);
-    if (file.exists()) {
-      pricesJson = readString(pricesFilePath);
-      JSONObject jsonObj = new JSONObject(pricesJson);
-      return jsonObj.has(strDate);
-    } else {
-      return false;
-    }
+    return file.exists();
   }
 
   private void storePriceOnFile(String ticker, String jsonResponseString)

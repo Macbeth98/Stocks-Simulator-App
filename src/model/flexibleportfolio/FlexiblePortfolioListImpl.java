@@ -138,7 +138,8 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   }
 
   @Override
-  public float getCostBasis(String portfolioName, LocalDate tillDate) throws IllegalArgumentException {
+  public float getCostBasis(String portfolioName, LocalDate tillDate)
+          throws IllegalArgumentException {
     FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
     return portfolio.getCostBasis(tillDate);
   }
