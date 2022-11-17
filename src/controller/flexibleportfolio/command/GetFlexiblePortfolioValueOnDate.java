@@ -13,6 +13,7 @@ public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControl
 
   private final FlexiblePortfolioList fpList;
   private final FlexiblePortfolioView view;
+
   public GetFlexiblePortfolioValueOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
@@ -69,7 +70,7 @@ public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControl
 
       float value;
       try {
-       value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
+        value = fpList.getPortfolio(pName).getPortfolioValueAtDate(date);
       } catch (IllegalArgumentException e) {
         view.displayErrorPrompt("Flexible Portfolio Value on Date Failed! Error: " + e);
         continue;

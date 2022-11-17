@@ -24,6 +24,7 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
 
     portfolioFiles = fileIO.getFilesInDirectory(currentDirectory);
   }
+
   @Override
   public String[] getPortfolioListNames() {
     return portfolioFiles.keySet().toArray(new String[0]);
@@ -31,7 +32,7 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
 
 
   @Override
-  abstract public Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException ;
+  abstract public Portfolio getPortfolio(String portfolioName) throws IllegalArgumentException;
 
   protected List<String> loadPortfolioData(String path) throws IllegalArgumentException {
     FileIO fileIO = new SaveToCSV();
@@ -47,10 +48,16 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
 
   @Override
   public String getPortfolioFilePath(String portfolioName) throws IllegalArgumentException {
-    if(this.portfolioFiles.containsKey(portfolioName)) {
+    if (this.portfolioFiles.containsKey(portfolioName)) {
       return this.portfolioFiles.get(portfolioName).toString();
     } else {
       throw new IllegalArgumentException("Portfolio is not there.");
+    }
+  }
+
+  protected void checkPortfolioNameAlreadyExists(String portfolioName) {
+    if(portfolioFiles.containsKey(portfolioName)) {
+      throw new IllegalArgumentException("A Portfolio with given name Already Exists.");
     }
   }
 

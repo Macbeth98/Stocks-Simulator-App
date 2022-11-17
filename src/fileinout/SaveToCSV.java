@@ -4,7 +4,7 @@ package fileinout;
  * This class has methods that will save the given data into CSV file.
  * The class extends AbstractFileIo, an abstract class that implements the fileinout.FileIO interface.
  */
-public class SaveToCSV extends AbstractFileIO{
+public class SaveToCSV extends AbstractFileIO {
 
   public SaveToCSV() {
     super("csv");

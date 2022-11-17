@@ -17,7 +17,7 @@ public interface FileIO {
 
   void checkDirectory(String directoryPath) throws RuntimeException;
 
-  Map<String, Path> getFilesInDirectory (String directoryPath) throws RuntimeException;
+  Map<String, Path> getFilesInDirectory(String directoryPath) throws RuntimeException;
 
   List<String> readData(String filepath);
 

@@ -61,10 +61,10 @@ public interface PortfolioList {
    * Gets  the Portfolio value at the given date.
    *
    * @param portfolioName the name of portfolio that needs to be fetched.
-   * @param date the date at which the value of the Portfolio Needs to be fetched.
+   * @param date          the date at which the value of the Portfolio Needs to be fetched.
    * @return
    */
-  float getPortfolioValueAtDate (String portfolioName, LocalDate date);
+  float getPortfolioValueAtDate(String portfolioName, LocalDate date);
 
   /**
    * Gets the given Portfolio Stored File path.
@@ -72,6 +72,6 @@ public interface PortfolioList {
    * @param portfolioName the name of the portfolio for which the saved file needs to be fetched.
    * @return returns the Absolute path of the Portfolio in the string form.
    */
-  String getPortfolioFilePath (String portfolioName);
+  String getPortfolioFilePath(String portfolioName);
 
 }

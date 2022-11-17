@@ -80,13 +80,12 @@ public class AlphaVantageSource implements DataSource {
     }
     JSONObject jsonObj = new JSONObject(jsonString);
     String priceOnDate = "";
-    while(priceOnDate.length() == 0) {
+    while (priceOnDate.length() == 0) {
       try {
         priceOnDate = jsonObj.getJSONObject("Time Series (Daily)")
                 .getJSONObject(strDate)
                 .getString("4. close");
-      }
-      catch (Exception ignored) {
+      } catch (Exception ignored) {
         date = date.minusDays(1);
         strDate = formatter.format(date);
       }
