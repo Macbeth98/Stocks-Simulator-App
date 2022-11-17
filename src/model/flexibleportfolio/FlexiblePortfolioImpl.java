@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import fileinout.FileIO;
 import fileinout.SaveToCSV;
@@ -163,7 +164,10 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
         break;
       }
 
-      tillDateQuantity += txn.getQuantity();
+      if (Objects.equals(txn.getStock().getTicker(), stockTicker)) {
+        tillDateQuantity += txn.getQuantity();
+      }
+
     }
 
     if (tillDateQuantity < quantity) {

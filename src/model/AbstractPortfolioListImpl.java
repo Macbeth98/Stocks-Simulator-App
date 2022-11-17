@@ -56,7 +56,7 @@ public abstract class AbstractPortfolioListImpl implements PortfolioList {
   }
 
   protected void checkPortfolioNameAlreadyExists(String portfolioName) {
-    if(portfolioFiles.containsKey(portfolioName)) {
+    if (portfolioFiles.containsKey(portfolioName)) {
       throw new IllegalArgumentException("A Portfolio with given name Already Exists.");
     }
   }
