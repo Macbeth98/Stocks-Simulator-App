@@ -1,13 +1,31 @@
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 public interface FlexiblePortfolio extends Portfolio {
+  /**
+   * Adds a Stock to the given portfolio.
+   * @param stockTicker the stock that needs to be added.
+   * @param quantity the quantity of the stock need to add.
+   * @param purchaseDate the date at which the stock is purchased.
+   * @param commission the commission that was charged at the purchase of the stock.
+   * @return returns the updated portfolio.
+   * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
+   */
   FlexiblePortfolio addStock(String stockTicker, float quantity, LocalDate purchaseDate, float commission)
           throws FileNotFoundException;
 
+  /**
+   * Sells a stock from the given Portfolio. Decreases the value of stock from the Portfolio
+   * depending on the number given.
+   *
+   * @param stockTicker the stock that needs to be sold.
+   * @param quantity the quantity of the stock that needs to be sold.
+   * @param saleDate the date at which the stock was sold.
+   * @param commission the commission that was charged while the sell transaction of the stock.
+   * @return returns the updated portfolio after sell.
+   * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
+   */
   FlexiblePortfolio sellStock(String stockTicker, float quantity, LocalDate saleDate, float commission)
           throws FileNotFoundException;
 
@@ -20,6 +38,15 @@ public interface FlexiblePortfolio extends Portfolio {
    */
   PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date);
 
-  List<Map<String, Float>> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
+  /**
+   * Gets the portfolio performance values divided into equal span of time depending on the range
+   * given.
+   *
+   * @param fromDate the date from which the performance values needs to be given.
+   * @param toDate the date till which the performance values needs to get.
+   * @return returns the map of date in string format(dd MMM yyyy) to portfolio on that day.
+   * @throws IllegalArgumentException
+   */
+  Map<String, Float> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
           throws IllegalArgumentException;
 }
