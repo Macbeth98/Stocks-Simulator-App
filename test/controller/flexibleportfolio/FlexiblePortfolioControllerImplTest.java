@@ -96,7 +96,7 @@ public class FlexiblePortfolioControllerImplTest {
   @Test
   public void testControllerShowPortfolio() throws IOException {
     StringBuffer out = new StringBuffer();
-    Reader in = new StringReader("4 testflexcreate 09/07/2010 n 8");
+    Reader in = new StringReader("4 testflexcreate 11/16/2022 n 8");
     controller = new FlexiblePortfolioControllerImpl(in, out);
     controller.goController(new FlexiblePortfolioListImpl());
     assertTrue(out.toString().contains("GOOG,18.0"));
