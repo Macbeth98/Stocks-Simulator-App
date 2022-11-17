@@ -2,10 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import view.portfolio.PortfolioView;
+import view.portfolio.PortfolioViewImpl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -154,6 +155,6 @@ public class PortfolioViewImplTest {
   @Test
   public void testInvalidQuantityMessage() throws IOException {
     view_sample.invalidQuantityValue();
-    assertEquals("Invalid value! Please enter correct integer value!\n", out.toString());
+    assertEquals("Invalid value! Please enter correct, positive integer value!\n", out.toString());
   }
 }

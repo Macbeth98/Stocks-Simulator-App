@@ -7,9 +7,15 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
+
+import controller.portfolio.PortfolioController;
+import controller.portfolio.PortfolioControllerImpl;
+import model.portfolio.Portfolio;
+import model.portfolio.PortfolioItem;
+import model.portfolio.PortfolioList;
+import model.portfolio.PortfolioListImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

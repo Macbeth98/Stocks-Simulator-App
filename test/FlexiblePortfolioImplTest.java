@@ -1,12 +1,15 @@
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
+import model.flexibleportfolio.FlexiblePortfolio;
+import model.flexibleportfolio.FlexiblePortfolioImpl;
+import model.flexibleportfolio.FlexiblePortfolioList;
+import model.flexibleportfolio.FlexiblePortfolioListImpl;
+import model.portfolio.PortfolioItem;
 
 import static org.junit.Assert.assertEquals;
 
