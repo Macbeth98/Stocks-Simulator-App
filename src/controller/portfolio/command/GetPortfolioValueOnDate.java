@@ -17,7 +17,7 @@ public class GetPortfolioValueOnDate implements PortfolioControllerCommand {
   private final PortfolioList portfolioList;
   private final PortfolioView view;
 
-  public GetPortfolioValueOnDate (PortfolioList portfolioList, PortfolioView view) {
+  public GetPortfolioValueOnDate(PortfolioList portfolioList, PortfolioView view) {
     this.portfolioList = portfolioList;
     this.view = view;
   }

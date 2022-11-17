@@ -14,6 +14,7 @@ public class ModifyFlexiblePortfolio implements FlexiblePortfolioControllerComma
 
   private final FlexiblePortfolioList fpList;
   private final FlexiblePortfolioView view;
+
   public ModifyFlexiblePortfolio(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;

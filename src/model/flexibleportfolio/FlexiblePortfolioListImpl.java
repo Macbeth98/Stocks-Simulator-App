@@ -24,7 +24,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
         implements FlexiblePortfolioList {
   private final Map<String, FlexiblePortfolio> portfolios;
 
-  public FlexiblePortfolioListImpl () {
+  public FlexiblePortfolioListImpl() {
     super("/portfolioTxnFiles/");
 
     this.portfolios = new HashMap<>();
@@ -37,12 +37,12 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
 
     List<PortfolioItemTransaction> portfolioItemTransactions = new ArrayList<>();
 
-    for (String line: portfolioLines) {
+    for (String line : portfolioLines) {
       try {
         String[] portfolioItemValues = line.split(",");
         TransactionType type = Objects.equals(
                 portfolioItemValues[0], TransactionType.BUY.toString()
-        ) ? TransactionType.BUY: TransactionType.SELL;
+        ) ? TransactionType.BUY : TransactionType.SELL;
 
         portfolioItemTransactions.add(
                 new PortfolioItemTransaction(
@@ -70,7 +70,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
     } else if (portfolioFiles.containsKey(portfolioName)) {
       Path filepath = portfolioFiles.get(portfolioName);
       List<PortfolioItemTransaction> pITxnS = this.loadPortfolio(filepath.toString());
-      FlexiblePortfolio portfolio =  new FlexiblePortfolioImpl(portfolioName,
+      FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName,
               filepath.getFileName().toString(), pITxnS);
       portfolios.put(portfolioName, portfolio);
       return portfolio;
@@ -81,6 +81,7 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
 
   @Override
   public String createPortfolio(String portfolioName, Map<String, Float> ignored) {
+    this.checkPortfolioNameAlreadyExists(portfolioName);
     FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName);
     portfolios.put(portfolioName, portfolio);
     this.portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
@@ -90,11 +91,12 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   @Override
   public String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
           throws IllegalArgumentException {
+    this.checkPortfolioNameAlreadyExists(portfolioName);
     List<PortfolioItemTransaction> pITxnS = this.loadPortfolio(portfolioFilePath);
     FlexiblePortfolio portfolio = new FlexiblePortfolioImpl(portfolioName, null, pITxnS);
     portfolios.put(portfolioName, portfolio);
     this.portfolioFiles.put(portfolioName, Paths.get(portfolio.getPortfolioFilePath()));
-    return  portfolio.getPortfolioFilePath();
+    return portfolio.getPortfolioFilePath();
   }
 
   @Override
@@ -113,18 +115,26 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   public void addTransactionToPortfolio(String portfolioName, TransactionType type,
                                         String stockTicker, float quantity, LocalDate date,
                                         float commission) throws IllegalArgumentException {
-      FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
-      try {
-        if (type == TransactionType.BUY) {
-          portfolio.addStock(stockTicker, quantity, date, commission);
-        } else if (type == TransactionType.SELL) {
-          portfolio.sellStock(stockTicker, quantity, date, commission);
-        } else {
-          throw new IllegalArgumentException("The transaction type cannot be null.");
-        }
-      } catch (FileNotFoundException e) {
-        throw new IllegalArgumentException("The portfolio is not valid: " + e.getMessage());
+    if(commission < 0) {
+      throw new IllegalArgumentException("Commission given cannot be negative.");
+    }
+
+    if(date.isAfter(LocalDate.now())) {
+      throw new IllegalArgumentException("Cannot have a transaction with future date!");
+    }
+
+    FlexiblePortfolio portfolio = this.getPortfolio(portfolioName);
+    try {
+      if (type == TransactionType.BUY) {
+        portfolio.addStock(stockTicker, quantity, date, commission);
+      } else if (type == TransactionType.SELL) {
+        portfolio.sellStock(stockTicker, quantity, date, commission);
+      } else {
+        throw new IllegalArgumentException("The transaction type cannot be null.");
       }
+    } catch (FileNotFoundException e) {
+      throw new IllegalArgumentException("The portfolio is not valid: " + e.getMessage());
+    }
   }
 
   @Override

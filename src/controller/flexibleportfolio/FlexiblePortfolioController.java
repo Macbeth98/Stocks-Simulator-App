@@ -11,6 +11,7 @@ public interface FlexiblePortfolioController {
 
   /**
    * Method that starts the controller for Flexible Portfolio.
+   *
    * @param fpList Flexible Portfolio List model object used by the controller
    * @throws IOException throws IOException when view method fails
    */

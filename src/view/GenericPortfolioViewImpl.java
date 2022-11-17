@@ -2,7 +2,7 @@ package view;
 
 import java.io.IOException;
 
-public class GenericPortfolioViewImpl implements GenericPortfolioView{
+public class GenericPortfolioViewImpl implements GenericPortfolioView {
 
   private final Appendable out;
 

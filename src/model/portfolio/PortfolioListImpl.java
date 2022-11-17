@@ -37,7 +37,7 @@ public class PortfolioListImpl extends AbstractPortfolioListImpl implements Port
 
     List<String> portfolioLines = this.loadPortfolioData(path);
 
-    for (String line: portfolioLines) {
+    for (String line : portfolioLines) {
       String[] portfolioItemValues = line.split(",");
       if (portfolioItemValues.length != 4) {
         throw new IllegalArgumentException("The file given is not in valid format.");
@@ -100,12 +100,14 @@ public class PortfolioListImpl extends AbstractPortfolioListImpl implements Port
   @Override
   public String createPortfolio(String portfolioName, Map<String, Float> stocksMap)
           throws IllegalArgumentException {
+    this.checkPortfolioNameAlreadyExists(portfolioName);
     return this.createPortfolioImpl(portfolioName, stocksMap, null).getPortfolioFilePath();
   }
 
   @Override
   public String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
           throws IllegalArgumentException {
+    this.checkPortfolioNameAlreadyExists(portfolioName);
     return loadPortfolio(portfolioName, portfolioFilePath, null).getPortfolioFilePath();
   }
 

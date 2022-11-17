@@ -72,20 +72,20 @@ public interface FlexiblePortfolioList extends PortfolioList {
    * Gets the Composition of the Portfolio At the given date.
    *
    * @param portfolioName the name of portfolio for which the composition needs to be fetched.
-   * @param date the date at which the composition needs to be returned.
+   * @param date          the date at which the composition needs to be returned.
    * @return returns the list of stocks data in the form of PortfolioItem.
    */
-  PortfolioItem[] getPortfolioCompositionAtDate (String portfolioName, LocalDate date);
+  PortfolioItem[] getPortfolioCompositionAtDate(String portfolioName, LocalDate date);
 
 
   /**
    * Adds a Transaction to the given Portfolio. A transaction can either be a buy or sell type.
    *
-   * @param type the type of transaction that is being added => buy/sell.
+   * @param type        the type of transaction that is being added => buy/sell.
    * @param stockTicker the stock ticker that is being transacted.
-   * @param quantity the quantity of the stock that is being transacted.
-   * @param date the date on which the transaction has happened.
-   * @param commission the commission that was charged for the transaction.
+   * @param quantity    the quantity of the stock that is being transacted.
+   * @param date        the date on which the transaction has happened.
+   * @param commission  the commission that was charged for the transaction.
    * @throws IllegalArgumentException if any of the given arguments are not valid.
    */
   void addTransactionToPortfolio(String portfolioName, TransactionType type, String stockTicker,
@@ -97,7 +97,7 @@ public interface FlexiblePortfolioList extends PortfolioList {
    * Computes the total amount of money invested in a portfolio by the given specified date.
    *
    * @param portfolioName the name of the portfolio for which the cost basis should be computed.
-   * @param tillDate the date at which the cost basis needs to be calculated.
+   * @param tillDate      the date at which the cost basis needs to be calculated.
    * @return returns the amount of money invested in the portfolio.
    */
   float getCostBasis(String portfolioName, LocalDate tillDate);

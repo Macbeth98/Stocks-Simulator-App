@@ -14,6 +14,7 @@ public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
   private final FlexiblePortfolioList fpList;
 
   private final FlexiblePortfolioView view;
+
   public GetCostBasisOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;

@@ -195,7 +195,7 @@ public class PortfolioImpl implements Portfolio {
   public String savePortfolioToFile() throws FileNotFoundException {
     Path filepath = getSaveFilePath();
 
-    PortfolioItem[] items =  stocks.values().toArray(new PortfolioItem[0]);
+    PortfolioItem[] items = stocks.values().toArray(new PortfolioItem[0]);
 
     FileIO fileIO = new SaveToCSV();
 

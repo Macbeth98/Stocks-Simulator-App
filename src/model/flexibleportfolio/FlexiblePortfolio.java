@@ -10,10 +10,11 @@ import model.portfolio.PortfolioItem;
 public interface FlexiblePortfolio extends Portfolio {
   /**
    * Adds a Stock to the given portfolio.
-   * @param stockTicker the stock that needs to be added.
-   * @param quantity the quantity of the stock need to add.
+   *
+   * @param stockTicker  the stock that needs to be added.
+   * @param quantity     the quantity of the stock need to add.
    * @param purchaseDate the date at which the stock is purchased.
-   * @param commission the commission that was charged at the purchase of the stock.
+   * @param commission   the commission that was charged at the purchase of the stock.
    * @return returns the updated portfolio.
    * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
    */
@@ -25,9 +26,9 @@ public interface FlexiblePortfolio extends Portfolio {
    * depending on the number given.
    *
    * @param stockTicker the stock that needs to be sold.
-   * @param quantity the quantity of the stock that needs to be sold.
-   * @param saleDate the date at which the stock was sold.
-   * @param commission the commission that was charged while the sell transaction of the stock.
+   * @param quantity    the quantity of the stock that needs to be sold.
+   * @param saleDate    the date at which the stock was sold.
+   * @param commission  the commission that was charged while the sell transaction of the stock.
    * @return returns the updated portfolio after sell.
    * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
    */
@@ -38,6 +39,7 @@ public interface FlexiblePortfolio extends Portfolio {
 
   /**
    * Gets the Composition of the Portfolio till the date given.
+   *
    * @param date date on which the portfolio composition needs to get.
    * @return returns the composition of portfolio in Portfolio Item format.
    */
@@ -48,7 +50,7 @@ public interface FlexiblePortfolio extends Portfolio {
    * given.
    *
    * @param fromDate the date from which the performance values needs to be given.
-   * @param toDate the date till which the performance values needs to get.
+   * @param toDate   the date till which the performance values needs to get.
    * @return returns the map of date in string format(dd MMM yyyy) to portfolio on that day.
    * @throws IllegalArgumentException
    */

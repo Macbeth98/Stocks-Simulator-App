@@ -92,7 +92,7 @@ public class CreatePortfolio implements PortfolioControllerCommand {
       }
 
       String portfolioPath = "";
-      try{
+      try {
         portfolioPath = portfolioList.createPortfolio(pName, stockMap);
       } catch (IllegalArgumentException e) {
         view.displayErrorPrompt("Portfolio Creation Failed! Error: " + e);

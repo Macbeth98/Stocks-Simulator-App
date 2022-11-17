@@ -45,8 +45,8 @@ abstract class AbstractFileIO implements FileIO {
   public void checkDirectory(String directoryPath) throws RuntimeException {
     File directory = new File(directoryPath);
 
-    if(!directory.exists()) {
-      if(!directory.mkdir()) {
+    if (!directory.exists()) {
+      if (!directory.mkdir()) {
         throw new RuntimeException("Directory is not found and cannot be created.");
       }
     }

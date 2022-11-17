@@ -94,7 +94,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   private void constructPortfolio() {
-    for (PortfolioItemTransaction item: portfolioItemTransactions) {
+    for (PortfolioItemTransaction item : portfolioItemTransactions) {
       float quantity = getUpdatedStockQuantity(item.getStock().getTicker(), item.getQuantity());
 
       PortfolioItem portfolioItem = new PortfolioItem(item.getStock(), quantity,
@@ -143,7 +143,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     float existingQuantity = 0;
 
-    if(this.stocks.containsKey(stock.getTicker())) {
+    if (this.stocks.containsKey(stock.getTicker())) {
       existingQuantity = this.stocks.get(stock.getTicker()).getQuantity();
     } else {
       throw new IllegalArgumentException("There is not a previous buy transaction for this Stock.");
@@ -166,14 +166,14 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
       tillDateQuantity += txn.getQuantity();
     }
 
-    if(tillDateQuantity < quantity) {
+    if (tillDateQuantity < quantity) {
       throw new IllegalArgumentException("Cannot input this sale. "
               + "The till date transactions value do not match.");
     }
 
     float resultQuantity = existingQuantity - quantity;
 
-    if(resultQuantity == 0) {
+    if (resultQuantity == 0) {
       this.stocks.remove(stock.getTicker());
     } else {
       PortfolioItem portfolioItem = new PortfolioItem(stock, resultQuantity,
@@ -209,16 +209,16 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     Map<String, Float> stocks = new HashMap<>();
 
-    for (PortfolioItemTransaction item: portfolioItemTransactions) {
-      if(item.getDate().compareTo(date) <= 0) {
+    for (PortfolioItemTransaction item : portfolioItemTransactions) {
+      if (item.getDate().compareTo(date) <= 0) {
         float stockAmount = 0;
 
-        if(stocks.containsKey(item.getStock().getTicker())) {
+        if (stocks.containsKey(item.getStock().getTicker())) {
           stockAmount = stocks.get(item.getStock().getTicker());
         }
 
         stockAmount += item.getQuantity();
-        if(stockAmount <= 0) {
+        if (stockAmount <= 0) {
           stocks.remove(item.getStock().getTicker());
         }
         stocks.put(item.getStock().getTicker(), stockAmount);
@@ -238,7 +238,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     String[] stockTickers = stocks.keySet().toArray(new String[0]);
 
-    for (String stockTicker: stockTickers) {
+    for (String stockTicker : stockTickers) {
       StockObject stockObject = new StockObjectImpl(stockTicker);
       builder = builder.addStockToPortfolio(stockObject, stocks.get(stockTicker));
     }
@@ -249,11 +249,11 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   @Override
   public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date) throws IllegalArgumentException {
 
-    if(isToday(date)) {
+    if (isToday(date)) {
       return super.getPortfolioComposition();
     }
 
-    Map<String , Float> stocks = this.getPortfolioTillDate(date);
+    Map<String, Float> stocks = this.getPortfolioTillDate(date);
     int txnCount = stocks.size();
 
     if (txnCount == 0) {
@@ -268,13 +268,13 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   @Override
   public float getPortfolioValueAtDate(LocalDate date) throws IllegalArgumentException {
 
-    if(isToday(date)) {
+    if (isToday(date)) {
       return super.getPortfolioValueAtDate(date);
     }
 
     Map<String, Float> stocks = this.getPortfolioTillDate(date);
 
-    if(stocks.size() == 0) {
+    if (stocks.size() == 0) {
       return 0;
     }
 
@@ -285,17 +285,17 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   @Override
   public Map<String, Float> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
-          throws IllegalArgumentException  {
+          throws IllegalArgumentException {
 
     if (fromDate.isEqual(toDate)) {
       throw new IllegalArgumentException("From date and To Date cannot be equal.");
     }
 
-    if(fromDate.isAfter(toDate)) {
+    if (fromDate.isAfter(toDate)) {
       throw new IllegalArgumentException("From Date and To Date given are not valid.");
     }
 
-    if(toDate.isAfter(LocalDate.now())) {
+    if (toDate.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("The To Date is in the future. "
               + "Cannot get performance for future.");
     }
@@ -304,7 +304,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     int compareRes = fromDate.compareTo(portfolioItemTransactions.get(0).getDate());
 
-    if(compareRes < 0) {
+    if (compareRes < 0) {
       throw new IllegalArgumentException("The From Date given is before the Portfolio's "
               + "first Purchase Date.");
     }
@@ -319,20 +319,20 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     ChronoUnit period;
     int interval;
 
-    if(spanDays <= 30) {
+    if (spanDays <= 30) {
       period = ChronoUnit.DAYS;
       interval = 1;
-    } else if(spanYears >= 5) {
+    } else if (spanYears >= 5) {
       period = ChronoUnit.YEARS;
       interval = 1;
-    } else if(spanMonths >=5 && spanMonths <= 30) {
+    } else if (spanMonths >= 5 && spanMonths <= 30) {
       period = ChronoUnit.MONTHS;
       interval = 1;
     } else {
       long minSpan = spanDays / minRows;
       long maxSpan = spanDays / maxRows;
 
-      long medianSpan = (minSpan + maxSpan)/2;
+      long medianSpan = (minSpan + maxSpan) / 2;
 
       period = ChronoUnit.DAYS;
       interval = (int) medianSpan;
@@ -351,14 +351,14 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     while (date.compareTo(toDate) <= 0) {
       float valueAtDate = this.getPortfolioValueAtDate(date);
 
-      if(maxValue == 0 && minValue == 0) {
+      if (maxValue == 0 && minValue == 0) {
         maxValue = valueAtDate;
         minValue = valueAtDate;
       } else {
-        if(valueAtDate > maxValue) {
+        if (valueAtDate > maxValue) {
           maxValue = valueAtDate;
         }
-        if(valueAtDate < minValue) {
+        if (valueAtDate < minValue) {
           minValue = valueAtDate;
         }
       }
@@ -368,14 +368,14 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
       date = date.plus(interval, period);
     }
 
-    if(!timeMaps.containsKey(formatter.format(toDate))) {
+    if (!timeMaps.containsKey(formatter.format(toDate))) {
       float toDateValue = this.getPortfolioValueAtDate(toDate);
 
-      if(toDateValue > maxValue) {
+      if (toDateValue > maxValue) {
         maxValue = toDateValue;
       }
 
-      if(toDateValue < minValue) {
+      if (toDateValue < minValue) {
         minValue = toDateValue;
       }
     }

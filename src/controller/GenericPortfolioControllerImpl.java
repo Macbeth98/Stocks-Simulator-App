@@ -9,7 +9,7 @@ import model.GenericPortfolioList;
 import view.GenericPortfolioView;
 import view.GenericPortfolioViewImpl;
 
-public class GenericPortfolioControllerImpl implements GenericPortfolioController{
+public class GenericPortfolioControllerImpl implements GenericPortfolioController {
 
   final Readable in;
   final Appendable out;
