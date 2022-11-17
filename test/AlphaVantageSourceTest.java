@@ -13,12 +13,12 @@ public class AlphaVantageSourceTest {
   private AlphaVantageSource testSource;
 
   @Before
-  public void setUp () {
+  public void setUp() {
     testSource = new AlphaVantageSource();
   }
 
   @Test
-  public void getPriceAtDateAPITest () {
+  public void getPriceAtDateAPITest() {
     String dateString = "1999-11-01";
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -29,7 +29,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void getPriceAtRecentDateAPITest () {
+  public void getPriceAtRecentDateAPITest() {
     String dateString = "2022-11-15";
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -40,7 +40,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void getPriceAtRecentInvalidDateAPITest () {
+  public void getPriceAtRecentInvalidDateAPITest() {
     String dateString = "2022-11-13";
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -51,7 +51,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void testAddPriceToCache () {
+  public void testAddPriceToCache() {
 
     String dateString = "2000-05-25";
 
@@ -64,7 +64,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test
-  public void testCachedPrices () {
+  public void testCachedPrices() {
 
     String dateString = "1999-11-01";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -76,7 +76,7 @@ public class AlphaVantageSourceTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testInvalidTicker () {
+  public void testInvalidTicker() {
 
     String dateString = "1999-11-01";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

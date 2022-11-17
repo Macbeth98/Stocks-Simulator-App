@@ -61,16 +61,17 @@ public class PortfolioListImplTest {
   }
 
   @Test
-  public void testGetPortfolio() throws FileNotFoundException {
+  public void testGetPortfolio() {
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
     for (String portfolioName : portfolioNames) {
+      System.out.println(portfolioName);
       Portfolio portfolio = portfolioList.getPortfolio(portfolioName);
       assertEquals(portfolioName, portfolio.getPortfolioName());
     }
   }
 
-  @Test(expected = FileNotFoundException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testGetPortfolioInvalidName() throws FileNotFoundException {
     Portfolio portfolio = portfolioList.getPortfolio("randomFileName12345678");
   }
@@ -139,15 +140,19 @@ public class PortfolioListImplTest {
     assertEquals(portfolioFilePath, portfolio.getPortfolioFilePath());
   }
 
-  @Test(expected = FileNotFoundException.class)
-  public void testCreatePortfolioFromFileNotFound() throws FileNotFoundException {
+  @Test(expected = IllegalArgumentException.class)
+  public void testCreatePortfolioFromFileNotFound() {
     String portfolioFilePath = portfolioList.createPortfolioFromFile("NoFileset",
             "Users/portfolioCSVFiles/out.csv");
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testCreatePortfolioFromInvalidFileContentFormat() throws FileNotFoundException {
-    String currentDirectory = System.getProperty("user.dir") + "/portfolioCSVFiles/";
+    String currentDirectory = System.getProperty("user.dir") + "/testCSVFiles/";
+    File file = new File(currentDirectory);
+    if(!file.exists()) {
+      file.mkdir();
+    }
     String portfolioFileName = "invalidContentFormat.csv";
     File outputFile = new File(currentDirectory + portfolioFileName);
     FileOutputStream fileOut = new FileOutputStream(outputFile);

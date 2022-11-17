@@ -116,12 +116,14 @@ public class PortfolioImplTest {
     assertEquals(sumDate, valueAtDate, 0.001);
   }
 
-  @Test
-  public void testPortfolioAtFutureDate() {
+  @Test(expected = IllegalArgumentException.class)
+  public void testPortfolioValueAtFutureDate() {
     String portfolioName = "portValueAtInvalidDate";
     Portfolio portfolio = createPortfolioObject(portfolioName);
 
-    // need to test this.
+    LocalDate date = LocalDate.now().plusDays(2);
+
+    float valueAtDate = portfolio.getPortfolioValueAtDate(date);
   }
 
   @Test

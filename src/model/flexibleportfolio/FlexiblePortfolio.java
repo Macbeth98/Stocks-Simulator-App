@@ -7,6 +7,10 @@ import java.util.Map;
 import model.portfolio.Portfolio;
 import model.portfolio.PortfolioItem;
 
+/**
+ * This represents a Portfolio that can be modified. This interface extends the Portfolio interface.
+ * This portfolio can add and sell stocks and can also get cost basis and portfolio performance.
+ */
 public interface FlexiblePortfolio extends Portfolio {
   /**
    * Adds a Stock to the given portfolio.
@@ -52,7 +56,7 @@ public interface FlexiblePortfolio extends Portfolio {
    * @param fromDate the date from which the performance values needs to be given.
    * @param toDate   the date till which the performance values needs to get.
    * @return returns the map of date in string format(dd MMM yyyy) to portfolio on that day.
-   * @throws IllegalArgumentException
+   * @throws IllegalArgumentException if the given dates are not valid.
    */
   Map<String, Float> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
           throws IllegalArgumentException;
