@@ -19,6 +19,10 @@ abstract class AbstractPortfolioListImpl implements PortfolioList{
   protected AbstractPortfolioListImpl(String directoryName) throws RuntimeException {
     this.currentDirectory = System.getProperty("user.dir") + directoryName;
 
+    FileIO fileIO = new GeneralFIleIO();
+
+    fileIO.checkDirectory(currentDirectory);
+
     File directory = new File(currentDirectory);
 
     if (!directory.exists()) {
@@ -28,20 +32,7 @@ abstract class AbstractPortfolioListImpl implements PortfolioList{
       }
     }
 
-    portfolioFiles = new HashMap<>();
-
-    try (Stream<Path> paths = Files.walk(Paths.get(currentDirectory))) {
-      paths.filter(Files::isRegularFile)
-              .forEach(file -> {
-                String filePath = file.toString();
-                String fileExt = filePath.substring(filePath.lastIndexOf(".") + 1);
-                if ("csv".equalsIgnoreCase(fileExt)) {
-                  portfolioFiles.put(file.getFileName().toString().split("_")[0], file);
-                }
-              });
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    portfolioFiles = fileIO.getFilesInDirectory(currentDirectory);
   }
   @Override
   public String[] getPortfolioListNames() {
