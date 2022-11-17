@@ -2,6 +2,8 @@ package controller.portfolio;
 
 import java.io.IOException;
 
+import model.portfolio.PortfolioList;
+
 /**
  * Interface representing the controller for the portfolio application and it's operations.
  */

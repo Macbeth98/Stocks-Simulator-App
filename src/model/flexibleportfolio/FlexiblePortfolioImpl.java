@@ -12,7 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.flexibleportfolio.FlexiblePortfolio;
+import model.TransactionType;
+import model.portfolio.Portfolio;
+import model.portfolio.PortfolioImpl;
+import model.portfolio.PortfolioItem;
+import model.stock.StockObject;
+import model.stock.StockObjectImpl;
 
 public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePortfolio {
 

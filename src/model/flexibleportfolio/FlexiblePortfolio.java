@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Map;
 
+import model.portfolio.Portfolio;
+import model.portfolio.PortfolioItem;
+
 public interface FlexiblePortfolio extends Portfolio {
   /**
    * Adds a Stock to the given portfolio.

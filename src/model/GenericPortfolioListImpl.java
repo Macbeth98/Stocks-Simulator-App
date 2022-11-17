@@ -2,6 +2,8 @@ package model;
 
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.flexibleportfolio.FlexiblePortfolioListImpl;
+import model.portfolio.PortfolioList;
+import model.portfolio.PortfolioListImpl;
 
 /**
  * This class implements the GenericPortfolioList interface.

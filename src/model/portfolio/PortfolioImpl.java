@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.stock.StockObject;
+
 /**
  * This class implements the interface Portfolio.
  * This class has the list of stock objects.

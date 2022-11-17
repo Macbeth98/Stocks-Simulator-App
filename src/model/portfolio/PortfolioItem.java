@@ -1,5 +1,7 @@
 package model.portfolio;
 
+import model.stock.StockObject;
+
 /**
  * This class represents a unique stock object and its data in the
  * Portfolio.

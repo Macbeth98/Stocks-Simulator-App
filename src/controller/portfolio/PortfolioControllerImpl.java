@@ -7,6 +7,11 @@ import java.util.Scanner;
 import controller.portfolio.command.CreatePortfolio;
 import controller.portfolio.command.CreatePortfolioFromFile;
 import controller.portfolio.command.GetPortfolioValueOnDate;
+import controller.portfolio.command.PortfolioControllerCommand;
+import controller.portfolio.command.ViewPortfolio;
+import model.portfolio.PortfolioList;
+import view.portfolio.PortfolioView;
+import view.portfolio.PortfolioViewImpl;
 
 /**
  * This class contains the implementation of the PortfolioController interface, and its methods.
@@ -22,7 +27,7 @@ public class PortfolioControllerImpl implements PortfolioController {
    * @param in  input stream object of Readable interface type
    * @param out output stream object of Appendable interface type
    */
-  PortfolioControllerImpl(Readable in, Appendable out) {
+  public PortfolioControllerImpl(Readable in, Appendable out) {
     this.in = in;
     this.out = out;
   }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import controller.portfolio.PortfolioControllerCommand;
 import model.portfolio.Portfolio;
 import model.portfolio.PortfolioList;
 import view.portfolio.PortfolioView;

@@ -3,6 +3,10 @@ package view.flexibleportfolio;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import model.TransactionType;
+import model.portfolio.PortfolioItem;
+import view.portfolio.PortfolioView;
+
 public interface FlexiblePortfolioView extends PortfolioView {
   /**
    * Display portfolio creation menu for flexible portfolio.

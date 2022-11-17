@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 
+import model.GenericPortfolioList;
+
 /**
  * Represents the interface that contains the generic controller methods.
  */

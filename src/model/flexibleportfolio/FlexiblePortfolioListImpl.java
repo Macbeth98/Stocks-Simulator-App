@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Objects;
 
 import model.AbstractPortfolioListImpl;
+import model.TransactionType;
+import model.portfolio.PortfolioItem;
+import model.stock.StockObjectImpl;
 
 /**
  * This class implements the PortfolioList Interface.

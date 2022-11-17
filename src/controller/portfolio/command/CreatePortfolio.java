@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import model.portfolio.PortfolioList;
+import view.portfolio.PortfolioView;
+
 public class CreatePortfolio implements PortfolioControllerCommand {
 
   PortfolioList portfolioList;

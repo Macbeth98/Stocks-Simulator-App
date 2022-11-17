@@ -3,6 +3,9 @@ package controller.flexibleportfolio.command;
 import java.io.IOException;
 import java.util.Scanner;
 
+import model.flexibleportfolio.FlexiblePortfolioList;
+import view.portfolio.PortfolioView;
+
 public class AddTransactionToPortfolio implements FlexiblePortfolioControllerCommand {
 
   final FlexiblePortfolioList fpList;

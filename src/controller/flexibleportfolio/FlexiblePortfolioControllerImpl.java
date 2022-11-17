@@ -3,11 +3,17 @@ package controller.flexibleportfolio;
 import java.io.IOException;
 import java.util.Scanner;
 
-import controller.flexibleportfolio.FlexiblePortfolioController;
-import controller.flexibleportfolio.FlexiblePortfolioControllerCommand;
 import controller.flexibleportfolio.command.CreateFlexiblePortfolio;
 import controller.flexibleportfolio.command.CreateFlexiblePortfolioFromFile;
 import controller.flexibleportfolio.command.FlexiblePortfolioComposition;
+import controller.flexibleportfolio.command.FlexiblePortfolioControllerCommand;
+import controller.flexibleportfolio.command.GetCostBasisOnDate;
+import controller.flexibleportfolio.command.GetFlexiblePortfolioPerformanceGraph;
+import controller.flexibleportfolio.command.GetFlexiblePortfolioValueOnDate;
+import controller.flexibleportfolio.command.ModifyFlexiblePortfolio;
+import model.flexibleportfolio.FlexiblePortfolioList;
+import view.flexibleportfolio.FlexiblePortfolioView;
+import view.flexibleportfolio.FlexiblePortfolioViewImpl;
 
 public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioController {
 
@@ -20,7 +26,7 @@ public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioControl
    * @param in  input stream object of Readable interface type
    * @param out output stream object of Appendable interface type
    */
-  FlexiblePortfolioControllerImpl(Readable in, Appendable out) {
+  public FlexiblePortfolioControllerImpl(Readable in, Appendable out) {
     this.in = in;
     this.out = out;
   }

@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import model.portfolio.PortfolioList;
+import view.portfolio.PortfolioView;
+
 public class CreatePortfolioFromFile implements PortfolioControllerCommand {
   PortfolioList portfolioList;
   PortfolioView view;

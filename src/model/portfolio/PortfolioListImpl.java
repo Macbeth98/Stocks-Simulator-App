@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.AbstractPortfolioListImpl;
+import model.stock.StockObjectImpl;
 
 /**
  * This class implements the PortfolioList interface.

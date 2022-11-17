@@ -3,7 +3,6 @@ package controller.flexibleportfolio.command;
 import java.io.IOException;
 import java.util.Scanner;
 
-import controller.flexibleportfolio.FlexiblePortfolioControllerCommand;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 

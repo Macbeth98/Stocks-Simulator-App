@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import controller.flexibleportfolio.FlexiblePortfolioControllerImpl;
+import controller.portfolio.PortfolioControllerImpl;
+import model.GenericPortfolioList;
+import view.GenericPortfolioView;
+import view.GenericPortfolioViewImpl;
 
 public class GenericPortfolioControllerImpl implements GenericPortfolioController{
 
@@ -16,7 +20,7 @@ public class GenericPortfolioControllerImpl implements GenericPortfolioControlle
    * @param in  input stream object of Readable interface type
    * @param out output stream object of Appendable interface type
    */
-  GenericPortfolioControllerImpl(Readable in, Appendable out) {
+  public GenericPortfolioControllerImpl(Readable in, Appendable out) {
     this.in = in;
     this.out = out;
   }
