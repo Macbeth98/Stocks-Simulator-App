@@ -154,6 +154,6 @@ public class PortfolioViewImplTest {
   @Test
   public void testInvalidQuantityMessage() throws IOException {
     view_sample.invalidQuantityValue();
-    assertEquals("Invalid value! Please enter correct integer value!\n", out.toString());
+    assertEquals("Invalid value! Please enter correct, positive integer value!\n", out.toString());
   }
 }
