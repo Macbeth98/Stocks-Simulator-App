@@ -3,7 +3,11 @@ import java.io.PrintStream;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -261,8 +265,14 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     return portfolio.getPortfolioValueAtDate(date);
   }
 
+  private Map<String, Float> performanceHelper (String period, int increment) {
+    Map<String, Float> timeMaps = new HashMap<>();
+
+    return timeMaps;
+  }
+
   @Override
-  public List<Map<String, Float>> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
+  public Map<String, Float> getPortfolioPerformance(LocalDate fromDate, LocalDate toDate)
           throws IllegalArgumentException  {
 
     if (fromDate.isEqual(toDate)) {
@@ -273,30 +283,95 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
       throw new IllegalArgumentException("From Date and To Date given are not valid.");
     }
 
-    Date date1 = Date.from(fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    Date date2 = Date.from(toDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-    if(date2.getTime() > new Date().getTime()) {
+    if(toDate.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("The To Date is in the future. "
               + "Cannot get performance for future.");
     }
 
-    int timeHour = 60 * 60 * 1000;
-    int timeDay = 24 * timeHour;
-    int timeWeek = 7 * timeDay;
-    int timeMonth = 30 * timeDay;
-    int timeYear = 365 * timeDay;
+    this.sortByDate();
 
-    long spanTime = date2.getTime() - date1.getTime();
+    int compareRes = fromDate.compareTo(portfolioItemTransactions.get(0).getDate());
 
-    long spanHours = (spanTime / timeHour);
-    int spanDays = (int) (spanTime / timeDay);
-
-    if(spanDays >= 5 && spanDays <= 30) {
-
+    if(compareRes < 0) {
+      throw new IllegalArgumentException("The From Date given is before the Portfolio's "
+              + "first Purchase Date.");
     }
 
+    long spanDays = fromDate.until(toDate, ChronoUnit.DAYS);
+    long spanMonths = fromDate.until(toDate, ChronoUnit.MONTHS);
+    long spanYears = fromDate.until(toDate, ChronoUnit.YEARS);
 
-    return null;
+    int minRows = 5;
+    int maxRows = 30;
+
+    ChronoUnit period;
+    int interval;
+
+    if(spanDays <= 30) {
+      period = ChronoUnit.DAYS;
+      interval = 1;
+    } else if(spanYears >= 5) {
+      period = ChronoUnit.YEARS;
+      interval = 1;
+    } else if(spanMonths >=5 && spanMonths <= 30) {
+      period = ChronoUnit.MONTHS;
+      interval = 1;
+    } else {
+      long minSpan = spanDays / minRows;
+      long maxSpan = spanDays / maxRows;
+
+      long medianSpan = (minSpan + maxSpan)/2;
+
+      period = ChronoUnit.DAYS;
+      interval = (int) medianSpan;
+    }
+
+    Map<String, Float> timeMaps = new HashMap<>();
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
+    LocalDate date = fromDate.plus(0, ChronoUnit.DAYS);
+
+    float maxValue = 0;
+    float minValue = 0;
+
+
+    while (date.compareTo(toDate) <= 0) {
+      float valueAtDate = this.getPortfolioValueAtDate(date);
+
+      if(maxValue == 0 && minValue == 0) {
+        maxValue = valueAtDate;
+        minValue = valueAtDate;
+      } else {
+        if(valueAtDate > maxValue) {
+          maxValue = valueAtDate;
+        }
+        if(valueAtDate < minValue) {
+          minValue = valueAtDate;
+        }
+      }
+
+      timeMaps.put(formatter.format(date), valueAtDate);
+
+      date = date.plus(interval, period);
+    }
+
+    if(!timeMaps.containsKey(formatter.format(toDate))) {
+      float toDateValue = this.getPortfolioValueAtDate(toDate);
+
+      if(toDateValue > maxValue) {
+        maxValue = toDateValue;
+      }
+
+      if(toDateValue < minValue) {
+        minValue = toDateValue;
+      }
+    }
+
+    float scaleValue = Math.round(maxValue / 50);
+
+    timeMaps.put("scale", scaleValue);
+
+    return timeMaps;
   }
 }
