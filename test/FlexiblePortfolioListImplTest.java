@@ -28,7 +28,7 @@ public class FlexiblePortfolioListImplTest {
     portfolioList = new FlexiblePortfolioListImpl();
   }
 
-  private Map<String, Path> getFileNames () {
+  private Map<String, Path> getFileNames() {
     FileIO fileIO = new SaveToCSV();
     String directory = System.getProperty("user.dir") + "/portfolioTxnFiles/";
 
@@ -38,7 +38,7 @@ public class FlexiblePortfolioListImplTest {
   @Test
   public void testFlexiblePortfolioCreation() {
     Map<String, Path> fileData = getFileNames();
-    String[]  names = portfolioList.getPortfolioListNames();
+    String[] names = portfolioList.getPortfolioListNames();
 
     for (String name : names) {
       assertEquals(fileData.get(name).toString(), portfolioList.getPortfolioFilePath(name));

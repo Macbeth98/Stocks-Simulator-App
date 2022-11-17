@@ -3,16 +3,14 @@ package controller.flexibleportfolio;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-import controller.portfolio.PortfolioControllerImpl;
 import model.flexibleportfolio.FlexiblePortfolioListImpl;
-import model.portfolio.PortfolioListImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class FlexiblePortfolioControllerImplTest {
 

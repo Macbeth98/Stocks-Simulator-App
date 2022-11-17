@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +78,7 @@ public class FlexiblePortfolioImplTest {
 
     List<PortfolioItemTransaction> items = new ArrayList<>();
 
-    String[] transactions = new String[] {
+    String[] transactions = new String[]{
             "BUY_GOOG_98_08/10/2021_7",
             "BUY_TSLA_100_09/10/2021_9",
             "BUY_MSFT_90_11/11/2021_5",
@@ -99,7 +98,7 @@ public class FlexiblePortfolioImplTest {
       items.add(
               new PortfolioItemTransaction(
                       Objects.equals(TransactionType.BUY.toString(), values[0])
-                              ? TransactionType.BUY: TransactionType.SELL,
+                              ? TransactionType.BUY : TransactionType.SELL,
                       new StockObjectImpl(values[1]),
                       Float.parseFloat(values[2]),
                       LocalDate.parse(values[3], formatter),

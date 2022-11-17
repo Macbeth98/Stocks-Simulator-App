@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-import controller.flexibleportfolio.FlexiblePortfolioControllerImpl;
-import controller.portfolio.PortfolioControllerImpl;
 import model.GenericPortfolioListImpl;
-import model.flexibleportfolio.FlexiblePortfolioListImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GenericPortfolioControllerImplTest {
 

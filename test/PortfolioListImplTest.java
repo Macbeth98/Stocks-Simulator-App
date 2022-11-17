@@ -150,7 +150,7 @@ public class PortfolioListImplTest {
   public void testCreatePortfolioFromInvalidFileContentFormat() throws FileNotFoundException {
     String currentDirectory = System.getProperty("user.dir") + "/testCSVFiles/";
     File file = new File(currentDirectory);
-    if(!file.exists()) {
+    if (!file.exists()) {
       file.mkdir();
     }
     String portfolioFileName = "invalidContentFormat.csv";

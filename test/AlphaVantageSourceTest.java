@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import model.AlphaVantageSource;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AlphaVantageSourceTest {
 
