@@ -1,16 +1,16 @@
+package fileinout;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
 /**
- * This class implements the FileIO class and is an Abstract class.
+ * This class implements the fileinout.FileIO class and is an Abstract class.
  * This class has methods used to store the files.
  */
 abstract class AbstractFileIO implements FileIO {
