@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import static java.nio.file.Files.readString;
 
 public class AlphaVantageSource implements DataSource {
 
@@ -44,7 +48,7 @@ public class AlphaVantageSource implements DataSource {
         // return price from file
         return loadPriceFromFile(ticker, strDate);
       }
-    } catch (FileNotFoundException ignored) {
+    } catch (IOException ignored) {
     }
 
     URL url;
@@ -93,76 +97,67 @@ public class AlphaVantageSource implements DataSource {
 
     float price = Float.parseFloat(priceOnDate);
 
-    // caching
+    // caching entire response
     try {
-      storePriceOnFile(ticker, price, strDate);
-    } catch (FileNotFoundException e) {
+      storePriceOnFile(ticker, jsonString);
+    } catch (Exception e) {
       throw new RuntimeException("STOCK PRICE SAVE TO FILE FAILED!" + e.getMessage());
     }
 
     return price;
   }
 
-  private float loadPriceFromFile(String ticker, String strDate) {
+  private float loadPriceFromFile(String ticker, String strDate) throws IOException {
     String filePath = pricesDirectory + ticker + ".json";
     File file = new File(filePath);
-    StringBuilder pricesJson = new StringBuilder();
-    try (Scanner scanner = new Scanner(file)) {
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        pricesJson.append(line);
+    String pricesJson;
+    Path pricesFilePath = Path.of(filePath);
+    pricesJson = readString(pricesFilePath);
+    JSONObject jsonObj = new JSONObject(pricesJson);
+
+    String priceOnDate = "";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate date = LocalDate.parse(strDate, formatter);
+    while (priceOnDate.length() == 0) {
+      try {
+        priceOnDate = jsonObj.getJSONObject(strDate)
+                .getString("4. close");
+      } catch (Exception ignored) {
+        date = date.minusDays(1);
+        strDate = formatter.format(date);
       }
-    } catch (FileNotFoundException ignored) {
     }
-    JSONObject jsonObj = new JSONObject(pricesJson.toString());
-    return jsonObj.getFloat(strDate);
+    return Float.parseFloat(priceOnDate);
   }
 
-  private boolean priceExistsOnFile(String ticker, String strDate) throws FileNotFoundException {
+  private boolean priceExistsOnFile(String ticker, String strDate) throws IOException {
     String filePath = pricesDirectory + ticker + ".json";
     File file = new File(filePath);
-    StringBuilder pricesJson = new StringBuilder();
+    String pricesJson;
+    Path pricesFilePath = Path.of(filePath);
     if (file.exists()) {
-      try (Scanner scanner = new Scanner(file)) {
-        while (scanner.hasNextLine()) {
-          String line = scanner.nextLine();
-          pricesJson.append(line);
-        }
-      }
-      JSONObject jsonObj = new JSONObject(pricesJson.toString());
+      pricesJson = readString(pricesFilePath);
+      JSONObject jsonObj = new JSONObject(pricesJson);
       return jsonObj.has(strDate);
     } else {
       return false;
     }
   }
 
-  private void storePriceOnFile(String ticker, float price, String strDate)
-          throws FileNotFoundException {
+  private void storePriceOnFile(String ticker, String jsonResponseString)
+          throws IOException {
     String filePath = pricesDirectory + ticker + ".json";
-    File file = new File(filePath);
-    StringBuilder pricesJson = new StringBuilder();
-    if (file.exists()) {
-      try (Scanner scanner = new Scanner(file)) {
-        while (scanner.hasNextLine()) {
-          String line = scanner.nextLine();
-          pricesJson.append(line);
-        }
-      }
-      JSONObject jsonObj = new JSONObject(pricesJson.toString());
-      if (!jsonObj.has(strDate)) {
-        jsonObj.put(strDate, price);
-        try {
-          writeJsonToFile(filePath, jsonObj.toString());
-        } catch (IOException ignored) {
-        }
-      }
-    } else {
-      JSONObject jsonObj = new JSONObject();
-      jsonObj.put(strDate, price);
-      try {
-        writeJsonToFile(filePath, jsonObj.toString());
-      } catch (IOException ignored) {
-      }
+    try {
+      File file = new File(filePath);
+    } catch (Exception e) {
+      throw new FileNotFoundException("STOCK FILE NOT FOUND AT: " + filePath + ". Error: " + e);
+    }
+    try {
+      JSONObject jsonObj = new JSONObject(jsonResponseString);
+      JSONObject jsonDataObject = jsonObj.getJSONObject("Time Series (Daily)");
+      writeJsonToFile(filePath, jsonDataObject.toString());
+    } catch (IOException e) {
+      throw new IOException("Writing JSON response to file failed. Error: " + e);
     }
 
   }
