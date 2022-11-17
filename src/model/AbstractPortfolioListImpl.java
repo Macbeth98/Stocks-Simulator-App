@@ -13,7 +13,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-abstract class AbstractPortfolioListImpl implements PortfolioList {
+import model.portfolio.Portfolio;
+import model.portfolio.PortfolioItem;
+import model.portfolio.PortfolioList;
+
+public abstract class AbstractPortfolioListImpl implements PortfolioList {
 
   protected final Map<String, Path> portfolioFiles;
   protected final String currentDirectory;

@@ -6,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import model.TransactionType;
+import model.flexibleportfolio.FlexiblePortfolioList;
+import view.flexibleportfolio.FlexiblePortfolioView;
+
 public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerCommand {
 
   FlexiblePortfolioList flexiblePortfolioList;

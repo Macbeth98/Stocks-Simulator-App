@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import model.TransactionType;
+import model.portfolio.PortfolioItem;
+import view.portfolio.PortfolioViewImpl;
+
 public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements FlexiblePortfolioView {
 
   public FlexiblePortfolioViewImpl(Appendable out) {

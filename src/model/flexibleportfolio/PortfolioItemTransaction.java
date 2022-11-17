@@ -1,8 +1,12 @@
-package model.portfolio;
+package model.flexibleportfolio;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import model.TransactionType;
+import model.portfolio.PortfolioItem;
+import model.stock.StockObject;
 
 public class PortfolioItemTransaction extends PortfolioItem {
 

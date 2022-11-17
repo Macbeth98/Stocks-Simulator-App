@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import model.flexibleportfolio.FlexiblePortfolioList;
+import view.flexibleportfolio.FlexiblePortfolioView;
+
 public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControllerCommand {
 
   FlexiblePortfolioList flexiblePortfolioList;

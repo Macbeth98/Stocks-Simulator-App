@@ -1,6 +1,7 @@
 package model;
 
 import model.flexibleportfolio.FlexiblePortfolioList;
+import model.portfolio.PortfolioList;
 
 /**
  * Consists of all the main model methods that operate on a single/list of generic portfolios.

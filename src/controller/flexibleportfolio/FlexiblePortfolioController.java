@@ -2,6 +2,8 @@ package controller.flexibleportfolio;
 
 import java.io.IOException;
 
+import model.flexibleportfolio.FlexiblePortfolioList;
+
 /**
  * Interface representing the controller for the flexible portfolio and its operations.
  */

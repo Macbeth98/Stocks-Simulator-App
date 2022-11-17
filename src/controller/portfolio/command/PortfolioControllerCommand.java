@@ -1,12 +1,12 @@
-package controller.flexibleportfolio;
+package controller.portfolio.command;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * This interface represents a command/menu option in the flexible portfolio controller.
+ * Represents an interface which defines each of the commands executed by the controller.
  */
-public interface FlexiblePortfolioControllerCommand {
+public interface PortfolioControllerCommand {
   /**
    * Method that contains the controller command implementation.
    */

@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import model.portfolio.PortfolioList;
+import view.portfolio.PortfolioView;
+
 public class GetPortfolioValueOnDate implements PortfolioControllerCommand {
 
   private final PortfolioList portfolioList;

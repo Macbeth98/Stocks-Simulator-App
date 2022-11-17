@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import model.flexibleportfolio.FlexiblePortfolioList;
+import model.portfolio.PortfolioItem;
+import view.flexibleportfolio.FlexiblePortfolioView;
+
 public class FlexiblePortfolioComposition implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
