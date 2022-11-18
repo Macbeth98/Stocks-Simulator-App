@@ -115,11 +115,11 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
   public void addTransactionToPortfolio(String portfolioName, TransactionType type,
                                         String stockTicker, float quantity, LocalDate date,
                                         float commission) throws IllegalArgumentException {
-    if(commission < 0) {
+    if (commission < 0) {
       throw new IllegalArgumentException("Commission given cannot be negative.");
     }
 
-    if(date.isAfter(LocalDate.now())) {
+    if (date.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("Cannot have a transaction with future date!");
     }
 

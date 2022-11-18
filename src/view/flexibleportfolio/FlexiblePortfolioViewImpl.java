@@ -126,9 +126,9 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
     List<String> datesList = new ArrayList<>(portfolioPerformance.keySet());
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
     datesList.sort(Comparator.comparing(s -> LocalDate.parse(s, formatter)));
-    for (String dateStr: datesList) {
+    for (String dateStr : datesList) {
       String graphLine = dateStr + ": ";
-      int numOfStars = (int) Math.ceil(portfolioPerformance.get(dateStr)/scale);
+      int numOfStars = (int) Math.ceil(portfolioPerformance.get(dateStr) / scale);
       graphLine += "*".repeat(numOfStars) + "\n";
       this.out.append(graphLine);
     }

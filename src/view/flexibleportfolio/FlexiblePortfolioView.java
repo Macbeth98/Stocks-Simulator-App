@@ -71,10 +71,11 @@ public interface FlexiblePortfolioView extends PortfolioView {
 
   /**
    * Display the performance graph of a portfolio using a map denoting values and timestamps.
+   *
    * @param portfolioPerformance map for the performance graph that contains dates and values
-   * @param startDate start date of date range
-   * @param endDate end date of date range
-   * @param portfolioName name of given portfolio
+   * @param startDate            start date of date range
+   * @param endDate              end date of date range
+   * @param portfolioName        name of given portfolio
    */
   void displayPerformanceGraph(Map<String, Float> portfolioPerformance,
                                String startDate, String endDate,
