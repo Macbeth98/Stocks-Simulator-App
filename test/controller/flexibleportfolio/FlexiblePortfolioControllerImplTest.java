@@ -12,6 +12,10 @@ import model.flexibleportfolio.FlexiblePortfolioListImpl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * This class is a test class for FlexiblePortfolioControllerImpl class.
+ * This class contains methods that test the FlexiblePortfolioControllerImpl methods.
+ */
 public class FlexiblePortfolioControllerImplTest {
 
   private FlexiblePortfolioController controller;
@@ -20,8 +24,8 @@ public class FlexiblePortfolioControllerImplTest {
 
   @Before
   public void setUp() {
-    menuString = "\n\n-------------------------------" +
-            "\nWelcome!\nWhat do you want to do? Press option key:\n\n"
+    menuString = "\n\n-------------------------------"
+            + "\nWelcome!\nWhat do you want to do? Press option key:\n\n"
             + "1. Create new Portfolio manually\n"
             + "2. Create new Portfolio from file\n"
             + "3. Modify a portfolio\n"
