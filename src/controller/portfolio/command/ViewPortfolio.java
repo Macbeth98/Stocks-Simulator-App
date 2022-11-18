@@ -8,11 +8,19 @@ import model.portfolio.Portfolio;
 import model.portfolio.PortfolioList;
 import view.portfolio.PortfolioView;
 
+/**
+ * Command class that implements the command to show a portfolio's composition.
+ */
 public class ViewPortfolio implements PortfolioControllerCommand {
 
   private final PortfolioList portfolioList;
   private final PortfolioView view;
 
+  /**
+   * Constructs command object to view portfolio for the controller to interact with.
+   * @param portfolioList portfolio list model
+   * @param portfolioView given view model
+   */
   public ViewPortfolio(PortfolioList portfolioList, PortfolioView portfolioView) {
     this.portfolioList = portfolioList;
     this.view = portfolioView;
@@ -31,7 +39,7 @@ public class ViewPortfolio implements PortfolioControllerCommand {
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // view a portfolio
     String[] pNames = portfolioList.getPortfolioListNames();
     if (pNames.length < 1) {

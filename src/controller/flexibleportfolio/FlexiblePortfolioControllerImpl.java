@@ -15,6 +15,9 @@ import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 import view.flexibleportfolio.FlexiblePortfolioViewImpl;
 
+/**
+ * Class containing the implementation of the flexible portfolio controller and its operations.
+ */
 public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioController {
 
   final Readable in;
@@ -46,31 +49,31 @@ public class FlexiblePortfolioControllerImpl implements FlexiblePortfolioControl
       switch (scan.next()) {
         case "1":
           cmd = new CreateFlexiblePortfolio(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "2":
           cmd = new CreateFlexiblePortfolioFromFile(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "3":
           cmd = new ModifyFlexiblePortfolio(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "4":
           cmd = new FlexiblePortfolioComposition(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "5":
           cmd = new GetFlexiblePortfolioValueOnDate(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "6":
           cmd = new GetCostBasisOnDate(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "7":
           cmd = new GetFlexiblePortfolioPerformanceGraph(fpList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "8":
           return;

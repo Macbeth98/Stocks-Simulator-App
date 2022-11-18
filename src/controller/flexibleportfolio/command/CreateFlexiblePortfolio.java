@@ -10,6 +10,9 @@ import model.TransactionType;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Command class that implements the command to create a flexible portfolio.
+ */
 public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerCommand {
 
   FlexiblePortfolioList flexiblePortfolioList;
@@ -26,7 +29,7 @@ public class CreateFlexiblePortfolio implements FlexiblePortfolioControllerComma
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     String[] pNames = flexiblePortfolioList.getPortfolioListNames();
     if (pNames.length > 1) {
       view.displayListOfPortfolios(pNames);

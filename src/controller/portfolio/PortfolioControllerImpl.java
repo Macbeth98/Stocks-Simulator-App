@@ -61,19 +61,19 @@ public class PortfolioControllerImpl implements PortfolioController {
       switch (scan.next()) {
         case "1":
           cmd = new CreatePortfolio(portfolioList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "2":
           cmd = new CreatePortfolioFromFile(portfolioList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "3":
           cmd = new ViewPortfolio(portfolioList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "4":
           cmd = new GetPortfolioValueOnDate(portfolioList, view);
-          cmd.go(scan);
+          cmd.goCommand(scan);
           break;
         case "5":
           return;

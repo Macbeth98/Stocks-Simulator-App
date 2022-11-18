@@ -13,6 +13,11 @@ public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControl
 
   FlexiblePortfolioView view;
 
+  /**
+   * Constructs the command object to create flexible portfolio for the controller to interact with.
+   * @param fpList given flexible portfolio list model
+   * @param view given view model
+   */
   public CreateFlexiblePortfolioFromFile(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.flexiblePortfolioList = fpList;
     this.view = view;
@@ -31,7 +36,7 @@ public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControl
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // create a new portfolio from a file
     String[] pNames = flexiblePortfolioList.getPortfolioListNames();
     if (pNames.length > 1) {

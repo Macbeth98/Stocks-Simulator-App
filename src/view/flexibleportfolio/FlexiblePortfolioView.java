@@ -8,6 +8,9 @@ import model.TransactionType;
 import model.portfolio.PortfolioItem;
 import view.portfolio.PortfolioView;
 
+/**
+ * Interface that defines the view methods for the flexible portfolio functions.
+ */
 public interface FlexiblePortfolioView extends PortfolioView {
   /**
    * Display portfolio creation menu for flexible portfolio.

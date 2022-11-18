@@ -10,11 +10,19 @@ import java.util.Scanner;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Contains command implementation for viewing flexible portfolio's performance over a date range.
+ */
 public class GetFlexiblePortfolioPerformanceGraph implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
   private final FlexiblePortfolioView view;
 
+  /**
+   * Constructs command object for viewing a portfolio's performance.
+   * @param fpList given FlexiblePortfolioList object
+   * @param view given view object
+   */
   public GetFlexiblePortfolioPerformanceGraph(FlexiblePortfolioList fpList,
                                               FlexiblePortfolioView view) {
     this.fpList = fpList;
@@ -34,7 +42,7 @@ public class GetFlexiblePortfolioPerformanceGraph implements FlexiblePortfolioCo
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // get portfolio value on a date
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {

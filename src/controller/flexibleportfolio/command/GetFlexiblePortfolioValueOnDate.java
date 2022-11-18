@@ -9,11 +9,19 @@ import java.util.Scanner;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Contains command implementation to get flexible portfolio's value on a date.
+ */
 public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
   private final FlexiblePortfolioView view;
 
+  /**
+   * Constructs object to view flexible portfolio's value on a date.
+   * @param fpList given model object
+   * @param view given view object
+   */
   public GetFlexiblePortfolioValueOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
@@ -32,7 +40,7 @@ public class GetFlexiblePortfolioValueOnDate implements FlexiblePortfolioControl
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // get portfolio value on a date
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {

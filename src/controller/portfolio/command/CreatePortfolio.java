@@ -9,6 +9,9 @@ import java.util.Scanner;
 import model.portfolio.PortfolioList;
 import view.portfolio.PortfolioView;
 
+/**
+ * Command class that implements the command to create a portfolio.
+ */
 public class CreatePortfolio implements PortfolioControllerCommand {
 
   PortfolioList portfolioList;
@@ -27,13 +30,18 @@ public class CreatePortfolio implements PortfolioControllerCommand {
     }
   }
 
+  /**
+   * Constructs the command object to create portfolio for the controller to interact with.
+   * @param portfolioList given portfolio list model
+   * @param view given view model
+   */
   public CreatePortfolio(PortfolioList portfolioList, PortfolioView view) {
     this.portfolioList = portfolioList;
     this.view = view;
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     String[] pNames = portfolioList.getPortfolioListNames();
     if (pNames.length > 1) {
       view.displayListOfPortfolios(pNames);

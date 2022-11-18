@@ -13,8 +13,15 @@ import model.TransactionType;
 import model.portfolio.PortfolioItem;
 import view.portfolio.PortfolioViewImpl;
 
+/**
+ * Implements all the methods of FlexiblePortfolioView and displays necessary prompts to the user.
+ */
 public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements FlexiblePortfolioView {
 
+  /**
+   * Constructs an Implementation object for flexible portfolio view.
+   * @param out given output stream
+   */
   public FlexiblePortfolioViewImpl(Appendable out) {
     super(out);
   }
@@ -58,7 +65,7 @@ public class FlexiblePortfolioViewImpl extends PortfolioViewImpl implements Flex
 
   @Override
   public void invalidCommissionValue() throws IOException {
-    this.out.append("\nInvalid commission value entered!")
+    this.out.append("\nInvalid commission value entered! ")
             .append("Please enter value greater than or equal to zero!");
   }
 
