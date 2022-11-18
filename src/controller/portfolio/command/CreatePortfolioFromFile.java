@@ -36,6 +36,7 @@ public class CreatePortfolioFromFile implements PortfolioControllerCommand {
     this.view = view;
   }
 
+  @Override
   public void goCommand(Scanner scan) throws IOException {
     // create a new portfolio from a file
     String[] pNames = portfolioList.getPortfolioListNames();

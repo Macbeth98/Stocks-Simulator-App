@@ -84,7 +84,8 @@ public class PortfolioViewImpl implements PortfolioView {
   }
 
   @Override
-  public void displayValueAtDate(String portfolioName, LocalDate date, float value) throws IOException {
+  public void displayValueAtDate(String portfolioName, LocalDate date, float value)
+          throws IOException {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     this.out.append("\nValue of portfolio: ")
             .append(portfolioName)

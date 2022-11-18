@@ -41,7 +41,8 @@ public interface FlexiblePortfolioView extends PortfolioView {
    * @param quantity  quantity of stock
    * @param date      date of transaction
    */
-  void transactionSuccessMessage(String pName, TransactionType type, String stockName, float quantity, LocalDate date) throws IOException;
+  void transactionSuccessMessage(String pName, TransactionType type, String stockName,
+                                 float quantity, LocalDate date) throws IOException;
 
   /**
    * Display flexible portfolio's composition.

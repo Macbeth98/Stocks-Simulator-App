@@ -10,11 +10,19 @@ import model.TransactionType;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Command class that implements the command to modify a flexible portfolio.
+ */
 public class ModifyFlexiblePortfolio implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
   private final FlexiblePortfolioView view;
 
+  /**
+   * Constructs command object to modify flexible portfolios.
+   * @param fpList given flexible portfolio list model object
+   * @param view given view object
+   */
   public ModifyFlexiblePortfolio(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;

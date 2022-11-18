@@ -7,6 +7,9 @@ import java.util.Scanner;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Command class that implements the command to create a flexible portfolio from a file.
+ */
 public class CreateFlexiblePortfolioFromFile implements FlexiblePortfolioControllerCommand {
 
   FlexiblePortfolioList flexiblePortfolioList;
