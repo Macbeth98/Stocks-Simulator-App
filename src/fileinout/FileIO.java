@@ -18,7 +18,7 @@ public interface FileIO {
   String getFileType();
 
   /**
-   * Gets the file imn PATH format when given in string
+   * Gets the file imn PATH format when given in string.
    *
    * @param filepath the path of the file.
    * @return returns the file path in Path format.
@@ -65,7 +65,7 @@ public interface FileIO {
    *
    * @param filepath the path of the file where the data needs to be appended.
    * @param data     data that needs to be appended.
-   * @return
+   * @return returns the updated file path.
    * @throws FileNotFoundException if the file is not found.
    */
   String appendData(String filepath, Object[] data) throws FileNotFoundException;

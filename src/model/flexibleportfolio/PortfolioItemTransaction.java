@@ -27,7 +27,8 @@ public class PortfolioItemTransaction extends PortfolioItem {
    * @param commission The commission that was charged while purchasing the stock.
    * @throws IllegalArgumentException if the given quantity is not greater than zero.
    */
-  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity, LocalDate date, float commission)
+  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity,
+                                  LocalDate date, float commission)
           throws IllegalArgumentException {
     super(stock, quantity, stock.getCurrentPriceAtDate(date));
 

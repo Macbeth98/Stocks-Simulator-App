@@ -9,17 +9,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 import static java.nio.file.Files.readString;
 
+/**
+ * This class represents the source of prices which is taken from Alphavantage.co.
+ */
 public class AlphaVantageSource implements DataSource {
 
   private final String apiKey;
@@ -27,6 +28,9 @@ public class AlphaVantageSource implements DataSource {
 
   private static final Map<String, JSONObject> priceMaps = new HashMap<>();
 
+  /**
+   * Initiates the Alphavnatage API keys and the directory to store the stock prices.
+   */
   public AlphaVantageSource() {
     apiKey = "6ZFNAYRHG2K7KINU";
     pricesDirectory = System.getProperty("user.dir") + "/stockPrices/";

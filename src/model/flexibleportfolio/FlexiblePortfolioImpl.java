@@ -55,7 +55,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
    * transactions given in the form of PortfolioItemTransaction.
    *
    * @param portfolioName             name of the portfolio to be created.
-   * @param fileName                  the filename that this portfolio already has. Can be null to auto assign.
+   * @param fileName                  the filename that this portfolio already has.
+   *                                  Can be null to auto assign.
    * @param portfolioItemTransactions the list of PortfolioItemTransactions to be in portfolio.
    * @throws IllegalArgumentException if the five cannot be saved or created.
    */
@@ -157,7 +158,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   @Override
   public FlexiblePortfolio sellStock(String stockTicker, float quantity,
-                                     LocalDate saleDate, float commission) throws FileNotFoundException {
+                                     LocalDate saleDate, float commission)
+          throws FileNotFoundException {
 
     StockObject stock = new StockObjectImpl(stockTicker);
 
@@ -274,7 +276,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date) throws IllegalArgumentException {
+  public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date)
+          throws IllegalArgumentException {
 
     if (isToday(date)) {
       return super.getPortfolioComposition();

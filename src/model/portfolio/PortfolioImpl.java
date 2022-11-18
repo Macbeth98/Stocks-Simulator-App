@@ -148,8 +148,8 @@ public class PortfolioImpl implements Portfolio {
 
   @Override
   public String getPortfolioFilePath() {
-    return this.fileSaved ?
-            this.getSaveFilePath().toString()
+    return this.fileSaved
+            ? this.getSaveFilePath().toString()
             : "File Could not be Saved.";
   }
 
