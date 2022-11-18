@@ -1,11 +1,7 @@
 package model.portfolio;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
@@ -152,8 +148,8 @@ public class PortfolioImpl implements Portfolio {
 
   @Override
   public String getPortfolioFilePath() {
-    return this.fileSaved ?
-            this.getSaveFilePath().toString()
+    return this.fileSaved
+            ? this.getSaveFilePath().toString()
             : "File Could not be Saved.";
   }
 

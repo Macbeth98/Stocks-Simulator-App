@@ -78,13 +78,9 @@ public class FlexiblePortfolioImplTest {
 
     List<PortfolioItemTransaction> items = new ArrayList<>();
 
-    String[] transactions = new String[]{
-            "BUY_GOOG_98_08/10/2021_7",
-            "BUY_TSLA_100_09/10/2021_9",
-            "BUY_MSFT_90_11/11/2021_5",
-            "SELL_GOOG_8_09/11/2021_7",
-            "SELL_MSFT_9_04/03/2022_10"
-    };
+    String[] transactions = new String[]
+            { "BUY_GOOG_98_08/10/2021_7", "BUY_TSLA_100_09/10/2021_9", "BUY_MSFT_90_11/11/2021_5",
+                    "SELL_GOOG_8_09/11/2021_7", "SELL_MSFT_9_04/03/2022_10" };
 
     Map<String, Float> stocks = new HashMap<>();
     stocks.put("GOOG", 90f);

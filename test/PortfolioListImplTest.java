@@ -65,7 +65,6 @@ public class PortfolioListImplTest {
     String[] portfolioNames = portfolioList.getPortfolioListNames();
 
     for (String portfolioName : portfolioNames) {
-      System.out.println(portfolioName);
       Portfolio portfolio = portfolioList.getPortfolio(portfolioName);
       assertEquals(portfolioName, portfolio.getPortfolioName());
     }

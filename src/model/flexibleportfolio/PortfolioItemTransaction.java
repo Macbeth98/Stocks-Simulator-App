@@ -8,6 +8,9 @@ import model.TransactionType;
 import model.portfolio.PortfolioItem;
 import model.stock.StockObject;
 
+/**
+ * This class represents a unique transactions that were occurred in a Portfolio.
+ */
 public class PortfolioItemTransaction extends PortfolioItem {
 
   private final TransactionType type;
@@ -24,7 +27,8 @@ public class PortfolioItemTransaction extends PortfolioItem {
    * @param commission The commission that was charged while purchasing the stock.
    * @throws IllegalArgumentException if the given quantity is not greater than zero.
    */
-  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity, LocalDate date, float commission)
+  public PortfolioItemTransaction(TransactionType type, StockObject stock, float quantity,
+                                  LocalDate date, float commission)
           throws IllegalArgumentException {
     super(stock, quantity, stock.getCurrentPriceAtDate(date));
 
@@ -38,6 +42,11 @@ public class PortfolioItemTransaction extends PortfolioItem {
     this.date = date;
   }
 
+  /**
+   * Gets the current transaction type.
+   *
+   * @return retuns the transaction type.
+   */
   public TransactionType getType() {
     return this.type;
   }

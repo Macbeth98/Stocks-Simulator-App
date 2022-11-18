@@ -8,6 +8,10 @@ import model.AlphaVantageSource;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class is a test class for AlphaVantage Class.
+ * This class contains methods that tests the AlphaVantage methods.
+ */
 public class AlphaVantageSourceTest {
 
   private AlphaVantageSource testSource;

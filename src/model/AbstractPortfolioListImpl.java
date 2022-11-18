@@ -10,6 +10,10 @@ import model.portfolio.Portfolio;
 import model.portfolio.PortfolioItem;
 import model.portfolio.PortfolioList;
 
+/**
+ * This is an Abstract PortfolioList impl that implements PortfolioList interface.
+ * This represents the two types of portfolio lists available and abstracts them.
+ */
 public abstract class AbstractPortfolioListImpl implements PortfolioList {
 
   protected final Map<String, Path> portfolioFiles;

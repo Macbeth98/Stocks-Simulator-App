@@ -24,6 +24,9 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
         implements FlexiblePortfolioList {
   private final Map<String, FlexiblePortfolio> portfolios;
 
+  /**
+   * Constructs a FlexiblePortfolioImpl object and assigns the portfolio save file directory.
+   */
   public FlexiblePortfolioListImpl() {
     super("/portfolioTxnFiles/");
 
@@ -49,7 +52,8 @@ public class FlexiblePortfolioListImpl extends AbstractPortfolioListImpl
                         type,
                         new StockObjectImpl(portfolioItemValues[1]),
                         Float.parseFloat(portfolioItemValues[2]),
-                        LocalDate.parse(portfolioItemValues[3], DateTimeFormatter.ofPattern("MM/dd/yyyy")),
+                        LocalDate.parse(portfolioItemValues[3],
+                                DateTimeFormatter.ofPattern("MM/dd/yyyy")),
                         Float.parseFloat(portfolioItemValues[4])
                 )
         );

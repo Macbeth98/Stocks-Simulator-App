@@ -9,20 +9,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.nio.file.Files.readString;
 
+/**
+ * This class represents the source of prices which is taken from Alphavantage.co.
+ */
 public class AlphaVantageSource implements DataSource {
 
   private final String apiKey;
   private final String pricesDirectory;
 
+  private static final Map<String, JSONObject> priceMaps = new HashMap<>();
+
+  /**
+   * Initiates the Alphavnatage API keys and the directory to store the stock prices.
+   */
   public AlphaVantageSource() {
     apiKey = "6ZFNAYRHG2K7KINU";
     pricesDirectory = System.getProperty("user.dir") + "/stockPrices/";
@@ -38,6 +46,8 @@ public class AlphaVantageSource implements DataSource {
 
   @Override
   public float getPriceAtDate(String ticker, LocalDate date) {
+
+    long time = new Date().getTime();
 
     // convert date to string
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -108,14 +118,7 @@ public class AlphaVantageSource implements DataSource {
     return price;
   }
 
-  private float loadPriceFromFile(String ticker, String strDate) throws IOException {
-    String filePath = pricesDirectory + ticker + ".json";
-    File file = new File(filePath);
-    String pricesJson;
-    Path pricesFilePath = Path.of(filePath);
-    pricesJson = readString(pricesFilePath);
-    JSONObject jsonObj = new JSONObject(pricesJson);
-
+  private float getPriceFromJson(JSONObject jsonObj, String strDate) {
     String priceOnDate = "";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate date = LocalDate.parse(strDate, formatter);
@@ -129,6 +132,25 @@ public class AlphaVantageSource implements DataSource {
       }
     }
     return Float.parseFloat(priceOnDate);
+  }
+
+  private float loadPriceFromFile(String ticker, String strDate) throws IOException {
+    long time = new Date().getTime();
+    if (priceMaps.containsKey(ticker)) {
+      JSONObject obj = priceMaps.get(ticker);
+      return this.getPriceFromJson(obj, strDate);
+    }
+    String filePath = pricesDirectory + ticker + ".json";
+    File file = new File(filePath);
+    String pricesJson;
+    Path pricesFilePath = Path.of(filePath);
+    pricesJson = readString(pricesFilePath);
+    JSONObject jsonObj = new JSONObject(pricesJson);
+
+    priceMaps.put(ticker, jsonObj);
+
+    float priceOnDate = this.getPriceFromJson(jsonObj, strDate);
+    return priceOnDate;
   }
 
   private boolean priceExistsOnFile(String ticker, String strDate) throws IOException {

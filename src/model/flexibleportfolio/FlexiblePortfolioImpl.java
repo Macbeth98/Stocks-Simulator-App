@@ -22,10 +22,22 @@ import model.portfolio.PortfolioItem;
 import model.stock.StockObject;
 import model.stock.StockObjectImpl;
 
+/**
+ * This class implements FlexiblePortfolio interface and extends PortfolioImpl class which
+ * implements Portfolio interface. This class implements additional methods required to make a
+ * portfolio flexible.
+ */
 public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePortfolio {
 
   private final List<PortfolioItemTransaction> portfolioItemTransactions;
 
+  /**
+   * This method constructs the FlexiblePortfolio Object based on the given name and
+   * empty portfolio Items.
+   *
+   * @param portfolioName the name of the portfolio to be created.
+   * @throws IllegalArgumentException if the name is not valid or file cannot be saved/created.
+   */
   public FlexiblePortfolioImpl(String portfolioName) throws IllegalArgumentException {
     super(portfolioName, null,
             System.getProperty("user.dir") + "/portfolioTxnFiles/");
@@ -38,6 +50,16 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     }
   }
 
+  /**
+   * This method constructs a FlexiblePortfolio Object based on the portfolio name and the
+   * transactions given in the form of PortfolioItemTransaction.
+   *
+   * @param portfolioName             name of the portfolio to be created.
+   * @param fileName                  the filename that this portfolio already has.
+   *                                  Can be null to auto assign.
+   * @param portfolioItemTransactions the list of PortfolioItemTransactions to be in portfolio.
+   * @throws IllegalArgumentException if the five cannot be saved or created.
+   */
   public FlexiblePortfolioImpl(String portfolioName, String fileName,
                                List<PortfolioItemTransaction> portfolioItemTransactions)
           throws IllegalArgumentException {
@@ -49,7 +71,9 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     this.constructPortfolio();
 
     try {
-      this.saveTransactionsToFile();
+      if (fileName == null) {
+        this.saveTransactionsToFile();
+      }
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File Saving error..." + e.getMessage());
     }
@@ -134,7 +158,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
   @Override
   public FlexiblePortfolio sellStock(String stockTicker, float quantity,
-                                     LocalDate saleDate, float commission) throws FileNotFoundException {
+                                     LocalDate saleDate, float commission)
+          throws FileNotFoundException {
 
     StockObject stock = new StockObjectImpl(stockTicker);
 
@@ -251,7 +276,8 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   }
 
   @Override
-  public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date) throws IllegalArgumentException {
+  public PortfolioItem[] getPortfolioCompositionAtDate(LocalDate date)
+          throws IllegalArgumentException {
 
     if (isToday(date)) {
       return super.getPortfolioComposition();

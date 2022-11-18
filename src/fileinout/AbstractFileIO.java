@@ -3,10 +3,8 @@ package fileinout;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,6 +24,12 @@ abstract class AbstractFileIO implements FileIO {
 
   private final String fileType;
 
+  /**
+   * This Constructs a AbstractFIleIo that is extended by other fileIo classes.
+   * This assings the filetype.
+   *
+   * @param fileType the filetype that will be used for FIleIo.
+   */
   public AbstractFileIO(String fileType) {
     this.fileType = fileType;
   }

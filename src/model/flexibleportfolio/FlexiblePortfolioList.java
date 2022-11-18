@@ -3,7 +3,6 @@ package model.flexibleportfolio;
 import java.time.LocalDate;
 
 import model.TransactionType;
-import model.flexibleportfolio.FlexiblePortfolio;
 import model.portfolio.PortfolioItem;
 import model.portfolio.PortfolioList;
 
@@ -41,7 +40,7 @@ public interface FlexiblePortfolioList extends PortfolioList {
      * Creates a Flexible Portfolio from the user given file. The file needs to be in a specific
      * format that is mentioned in the read me of the project documentation.
      *
-     * @param portfolioName the portfolio Name to be assigned for the created Portfolio from the file.
+     * @param portfolioName the portfolio Name to be assigned for the created Portfolio from file.
      * @param portfolioFilePath the filepath from where the Portfolio needs to be loaded.
      * @return
      * @throws FileNotFoundException if the given file is not found.

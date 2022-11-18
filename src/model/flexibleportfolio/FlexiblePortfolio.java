@@ -22,8 +22,8 @@ public interface FlexiblePortfolio extends Portfolio {
    * @return returns the updated portfolio.
    * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
    */
-  FlexiblePortfolio addStock(String stockTicker, float quantity, LocalDate purchaseDate, float commission)
-          throws FileNotFoundException;
+  FlexiblePortfolio addStock(String stockTicker, float quantity, LocalDate purchaseDate,
+                             float commission) throws FileNotFoundException;
 
   /**
    * Sells a stock from the given Portfolio. Decreases the value of stock from the Portfolio
@@ -36,9 +36,15 @@ public interface FlexiblePortfolio extends Portfolio {
    * @return returns the updated portfolio after sell.
    * @throws FileNotFoundException if the portfolio is not found or cannot be saved.
    */
-  FlexiblePortfolio sellStock(String stockTicker, float quantity, LocalDate saleDate, float commission)
-          throws FileNotFoundException;
+  FlexiblePortfolio sellStock(String stockTicker, float quantity, LocalDate saleDate,
+                              float commission) throws FileNotFoundException;
 
+  /**
+   * get the  total cost that was accumulated through this portfolio.
+   *
+   * @param tillDate the date till which the cost basis needs to get.
+   * @return returns the cost that was accumulated till the given date.
+   */
   float getCostBasis(LocalDate tillDate);
 
   /**
