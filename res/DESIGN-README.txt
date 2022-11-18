@@ -20,10 +20,17 @@ on a date when the date was queried. The price as of now is being assigned by us
 But once a price is assigned for a stock at a date, that price will persist.
 
 Controller:
-
-- The controller interface is defined in src/PortfolioController.java.
-- It contains only a single method(void go()) that the controller class, src/PortfolioControllerImpl.java, implements.
+- The controller interface is defined in src/FlexiblePortfolioController.java.
+- It contains only a single method(void goController()) that the controller class, src/PortfolioControllerImpl.java, implements.
 - This class has a public constructor which takes two arguments, of Reader and Appendable interface types respectively.
+Changes in controller for Assignment5:
+- All the controller files are stored in the controller package.
+- The FlexiblePortfolioController interface defines the controller interface for FlexiblePortfolios.
+- The GenericPortfolioController interface defines the controller interface to handle both kinds of portfolios.
+- The only change in the previous controller class (PortfolioControllerImpl) is that the switch case now follows the command design pattern.
+- The commands for the Inflexible Portfolio controller reside in the (controller.portfolio.command package)
+- The commands for the Flexible Portfolio controller reside in the (controller.flexibleportfolio.command package)
+- The FlexiblePortfolioControllerImpl class also follows the command design pattern for the switch case.
 
 View:
 
@@ -31,3 +38,10 @@ View:
 - The methods defined in the view interface as used to render the text based user interface in the application.
 - The implementation of this interface is in the class, src/PortfolioListImpl.java.
 - The view class has a public constructor which takes one argument, of Appendable interface type.
+Changes for Assignment5:
+- All the view files are stored in the view package.
+- The FlexiblePortfolio views are stored in the view.flexibleportfolio package, with the interface and implementation
+- The FlexiblePortfolioView interface extends the previous PortfolioView interface to inherit all it's methods
+- The FlexiblePortfolioViewImpl class (implements FlexiblePortfolioView) also extends the PortfolioViewImpl class to inherit the implementations of the previous PortfolioView interface and override implementations as necessary.
+- The GenericPortfolioView interface contains the methods and prompts for the generic portfolio controller, in the view package.
+- The GenericPortfolioViewImpl class implements the aforementioned interface and it's methods for the menus and prompts for generic portfolios.
