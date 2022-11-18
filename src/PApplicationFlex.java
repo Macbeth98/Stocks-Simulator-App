@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import controller.flexibleportfolio.FlexiblePortfolioControllerImpl;
 import model.flexibleportfolio.FlexiblePortfolioListImpl;
 
+/**
+ * Class containing main method to start only the flexible portfolio menu.
+ */
 public class PApplicationFlex {
   /**
    * This is the main method which will start the application. This method will create the
