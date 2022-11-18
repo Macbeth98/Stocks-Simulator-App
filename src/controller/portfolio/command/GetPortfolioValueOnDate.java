@@ -12,11 +12,19 @@ import java.util.Scanner;
 import model.portfolio.PortfolioList;
 import view.portfolio.PortfolioView;
 
+/**
+ * Command class that implements the command to get a portfolio's value on a date.
+ */
 public class GetPortfolioValueOnDate implements PortfolioControllerCommand {
 
   private final PortfolioList portfolioList;
   private final PortfolioView view;
 
+  /**
+   * Constructs command object to get portfolio value on a date for the controller to interact with.
+   * @param portfolioList portfolio list model
+   * @param view given view model
+   */
   public GetPortfolioValueOnDate(PortfolioList portfolioList, PortfolioView view) {
     this.portfolioList = portfolioList;
     this.view = view;
@@ -35,7 +43,7 @@ public class GetPortfolioValueOnDate implements PortfolioControllerCommand {
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // get portfolio value on a date
     String[] pNames = portfolioList.getPortfolioListNames();
     if (pNames.length < 1) {

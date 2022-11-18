@@ -9,6 +9,9 @@ import model.GenericPortfolioList;
 import view.GenericPortfolioView;
 import view.GenericPortfolioViewImpl;
 
+/**
+ * Represents a generic controller that allows user to operate on both kinds of portfolios.
+ */
 public class GenericPortfolioControllerImpl implements GenericPortfolioController {
 
   final Readable in;

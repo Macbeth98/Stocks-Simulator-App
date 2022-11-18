@@ -25,7 +25,7 @@ public class ModifyFlexiblePortfolio implements FlexiblePortfolioControllerComma
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
 
     while (true) {
       String[] pNames = fpList.getPortfolioListNames();

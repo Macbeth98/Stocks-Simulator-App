@@ -10,5 +10,5 @@ public interface FlexiblePortfolioControllerCommand {
   /**
    * Method that contains the controller command implementation.
    */
-  void go(Scanner scan) throws IOException;
+  void goCommand(Scanner scan) throws IOException;
 }

@@ -9,12 +9,20 @@ import java.util.Scanner;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Class containing command implementation for viewing flexible portfolio's cost basis on a date.
+ */
 public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
 
   private final FlexiblePortfolioView view;
 
+  /**
+   * Constructs command object to get cost basis for a given date.
+   * @param fpList given flexible portfolio list model object
+   * @param view given view object
+   */
   public GetCostBasisOnDate(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
@@ -33,7 +41,7 @@ public class GetCostBasisOnDate implements FlexiblePortfolioControllerCommand {
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // get portfolio cost basis on a date
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {

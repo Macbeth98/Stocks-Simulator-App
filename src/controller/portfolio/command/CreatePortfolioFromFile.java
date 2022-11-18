@@ -7,6 +7,9 @@ import java.util.Scanner;
 import model.portfolio.PortfolioList;
 import view.portfolio.PortfolioView;
 
+/**
+ * Command class that implements the command to create a portfolio from file.
+ */
 public class CreatePortfolioFromFile implements PortfolioControllerCommand {
   PortfolioList portfolioList;
   PortfolioView view;
@@ -23,12 +26,17 @@ public class CreatePortfolioFromFile implements PortfolioControllerCommand {
     }
   }
 
+  /**
+   * Constructs command object to create portfolio from file for the controller to interact with.
+   * @param portfolioList given portfolio list model
+   * @param view given view model
+   */
   public CreatePortfolioFromFile(PortfolioList portfolioList, PortfolioView view) {
     this.portfolioList = portfolioList;
     this.view = view;
   }
 
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     // create a new portfolio from a file
     String[] pNames = portfolioList.getPortfolioListNames();
     if (pNames.length > 1) {

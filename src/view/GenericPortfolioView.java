@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public interface GenericPortfolioView {
   /**
-   * Display portfolio creation menu for flexible portfolio.
+   * Display portfolio creation menu for generic portfolio.
    */
   void menuView() throws IOException;
 

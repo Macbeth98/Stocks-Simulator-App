@@ -13,12 +13,20 @@ import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioItem;
 import view.flexibleportfolio.FlexiblePortfolioView;
 
+/**
+ * Class containing command implementation for viewing flexible portfolio's composition.
+ */
 public class FlexiblePortfolioComposition implements FlexiblePortfolioControllerCommand {
 
   private final FlexiblePortfolioList fpList;
 
   private final FlexiblePortfolioView view;
 
+  /**
+   * Constructs command object to view flexible portfolio's composition.
+   * @param fpList given flexible portfolio list model object
+   * @param view given view object
+   */
   public FlexiblePortfolioComposition(FlexiblePortfolioList fpList, FlexiblePortfolioView view) {
     this.fpList = fpList;
     this.view = view;
@@ -37,7 +45,7 @@ public class FlexiblePortfolioComposition implements FlexiblePortfolioController
   }
 
   @Override
-  public void go(Scanner scan) throws IOException {
+  public void goCommand(Scanner scan) throws IOException {
     String[] pNames = fpList.getPortfolioListNames();
     if (pNames.length < 1) {
       view.noPortfoliosMessage();
