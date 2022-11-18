@@ -19,6 +19,18 @@ StockObjectImpl class. This class manages the stock's data, and it stores the pr
 on a date when the date was queried. The price as of now is being assigned by using random class.
 But once a price is assigned for a stock at a date, that price will persist.
 
+-> Accommodating the Flexible Portfolios in the model.
+- The model has now new type of PortfolioList called FlexiblePortfolioList which represents the list of Flexible Portfolios.
+- The FlexiblePortfolioList extends the PortfolioList and acts as the main model for the FlexiblePortfolioController flow and in the same way PortfolioList for inflexible Portfolio flow.
+- There is an AbstractPortfolioList which abstracts the common method between these two Lists and also add their own helper methods.
+- The FlexiblePortfolioList has a list of FlexiblePortfolio that contains methods pertaining to the flexible Portfolio such as Add stock, sell stock, etc.
+
+-> Design changes made.
+-- [ ]  Creating a protected constructor in PortfolioImpl as FlexiblePortfolioImpl extends it.
+ - [ ]  Changing the variable access modifiers in PortfolioImpl from private to protected.
+ - [ ]  Abstracted PortfolioList and PortfolioListImpl.
+ - [ ]  Identified limitations of `java.util.Date` and changed to `java.time.LocalDate`
+
 Controller:
 - The controller interface is defined in src/FlexiblePortfolioController.java.
 - It contains only a single method(void goController()) that the controller class, src/PortfolioControllerImpl.java, implements.

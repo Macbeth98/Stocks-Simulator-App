@@ -1,0 +1,493 @@
+<mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" background="none" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="node36" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AbstractFileIO&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ AbstractFileIO(String): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getFilePathFromString(String): Path&lt;br/&gt;+ appendData(String, Object[]): String&lt;br/&gt;- writeToFile(String, Object[], boolean): void&lt;br/&gt;+ readData(String): List&amp;lt;String&amp;gt;&lt;br/&gt;+ writeData(String, Object[]): String&lt;br/&gt;+ getFilesInDirectory(String): Map&amp;lt;String, Path&amp;gt;&lt;br/&gt;+ getFileType(): String&lt;br/&gt;# formatData(Object): String&lt;br/&gt;+ checkDirectory(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4687" y="139" width="290" height="254" as="geometry" />
+    </mxCell>
+    <mxCell id="node22" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AbstractPortfolioListImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# AbstractPortfolioListImpl(String): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolioComposition(String): PortfolioItem[]&lt;br/&gt;+ getPortfolioListNames(): String[]&lt;br/&gt;+ getPortfolioFilePath(String): String&lt;br/&gt;# loadPortfolioData(String): List&amp;lt;String&amp;gt;&lt;br/&gt;# checkPortfolioNameAlreadyExists(String): void&lt;br/&gt;+ getPortfolio(String): Portfolio&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1772" y="382" width="301" height="188" as="geometry" />
+    </mxCell>
+    <mxCell id="node46" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AlphaVantageSource&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ AlphaVantageSource(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPriceAtDate(String, LocalDate): float&lt;br/&gt;- writeJsonToFile(String, String): void&lt;br/&gt;- loadPriceFromFile(String, String): float&lt;br/&gt;- priceExistsOnFile(String, String): boolean&lt;br/&gt;- storePriceOnFile(String, String): void&lt;br/&gt;- getPriceFromJson(JSONObject, String): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3424" y="1247" width="278" height="188" as="geometry" />
+    </mxCell>
+    <mxCell id="node60" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;AlphaVantageSourceTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ AlphaVantageSourceTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPriceAtDateAPITest(): void&lt;br/&gt;+ getPriceAtRecentDateAPITest(): void&lt;br/&gt;+ testAddPriceToCache(): void&lt;br/&gt;+ setUp(): void&lt;br/&gt;+ testCachedPrices(): void&lt;br/&gt;+ getPriceAtRecentInvalidDateAPITest(): void&lt;br/&gt;+ testInvalidTicker(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5592" y="630" width="272" height="210" as="geometry" />
+    </mxCell>
+    <mxCell id="node25" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CreateFlexiblePortfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ CreateFlexiblePortfolio(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goCommand(Scanner): void&lt;br/&gt;- validPortfolioName(String[], String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2052" y="694" width="349" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node17" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CreateFlexiblePortfolioFromFile&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ CreateFlexiblePortfolioFromFile(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;br/&gt;- toContinue(String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5403" y="240" width="349" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node14" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CreatePortfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ CreatePortfolio(PortfolioList, PortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- toContinue(String): boolean&lt;br/&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-22" y="579" width="282" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node26" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;CreatePortfolioFromFile&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ CreatePortfolioFromFile(PortfolioList, PortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2299" y="1407" width="327" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node15" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;DataSource&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPriceAtDate(String, LocalDate): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3109" y="1449" width="252" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node20" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FileIO&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ checkDirectory(String): void&lt;br/&gt;+ getFilesInDirectory(String): Map&amp;lt;String, Path&amp;gt;&lt;br/&gt;+ writeData(String, Object[]): String&lt;br/&gt;+ getFileType(): String&lt;br/&gt;+ appendData(String, Object[]): String&lt;br/&gt;+ readData(String): List&amp;lt;String&amp;gt;&lt;br/&gt;+ getFilePathFromString(String): Path&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5038" y="-104" width="290" height="186" as="geometry" />
+    </mxCell>
+    <mxCell id="node18" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FlexiblePortfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getCostBasis(LocalDate): float&lt;br/&gt;+ getPortfolioPerformance(LocalDate, LocalDate): Map&amp;lt;String, Float&amp;gt;&lt;br/&gt;+ sellStock(String, float, LocalDate, float): FlexiblePortfolio&lt;br/&gt;+ getPortfolioCompositionAtDate(LocalDate): PortfolioItem[]&lt;br/&gt;+ addStock(String, float, LocalDate, float): FlexiblePortfolio&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3816" y="694" width="404" height="142" as="geometry" />
+    </mxCell>
+    <mxCell id="node2" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioComposition&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioComposition(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4323" y="899" width="354" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node49" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FlexiblePortfolioController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goController(FlexiblePortfolioList): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4005" y="983" width="254" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node59" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FlexiblePortfolioControllerCommand&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3561" y="960" width="296" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node53" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioControllerImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioControllerImpl(Readable, Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goController(FlexiblePortfolioList): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3763" y="1127" width="341" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node37" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioControllerImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioControllerImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testControllerAddTransactionToPortfolio(): void&lt;br/&gt;+ testControllerSellTransactionToPortfolio(): void&lt;br/&gt;+ testControllerCreatePortfolioFromFile(): void&lt;br/&gt;+ testControllerPerformanceGraph(): void&lt;br/&gt;+ testControllerTotalValueAtDate(): void&lt;br/&gt;+ setUp(): void&lt;br/&gt;+ testControllerExit(): void&lt;br/&gt;+ testControllerShowPortfolio(): void&lt;br/&gt;+ testControllerCreatePortfolioManual(): void&lt;br/&gt;+ testControllerCostBasis(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5233" y="678" width="297" height="276" as="geometry" />
+    </mxCell>
+    <mxCell id="node9" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioImpl(String): &lt;br/&gt;+ FlexiblePortfolioImpl(String, String, List&amp;lt;PortfolioItemTransaction&amp;gt;): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- sortByDate(): void&lt;br/&gt;- getUpdatedStockQuantity(String, float): float&lt;br/&gt;+ getPortfolioPerformance(LocalDate, LocalDate): Map&amp;lt;String, Float&amp;gt;&lt;br/&gt;- getPortfolioTillDate(LocalDate): Map&amp;lt;String, Float&amp;gt;&lt;br/&gt;- saveATransactionToFile(PortfolioItemTransaction): void&lt;br/&gt;+ getPortfolioCompositionAtDate(LocalDate): PortfolioItem[]&lt;br/&gt;- saveTransactionsToFile(): void&lt;br/&gt;- isToday(LocalDate): boolean&lt;br/&gt;+ sellStock(String, float, LocalDate, float): FlexiblePortfolio&lt;br/&gt;- buildPortfolio(Map&amp;lt;String, Float&amp;gt;): Portfolio&lt;br/&gt;+ addStock(String, float, LocalDate, float): FlexiblePortfolio&lt;br/&gt;- constructPortfolio(): void&lt;br/&gt;+ getCostBasis(LocalDate): float&lt;br/&gt;+ getPortfolioValueAtDate(LocalDate): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4280" y="453" width="404" height="386" as="geometry" />
+    </mxCell>
+    <mxCell id="node11" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testCreationOfFlexiblePortfolio(): void&lt;br/&gt;+ testCreatePortfolioByGivingTransactions(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4915" y="1031" width="295" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node21" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FlexiblePortfolioList&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolio(String): FlexiblePortfolio&lt;br/&gt;+ getPortfolioCompositionAtDate(String, LocalDate): PortfolioItem[]&lt;br/&gt;+ addTransactionToPortfolio(String, TransactionType, String, float, LocalDate, float): void&lt;br/&gt;+ getCostBasis(String, LocalDate): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="370" y="435" width="395" height="150" as="geometry" />
+    </mxCell>
+    <mxCell id="node10" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioListImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioListImpl(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolio(String): FlexiblePortfolio&lt;br/&gt;- loadPortfolio(String): List&amp;lt;PortfolioItemTransaction&amp;gt;&lt;br/&gt;+ getPortfolioValueAtDate(String, LocalDate): float&lt;br/&gt;+ getPortfolioCompositionAtDate(String, LocalDate): PortfolioItem[]&lt;br/&gt;+ createPortfolio(String, Map&amp;lt;String, Float&amp;gt;): String&lt;br/&gt;+ createPortfolioFromFile(String, String): String&lt;br/&gt;+ getCostBasis(String, LocalDate): float&lt;br/&gt;+ addTransactionToPortfolio(String, TransactionType, String, float, LocalDate, float): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="825" y="388" width="395" height="232" as="geometry" />
+    </mxCell>
+    <mxCell id="node7" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioListImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioListImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testCreatePortfolioManual(): void&lt;br/&gt;+ testFlexiblePortfolioCreation(): void&lt;br/&gt;+ testGetAvailablePortfolioNames(): void&lt;br/&gt;- addStockTransactions(FlexiblePortfolio, String): void&lt;br/&gt;+ testInvalidSellTransaction(): void&lt;br/&gt;+ testInvalidQuantityAndCommissionValues(): void&lt;br/&gt;+ testCreatePortfolioFromFileInvalidContent(): void&lt;br/&gt;+ testCreatePortfolioFromFile(): void&lt;br/&gt;+ testAddStockTransactionsToPortfolio(): void&lt;br/&gt;+ testCostBasis(): void&lt;br/&gt;+ testTransactionsWithInvalidDates(): void&lt;br/&gt;- addTransactionsToPortfolio(FlexiblePortfolio, String, TransactionType, String, float, LocalDate, float, float): void&lt;br/&gt;+ testGetPortfolioCompositionAndValueAtDate(): void&lt;br/&gt;- getFileNames(): Map&amp;lt;String, Path&amp;gt;&lt;br/&gt;+ setUp(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1379" y="1044" width="343" height="386" as="geometry" />
+    </mxCell>
+    <mxCell id="node16" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;FlexiblePortfolioView&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ commissionFeePrompt(): void&lt;br/&gt;+ invalidCommissionValue(): void&lt;br/&gt;+ transactionSuccessMessage(String, TransactionType, String, float, LocalDate): void&lt;br/&gt;+ displayFlexiblePortfolio(PortfolioItem[]): void&lt;br/&gt;+ displayCostBasis(String, float, String): void&lt;br/&gt;+ rangeFromDatePrompt(): void&lt;br/&gt;+ displayPerformanceGraph(Map&amp;lt;String, Float&amp;gt;, String, String, String): void&lt;br/&gt;+ portfolioCreateMenu(): void&lt;br/&gt;+ transactionDatePrompt(): void&lt;br/&gt;+ rangeToDatePrompt(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2870" y="751" width="389" height="252" as="geometry" />
+    </mxCell>
+    <mxCell id="node40" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;FlexiblePortfolioViewImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ FlexiblePortfolioViewImpl(Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ invalidCommissionValue(): void&lt;br/&gt;+ portfolioCreateMenu(): void&lt;br/&gt;+ displayPerformanceGraph(Map&amp;lt;String, Float&amp;gt;, String, String, String): void&lt;br/&gt;+ rangeToDatePrompt(): void&lt;br/&gt;+ commissionFeePrompt(): void&lt;br/&gt;+ rangeFromDatePrompt(): void&lt;br/&gt;+ transactionSuccessMessage(String, TransactionType, String, float, LocalDate): void&lt;br/&gt;+ transactionDatePrompt(): void&lt;br/&gt;+ displayCostBasis(String, float, String): void&lt;br/&gt;+ menuView(): void&lt;br/&gt;+ displayFlexiblePortfolio(PortfolioItem[]): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2686" y="1090" width="389" height="298" as="geometry" />
+    </mxCell>
+    <mxCell id="node24" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GeneralFIleIO&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GeneralFIleIO(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# formatData(Object): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4832" y="504" width="186" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node23" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GenericPortfolioApplication&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GenericPortfolioApplication(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ main(String[]): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2718" y="1492" width="237" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node4" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;GenericPortfolioController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goGenericController(GenericPortfolioList): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4809" y="689" width="294" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node54" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GenericPortfolioControllerImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GenericPortfolioControllerImpl(Readable, Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goGenericController(GenericPortfolioList): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4745" y="889" width="341" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node27" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GenericPortfolioControllerImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GenericPortfolioControllerImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ setUp(): void&lt;br/&gt;+ testMenuExit(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="249" y="1078" width="283" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node35" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;GenericPortfolioList&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getFlexiblePortfolioList(): FlexiblePortfolioList&lt;br/&gt;+ getPortfolioList(): PortfolioList&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1353" y="828" width="285" height="95" as="geometry" />
+    </mxCell>
+    <mxCell id="node41" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GenericPortfolioListImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GenericPortfolioListImpl(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolioList(): PortfolioList&lt;br/&gt;+ getFlexiblePortfolioList(): FlexiblePortfolioList&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="972" y="812" width="285" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node45" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;GenericPortfolioView&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ menuView(): void&lt;br/&gt;+ invalidChoiceMessage(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5545" y="423" width="201" height="95" as="geometry" />
+    </mxCell>
+    <mxCell id="node51" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GenericPortfolioViewImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GenericPortfolioViewImpl(Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ invalidChoiceMessage(): void&lt;br/&gt;+ menuView(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5817" y="408" width="259" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node31" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetCostBasisOnDate&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GetCostBasisOnDate(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;br/&gt;- toContinue(String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3136" y="1064" width="365" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node1" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetFlexiblePortfolioPerformanceGraph&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GetFlexiblePortfolioPerformanceGraph(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="556" y="700" width="355" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node56" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetFlexiblePortfolioValueOnDate&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GetFlexiblePortfolioValueOnDate(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5121" y="446" width="354" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node39" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;GetPortfolioValueOnDate&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ GetPortfolioValueOnDate(PortfolioList, PortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- toContinue(String): boolean&lt;br/&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2079" y="935" width="334" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node61" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;MockModelPortfolioList&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ MockModelPortfolioList(StringBuilder, String, Portfolio): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolio(String): Portfolio&lt;br/&gt;+ getPortfolioListNames(): String[]&lt;br/&gt;+ createPortfolio(String, Map&amp;lt;String, Float&amp;gt;): String&lt;br/&gt;+ getPortfolioValueAtDate(String, LocalDate): float&lt;br/&gt;+ createPortfolioFromFile(String, String): String&lt;br/&gt;+ getPortfolioFilePath(String): String&lt;br/&gt;+ getPortfolioComposition(String): PortfolioItem[]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2708" y="261" width="345" height="210" as="geometry" />
+    </mxCell>
+    <mxCell id="node8" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ModifyFlexiblePortfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ModifyFlexiblePortfolio(FlexiblePortfolioList, FlexiblePortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goCommand(Scanner): void&lt;br/&gt;- validPortfolioName(String[], String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1639" y="667" width="352" height="108" as="geometry" />
+    </mxCell>
+    <mxCell id="node6" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PApplicationFlex&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PApplicationFlex(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ main(String[]): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4870" y="1229" width="163" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node32" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;Portfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolioValue(): float&lt;br/&gt;+ getPortfolioComposition(): PortfolioItem[]&lt;br/&gt;+ getPortfolioValueAtDate(LocalDate): float&lt;br/&gt;+ getPortfolioName(): String&lt;br/&gt;+ getPortfolioFilePath(): String&lt;br/&gt;+ savePortfolioToFile(): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3424" y="643" width="270" height="164" as="geometry" />
+    </mxCell>
+    <mxCell id="node28" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioApplication&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioApplication(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ main(String[]): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3427" y="1526" width="187" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node62" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioBuilder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- PortfolioBuilder(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ addStockToPortfolio(StockObject, float): PortfolioBuilder&lt;br/&gt;+ portfolioName(String): PortfolioBuilder&lt;br/&gt;+ build(): Portfolio&lt;br/&gt;+ setPortfolioFileName(Path): PortfolioBuilder&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3979" y="-83" width="345" height="144" as="geometry" />
+    </mxCell>
+    <mxCell id="node34" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;PortfolioController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goController(PortfolioList): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2405" y="1197" width="214" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node12" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;PortfolioControllerCommand&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1221" y="681" width="245" height="68" as="geometry" />
+    </mxCell>
+    <mxCell id="node38" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioControllerImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioControllerImpl(Readable, Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ goController(PortfolioList): void&lt;br/&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1716" y="860" width="301" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="node5" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioControllerImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioControllerImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testControllerCreatePortfolioFromFileInvalidPath(): void&lt;br/&gt;+ testControllerGetPortfolioValueAtDateInvalidPortfolio(): void&lt;br/&gt;+ testGoGetPortfolios(): void&lt;br/&gt;+ testControllerCreatePortfolioManualExistingPortfolio(): void&lt;br/&gt;+ testControllerViewPortfolioInvalidPortfolioName(): void&lt;br/&gt;+ testControllerGetPortfolioValueAtDateInvalidDate(): void&lt;br/&gt;+ testControllerCreatePortfolioManualInvalidStockSymbol(): void&lt;br/&gt;+ setUp(): void&lt;br/&gt;+ testControllerCreatePortfolioManual(): void&lt;br/&gt;+ testGoCreatePortfolioFromFile(): void&lt;br/&gt;+ testControllerGetPortfolioValueAtDate(): void&lt;br/&gt;+ testControllerCreatePortfolioFromFile(): void&lt;br/&gt;+ testControllerCreatePortfolioManualInvalidStockQuantity(): void&lt;br/&gt;+ testGoCreatePortfolio(): void&lt;br/&gt;+ testGoGetPortfolioObject(): void&lt;br/&gt;+ testControllerExit(): void&lt;br/&gt;+ testControllerViewPortfolio(): void&lt;br/&gt;+ testControllerCreatePortfolioFromFilePortfolioNameExists(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4346" y="1422" width="388" height="452" as="geometry" />
+    </mxCell>
+    <mxCell id="node52" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- PortfolioImpl(String, Map&amp;lt;String, PortfolioItem&amp;gt;, String): &lt;br/&gt;# PortfolioImpl(String, String, String): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolioName(): String&lt;br/&gt;+ savePortfolioToFile(): String&lt;br/&gt;# getSaveFilePath(): Path&lt;br/&gt;+ getBuilder(): PortfolioBuilder&lt;br/&gt;+ getPortfolioValue(): float&lt;br/&gt;+ getPortfolioValueAtDate(LocalDate): float&lt;br/&gt;+ getPortfolioFilePath(): String&lt;br/&gt;+ getPortfolioComposition(): PortfolioItem[]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3976" y="139" width="351" height="254" as="geometry" />
+    </mxCell>
+    <mxCell id="node29" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testPortfolioSaveToFile(): void&lt;br/&gt;+ testGetPortfolioValueAtADate(): void&lt;br/&gt;- createPortfolioObject(String): Portfolio&lt;br/&gt;+ testPortfolioImplObjectCreation(): void&lt;br/&gt;+ testPortfolioValueAtFutureDate(): void&lt;br/&gt;+ testGetPortfolioValue(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="3836" y="1333" width="252" height="188" as="geometry" />
+    </mxCell>
+    <mxCell id="node58" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioItem&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioItem(StockObject, float, float): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getCostPerShare(): float&lt;br/&gt;+ compositionString(): String&lt;br/&gt;+ getCurrentPrice(): float&lt;br/&gt;+ getCost(): float&lt;br/&gt;+ getQuantity(): float&lt;br/&gt;+ getStock(): StockObject&lt;br/&gt;+ toString(): String&lt;br/&gt;+ getCurrentValue(): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="242" y="762" width="254" height="232" as="geometry" />
+    </mxCell>
+    <mxCell id="node55" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioItemTransaction&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioItemTransaction(TransactionType, StockObject, float, LocalDate, float): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ toString(): String&lt;br/&gt;+ getTotalCost(): float&lt;br/&gt;+ getQuantity(): float&lt;br/&gt;+ getCostBasis(): float&lt;br/&gt;+ getDate(): LocalDate&lt;br/&gt;+ getType(): TransactionType&lt;br/&gt;+ getCommission(): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="-172" y="867" width="354" height="210" as="geometry" />
+    </mxCell>
+    <mxCell id="node30" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;PortfolioList&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getPortfolioValueAtDate(String, LocalDate): float&lt;br/&gt;+ getPortfolioListNames(): String[]&lt;br/&gt;+ createPortfolioFromFile(String, String): String&lt;br/&gt;+ createPortfolio(String, Map&amp;lt;String, Float&amp;gt;): String&lt;br/&gt;+ getPortfolioFilePath(String): String&lt;br/&gt;+ getPortfolio(String): Portfolio&lt;br/&gt;+ getPortfolioComposition(String): PortfolioItem[]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1241" y="141" width="309" height="186" as="geometry" />
+    </mxCell>
+    <mxCell id="node43" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioListImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioListImpl(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- loadPortfolio(String, String, Path): Portfolio&lt;br/&gt;- loadAllPortfolioFiles(): void&lt;br/&gt;+ getPortfolioValueAtDate(String, LocalDate): float&lt;br/&gt;- createPortfolioImpl(String, Map&amp;lt;String, Float&amp;gt;, Path): Portfolio&lt;br/&gt;+ getPortfolio(String): Portfolio&lt;br/&gt;+ createPortfolio(String, Map&amp;lt;String, Float&amp;gt;): String&lt;br/&gt;+ createPortfolioFromFile(String, String): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="1281" y="397" width="378" height="210" as="geometry" />
+    </mxCell>
+    <mxCell id="node13" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioListImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioListImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testGetPortfolioFileNames(): void&lt;br/&gt;+ testGetPortfolio(): void&lt;br/&gt;+ setUp(): void&lt;br/&gt;+ testGetPortfolioInvalidName(): void&lt;br/&gt;+ testCreatePortfolio(): void&lt;br/&gt;+ testCreatePortfolioFromInvalidFileContentFormat(): void&lt;br/&gt;+ testCreatePortfolioFromFile(): void&lt;br/&gt;+ testCreatePortfolioFromFileNotFound(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="972" y="993" width="344" height="232" as="geometry" />
+    </mxCell>
+    <mxCell id="node19" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;PortfolioView&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ displayListOfPortfolios(String[]): void&lt;br/&gt;+ invalidDateStringMessage(String): void&lt;br/&gt;+ portfolioExistsMessage(String): void&lt;br/&gt;+ portfolioNamePrompt(): void&lt;br/&gt;+ menuView(): void&lt;br/&gt;+ stockNamePrompt(): void&lt;br/&gt;+ stockQuantityPrompt(): void&lt;br/&gt;+ displayValueAtDate(String, LocalDate, float): void&lt;br/&gt;+ portfolioFilePathPrompt(): void&lt;br/&gt;+ invalidQuantityValue(): void&lt;br/&gt;+ datePrompt(): void&lt;br/&gt;+ noPortfoliosMessage(): void&lt;br/&gt;+ continuePrompt(): void&lt;br/&gt;+ displayPortfolioSuccess(String, String): void&lt;br/&gt;+ invalidChoiceMessage(): void&lt;br/&gt;+ displayErrorPrompt(String): void&lt;br/&gt;+ invalidTickerName(): void&lt;br/&gt;+ displayPortfolio(Portfolio): void&lt;br/&gt;+ portfolioNameErrorMessage(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2474" y="580" width="304" height="450" as="geometry" />
+    </mxCell>
+    <mxCell id="node48" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioViewImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioViewImpl(Appendable): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ menuView(): void&lt;br/&gt;+ displayValueAtDate(String, LocalDate, float): void&lt;br/&gt;+ displayListOfPortfolios(String[]): void&lt;br/&gt;+ portfolioNameErrorMessage(): void&lt;br/&gt;+ datePrompt(): void&lt;br/&gt;+ displayPortfolioSuccess(String, String): void&lt;br/&gt;+ invalidChoiceMessage(): void&lt;br/&gt;+ displayPortfolio(Portfolio): void&lt;br/&gt;+ portfolioFilePathPrompt(): void&lt;br/&gt;+ portfolioExistsMessage(String): void&lt;br/&gt;+ stockQuantityPrompt(): void&lt;br/&gt;+ continuePrompt(): void&lt;br/&gt;+ invalidQuantityValue(): void&lt;br/&gt;+ invalidDateStringMessage(String): void&lt;br/&gt;+ stockNamePrompt(): void&lt;br/&gt;+ noPortfoliosMessage(): void&lt;br/&gt;+ portfolioNamePrompt(): void&lt;br/&gt;+ invalidTickerName(): void&lt;br/&gt;+ displayErrorPrompt(String): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2147" y="45" width="304" height="474" as="geometry" />
+    </mxCell>
+    <mxCell id="node3" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PortfolioViewImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ PortfolioViewImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testStockNamePrompt(): void&lt;br/&gt;+ testStockQuantityPrompt(): void&lt;br/&gt;+ testNoPortfoliosMessage(): void&lt;br/&gt;+ testContinuePrompt(): void&lt;br/&gt;+ testDisplayValueAtDate(): void&lt;br/&gt;+ testPortfolioFilePathPrompt(): void&lt;br/&gt;+ testDatePrompt(): void&lt;br/&gt;+ testPortfolioExistsMessage(): void&lt;br/&gt;+ testPortfolioNameErrorMessage(): void&lt;br/&gt;+ testInvalidChoiceMessage(): void&lt;br/&gt;+ testDisplayListOfPortfolios(): void&lt;br/&gt;+ testStockTickerMessage(): void&lt;br/&gt;+ testMenuView(): void&lt;br/&gt;+ testPortfolioNamePrompt(): void&lt;br/&gt;+ setUp(): void&lt;br/&gt;+ testInvalidDateStringMessage(): void&lt;br/&gt;+ testDisplayPortfolioSuccess(): void&lt;br/&gt;+ testInvalidQuantityMessage(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="481" y="1240" width="251" height="452" as="geometry" />
+    </mxCell>
+    <mxCell id="node50" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;SaveToCSV&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ SaveToCSV(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# formatData(Object): String&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5066" y="296" width="186" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node57" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;StockObject&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getCurrentPrice(): float&lt;br/&gt;+ getCurrentPriceAtDate(LocalDate): float&lt;br/&gt;+ getCurrentValueAtDate(LocalDate, float): float&lt;br/&gt;+ getTicker(): String&lt;br/&gt;+ getCurrentValue(float): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4521" y="1082" width="288" height="142" as="geometry" />
+    </mxCell>
+    <mxCell id="node33" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;StockObjectImpl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ StockObjectImpl(String): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getTicker(): String&lt;br/&gt;+ getCurrentPriceAtDate(LocalDate): float&lt;br/&gt;+ getCurrentValueAtDate(LocalDate, float): float&lt;br/&gt;+ getCurrentValue(float): float&lt;br/&gt;+ getCurrentPrice(): float&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="4164" y="1195" width="288" height="166" as="geometry" />
+    </mxCell>
+    <mxCell id="node42" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;StockObjectImplTest&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ StockObjectImplTest(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ testGettingPriceAtDate(): void&lt;br/&gt;+ setup(): void&lt;br/&gt;+ testGettingValueAtDate(): void&lt;br/&gt;+ testGettingCurrentValue(): void&lt;br/&gt;+ testGettingTicker(): void&lt;br/&gt;+ testGettingCurrentPrice(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="2087" y="1120" width="210" height="188" as="geometry" />
+    </mxCell>
+    <mxCell id="node0" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;/i&gt;&lt;br/&gt;&lt;b&gt;TransactionType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ TransactionType(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ valueOf(String): TransactionType&lt;br/&gt;+ values(): TransactionType[]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5275" y="1054" width="219" height="125" as="geometry" />
+    </mxCell>
+    <mxCell id="node47" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Utils&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ Utils(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getNextRandomInteger(Random, int, int): int&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="5611" y="912" width="283" height="84" as="geometry" />
+    </mxCell>
+    <mxCell id="node44" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ViewPortfolio&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ ViewPortfolio(PortfolioList, PortfolioView): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- validPortfolioName(String[], String): boolean&lt;br/&gt;- toContinue(String): boolean&lt;br/&gt;+ goCommand(Scanner): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
+      <mxGeometry x="609" y="988" width="282" height="132" as="geometry" />
+    </mxCell>
+    <mxCell id="edge4" edge="1" value="" parent="1" source="node36" target="node20" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="4832" y="-11" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge15" edge="1" value="" parent="1" source="node22" target="node30" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1922" y="353" />
+          <mxPoint x="1396" y="353" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge33" edge="1" value="" parent="1" source="node46" target="node15" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="3563" y="1476" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge6" edge="1" value="" parent="1" source="node25" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2226" y="550" />
+          <mxPoint x="4246" y="550" />
+          <mxPoint x="4246" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge30" edge="1" value="" parent="1" source="node17" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.340;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="5522" y="420" />
+          <mxPoint x="3177" y="420" />
+          <mxPoint x="3177" y="550" />
+          <mxPoint x="4246" y="550" />
+          <mxPoint x="4246" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge9" edge="1" value="" parent="1" source="node14" target="node12" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.568;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="119" y="28" />
+          <mxPoint x="1721" y="28" />
+          <mxPoint x="1721" y="599" />
+          <mxPoint x="2035" y="599" />
+          <mxPoint x="2035" y="794" />
+          <mxPoint x="1360" y="794" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge29" edge="1" value="" parent="1" source="node26" target="node12" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.568;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2035" y="1468" />
+          <mxPoint x="2035" y="794" />
+          <mxPoint x="1360" y="794" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge2" edge="1" value="" parent="1" source="node18" target="node32" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.214;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge13" edge="1" value="" parent="1" source="node2" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="4500" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge26" edge="1" value="" parent="1" source="node53" target="node49" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.978;exitY=0.001;exitDx=0;exitDy=0;entryX=0.362;entryY=1.001;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge35" edge="1" value="" parent="1" source="node9" target="node18" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.809;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge10" edge="1" value="" parent="1" source="node9" target="node52" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.019;exitY=0.000;exitDx=0;exitDy=0;entryX=0.888;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge31" edge="1" value="" parent="1" source="node21" target="node30" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="567" y="234" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge20" edge="1" value="" parent="1" source="node10" target="node22" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=1.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1263" y="504" />
+          <mxPoint x="1263" y="378" />
+          <mxPoint x="1736" y="378" />
+          <mxPoint x="1736" y="476" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge25" edge="1" value="" parent="1" source="node10" target="node21" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.460;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge28" edge="1" value="" parent="1" source="node16" target="node19" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.212;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge7" edge="1" value="" parent="1" source="node40" target="node16" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.972;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge11" edge="1" value="" parent="1" source="node40" target="node48" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.000;exitY=0.298;exitDx=0;exitDy=0;entryX=0.933;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2431" y="1179" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge16" edge="1" value="" parent="1" source="node24" target="node36" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="4925" y="460" />
+          <mxPoint x="5013" y="460" />
+          <mxPoint x="5013" y="266" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge12" edge="1" value="" parent="1" source="node54" target="node4" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.620;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.001;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge19" edge="1" value="" parent="1" source="node41" target="node35" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=1.000;exitY=0.539;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge22" edge="1" value="" parent="1" source="node51" target="node45" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.527;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge8" edge="1" value="" parent="1" source="node31" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="3319" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge17" edge="1" value="" parent="1" source="node1" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="734" y="638" />
+          <mxPoint x="2226" y="638" />
+          <mxPoint x="2226" y="550" />
+          <mxPoint x="4246" y="550" />
+          <mxPoint x="4246" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge21" edge="1" value="" parent="1" source="node56" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="5298" y="420" />
+          <mxPoint x="3177" y="420" />
+          <mxPoint x="3177" y="550" />
+          <mxPoint x="4246" y="550" />
+          <mxPoint x="4246" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge14" edge="1" value="" parent="1" source="node39" target="node12" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.568;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2035" y="996" />
+          <mxPoint x="2035" y="794" />
+          <mxPoint x="1360" y="794" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge36" edge="1" value="" parent="1" source="node61" target="node5" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=0.543;exitY=0.000;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2896" y="-122" />
+          <mxPoint x="6093" y="-122" />
+          <mxPoint x="6093" y="1648" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge37" edge="1" value="" parent="1" source="node61" target="node30" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2881" y="13" />
+          <mxPoint x="1396" y="13" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge5" edge="1" value="" parent="1" source="node8" target="node59" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=1.000;exitY=0.091;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2226" y="676" />
+          <mxPoint x="2226" y="550" />
+          <mxPoint x="4246" y="550" />
+          <mxPoint x="4246" y="865" />
+          <mxPoint x="3709" y="865" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge38" edge="1" value="" parent="1" source="node62" target="node52" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=circlePlus;startFill=0;endArrow=none;strokeColor=#820000;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge24" edge="1" value="" parent="1" source="node38" target="node34" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.001;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1867" y="1325" />
+          <mxPoint x="2512" y="1325" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge23" edge="1" value="" parent="1" source="node52" target="node32" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="3162" y="266" />
+          <mxPoint x="3162" y="725" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge27" edge="1" value="" parent="1" source="node55" target="node58" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=1.000;exitY=0.055;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge32" edge="1" value="" parent="1" source="node43" target="node22" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1470" y="378" />
+          <mxPoint x="1736" y="378" />
+          <mxPoint x="1736" y="476" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge18" edge="1" value="" parent="1" source="node43" target="node30" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.460;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1455" y="353" />
+          <mxPoint x="1396" y="353" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge3" edge="1" value="" parent="1" source="node48" target="node19" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=1.000;exitY=0.500;exitDx=0;exitDy=0;entryX=0.500;entryY=0.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="2626" y="282" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge0" edge="1" value="" parent="1" source="node50" target="node36" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.000;exitY=0.500;exitDx=0;exitDy=0;entryX=1.000;entryY=0.500;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="5013" y="335" />
+          <mxPoint x="5013" y="266" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge34" edge="1" value="" parent="1" source="node33" target="node57" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=1.000;exitY=0.045;exitDx=0;exitDy=0;entryX=0.000;entryY=0.849;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="edge1" edge="1" value="" parent="1" source="node44" target="node12" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=1.000;exitDx=0;exitDy=0;entryX=0.568;entryY=1.000;entryDx=0;entryDy=0;">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="750" y="1448" />
+          <mxPoint x="2035" y="1448" />
+          <mxPoint x="2035" y="794" />
+          <mxPoint x="1360" y="794" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
