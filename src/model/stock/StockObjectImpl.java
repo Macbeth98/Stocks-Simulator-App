@@ -24,6 +24,7 @@ public class StockObjectImpl implements StockObject {
 
     float temp;
     LocalDate date = LocalDate.now();
+
     try {
       temp = new AlphaVantageSource().getPriceAtDate(ticker, date);
     } catch (Exception e) {

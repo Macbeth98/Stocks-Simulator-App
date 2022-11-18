@@ -62,7 +62,7 @@ public interface PortfolioList {
    *
    * @param portfolioName the name of portfolio that needs to be fetched.
    * @param date          the date at which the value of the Portfolio Needs to be fetched.
-   * @return
+   * @return returns the portfolio value at the given date.
    */
   float getPortfolioValueAtDate(String portfolioName, LocalDate date);
 

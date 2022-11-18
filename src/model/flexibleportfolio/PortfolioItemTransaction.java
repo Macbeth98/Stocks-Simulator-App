@@ -8,6 +8,9 @@ import model.TransactionType;
 import model.portfolio.PortfolioItem;
 import model.stock.StockObject;
 
+/**
+ * This class represents a unique transactions that were occurred in a Portfolio.
+ */
 public class PortfolioItemTransaction extends PortfolioItem {
 
   private final TransactionType type;
@@ -38,6 +41,11 @@ public class PortfolioItemTransaction extends PortfolioItem {
     this.date = date;
   }
 
+  /**
+   * Gets the current transaction type.
+   *
+   * @return retuns the transaction type.
+   */
   public TransactionType getType() {
     return this.type;
   }

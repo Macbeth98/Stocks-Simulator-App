@@ -39,6 +39,12 @@ public interface FlexiblePortfolio extends Portfolio {
   FlexiblePortfolio sellStock(String stockTicker, float quantity, LocalDate saleDate, float commission)
           throws FileNotFoundException;
 
+  /**
+   * get the  total cost that was accumulated through this portfolio.
+   *
+   * @param tillDate the date till which the cost basis needs to get.
+   * @return returns the cost that was accumulated till the given date.
+   */
   float getCostBasis(LocalDate tillDate);
 
   /**

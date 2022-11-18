@@ -6,6 +6,9 @@ package fileinout;
  */
 public class GeneralFIleIO extends AbstractFileIO {
 
+  /**
+   * The Method constructs a TXT file type FileIO.
+   */
   public GeneralFIleIO() {
     super("txt");
   }

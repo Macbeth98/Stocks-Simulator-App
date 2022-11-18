@@ -26,6 +26,12 @@ abstract class AbstractFileIO implements FileIO {
 
   private final String fileType;
 
+  /**
+   * This Constructs a AbstractFIleIo that is extended by other fileIo classes.
+   * This assings the filetype.
+   *
+   * @param fileType the filetype that will be used for FIleIo.
+   */
   public AbstractFileIO(String fileType) {
     this.fileType = fileType;
   }

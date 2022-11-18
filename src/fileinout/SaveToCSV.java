@@ -6,6 +6,9 @@ package fileinout;
  */
 public class SaveToCSV extends AbstractFileIO {
 
+  /**
+   * The Method constructs a CSV file type FileIO.
+   */
   public SaveToCSV() {
     super("csv");
   }

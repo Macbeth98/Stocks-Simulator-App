@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import static java.nio.file.Files.readString;
@@ -22,6 +24,8 @@ public class AlphaVantageSource implements DataSource {
 
   private final String apiKey;
   private final String pricesDirectory;
+
+  private static final Map<String, JSONObject> priceMaps = new HashMap<>();
 
   public AlphaVantageSource() {
     apiKey = "6ZFNAYRHG2K7KINU";
@@ -39,6 +43,8 @@ public class AlphaVantageSource implements DataSource {
   @Override
   public float getPriceAtDate(String ticker, LocalDate date) {
 
+    long time = new Date().getTime();
+
     // convert date to string
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String strDate = formatter.format(date);
@@ -47,6 +53,7 @@ public class AlphaVantageSource implements DataSource {
     try {
       if (priceExistsOnFile(ticker, strDate)) {
         // return price from file
+        System.out.println("Time taken...to go to load file " + (new Date().getTime() - time));
         return loadPriceFromFile(ticker, strDate);
       }
     } catch (IOException ignored) {
@@ -105,17 +112,13 @@ public class AlphaVantageSource implements DataSource {
       throw new RuntimeException("STOCK PRICE SAVE TO FILE FAILED!" + e.getMessage());
     }
 
+
+    System.out.println("Time taken... " + (new Date().getTime() - time));
+
     return price;
   }
 
-  private float loadPriceFromFile(String ticker, String strDate) throws IOException {
-    String filePath = pricesDirectory + ticker + ".json";
-    File file = new File(filePath);
-    String pricesJson;
-    Path pricesFilePath = Path.of(filePath);
-    pricesJson = readString(pricesFilePath);
-    JSONObject jsonObj = new JSONObject(pricesJson);
-
+  private float getPriceFromJson(JSONObject jsonObj, String strDate) {
     String priceOnDate = "";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate date = LocalDate.parse(strDate, formatter);
@@ -129,6 +132,28 @@ public class AlphaVantageSource implements DataSource {
       }
     }
     return Float.parseFloat(priceOnDate);
+  }
+
+  private float loadPriceFromFile(String ticker, String strDate) throws IOException {
+    long time = new Date().getTime();
+    if (priceMaps.containsKey(ticker)) {
+      System.out.println(ticker + " Price is in the map...");
+      JSONObject obj = priceMaps.get(ticker);
+      System.out.println("Time taken... from Map" + (new Date().getTime() - time));
+      return this.getPriceFromJson(obj, strDate);
+    }
+    String filePath = pricesDirectory + ticker + ".json";
+    File file = new File(filePath);
+    String pricesJson;
+    Path pricesFilePath = Path.of(filePath);
+    pricesJson = readString(pricesFilePath);
+    JSONObject jsonObj = new JSONObject(pricesJson);
+
+    priceMaps.put(ticker, jsonObj);
+
+    float priceOnDate = this.getPriceFromJson(jsonObj, strDate);
+    System.out.println("Time taken... Load from file" + (new Date().getTime() - time));
+    return priceOnDate;
   }
 
   private boolean priceExistsOnFile(String ticker, String strDate) throws IOException {

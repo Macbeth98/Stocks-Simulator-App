@@ -3,7 +3,6 @@ package model.flexibleportfolio;
 import java.time.LocalDate;
 
 import model.TransactionType;
-import model.flexibleportfolio.FlexiblePortfolio;
 import model.portfolio.PortfolioItem;
 import model.portfolio.PortfolioList;
 
