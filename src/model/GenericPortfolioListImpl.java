@@ -1,9 +1,14 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.flexibleportfolio.FlexiblePortfolioListImpl;
 import model.portfolio.PortfolioList;
 import model.portfolio.PortfolioListImpl;
+import model.strategy.PSDollarCostAverage;
+import model.strategy.PortfolioStrategy;
 
 /**
  * This class implements the GenericPortfolioList interface.
@@ -12,6 +17,12 @@ import model.portfolio.PortfolioListImpl;
  */
 public class GenericPortfolioListImpl implements GenericPortfolioList {
 
+  private final FlexiblePortfolioList flexiblePortfolioList;
+
+  public GenericPortfolioListImpl() {
+    flexiblePortfolioList = new FlexiblePortfolioListImpl();
+  }
+
   @Override
   public PortfolioList getPortfolioList() {
     return new PortfolioListImpl();
@@ -19,6 +30,7 @@ public class GenericPortfolioListImpl implements GenericPortfolioList {
 
   @Override
   public FlexiblePortfolioList getFlexiblePortfolioList() {
-    return new FlexiblePortfolioListImpl();
+    return flexiblePortfolioList;
   }
+
 }

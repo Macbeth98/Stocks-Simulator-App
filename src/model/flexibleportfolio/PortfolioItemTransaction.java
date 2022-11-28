@@ -34,8 +34,16 @@ public class PortfolioItemTransaction extends PortfolioItem {
 
     this.type = type;
 
-    if (commission < 0) {
+    if (commission <= 0) {
       throw new IllegalArgumentException("Commission value cannot be less than zero.");
+    }
+
+    if(date == null) {
+      throw new IllegalArgumentException("Date cannot be null.");
+    }
+
+    if (date.isAfter(LocalDate.now())) {
+      throw new IllegalArgumentException("Cannot have a transaction with future date!");
     }
 
     this.commission = commission;

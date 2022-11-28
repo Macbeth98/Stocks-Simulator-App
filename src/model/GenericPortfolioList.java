@@ -1,5 +1,8 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioList;
 
@@ -23,6 +26,5 @@ public interface GenericPortfolioList {
    * @return returns the collection of Flexible Portfolios.
    */
   FlexiblePortfolioList getFlexiblePortfolioList();
-
 
 }

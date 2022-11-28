@@ -44,8 +44,9 @@ public interface FlexiblePortfolio extends Portfolio {
    *
    * @param tillDate the date till which the cost basis needs to get.
    * @return returns the cost that was accumulated till the given date.
+   * @throws IllegalArgumentException if the given date is not valid.
    */
-  float getCostBasis(LocalDate tillDate);
+  float getCostBasis(LocalDate tillDate) throws IllegalArgumentException;
 
   /**
    * Gets the Composition of the Portfolio till the date given.

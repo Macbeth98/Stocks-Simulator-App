@@ -1,6 +1,7 @@
 package model.flexibleportfolio;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 import model.TransactionType;
 import model.portfolio.PortfolioItem;

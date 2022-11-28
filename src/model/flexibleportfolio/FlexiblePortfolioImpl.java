@@ -147,8 +147,6 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     this.stocks.put(stock.getTicker(), portfolioItem);
 
-    // this.savePortfolioToFile();
-
     portfolioItemTransactions.add(portfolioItemTransaction);
 
     this.saveATransactionToFile(portfolioItemTransaction);
@@ -213,15 +211,18 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
 
     portfolioItemTransactions.add(portfolioItemTransaction);
 
-    // this.savePortfolioToFile();
-
     this.saveATransactionToFile(portfolioItemTransaction);
 
     return this;
   }
 
   @Override
-  public float getCostBasis(LocalDate tillDate) {
+  public float getCostBasis(LocalDate tillDate) throws IllegalArgumentException {
+
+    if(tillDate == null) {
+      throw new IllegalArgumentException("The date cannot be null.");
+    }
+
     return portfolioItemTransactions
             .stream()
             .filter(item -> item.getDate().isBefore(tillDate) || item.getDate().isEqual(tillDate))

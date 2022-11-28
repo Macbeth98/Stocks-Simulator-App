@@ -33,18 +33,27 @@ import static org.junit.Assert.fail;
  */
 public class FlexiblePortfolioListImplTest {
 
-  FlexiblePortfolioList portfolioList;
+  protected FlexiblePortfolioList portfolioList;
 
-  Map<String, Float> stocks;
+  protected  Map<String, Float> stocks;
 
-  @Before
-  public void setUp() {
-    portfolioList = new FlexiblePortfolioListImpl();
+  protected void initiateStocks() {
     stocks = new HashMap<>();
     stocks.put("GOOG", 89f);
     stocks.put("TSLA", 90f);
     stocks.put("MSFT", 10f);
+  }
 
+  protected LocalDate getDate(String dateString) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    return LocalDate.parse(dateString, formatter);
+  }
+
+  @Before
+  public void setUp() {
+    portfolioList = new FlexiblePortfolioListImpl();
+
+    this.initiateStocks();
   }
 
   private Map<String, Path> getFileNames() {
@@ -165,11 +174,9 @@ public class FlexiblePortfolioListImplTest {
 
   }
 
-  private void addStockTransactions(FlexiblePortfolio portfolio, String portfolioName) {
+  protected void addStockTransactions(FlexiblePortfolio portfolio, String portfolioName) {
     String dateString = "09/10/2021";
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-    LocalDate date = LocalDate.parse(dateString, formatter);
+    LocalDate date = this.getDate(dateString);
 
 
     addTransactionsToPortfolio(portfolio, portfolioName, TransactionType.BUY, "GOOG",
