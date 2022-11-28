@@ -39,6 +39,6 @@ public class GUIController implements Features {
 
   @Override
   public void viewTransactionForm() {
-    IView txnFrame = new
+    // IView txnFrame = new
   }
 }

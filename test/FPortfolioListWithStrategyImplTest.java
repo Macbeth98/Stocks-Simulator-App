@@ -1,11 +1,9 @@
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import model.flexibleportfolio.FPortfolioListWithStrategy;
 import model.flexibleportfolio.FPortfolioListWithStrategyImpl;
@@ -268,6 +266,6 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
 
   @Test
   public void testPeriodicInvestmentStrategy() {
-    
+
   }
 }
