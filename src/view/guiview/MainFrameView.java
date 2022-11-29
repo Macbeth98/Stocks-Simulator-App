@@ -36,8 +36,8 @@ public class MainFrameView extends JFrame implements IView {
     btnPanel.add(createPFFileButton);
 
     // modify portfolio button
-    modifyPFButton = new JButton("Create Portfolio From File");
-    modifyPFButton.setActionCommand("Create Portfolio From File");
+    modifyPFButton = new JButton("Modify Portfolio");
+    modifyPFButton.setActionCommand("Modify Portfolio");
     btnPanel.add(modifyPFButton);
 
     // view composition button
@@ -74,6 +74,7 @@ public class MainFrameView extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     createPFButton.addActionListener(evt -> features.createPortfolio());
+    compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
     exitButton.addActionListener(evt -> features.exitProgram());
   }
 }
