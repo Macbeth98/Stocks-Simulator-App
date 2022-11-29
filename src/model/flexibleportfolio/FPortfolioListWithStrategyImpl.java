@@ -34,7 +34,7 @@ public class FPortfolioListWithStrategyImpl extends FlexiblePortfolioListImpl
   }
 
   @Override
-  public void periodicInvestmentPortfolioWithStrategy(String portfolioName,
+  public void periodicInvestmentPortfolioStrategy(String portfolioName,
                                                       Map<String, Float> stocksDistribution,
                                                       float amount, int frequencyInDays,
                                                       LocalDate startDate, LocalDate endDate,
@@ -48,7 +48,7 @@ public class FPortfolioListWithStrategyImpl extends FlexiblePortfolioListImpl
     }
     portfolio = this.getPortfolio(portfolioName);
 
-    portfolioStrategy.periodicInvestmentPortfolioWithStrategy(
+    portfolioStrategy.periodicInvestmentPortfolioStrategy(
             portfolio,
             stocksDistribution,
             amount,

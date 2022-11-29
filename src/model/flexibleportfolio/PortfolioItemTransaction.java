@@ -34,7 +34,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
 
     this.type = type;
 
-    if (commission <= 0) {
+    if (commission < 0) {
       throw new IllegalArgumentException("Commission value cannot be less than zero.");
     }
 
@@ -53,7 +53,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
   /**
    * Gets the current transaction type.
    *
-   * @return retuns the transaction type.
+   * @return returns the transaction type.
    */
   public TransactionType getType() {
     return this.type;

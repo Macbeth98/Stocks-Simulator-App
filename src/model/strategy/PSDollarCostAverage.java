@@ -2,6 +2,7 @@ package model.strategy;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Map;
 
 import model.flexibleportfolio.FlexiblePortfolio;
@@ -30,6 +31,19 @@ public class PSDollarCostAverage implements PortfolioStrategy {
     }
   }
 
+  private float getTotalPercentage(Collection<Float> values)  throws IllegalArgumentException {
+    float totalValue = 0;
+
+    for (Float value : values) {
+      if(value <= 0) {
+        throw new IllegalArgumentException("The percentage given in the Stocks "
+                + "Distribution must be greater than 0");
+      }
+      totalValue += value;
+    }
+    return totalValue;
+  }
+
   @Override
   public void applyStrategyToAnExistingPortfolio(FlexiblePortfolio portfolio, float amount,
                                                  LocalDate date,
@@ -53,7 +67,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
       throw new IllegalArgumentException("The commission value given is not valid.");
     }
 
-    float totalPercentage = stocksDistribution.values().stream().reduce((float)0, Float::sum);
+    float totalPercentage = this.getTotalPercentage(stocksDistribution.values());
 
     if (totalPercentage != 100f) {
       throw new IllegalArgumentException("The sum of given stock distribution is not 100%.");
@@ -69,12 +83,16 @@ public class PSDollarCostAverage implements PortfolioStrategy {
   }
 
   @Override
-  public void periodicInvestmentPortfolioWithStrategy(FlexiblePortfolio portfolio,
+  public void periodicInvestmentPortfolioStrategy(FlexiblePortfolio portfolio,
                                                       Map<String, Float> stocksDistribution,
                                                       float amount, int frequencyInDays,
                                                       LocalDate startDate, LocalDate endDate,
                                                       float commission)
           throws IllegalArgumentException {
+
+    if(stocksDistribution == null) {
+      throw new IllegalArgumentException("The Stocks Distribution must be given.");
+    }
 
     if(amount <= 0) {
       throw new IllegalArgumentException("The Amount given is not valid.");
@@ -94,7 +112,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
       throw new IllegalArgumentException("The commission value given is not valid.");
     }
 
-    float totalPercentage = stocksDistribution.values().stream().reduce((float) 0, Float::sum);
+    float totalPercentage = this.getTotalPercentage(stocksDistribution.values());
 
     if(totalPercentage != 100f) {
       throw new IllegalArgumentException("The sum of given stocks distribution is not 100%.");

@@ -118,19 +118,44 @@ public class AlphaVantageSource implements DataSource {
     return price;
   }
 
-  private float getPriceFromJson(JSONObject jsonObj, String strDate) {
+  private float getPriceFromJson(JSONObject jsonObj, String strDate, String ticker) {
+    String givenDate = strDate;
     String priceOnDate = "";
+    int countBack = 0;
+
+    /*
+        String[] keys = jsonObj.keySet().toArray(new String[0]);
+
+        System.out.println("keys length....." + keys.length + "..."+ keys[0]
+                + "..." + keys[1] + "..." + keys[2]);
+        String oldestDate = keys[keys.length-1];
+    */
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate date = LocalDate.parse(strDate, formatter);
+    /*
+        LocalDate oldDate = LocalDate.parse(oldestDate, formatter);
+        if(date.isBefore(oldDate)) {
+          throw new IllegalArgumentException("Cannot fetch the price for the ticker: " + ticker
+                  + " for the date: " + strDate);
+        }
+    */
     while (priceOnDate.length() == 0) {
       try {
         priceOnDate = jsonObj.getJSONObject(strDate)
                 .getString("4. close");
       } catch (Exception ignored) {
+        countBack++;
+        if(countBack >= 4) {
+          throw new IllegalArgumentException("Cannot fetch the price for the ticker: " + ticker
+                  + " for the date: " + givenDate + ". The Price does not exist.");
+        }
         date = date.minusDays(1);
         strDate = formatter.format(date);
       }
     }
+
+    // System.out.println("Date given...." + strDate + ".....Counted Back..." + countBack);
     return Float.parseFloat(priceOnDate);
   }
 
@@ -138,7 +163,7 @@ public class AlphaVantageSource implements DataSource {
     long time = new Date().getTime();
     if (priceMaps.containsKey(ticker)) {
       JSONObject obj = priceMaps.get(ticker);
-      return this.getPriceFromJson(obj, strDate);
+      return this.getPriceFromJson(obj, strDate, ticker);
     }
     String filePath = pricesDirectory + ticker + ".json";
     File file = new File(filePath);
@@ -149,8 +174,7 @@ public class AlphaVantageSource implements DataSource {
 
     priceMaps.put(ticker, jsonObj);
 
-    float priceOnDate = this.getPriceFromJson(jsonObj, strDate);
-    return priceOnDate;
+    return this.getPriceFromJson(jsonObj, strDate, ticker);
   }
 
   private boolean priceExistsOnFile(String ticker, String strDate) throws IOException {

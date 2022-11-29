@@ -40,7 +40,7 @@ public interface PortfolioStrategy {
    * @param commission the commission that needs to be charged per transaction.
    * @throws IllegalArgumentException if any of the given params are not valid.
    */
-  void periodicInvestmentPortfolioWithStrategy (
+  void periodicInvestmentPortfolioStrategy (
           FlexiblePortfolio portfolio,
           Map<String, Float> stocksDistribution,
           float amount,

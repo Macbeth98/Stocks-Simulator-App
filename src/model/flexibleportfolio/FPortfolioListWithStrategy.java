@@ -40,7 +40,7 @@ public interface FPortfolioListWithStrategy extends FlexiblePortfolioList {
    * @param commission the commission that needs to be charged per transaction.
    * @throws IllegalArgumentException if any of the given params are not valid.
    */
-  void periodicInvestmentPortfolioWithStrategy (
+  void periodicInvestmentPortfolioStrategy (
           String portfolioName,
           Map<String, Float> stocksDistribution,
           float amount,
