@@ -3,9 +3,12 @@ package controller.guicontroller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.*;
+
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioItem;
 import view.guiview.CreatePFFrame;
+import view.guiview.CreatePortfolioFromFileFrame;
 import view.guiview.IView;
 import view.guiview.TransactionFrame;
 import view.guiview.viewCompositionForm;
@@ -26,6 +29,10 @@ public class GUIController implements Features {
     view.addFeatures(this);
   }
 
+  private void showDialogBox(JFrame frame, Object message, String title, int messageType) {
+    JOptionPane.showMessageDialog(frame, message, title, messageType);
+  }
+
   @Override
   public void viewPortfolioComposition() {
     String[] pNames = model.getPortfolioListNames();
@@ -44,6 +51,33 @@ public class GUIController implements Features {
   public void createPortfolio() {
     IView pfFrame = new CreatePFFrame();
     this.setView(pfFrame);
+  }
+
+  @Override
+  public void createPortfolioFromFile() {
+    IView portfolioFromFileFrame = new CreatePortfolioFromFileFrame();
+    this.setView(portfolioFromFileFrame);
+  }
+
+  @Override
+  public void setCreatePortfolioFromFile(JFrame frame, String portfolioName, String filepath) {
+    if(portfolioName.length() == 0) {
+      this.showDialogBox(frame, "Portfolio Name is not given", "Load Portfolio",
+              JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+
+    try {
+
+      String createdFilepath = model.createPortfolioFromFile(portfolioName, filepath);
+      this.showDialogBox(null, "Portfolio: " + portfolioName
+                      + ". Successfully Created.\n" + "It is stored at: "+createdFilepath,
+              "Portfolio Created!", JOptionPane.INFORMATION_MESSAGE);
+      frame.setVisible(false);
+
+    } catch (IllegalArgumentException e) {
+      this.showDialogBox(frame, e.getMessage(), "Load Portfolio", JOptionPane.ERROR_MESSAGE);
+    }
   }
 
   @Override

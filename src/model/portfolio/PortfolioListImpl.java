@@ -107,6 +107,9 @@ public class PortfolioListImpl extends AbstractPortfolioListImpl implements Port
   @Override
   public String createPortfolioFromFile(String portfolioName, String portfolioFilePath)
           throws IllegalArgumentException {
+    if(portfolioName.length() == 0) {
+      throw new IllegalArgumentException("The name cannot be empty.");
+    }
     this.checkPortfolioNameAlreadyExists(portfolioName);
     return loadPortfolio(portfolioName, portfolioFilePath, null).getPortfolioFilePath();
   }

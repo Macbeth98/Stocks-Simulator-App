@@ -58,7 +58,8 @@ public class TransactionFrame extends JFrame implements IView {
     commissionPrompt = new JLabel("Enter commission fees:");
     formPanel.add(commissionPrompt);
 
-    SpinnerModel commissionValue = new SpinnerNumberModel(0.0, 0.0, 10000, 0.1);
+    SpinnerModel commissionValue = new SpinnerNumberModel(0.0, 0.0,
+            10000, 0.1);
     commissionSpinner = new JSpinner(commissionValue);
     formPanel.add(commissionSpinner);
 

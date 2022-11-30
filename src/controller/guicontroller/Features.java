@@ -1,5 +1,7 @@
 package controller.guicontroller;
 
+import javax.swing.*;
+
 /**
  * Interface representing the features present as part of the GUI.
  */
@@ -19,6 +21,20 @@ public interface Features {
    * Method that allows user to create a portfolio.
    */
   void createPortfolio();
+
+  /**
+   * Method that allows user to create Portfolio from a file.
+   */
+  void createPortfolioFromFile();
+
+  /**
+   * Triggers the creation of the Portfolio from a file. View needs to pass the required parameters.
+   *
+   * @param frame the JFrame in which this view being displayed.
+   * @param portfolioName the name of the portfolio to be created.
+   * @param filepath the filepath from where the portfolio needs to be created from.
+   */
+  void setCreatePortfolioFromFile(JFrame frame, String portfolioName, String filepath);
 
   /**
    * Method that allows user to enter transactions into a portfolio.
