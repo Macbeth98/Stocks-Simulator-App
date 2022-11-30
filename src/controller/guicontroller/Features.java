@@ -47,4 +47,18 @@ public interface Features {
    * @param dateString Given date as string
    */
   void setViewPortfolioComposition(String portfolioName, String dateString);
+
+  /**
+   * Get value of portfolio on a given date and display on the view.
+   * @param portfolioName name of the given portfolio
+   * @param dateString date for value as a string
+   */
+  void viewPortfolioValueAtDate(String portfolioName, String dateString);
+
+  /**
+   * Get cost basis of a given portfolio on a given date on the view.
+   * @param portfolioName name of the given portfolio
+   * @param dateString date for getting cost basis as a string
+   */
+  void viewCostBasis(String portfolioName, String dateString);
 }

@@ -7,11 +7,13 @@ import javax.swing.*;
 
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioItem;
+import view.guiview.CostBasisForm;
 import view.guiview.CreatePFFrame;
 import view.guiview.CreatePortfolioFromFileFrame;
 import view.guiview.IView;
 import view.guiview.TransactionFrame;
 import view.guiview.viewCompositionForm;
+import view.guiview.viewPortfolioValueForm;
 
 public class GUIController implements Features {
 
@@ -98,5 +100,39 @@ public class GUIController implements Features {
     String[] pNames = model.getPortfolioListNames();
     IView compositionFrame = new viewCompositionForm(pNames, s.toString());
     this.setView(compositionFrame);
+  }
+
+  @Override
+  public void viewPortfolioValueAtDate(String portfolioName, String dateString) {
+    String[] pNames = model.getPortfolioListNames();
+    if (dateString.length() > 1 && portfolioName.length() > 1) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+      LocalDate date = LocalDate.parse(dateString, formatter);
+      float value = model.getPortfolioValueAtDate(portfolioName, date);
+      IView valueFrame = new viewPortfolioValueForm(pNames, portfolioName,
+              dateString, String.valueOf(value));
+      this.setView(valueFrame);
+    }
+    else {
+      IView valueFrame = new viewPortfolioValueForm(pNames, "", "", "");
+      this.setView(valueFrame);
+    }
+  }
+
+  @Override
+  public void viewCostBasis(String portfolioName, String dateString) {
+    String[] pNames = model.getPortfolioListNames();
+    if (dateString.length() > 1 && portfolioName.length() > 1) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+      LocalDate date = LocalDate.parse(dateString, formatter);
+      float costBasis = model.getCostBasis(portfolioName, date);
+      IView cbFrame = new viewPortfolioValueForm(pNames, portfolioName,
+              dateString, String.valueOf(costBasis));
+      this.setView(cbFrame);
+    }
+    else {
+      IView valueFrame = new CostBasisForm(pNames, "", "", "");
+      this.setView(valueFrame);
+    }
   }
 }
