@@ -75,6 +75,8 @@ public class MainFrameView extends JFrame implements IView {
   public void addFeatures(Features features) {
     createPFButton.addActionListener(evt -> features.createPortfolio());
     compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
+    pfValueButton.addActionListener(evt -> features.viewPortfolioValueAtDate("", ""));
+    costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
     exitButton.addActionListener(evt -> features.exitProgram());
   }
 }
