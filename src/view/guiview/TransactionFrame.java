@@ -10,19 +10,26 @@ import javax.swing.*;
 import controller.guicontroller.Features;
 import model.TransactionType;
 
-public class TransactionFrame extends JFrame implements IView {
+public class TransactionFrame extends AbstractFrame implements IView {
 
-  private JLabel pNameDisplay, snamePrompt, squantityPrompt, txnDatePrompt, commissionPrompt;
+  private final JLabel pNameDisplay;
+  private final JLabel snamePrompt;
+  private final JLabel squantityPrompt;
+  private final JLabel txnDatePrompt;
+  private final JLabel commissionPrompt;
 
-  private JLabel txnTypePrompt;
+  private final JLabel txnTypePrompt;
 
-  private JComboBox<TransactionType> txnType;
+  private final JComboBox<TransactionType> txnType;
 
-  private JSpinner qtySpinner, dateSpinner, commissionSpinner;
+  private final JSpinner qtySpinner;
+  private final JSpinner dateSpinner;
+  private final JSpinner commissionSpinner;
 
-  private JTextField stockNameInput;
+  private final JTextField stockNameInput;
 
-  private JButton backButton, submitButton;
+  private final JButton backButton;
+  private final JButton submitButton;
 
   public TransactionFrame(String portfolioName) {
     super("Add Transaction to Portfolio");
@@ -31,7 +38,7 @@ public class TransactionFrame extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
@@ -76,8 +83,8 @@ public class TransactionFrame extends JFrame implements IView {
     commissionPrompt = new JLabel("Enter commission fees:");
     formPanel.add(commissionPrompt);
 
-    SpinnerModel commissionValue = new SpinnerNumberModel(0.0f, 0.0f,
-            10000, 0.1f);
+    SpinnerModel commissionValue = new SpinnerNumberModel(0.0, 0.0,
+            10000, 0.1);
     commissionSpinner = new JSpinner(commissionValue);
     formPanel.add(commissionSpinner);
 
@@ -100,44 +107,33 @@ public class TransactionFrame extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      formValidations();
-      features.AddTransactionToPortfolio(
-              pNameDisplay.getText(),
-              (TransactionType) txnType.getSelectedItem(),
-              stockNameInput.getText(),
-              (float) qtySpinner.getValue(),
-              getDateSpinnerValue(),
-              (float) commissionSpinner.getValue()
-      );
+      Date date = new Date();
+      Date inputDate = (Date) this.dateSpinner.getValue();
+      float commissionValue = ((Double) commissionSpinner.getValue()).floatValue();
+      if (stockNameInput.getText().length() == 0) {
+        JOptionPane.showMessageDialog(this, "Stock Ticker Not Entered!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if ((Integer) qtySpinner.getValue() <= 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Quantity!!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if (inputDate.compareTo(date) > 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Future Date!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if (commissionValue < 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Commission!!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else {
+        features.AddTransactionToPortfolio(
+                pNameDisplay.getText(),
+                (TransactionType) txnType.getSelectedItem(),
+                stockNameInput.getText(),
+                ((Integer) qtySpinner.getValue()).floatValue(),
+                getDateSpinnerValue(),
+                ((Double) commissionSpinner.getValue()).floatValue()
+        );
+      }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  private void formValidations() {
-    if(stockNameInput.getText().length() == 0) {
-      JOptionPane.showMessageDialog(this, "Stock Ticker Not Entered!",
-              "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
-    }
-    if((Integer) qtySpinner.getValue() <= 0) {
-      JOptionPane.showMessageDialog(this, "Invalid Quantity!!",
-              "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
-    }
-    Date date = new Date();
-    Date inputDate = (Date) this.dateSpinner.getValue();
-    if(inputDate.compareTo(date) > 0) {
-      JOptionPane.showMessageDialog(this, "Invalid Future Date!",
-              "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
-    }
-    float commissionValue = (float) commissionSpinner.getValue();
-    if(commissionValue < 0) {
-      JOptionPane.showMessageDialog(this, "Invalid Commission!!",
-              "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
-    }
   }
 
   private String getDateSpinnerValue() {

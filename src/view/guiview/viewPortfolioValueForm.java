@@ -2,7 +2,6 @@ package view.guiview;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,15 +11,18 @@ import controller.guicontroller.Features;
 
 public class viewPortfolioValueForm extends JFrame implements IView {
 
-  private JButton backButton, submitButton;
+  private final JButton backButton;
+  private final JButton submitButton;
 
-  private JLabel display, valueDatePrompt, valueResultStatement;
+  private final JLabel display;
+  private final JLabel valueDatePrompt;
+  private JLabel valueResultStatement;
 
-  private JSpinner dateSpinner;
+  private final JSpinner dateSpinner;
 
-  private JRadioButton[] radioButtons;
+  private final JRadioButton[] radioButtons;
 
-  private ButtonGroup rGroup;
+  private final ButtonGroup rGroup;
 
   public viewPortfolioValueForm(String[] portfolioNames, String portfolioName,
                                 String dateString, String valueOnDate) {
@@ -111,6 +113,11 @@ public class viewPortfolioValueForm extends JFrame implements IView {
 
   @Override
   public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  @Override
+  public void displayErrorMessage(String errorMessage) {
 
   }
 

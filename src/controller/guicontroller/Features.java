@@ -76,4 +76,10 @@ public interface Features {
    */
   void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
                                  float quantity, String txnDate, float commission);
+
+  /**
+   * Create an empty Flexible Portfolio before adding transactions to it
+   * @param pName name of portfolio
+   */
+  void createEmptyPortfolio(String pName);
 }

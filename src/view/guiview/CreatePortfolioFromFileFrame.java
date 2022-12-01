@@ -10,15 +10,17 @@ import controller.guicontroller.Features;
 
 public class CreatePortfolioFromFileFrame extends JFrame implements IView {
 
-  private JButton backButton, submitButton, selectFileButton;
+  private final JButton backButton;
+  private final JButton submitButton;
+  private final JButton selectFileButton;
 
-  private JTextField pNameInput;
+  private final JTextField pNameInput;
 
   private JFileChooser pFileChooser;
 
   private int fileChooserResponse;
 
-  private JLabel fileSelectedPath;
+  private final JLabel fileSelectedPath;
 
   private JLabel display;
 
@@ -29,7 +31,7 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
@@ -79,7 +81,7 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
     selectFileButton.addActionListener(evt -> this.selectFileChooserAction());
 
     submitButton.addActionListener(evt -> {
-      if(this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
+      if (this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
         features.setCreatePortfolioFromFile(
                 this,
                 pNameInput.getText(),
@@ -98,6 +100,11 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
 
   }
 
+  @Override
+  public void displayErrorMessage(String errorMessage) {
+
+  }
+
   private String getSelectedFilePath() {
     return pFileChooser.getSelectedFile().getAbsolutePath();
   }
@@ -109,11 +116,11 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
 
   private void selectFileChooserAction() {
     pFileChooser = new JFileChooser();
-    pFileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files","CSV"));
+    pFileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "CSV"));
     pFileChooser.setCurrentDirectory(new File("."));
 
-    this.fileChooserResponse =  pFileChooser.showOpenDialog(this);
-    if(this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
+    this.fileChooserResponse = pFileChooser.showOpenDialog(this);
+    if (this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
       fileSelectedPath.setText(this.getSelectedFilePath());
     } else {
       this.selectFileWarningMessage();

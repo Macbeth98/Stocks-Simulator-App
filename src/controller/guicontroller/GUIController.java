@@ -8,13 +8,7 @@ import javax.swing.*;
 import model.TransactionType;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioItem;
-import view.guiview.CostBasisForm;
-import view.guiview.CreatePFFrame;
-import view.guiview.CreatePortfolioFromFileFrame;
-import view.guiview.IView;
-import view.guiview.TransactionFrame;
-import view.guiview.viewCompositionForm;
-import view.guiview.viewPortfolioValueForm;
+import view.guiview.*;
 
 public class GUIController implements Features {
 
@@ -54,6 +48,21 @@ public class GUIController implements Features {
   public void createPortfolio() {
     IView pfFrame = new CreatePFFrame();
     this.setView(pfFrame);
+  }
+
+  @Override
+  public void createEmptyPortfolio(String pName) {
+    try {
+      String filePath = model.createPortfolio(pName, null);
+      this.view.displaySuccessMessage("Portfolio: "
+              + pName
+              + " successfully created! It is stored at: "
+              + filePath
+      );
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException(e.getMessage());
+    }
+
   }
 
   @Override
@@ -144,9 +153,21 @@ public class GUIController implements Features {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
       LocalDate date = LocalDate.parse(txnDate, formatter);
       model.addTransactionToPortfolio(pName, txnType, ticker, quantity, date, commission);
-      this.view.displaySuccessMessage("Successfully Executed: " + txnType + "");
+      this.view.displaySuccessMessage("Successfully Executed: "
+              + txnType
+              + " transaction for "
+              + (int) quantity
+              + " no. of stocks of "
+              + ticker
+              + " on Date: "
+              + txnDate
+      );
     } catch (IllegalArgumentException e) {
-      // TODO: Catch cleanly
+      this.view.displayErrorMessage("Error While Executing: "
+              + txnType
+              + " transaction: "
+              + e.getMessage()
+      );
     }
   }
 

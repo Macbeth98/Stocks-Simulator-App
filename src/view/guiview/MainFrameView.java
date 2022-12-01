@@ -8,10 +8,17 @@ import controller.guicontroller.Features;
 
 public class MainFrameView extends JFrame implements IView {
 
-  private JButton exitButton, compositionButton, createPFButton, createPFFileButton, modifyPFButton;
+  private final JButton exitButton;
+  private final JButton compositionButton;
+  private final JButton createPFButton;
+  private final JButton createPFFileButton;
+  private final JButton modifyPFButton;
 
-  private JButton oneTimeStrategyButton, periodicStrategyButton;
-  private JButton pfValueButton, costBasisButton, graphButton;
+  private final JButton oneTimeStrategyButton;
+  private final JButton periodicStrategyButton;
+  private final JButton pfValueButton;
+  private final JButton costBasisButton;
+  private final JButton graphButton;
 
   public MainFrameView(String caption) {
     super(caption);
@@ -20,7 +27,7 @@ public class MainFrameView extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
@@ -94,6 +101,11 @@ public class MainFrameView extends JFrame implements IView {
 
   @Override
   public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  @Override
+  public void displayErrorMessage(String errorMessage) {
 
   }
 }

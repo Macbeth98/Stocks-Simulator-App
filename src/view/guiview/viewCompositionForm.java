@@ -2,8 +2,6 @@ package view.guiview;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,15 +14,17 @@ import controller.guicontroller.Features;
  */
 public class viewCompositionForm extends JFrame implements IView {
 
-  private JButton backButton, submitButton;
+  private final JButton backButton;
+  private final JButton submitButton;
 
-  private JLabel display, compositionDatePrompt;
+  private final JLabel display;
+  private final JLabel compositionDatePrompt;
 
-  private JSpinner dateSpinner;
+  private final JSpinner dateSpinner;
 
-  private JRadioButton[] radioButtons;
+  private final JRadioButton[] radioButtons;
 
-  private ButtonGroup rGroup;
+  private final ButtonGroup rGroup;
 
   private JTable data_table;
 
@@ -35,7 +35,7 @@ public class viewCompositionForm extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
@@ -117,6 +117,11 @@ public class viewCompositionForm extends JFrame implements IView {
 
   @Override
   public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  @Override
+  public void displayErrorMessage(String errorMessage) {
 
   }
 

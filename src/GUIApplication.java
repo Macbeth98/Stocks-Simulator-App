@@ -10,7 +10,7 @@ public class GUIApplication {
   {
     FlexiblePortfolioList model = new FlexiblePortfolioListImpl();
     GUIController controller = new GUIController(model);
-    IView view = new MainFrameView("Portfolio Operations");
+    IView view = new MainFrameView("Portfolio Application");
     controller.setView(view);
   }
 }
