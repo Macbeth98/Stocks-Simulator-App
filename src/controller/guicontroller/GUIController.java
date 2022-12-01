@@ -13,6 +13,7 @@ import view.guiview.CreatePortfolioFromFileFrame;
 import view.guiview.IView;
 import view.guiview.ModifyPFFrame;
 import view.guiview.OneTimeStrategyFrame;
+import view.guiview.PeriodicInvestmentStrategyFrame;
 import view.guiview.TransactionFrame;
 import view.guiview.viewCompositionForm;
 import view.guiview.viewPortfolioValueForm;
