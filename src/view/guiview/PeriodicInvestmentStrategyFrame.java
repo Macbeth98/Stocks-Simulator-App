@@ -22,7 +22,7 @@ import controller.guicontroller.Features;
  * This class is a View class for creating of a Periodic Investment Strategy for an existing
  * Portfolio or can be used to create a New Portfolio with this Strategy.
  */
-public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
+public class PeriodicInvestmentStrategyFrame extends AbstractFrame {
 
   private final JButton backButton;
 
@@ -172,7 +172,7 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
   public void addFeatures(Features features) {
     createPortfolioButton.addActionListener(evt -> this.handleCreatePortfolioButton());
     endDateToggleButton.addActionListener(evt -> {
-      this.endDateToggleButton.setText(this.endDateToggle? endDateButtonMsgYes: endDateButtonMsgNo);
+      this.endDateToggleButton.setText(this.endDateToggle ? endDateButtonMsgYes : endDateButtonMsgNo);
       this.endDateToggle = !this.endDateToggle;
       endDateSpinner.setVisible(this.endDateToggle);
     });
@@ -182,7 +182,7 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
   }
 
   private void handleCreatePortfolioButton() {
-    if(portfolioNameField.getText().length() == 0) {
+    if (portfolioNameField.getText().length() == 0) {
       this.displayErrorMessage("Portfolio Name cannot be Empty.");
       return;
     }
@@ -201,8 +201,8 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
 
     String portfolioName;
 
-    if(this.pnRadioButtonSelected || this.portfolioNameField.getText().length() > 2) {
-      portfolioName = this.pnRadioButtonSelected? this.getRadioButtonSelection():
+    if (this.pnRadioButtonSelected || this.portfolioNameField.getText().length() > 2) {
+      portfolioName = this.pnRadioButtonSelected ? this.getRadioButtonSelection() :
               this.portfolioNameField.getText();
     } else {
       this.displayErrorMessage("Portfolio is not Selected.");
@@ -215,7 +215,7 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
 
     String endDate = null;
 
-    if(endDateToggle) {
+    if (endDateToggle) {
       endDate = this.getDateSpinnerValue(endDateSpinner);
     } else {
       System.out.println("End Date not given.");

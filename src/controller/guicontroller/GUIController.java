@@ -119,7 +119,7 @@ public class GUIController implements Features {
 
     LocalDate localEndDate = null;
 
-    if(endDate != null) {
+    if (endDate != null) {
       localEndDate = this.getLocalDate(endDate);
     }
 
