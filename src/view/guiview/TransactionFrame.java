@@ -126,7 +126,7 @@ public class TransactionFrame extends AbstractFrame implements IView {
         features.AddTransactionToPortfolio(
                 pNameDisplay.getText(),
                 (TransactionType) txnType.getSelectedItem(),
-                stockNameInput.getText(),
+                stockNameInput.getText().toUpperCase(),
                 ((Integer) qtySpinner.getValue()).floatValue(),
                 getDateSpinnerValue(),
                 ((Double) commissionSpinner.getValue()).floatValue()

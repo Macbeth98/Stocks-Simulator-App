@@ -9,20 +9,15 @@ import javax.swing.*;
 
 import controller.guicontroller.Features;
 
-public class viewPortfolioValueForm extends JFrame implements IView {
+public class viewPortfolioValueForm extends AbstractFrame {
 
   private final JButton backButton;
   private final JButton submitButton;
 
-  private final JLabel display;
   private final JLabel valueDatePrompt;
   private JLabel valueResultStatement;
 
   private final JSpinner dateSpinner;
-
-  private final JRadioButton[] radioButtons;
-
-  private final ButtonGroup rGroup;
 
   public viewPortfolioValueForm(String[] portfolioNames, String portfolioName,
                                 String dateString, String valueOnDate) {
@@ -38,23 +33,7 @@ public class viewPortfolioValueForm extends JFrame implements IView {
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
-    // display existing portfolio names
-    JPanel radioPanel = new JPanel();
-    radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.PAGE_AXIS));
-
-    display = new JLabel("Please choose portfolio: ");
-    formPanel.add(display);
-
-    radioButtons = new JRadioButton[portfolioNames.length];
-    rGroup = new ButtonGroup();
-
-    for (int i = 0; i < radioButtons.length; i++) {
-      radioButtons[i] = new JRadioButton(portfolioNames[i]);
-      radioButtons[i].setActionCommand(radioButtons[i].getText());
-      rGroup.add(radioButtons[i]);
-      radioPanel.add(radioButtons[i]);
-    }
-    formPanel.add(radioPanel);
+    this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter value date
     valueDatePrompt = new JLabel("Enter date:");
@@ -98,8 +77,8 @@ public class viewPortfolioValueForm extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      if (!(getRadioButtonSelection().length() > 0)) {
-        this.portfolioSelectionWarningMessage();
+      if (rGroup.getSelection() == null) {
+        displayErrorMessage("Please select a portfolio first!");
       } else {
         this.setVisible(false);
         features.viewPortfolioValueAtDate(
@@ -111,27 +90,8 @@ public class viewPortfolioValueForm extends JFrame implements IView {
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
-  }
-
-  private void portfolioSelectionWarningMessage() {
-    JOptionPane.showMessageDialog(this, "Please select a portfolio!",
-            "Portfolio is not Selected.", JOptionPane.WARNING_MESSAGE);
-  }
-
   private String getRadioButtonSelection() {
-    try {
-      return rGroup.getSelection().getActionCommand();
-    } catch (Exception e) {
-      return "";
-    }
+    return rGroup.getSelection().getActionCommand();
   }
 
   private String getDateSpinnerValue() {

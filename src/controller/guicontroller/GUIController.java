@@ -76,6 +76,13 @@ public class GUIController implements Features {
   }
 
   @Override
+  public void modifyPortfolio() {
+    String[] pNames = model.getPortfolioListNames();
+    IView modifyFrame = new ModifyPFFrame(pNames);
+    this.setView(modifyFrame);
+  }
+
+  @Override
   public void createPortfolioFromFile() {
     IView portfolioFromFileFrame = new CreatePortfolioFromFileFrame();
     this.setView(portfolioFromFileFrame);
@@ -96,14 +103,20 @@ public class GUIController implements Features {
   public void setViewPortfolioComposition(String portfolioName, String dateString) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
     LocalDate date = LocalDate.parse(dateString, formatter);
-    PortfolioItem[] portfolioItems = model.getPortfolioCompositionAtDate(portfolioName, date);
-    StringBuilder s = new StringBuilder();
-    for (PortfolioItem portfolioItem : portfolioItems) {
-      s.append(portfolioItem.compositionString()).append("\n");
-    }
     String[] pNames = model.getPortfolioListNames();
-    IView compositionFrame = new viewCompositionForm(pNames, s.toString());
-    this.setView(compositionFrame);
+    try {
+      PortfolioItem[] portfolioItems = model.getPortfolioCompositionAtDate(portfolioName, date);
+      StringBuilder s = new StringBuilder();
+      for (PortfolioItem portfolioItem : portfolioItems) {
+        s.append(portfolioItem.compositionString()).append("\n");
+      }
+      IView compositionFrame = new viewCompositionForm(pNames, s.toString());
+      this.setView(compositionFrame);
+    } catch (Exception e) {
+      IView compositionFrame = new viewCompositionForm(pNames, "");
+      this.setView(compositionFrame);
+      this.view.displayErrorMessage("Error While Getting Composition: " + e.getMessage());
+    }
   }
 
   @Override
@@ -112,10 +125,17 @@ public class GUIController implements Features {
     if (dateString.length() > 1 && portfolioName.length() > 1) {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
       LocalDate date = LocalDate.parse(dateString, formatter);
-      float value = model.getPortfolioValueAtDate(portfolioName, date);
-      IView valueFrame = new viewPortfolioValueForm(pNames, portfolioName,
-              dateString, String.valueOf(value));
-      this.setView(valueFrame);
+      try {
+        float value = model.getPortfolioValueAtDate(portfolioName, date);
+        IView valueFrame = new viewPortfolioValueForm(pNames, portfolioName,
+                dateString, String.valueOf(value));
+        this.setView(valueFrame);
+      } catch (Exception e) {
+        IView valueFrame = new viewPortfolioValueForm(pNames, "",
+                "", "");
+        this.setView(valueFrame);
+        this.view.displayErrorMessage("Error While Getting Value: " + e.getMessage());
+      }
     }
     else {
       IView valueFrame = new viewPortfolioValueForm(pNames, "", "", "");
@@ -129,10 +149,17 @@ public class GUIController implements Features {
     if (dateString.length() > 1 && portfolioName.length() > 1) {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
       LocalDate date = LocalDate.parse(dateString, formatter);
-      float costBasis = model.getCostBasis(portfolioName, date);
-      IView cbFrame = new CostBasisForm(pNames, portfolioName,
-              dateString, String.valueOf(costBasis));
-      this.setView(cbFrame);
+      try {
+        float costBasis = model.getCostBasis(portfolioName, date);
+        IView cbFrame = new CostBasisForm(pNames, portfolioName,
+                dateString, String.valueOf(costBasis));
+        this.setView(cbFrame);
+      } catch (Exception e) {
+        IView valueFrame = new CostBasisForm(pNames, "",
+                "", "");
+        this.setView(valueFrame);
+        this.view.displayErrorMessage("Error While Getting Cost Basis: " + e.getMessage());
+      }
     }
     else {
       IView valueFrame = new CostBasisForm(pNames, "", "", "");

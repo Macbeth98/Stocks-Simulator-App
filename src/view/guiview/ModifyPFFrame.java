@@ -11,12 +11,6 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
   private final JButton backButton;
   private final JButton submitButton;
 
-  private final JLabel display;
-
-  private final JRadioButton[] radioButtons;
-
-  private final ButtonGroup rGroup;
-
   public ModifyPFFrame(String[] portfolioNames) {
     super("Modify Portfolio");
 
@@ -30,27 +24,11 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
-    // display existing portfolio names
-    JPanel radioPanel = new JPanel();
-    radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.PAGE_AXIS));
-
-    display = new JLabel("Please choose portfolio: ");
-    formPanel.add(display);
-
-    radioButtons = new JRadioButton[portfolioNames.length];
-    rGroup = new ButtonGroup();
-
-    for (int i = 0; i < radioButtons.length; i++) {
-      radioButtons[i] = new JRadioButton(portfolioNames[i]);
-      radioButtons[i].setActionCommand(radioButtons[i].getText());
-      rGroup.add(radioButtons[i]);
-      radioPanel.add(radioButtons[i]);
-    }
-    formPanel.add(radioPanel);
+    this.add(createPortfoliosListRadio(portfolioNames));
 
     // submit button
-    submitButton = new JButton("Submit");
-    submitButton.setActionCommand("Submit");
+    submitButton = new JButton("Modify");
+    submitButton.setActionCommand("Modify");
     formPanel.add(submitButton);
 
     // exit button
@@ -66,6 +44,19 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
 
   @Override
   public void addFeatures(Features features) {
+    submitButton.addActionListener(evt -> {
+      if (rGroup.getSelection() == null) {
+        displayErrorMessage("Please select a portfolio first!");
+      }
+      else {
+        this.setVisible(false);
+        features.viewTransactionForm(getRadioButtonSelection());
+      }
+    });
+    backButton.addActionListener(evt -> this.setVisible(false));
+  }
 
+  private String getRadioButtonSelection() {
+    return rGroup.getSelection().getActionCommand();
   }
 }
