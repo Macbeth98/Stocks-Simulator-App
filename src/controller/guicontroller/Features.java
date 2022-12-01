@@ -2,6 +2,8 @@ package controller.guicontroller;
 
 import javax.swing.*;
 
+import model.TransactionType;
+
 /**
  * Interface representing the features present as part of the GUI.
  */
@@ -38,8 +40,9 @@ public interface Features {
 
   /**
    * Method that allows user to enter transactions into a portfolio.
+   * @param portfolioName name of portfolio for which transactions are added
    */
-  void viewTransactionForm();
+  void viewTransactionForm(String portfolioName);
 
   /**
    * Shows composition of portfolio on a date on the view.
@@ -61,4 +64,22 @@ public interface Features {
    * @param dateString date for getting cost basis as a string
    */
   void viewCostBasis(String portfolioName, String dateString);
+
+  /**
+   * Add a transaction to a portfolio based on inputs from the view.
+   * @param pName name of given portfolio
+   * @param txnType type of Transaction, BUY/SELL
+   * @param ticker given stock ticker
+   * @param quantity quantity of stock to be bought/sold
+   * @param txnDate date of transaction
+   * @param commission commission fee for transaction
+   */
+  void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
+                                 float quantity, String txnDate, float commission);
+
+  /**
+   * Create an empty Flexible Portfolio before adding transactions to it
+   * @param pName name of portfolio
+   */
+  void createEmptyPortfolio(String pName);
 }

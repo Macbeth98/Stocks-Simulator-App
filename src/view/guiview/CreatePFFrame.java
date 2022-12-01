@@ -7,11 +7,12 @@ import javax.swing.*;
 import controller.guicontroller.Features;
 
 
-public class CreatePFFrame extends JFrame implements IView {
+public class CreatePFFrame extends AbstractFrame implements IView {
 
-  private JButton backButton, submitButton;
+  private final JButton backButton;
+  private final JButton submitButton;
 
-  private JTextField pNameInput;
+  private final JTextField pNameInput;
 
   private JLabel display;
 
@@ -22,7 +23,7 @@ public class CreatePFFrame extends JFrame implements IView {
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
@@ -56,7 +57,26 @@ public class CreatePFFrame extends JFrame implements IView {
 
   @Override
   public void addFeatures(Features features) {
-    submitButton.addActionListener(evt -> features.viewTransactionForm());
+    submitButton.addActionListener(evt -> {
+      if (pNameInput.getText().length() == 0) {
+        this.portfolioNameErrorMessage();
+      } else {
+        try {
+          features.createEmptyPortfolio(pNameInput.getText());
+          this.setVisible(false);
+          features.viewTransactionForm(pNameInput.getText());
+        } catch (Exception e) {
+          displayErrorMessage("Portfolio Creation Error: "
+                  + e.getMessage());
+          this.setVisible(false);
+        }
+      }
+    });
     backButton.addActionListener(evt -> this.setVisible(false));
+  }
+
+  private void portfolioNameErrorMessage() {
+    JOptionPane.showMessageDialog(this, "Portfolio Name Not Entered!",
+            "Create Portfolio", JOptionPane.WARNING_MESSAGE);
   }
 }

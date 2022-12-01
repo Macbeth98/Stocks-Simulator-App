@@ -1,35 +1,60 @@
 package view.guiview;
 
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.*;
 
 import controller.guicontroller.Features;
+import model.TransactionType;
 
-public class TransactionFrame extends JFrame implements IView {
+public class TransactionFrame extends AbstractFrame implements IView {
 
-  private JLabel snamePrompt, squantityPrompt, txnDatePrompt, commissionPrompt;
+  private final JLabel pNameDisplay;
+  private final JLabel snamePrompt;
+  private final JLabel squantityPrompt;
+  private final JLabel txnDatePrompt;
+  private final JLabel commissionPrompt;
 
-  private JSpinner qtySpinner, dateSpinner, commissionSpinner;
+  private final JLabel txnTypePrompt;
 
-  private JTextField stockNameInput;
+  private final JComboBox<TransactionType> txnType;
 
-  private JButton backButton, submitButton;
+  private final JSpinner qtySpinner;
+  private final JSpinner dateSpinner;
+  private final JSpinner commissionSpinner;
 
-  public TransactionFrame() {
+  private final JTextField stockNameInput;
+
+  private final JButton backButton;
+  private final JButton submitButton;
+
+  public TransactionFrame(String portfolioName) {
     super("Add Transaction to Portfolio");
 
     setSize(500, 300);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
+
+    // added for formatting reasons
+    formPanel.add(new JLabel("Portfolio: "));
+
+    pNameDisplay = new JLabel(portfolioName);
+    formPanel.add(pNameDisplay);
+
+    txnTypePrompt = new JLabel("Transaction Type: ");
+    formPanel.add(txnTypePrompt);
+
+    txnType = new JComboBox<>(TransactionType.values());
+    formPanel.add(txnType);
 
     snamePrompt = new JLabel("Enter stock ticker name:");
     formPanel.add(snamePrompt);
@@ -81,7 +106,38 @@ public class TransactionFrame extends JFrame implements IView {
 
   @Override
   public void addFeatures(Features features) {
-
+    submitButton.addActionListener(evt -> {
+      Date date = new Date();
+      Date inputDate = (Date) this.dateSpinner.getValue();
+      float commissionValue = ((Double) commissionSpinner.getValue()).floatValue();
+      if (stockNameInput.getText().length() == 0) {
+        JOptionPane.showMessageDialog(this, "Stock Ticker Not Entered!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if ((Integer) qtySpinner.getValue() <= 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Quantity!!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if (inputDate.compareTo(date) > 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Future Date!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else if (commissionValue < 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Commission!!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else {
+        features.AddTransactionToPortfolio(
+                pNameDisplay.getText(),
+                (TransactionType) txnType.getSelectedItem(),
+                stockNameInput.getText(),
+                ((Integer) qtySpinner.getValue()).floatValue(),
+                getDateSpinnerValue(),
+                ((Double) commissionSpinner.getValue()).floatValue()
+        );
+      }
+    });
     backButton.addActionListener(evt -> this.setVisible(false));
+  }
+
+  private String getDateSpinnerValue() {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+    return formatter.format(this.dateSpinner.getValue());
   }
 }

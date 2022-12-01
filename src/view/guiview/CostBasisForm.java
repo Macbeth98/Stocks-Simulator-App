@@ -11,19 +11,22 @@ import controller.guicontroller.Features;
 
 public class CostBasisForm extends JFrame implements IView {
 
-  private JButton backButton, submitButton;
+  private final JButton backButton;
+  private final JButton submitButton;
 
-  private JLabel display, valueDatePrompt, valueResultStatement;
+  private final JLabel display;
+  private final JLabel valueDatePrompt;
+  private JLabel valueResultStatement;
 
-  private JSpinner dateSpinner;
+  private final JSpinner dateSpinner;
 
-  private JRadioButton[] radioButtons;
+  private final JRadioButton[] radioButtons;
 
-  private ButtonGroup rGroup;
+  private final ButtonGroup rGroup;
 
   public CostBasisForm(String[] portfolioNames, String portfolioName,
                        String dateString, String costBasis) {
-    super("Get Portfolio Value On A Date");
+    super("Cost Basis of Portfolio On A Date");
 
     setSize(500, 300);
     setLocation(200, 200);
@@ -96,13 +99,37 @@ public class CostBasisForm extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      this.setVisible(false);
-      features.viewCostBasis(
-              getRadioButtonSelection(),
-              getDateSpinnerValue()
-      );
+      Date inputDate = (Date) this.dateSpinner.getValue();
+      Date date = new Date();
+      if (!(getRadioButtonSelection().length() > 0)) {
+        this.portfolioSelectionWarningMessage();
+      } else if (inputDate.compareTo(date) > 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Future Date!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else {
+        this.setVisible(false);
+        features.viewCostBasis(
+                getRadioButtonSelection(),
+                getDateSpinnerValue()
+        );
+      }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
+  }
+
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  @Override
+  public void displayErrorMessage(String errorMessage) {
+
+  }
+
+  private void portfolioSelectionWarningMessage() {
+    JOptionPane.showMessageDialog(this, "Please select a portfolio!",
+            "Portfolio is not Selected.", JOptionPane.WARNING_MESSAGE);
   }
 
   private String getRadioButtonSelection() {
