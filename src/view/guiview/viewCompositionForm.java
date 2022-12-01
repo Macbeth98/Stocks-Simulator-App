@@ -12,19 +12,13 @@ import controller.guicontroller.Features;
 /**
  * Class that contains the frame for the view portfolio composition form.
  */
-public class viewCompositionForm extends JFrame implements IView {
+public class viewCompositionForm extends AbstractFrame implements IView {
 
   private final JButton backButton;
   private final JButton submitButton;
-
-  private final JLabel display;
   private final JLabel compositionDatePrompt;
 
   private final JSpinner dateSpinner;
-
-  private final JRadioButton[] radioButtons;
-
-  private final ButtonGroup rGroup;
 
   private JTable data_table;
 
@@ -34,30 +28,14 @@ public class viewCompositionForm extends JFrame implements IView {
     setSize(500, 300);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
+    this.setResizable(true);
     this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
 
-    JPanel formPanel = new JPanel(new GridLayout(10, 1));
+    JPanel formPanel = new JPanel(new FlowLayout());
 
-    // display existing portfolio names
-    JPanel radioPanel = new JPanel();
-    radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.PAGE_AXIS));
-
-    display = new JLabel("Please choose portfolio: ");
-    formPanel.add(display);
-
-    radioButtons = new JRadioButton[portfolioNames.length];
-    rGroup = new ButtonGroup();
-
-    for (int i = 0; i < radioButtons.length; i++) {
-      radioButtons[i] = new JRadioButton(portfolioNames[i]);
-      radioButtons[i].setActionCommand(radioButtons[i].getText());
-      rGroup.add(radioButtons[i]);
-      radioPanel.add(radioButtons[i]);
-    }
-    formPanel.add(radioPanel);
+    this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter composition date
     compositionDatePrompt = new JLabel("Enter date:");
@@ -71,8 +49,6 @@ public class viewCompositionForm extends JFrame implements IView {
 
     // display composition if passed
     if (compositionString.length() != 0) {
-      JPanel compositionPanel = new JPanel(new FlowLayout());
-
       String[] columns = {"Ticker", "Quantity"};
       String[] lines = compositionString.split("\n");
       String[][] data = new String[lines.length][2];
@@ -82,8 +58,7 @@ public class viewCompositionForm extends JFrame implements IView {
       }
 
       data_table = new JTable(data, columns);
-      compositionPanel.add(data_table);
-      formPanel.add(compositionPanel);
+      formPanel.add(data_table);
     }
 
     // submit button
@@ -96,8 +71,10 @@ public class viewCompositionForm extends JFrame implements IView {
     backButton.setActionCommand("Back");
     formPanel.add(backButton);
 
-    this.add(formPanel);
+    BoxLayout vertical = new BoxLayout(formPanel, BoxLayout.PAGE_AXIS);
+    formPanel.setLayout(vertical);
 
+    this.add(formPanel);
     pack();
     setVisible(true);
 
@@ -106,6 +83,7 @@ public class viewCompositionForm extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
+      // TODO: handle no radio selection
       this.setVisible(false);
       features.setViewPortfolioComposition(
               getRadioButtonSelection(),
@@ -113,16 +91,6 @@ public class viewCompositionForm extends JFrame implements IView {
       );
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
   }
 
   private String getRadioButtonSelection() {

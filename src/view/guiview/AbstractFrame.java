@@ -6,6 +6,10 @@ import javax.swing.*;
 
 public abstract class AbstractFrame extends JFrame implements IView {
 
+  protected JRadioButton[] radioButtons;
+
+  protected ButtonGroup rGroup;
+
   public AbstractFrame(String caption) {
     super(caption);
 
@@ -28,5 +32,23 @@ public abstract class AbstractFrame extends JFrame implements IView {
   public void displayErrorMessage(String errorMessage) {
     JOptionPane.showMessageDialog(this, errorMessage,
             "Portfolio Application", JOptionPane.ERROR_MESSAGE);
+  }
+
+  protected JPanel createPortfoliosListRadio(String[] portfolioNames) {
+    // display existing portfolio names
+    JPanel radioPanel = new JPanel();
+    radioPanel.setBorder(BorderFactory.createTitledBorder("Please Select Portfolio"));
+
+    radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.Y_AXIS));
+    radioButtons = new JRadioButton[portfolioNames.length];
+    rGroup = new ButtonGroup();
+
+    for (int i = 0; i < radioButtons.length; i++) {
+      radioButtons[i] = new JRadioButton(portfolioNames[i]);
+      radioButtons[i].setActionCommand(radioButtons[i].getText());
+      rGroup.add(radioButtons[i]);
+      radioPanel.add(radioButtons[i]);
+    }
+    return radioPanel;
   }
 }
