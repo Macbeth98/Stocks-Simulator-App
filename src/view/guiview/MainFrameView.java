@@ -6,7 +6,10 @@ import javax.swing.*;
 
 import controller.guicontroller.Features;
 
-public class MainFrameView extends JFrame implements IView {
+/**
+ * Class that represents the Main Menu frame of the application.
+ */
+public class MainFrameView extends AbstractFrame {
 
   private final JButton exitButton;
   private final JButton compositionButton;
@@ -20,16 +23,13 @@ public class MainFrameView extends JFrame implements IView {
   private final JButton costBasisButton;
   private final JButton graphButton;
 
+  /**
+   * Constructs the main menu frame of the application.
+   *
+   * @param caption title of the application frame passed as a parameter
+   */
   public MainFrameView(String caption) {
     super(caption);
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 5));
 
@@ -102,15 +102,5 @@ public class MainFrameView extends JFrame implements IView {
             -> features.setViewApplyOneTimeStrategyToPortfolio());
     periodicStrategyButton.addActionListener(evt -> features.setViewPeriodicInvestmentStrategy());
     exitButton.addActionListener(evt -> features.exitProgram());
-  }
-
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
   }
 }

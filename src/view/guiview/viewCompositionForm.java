@@ -1,7 +1,6 @@
 package view.guiview;
 
 import java.awt.*;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,16 +21,14 @@ public class viewCompositionForm extends AbstractFrame implements IView {
 
   private JTable data_table;
 
+  /**
+   * Constructs a form to view a portfolio's composition.
+   *
+   * @param portfolioNames    list of existing portfolios
+   * @param compositionString composition of given portfolio as a string
+   */
   public viewCompositionForm(String[] portfolioNames, String compositionString) {
     super("View Portfolio Composition");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(true);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new FlowLayout());
 
@@ -85,8 +82,7 @@ public class viewCompositionForm extends AbstractFrame implements IView {
     submitButton.addActionListener(evt -> {
       if (rGroup.getSelection() == null) {
         displayErrorMessage("Please select a portfolio first!");
-      }
-      else {
+      } else {
         this.setVisible(false);
         features.setViewPortfolioComposition(
                 getRadioButtonSelection(),

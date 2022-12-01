@@ -1,8 +1,6 @@
 package view.guiview;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -125,7 +123,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     buttonPanel.add(submitButton);
     rightSecondHalf.add(buttonPanel);
 
-    display =  new JLabel("Stocks Distribution Selected:");
+    display = new JLabel("Stocks Distribution Selected:");
     leftSecondHalf.add(display);
 
     dataTable = new JTable(new DefaultTableModel(new Object[]{"Ticker", "Distribution Percentage"},
@@ -161,20 +159,20 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     int count = 0;
     int row = -1;
     for (Vector tableDatum : tableData) {
-      if(tableDatum.contains(ticker)) {
+      if (tableDatum.contains(ticker)) {
         row = count;
         break;
       }
       count++;
     }
-    if(row >= 0) {
+    if (row >= 0) {
       tableModel.removeRow(row);
     }
   }
 
   private void addDataToTable(String ticker, float percentage) {
     DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    if(stocksDist.containsKey(ticker)) {
+    if (stocksDist.containsKey(ticker)) {
       this.removeFromTable(tableModel, ticker);
     }
     stocksDist.put(ticker, percentage);
@@ -183,12 +181,12 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
   private void AddStockToList() {
     String ticker = stockTickerField.getText().toUpperCase();
-    if(ticker.length() == 0) {
+    if (ticker.length() == 0) {
       this.displayErrorMessage("The ticker symbol is not given.");
     }
 
     float percentage = Float.parseFloat(stockDistSpinner.getValue().toString());
-    if(percentage <= 0) {
+    if (percentage <= 0) {
       this.displayErrorMessage("The percentage given is not valid.");
     }
 
@@ -198,7 +196,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
   private void handleSubmitButton(Features features) {
 
-    if(!this.pnRadioButtonSelected) {
+    if (!this.pnRadioButtonSelected) {
       this.displayErrorMessage("Portfolio is not Selected.");
       return;
     }

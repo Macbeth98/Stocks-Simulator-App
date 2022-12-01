@@ -9,7 +9,10 @@ import javax.swing.*;
 import controller.guicontroller.Features;
 import model.TransactionType;
 
-public class TransactionFrame extends AbstractFrame implements IView {
+/**
+ * Class consisting of the frame that shows the menu to add a transaction.
+ */
+public class TransactionFrame extends AbstractFrame {
 
   private final JLabel pNameDisplay;
   private final JLabel snamePrompt;
@@ -30,16 +33,13 @@ public class TransactionFrame extends AbstractFrame implements IView {
   private final JButton backButton;
   private final JButton submitButton;
 
+  /**
+   * Constructs the frame to add a transaction to a specific portfolio.
+   *
+   * @param portfolioName given portfolio's name
+   */
   public TransactionFrame(String portfolioName) {
     super("Add Transaction to Portfolio");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 

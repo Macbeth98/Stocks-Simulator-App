@@ -7,6 +7,9 @@ import java.util.Date;
 
 import javax.swing.*;
 
+/**
+ * Abstract Class that contains the common components of all the view frames.
+ */
 public abstract class AbstractFrame extends JFrame implements IView {
 
   protected JRadioButton[] radioButtons;
@@ -17,6 +20,11 @@ public abstract class AbstractFrame extends JFrame implements IView {
 
   protected boolean pnRadioButtonSelected;
 
+  /**
+   * Constructs an abstract frame object to be displayed.
+   *
+   * @param caption parameter passed to denote the title of the screen/frame
+   */
   public AbstractFrame(String caption) {
     super(caption);
 

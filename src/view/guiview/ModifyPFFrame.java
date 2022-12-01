@@ -14,14 +14,6 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
   public ModifyPFFrame(String[] portfolioNames) {
     super("Modify Portfolio");
 
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
-
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
     this.add(createPortfoliosListRadio(portfolioNames));
@@ -47,8 +39,7 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
     submitButton.addActionListener(evt -> {
       if (rGroup.getSelection() == null) {
         displayErrorMessage("Please select a portfolio first!");
-      }
-      else {
+      } else {
         this.setVisible(false);
         features.viewTransactionForm(getRadioButtonSelection());
       }

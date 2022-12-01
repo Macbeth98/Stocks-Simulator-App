@@ -33,9 +33,9 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
     super("Load A Portfolio From File.");
 
 
-    this.setMinimumSize(new Dimension(1000,500));
+    this.setMinimumSize(new Dimension(1000, 500));
 
-    JPanel formPanel = new JPanel(new GridLayout(10, 1, 0,10));
+    JPanel formPanel = new JPanel(new GridLayout(10, 1, 0, 10));
 
     JLabel display = new JLabel("Create a New Portfolio From File.");
     formPanel.add(display);
@@ -89,7 +89,7 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
                   this.getSelectedFilePath()
           );
           this.displaySuccessMessage("Portfolio: " + pNameInput.getText()
-                          + ". Successfully Created.\n" + "It is stored at: "+createdFilepath);
+                  + ". Successfully Created.\n" + "It is stored at: " + createdFilepath);
           this.setVisible(false);
 
         } catch (IllegalArgumentException e) {

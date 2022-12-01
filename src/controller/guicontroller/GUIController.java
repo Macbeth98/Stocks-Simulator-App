@@ -4,22 +4,42 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-
 import model.TransactionType;
 import model.flexibleportfolio.FPortfolioListWithStrategy;
 import model.portfolio.PortfolioItem;
-import view.guiview.*;
+import view.guiview.CostBasisForm;
+import view.guiview.CreatePFFrame;
+import view.guiview.CreatePortfolioFromFileFrame;
+import view.guiview.IView;
+import view.guiview.ModifyPFFrame;
+import view.guiview.OneTimeStrategyFrame;
+import view.guiview.TransactionFrame;
+import view.guiview.viewCompositionForm;
+import view.guiview.viewPortfolioValueForm;
 
+/**
+ * Class consisting implementation for the controller that takes inputs from the GUI.
+ */
 public class GUIController implements Features {
 
   private final FPortfolioListWithStrategy model;
 
   private IView view;
 
+  /**
+   * Constructs a controller object with a given model object.
+   *
+   * @param m model object of FPortfolioListWithStrategy interface type
+   */
   public GUIController(FPortfolioListWithStrategy m) {
     model = m;
   }
 
+  /**
+   * Sets view object for the controller object to use.
+   *
+   * @param v view object of IView interface type
+   */
   public void setView(IView v) {
     view = v;
     //provide view with all the callbacks
@@ -113,8 +133,8 @@ public class GUIController implements Features {
 
   @Override
   public void viewTransactionForm(String portfolioName) {
-     IView txnFrame = new TransactionFrame(portfolioName);
-     this.setView(txnFrame);
+    IView txnFrame = new TransactionFrame(portfolioName);
+    this.setView(txnFrame);
   }
 
   @Override
@@ -154,8 +174,7 @@ public class GUIController implements Features {
         this.setView(valueFrame);
         this.view.displayErrorMessage("Error While Getting Value: " + e.getMessage());
       }
-    }
-    else {
+    } else {
       IView valueFrame = new viewPortfolioValueForm(pNames, "", "", "");
       this.setView(valueFrame);
     }
@@ -178,8 +197,7 @@ public class GUIController implements Features {
         this.setView(valueFrame);
         this.view.displayErrorMessage("Error While Getting Cost Basis: " + e.getMessage());
       }
-    }
-    else {
+    } else {
       IView valueFrame = new CostBasisForm(pNames, "", "", "");
       this.setView(valueFrame);
     }

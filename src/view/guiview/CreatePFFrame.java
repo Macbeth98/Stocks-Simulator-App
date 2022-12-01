@@ -6,7 +6,9 @@ import javax.swing.*;
 
 import controller.guicontroller.Features;
 
-
+/**
+ * Class that defines the frame used by GUI to create a portfolio.
+ */
 public class CreatePFFrame extends AbstractFrame {
 
   private final JButton backButton;
@@ -14,16 +16,11 @@ public class CreatePFFrame extends AbstractFrame {
 
   private final JTextField pNameInput;
 
+  /**
+   * Constructs the frame containing the form for creating a portfolio.
+   */
   public CreatePFFrame() {
     super("Create Portfolio Menu");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
