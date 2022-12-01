@@ -100,6 +100,7 @@ public class MainFrameView extends JFrame implements IView {
     costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
     oneTimeStrategyButton.addActionListener(evt
             -> features.setViewApplyOneTimeStrategyToPortfolio());
+    periodicStrategyButton.addActionListener(evt -> features.setViewPeriodicInvestmentStrategy());
     exitButton.addActionListener(evt -> features.exitProgram());
   }
 

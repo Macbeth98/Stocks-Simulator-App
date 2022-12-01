@@ -89,7 +89,7 @@ public class viewPortfolioValueForm extends AbstractFrame {
     });
     backButton.addActionListener(evt -> this.setVisible(false));
   }
-  
+
 
   private String getDateSpinnerValue() {
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");

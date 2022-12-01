@@ -102,6 +102,14 @@ public interface Features {
   void applyOneTimeStrategyToPortfolio(String portfolioName, float amount, float commission,
                                        String date, Map<String, Float> stocksDist);
 
+
+  /**
+   * Method that allows the user to create a Periodic Investment Strategy to a Portfolio.
+   */
+  void setViewPeriodicInvestmentStrategy();
+
+  void periodicInvestmentStrategyToPortfolio();
+
   /**
    * Method that allows the user to modify a specific portfolio.
    */

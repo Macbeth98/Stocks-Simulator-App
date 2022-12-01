@@ -204,8 +204,8 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     }
 
     String portfolioName = this.getRadioButtonSelection();
-    float amount = (float) this.amountSpinner.getValue();
-    float commission = (float) this.comSpinner.getValue();
+    float amount = Float.parseFloat(this.amountSpinner.getValue().toString());
+    float commission = Float.parseFloat(this.comSpinner.getValue().toString());
     String date = this.getDateSpinnerValue(dateSpinner);
 
     try {

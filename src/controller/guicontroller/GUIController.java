@@ -83,6 +83,17 @@ public class GUIController implements Features {
   }
 
   @Override
+  public void setViewPeriodicInvestmentStrategy() {
+    String[] portfolioNames = model.getPortfolioListNames();
+    this.setView(new PeriodicInvestmentStrategyFrame(portfolioNames));
+  }
+
+  @Override
+  public void periodicInvestmentStrategyToPortfolio() {
+
+  }
+
+  @Override
   public void modifyPortfolio() {
     String[] pNames = model.getPortfolioListNames();
     IView modifyFrame = new ModifyPFFrame(pNames);
