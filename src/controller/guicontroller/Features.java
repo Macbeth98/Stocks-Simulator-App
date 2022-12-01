@@ -32,11 +32,11 @@ public interface Features {
   /**
    * Triggers the creation of the Portfolio from a file. View needs to pass the required parameters.
    *
-   * @param frame the JFrame in which this view being displayed.
    * @param portfolioName the name of the portfolio to be created.
    * @param filepath the filepath from where the portfolio needs to be created from.
+   * @return returns the filepath of where this Portfolio is tored.
    */
-  void setCreatePortfolioFromFile(JFrame frame, String portfolioName, String filepath);
+  String setCreatePortfolioFromFile(String portfolioName, String filepath);
 
   /**
    * Method that allows user to enter transactions into a portfolio.
@@ -82,4 +82,12 @@ public interface Features {
    * @param pName name of portfolio
    */
   void createEmptyPortfolio(String pName);
+
+
+  /**
+   * Method that allows the user to create a one time investment strategy to a Portfolio.
+   */
+  void setViewApplyOneTimeStrategyToPortfolio();
+
+  void applyOneTimeStrategyToPortfolio();
 }

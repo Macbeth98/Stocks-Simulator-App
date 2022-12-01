@@ -66,30 +66,24 @@ public class GUIController implements Features {
   }
 
   @Override
+  public void setViewApplyOneTimeStrategyToPortfolio() {
+    IView oneTimeStrategyFrame;
+  }
+
+  @Override
+  public void applyOneTimeStrategyToPortfolio() {
+
+  }
+
+  @Override
   public void createPortfolioFromFile() {
     IView portfolioFromFileFrame = new CreatePortfolioFromFileFrame();
     this.setView(portfolioFromFileFrame);
   }
 
   @Override
-  public void setCreatePortfolioFromFile(JFrame frame, String portfolioName, String filepath) {
-    if(portfolioName.length() == 0) {
-      this.showDialogBox(frame, "Portfolio Name is not given", "Load Portfolio",
-              JOptionPane.ERROR_MESSAGE);
-      return;
-    }
-
-    try {
-
-      String createdFilepath = model.createPortfolioFromFile(portfolioName, filepath);
-      this.showDialogBox(null, "Portfolio: " + portfolioName
-                      + ". Successfully Created.\n" + "It is stored at: "+createdFilepath,
-              "Portfolio Created!", JOptionPane.INFORMATION_MESSAGE);
-      frame.setVisible(false);
-
-    } catch (IllegalArgumentException e) {
-      this.showDialogBox(frame, e.getMessage(), "Load Portfolio", JOptionPane.ERROR_MESSAGE);
-    }
+  public String setCreatePortfolioFromFile(String portfolioName, String filepath) {
+    return model.createPortfolioFromFile(portfolioName, filepath);
   }
 
   @Override

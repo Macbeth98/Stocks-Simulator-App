@@ -14,8 +14,6 @@ public class CreatePFFrame extends AbstractFrame implements IView {
 
   private final JTextField pNameInput;
 
-  private JLabel display;
-
   public CreatePFFrame() {
     super("Create Portfolio Menu");
 
@@ -29,7 +27,7 @@ public class CreatePFFrame extends AbstractFrame implements IView {
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
-    display = new JLabel("Create a new portfolio");
+    JLabel display = new JLabel("Create a new portfolio");
     formPanel.add(display);
 
     display = new JLabel("Enter portfolio name:");

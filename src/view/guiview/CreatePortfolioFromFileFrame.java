@@ -8,7 +8,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.guicontroller.Features;
 
-public class CreatePortfolioFromFileFrame extends JFrame implements IView {
+/**
+ * This class is a View class for creating of Portfolio from a file given by user.
+ */
+public class CreatePortfolioFromFileFrame extends AbstractFrame {
 
   private final JButton backButton;
   private final JButton submitButton;
@@ -22,22 +25,18 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
 
   private final JLabel fileSelectedPath;
 
-  private JLabel display;
-
+  /**
+   * Initiates and constructs the view with a grid layout and the required fields.
+   */
   public CreatePortfolioFromFileFrame() {
     super("Load A Portfolio From File.");
 
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(true);
-    this.setMinimumSize(new Dimension(1000,500));
 
-    this.setLayout(new FlowLayout());
+    this.setMinimumSize(new Dimension(1000,500));
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1, 0,10));
 
-    display = new JLabel("Create a New Portfolio From File.");
+    JLabel display = new JLabel("Create a New Portfolio From File.");
     formPanel.add(display);
 
     display = new JLabel("Enter Portfolio Name:");
@@ -82,27 +81,25 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
 
     submitButton.addActionListener(evt -> {
       if (this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
-        features.setCreatePortfolioFromFile(
-                this,
-                pNameInput.getText(),
-                this.getSelectedFilePath()
-        );
+        try {
+
+          String createdFilepath = features.setCreatePortfolioFromFile(
+                  pNameInput.getText(),
+                  this.getSelectedFilePath()
+          );
+          this.displaySuccessMessage("Portfolio: " + pNameInput.getText()
+                          + ". Successfully Created.\n" + "It is stored at: "+createdFilepath);
+          this.setVisible(false);
+
+        } catch (IllegalArgumentException e) {
+          this.displayErrorMessage(e.getMessage());
+        }
       } else {
         this.selectFileWarningMessage();
       }
     });
 
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
   }
 
   private String getSelectedFilePath() {
