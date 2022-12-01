@@ -28,12 +28,12 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
     setSize(500, 300);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500,500));
+    this.setResizable(true);
+    this.setMinimumSize(new Dimension(1000,500));
 
     this.setLayout(new FlowLayout());
 
-    JPanel formPanel = new JPanel(new GridLayout(10, 1));
+    JPanel formPanel = new JPanel(new GridLayout(10, 1, 0,10));
 
     display = new JLabel("Create a New Portfolio From File.");
     formPanel.add(display);
