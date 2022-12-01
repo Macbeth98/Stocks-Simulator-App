@@ -1,6 +1,9 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
 import java.util.Calendar;
 import java.util.Date;
 
