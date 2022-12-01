@@ -21,7 +21,7 @@ public class MainFrameView extends AbstractFrame {
   private final JButton periodicStrategyButton;
   private final JButton pfValueButton;
   private final JButton costBasisButton;
-  private final JButton graphButton;
+  // private final JButton graphButton;
 
   /**
    * Constructs the main menu frame of the application.
@@ -74,9 +74,9 @@ public class MainFrameView extends AbstractFrame {
     btnPanel.add(costBasisButton);
 
     // get portfolio performance graph
-    graphButton = new JButton("Get Performance Graph");
-    graphButton.setActionCommand("Portfolio Performance Graph");
-    btnPanel.add(graphButton);
+    // graphButton = new JButton("Get Performance Graph");
+    // graphButton.setActionCommand("Portfolio Performance Graph");
+    // btnPanel.add(graphButton);
 
     //exit button
     exitButton = new JButton("Exit");
@@ -95,11 +95,10 @@ public class MainFrameView extends AbstractFrame {
     createPFFileButton.addActionListener(evt -> features.createPortfolioFromFile());
     modifyPFButton.addActionListener(evt -> features.modifyPortfolio());
     compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
-    pfValueButton.addActionListener(evt
-            -> features.viewPortfolioValueAtDate("", ""));
+    pfValueButton.addActionListener(evt -> features.viewPortfolioValueAtDate("", ""));
     costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
-    oneTimeStrategyButton.addActionListener(evt
-            -> features.setViewApplyOneTimeStrategyToPortfolio());
+    oneTimeStrategyButton.addActionListener(evt ->
+            features.setViewApplyOneTimeStrategyToPortfolio());
     periodicStrategyButton.addActionListener(evt -> features.setViewPeriodicInvestmentStrategy());
     exitButton.addActionListener(evt -> features.exitProgram());
   }

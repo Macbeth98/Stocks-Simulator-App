@@ -1,14 +1,9 @@
 package model;
 
-import java.time.LocalDate;
-import java.util.Map;
-
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.flexibleportfolio.FlexiblePortfolioListImpl;
 import model.portfolio.PortfolioList;
 import model.portfolio.PortfolioListImpl;
-import model.strategy.PSDollarCostAverage;
-import model.strategy.PortfolioStrategy;
 
 /**
  * This class implements the GenericPortfolioList interface.

@@ -6,11 +6,15 @@ import javax.swing.*;
 
 import controller.guicontroller.Features;
 
-public class ModifyPFFrame extends AbstractFrame implements IView {
+/**
+ * Class that contains the frame which allows user to modify a specific portfolio.
+ */
+public class ModifyPFFrame extends AbstractFrame {
 
-  private final JButton backButton;
-  private final JButton submitButton;
-
+  /**
+   * Constructs the frame to modify a specific portfolio.
+   * @param portfolioNames list of all existing portfolio names
+   */
   public ModifyPFFrame(String[] portfolioNames) {
     super("Modify Portfolio");
 

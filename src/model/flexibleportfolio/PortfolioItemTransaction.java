@@ -38,7 +38,7 @@ public class PortfolioItemTransaction extends PortfolioItem {
       throw new IllegalArgumentException("Commission value cannot be less than zero.");
     }
 
-    if(date == null) {
+    if (date == null) {
       throw new IllegalArgumentException("Date cannot be null.");
     }
 

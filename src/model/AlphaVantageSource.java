@@ -12,7 +12,6 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,8 +45,6 @@ public class AlphaVantageSource implements DataSource {
 
   @Override
   public float getPriceAtDate(String ticker, LocalDate date) {
-
-    long time = new Date().getTime();
 
     // convert date to string
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -146,7 +143,7 @@ public class AlphaVantageSource implements DataSource {
                 .getString("4. close");
       } catch (Exception ignored) {
         countBack++;
-        if(countBack >= 4) {
+        if (countBack >= 4) {
           throw new IllegalArgumentException("Cannot fetch the price for the ticker: " + ticker
                   + " for the date: " + givenDate + ". The Price does not exist.");
         }
@@ -160,7 +157,6 @@ public class AlphaVantageSource implements DataSource {
   }
 
   private float loadPriceFromFile(String ticker, String strDate) throws IOException {
-    long time = new Date().getTime();
     if (priceMaps.containsKey(ticker)) {
       JSONObject obj = priceMaps.get(ticker);
       return this.getPriceFromJson(obj, strDate, ticker);

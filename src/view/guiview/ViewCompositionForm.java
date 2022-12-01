@@ -9,37 +9,31 @@ import javax.swing.*;
 import controller.guicontroller.Features;
 
 /**
- * Class that contains the form to view a specific portfolio's value on a date.
+ * Class that contains the frame for the view portfolio composition form.
  */
-public class viewPortfolioValueForm extends AbstractFrame {
+public class ViewCompositionForm extends AbstractFrame implements IView {
 
   private final JButton backButton;
   private final JButton submitButton;
 
-  private final JLabel valueDatePrompt;
-  private JLabel valueResultStatement;
-
   private final JSpinner dateSpinner;
 
   /**
-   * Constructs the portfolio value frame with the following parameters.
+   * Constructs a form to view a portfolio's composition.
    *
-   * @param portfolioNames list of existing portfolios
-   * @param portfolioName  given portfolio's name
-   * @param dateString     given date as string
-   * @param valueOnDate    value on given date
+   * @param portfolioNames    list of existing portfolios
+   * @param compositionString composition of given portfolio as a string
    */
-  public viewPortfolioValueForm(String[] portfolioNames, String portfolioName,
-                                String dateString, String valueOnDate) {
-    super("Get Portfolio Value On A Date");
+  public ViewCompositionForm(String[] portfolioNames, String compositionString) {
+    super("View Portfolio Composition");
 
-    JPanel formPanel = new JPanel(new GridLayout(10, 1));
+    JPanel formPanel = new JPanel(new FlowLayout());
 
     this.add(createPortfoliosListRadio(portfolioNames));
 
-    // enter value date
-    valueDatePrompt = new JLabel("Enter date:");
-    formPanel.add(valueDatePrompt);
+    // enter composition date
+    JLabel compositionDatePrompt = new JLabel("Enter date:");
+    formPanel.add(compositionDatePrompt);
 
     Date today = new Date();
     dateSpinner = new JSpinner(new SpinnerDateModel(today, null, today, Calendar.MONTH));
@@ -47,16 +41,18 @@ public class viewPortfolioValueForm extends AbstractFrame {
     dateSpinner.setEditor(editor);
     formPanel.add(dateSpinner);
 
-    // display result value if passed
-    if (dateString.length() > 0 && portfolioName.length() > 0 && valueOnDate.length() > 0) {
-      valueResultStatement = new JLabel("Value of Portfolio: "
-              + portfolioName
-              + " on Date: "
-              + dateString
-              + ", is: $"
-              + valueOnDate
-      );
-      formPanel.add(valueResultStatement);
+    // display composition if passed
+    if (compositionString.length() != 0) {
+      String[] columns = {"Ticker", "Quantity"};
+      String[] lines = compositionString.split("\n");
+      String[][] data = new String[lines.length][2];
+      for (int i = 0; i < lines.length; i++) {
+        data[i][0] = lines[i].split(",")[0];
+        data[i][1] = lines[i].split(",")[1];
+      }
+
+      JTable dataTable = new JTable(data, columns);
+      formPanel.add(dataTable);
     }
 
     // submit button
@@ -69,8 +65,10 @@ public class viewPortfolioValueForm extends AbstractFrame {
     backButton.setActionCommand("Back");
     formPanel.add(backButton);
 
-    this.add(formPanel);
+    BoxLayout vertical = new BoxLayout(formPanel, BoxLayout.PAGE_AXIS);
+    formPanel.setLayout(vertical);
 
+    this.add(formPanel);
     pack();
     setVisible(true);
 
@@ -83,7 +81,7 @@ public class viewPortfolioValueForm extends AbstractFrame {
         displayErrorMessage("Please select a portfolio first!");
       } else {
         this.setVisible(false);
-        features.viewPortfolioValueAtDate(
+        features.setViewPortfolioComposition(
                 getRadioButtonSelection(),
                 getDateSpinnerValue(dateSpinner)
         );

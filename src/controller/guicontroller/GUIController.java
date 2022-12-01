@@ -15,8 +15,8 @@ import view.guiview.ModifyPFFrame;
 import view.guiview.OneTimeStrategyFrame;
 import view.guiview.PeriodicInvestmentStrategyFrame;
 import view.guiview.TransactionFrame;
-import view.guiview.viewCompositionForm;
-import view.guiview.viewPortfolioValueForm;
+import view.guiview.ViewCompositionForm;
+import view.guiview.ViewPortfolioValueForm;
 
 /**
  * Class consisting implementation for the controller that takes inputs from the GUI.
@@ -55,7 +55,7 @@ public class GUIController implements Features {
   @Override
   public void viewPortfolioComposition() {
     String[] pNames = model.getPortfolioListNames();
-    IView compositionFrame = new viewCompositionForm(pNames, "");
+    IView compositionFrame = new ViewCompositionForm(pNames, "");
     this.setView(compositionFrame);
     // model.getPortfolioCompositionAtDate()
     // view.showPortfolioComposition(portfolioName);
@@ -149,10 +149,10 @@ public class GUIController implements Features {
       for (PortfolioItem portfolioItem : portfolioItems) {
         s.append(portfolioItem.compositionString()).append("\n");
       }
-      IView compositionFrame = new viewCompositionForm(pNames, s.toString());
+      IView compositionFrame = new ViewCompositionForm(pNames, s.toString());
       this.setView(compositionFrame);
     } catch (Exception e) {
-      IView compositionFrame = new viewCompositionForm(pNames, "");
+      IView compositionFrame = new ViewCompositionForm(pNames, "");
       this.setView(compositionFrame);
       this.view.displayErrorMessage("Error While Getting Composition: " + e.getMessage());
     }
@@ -166,17 +166,17 @@ public class GUIController implements Features {
       LocalDate date = LocalDate.parse(dateString, formatter);
       try {
         float value = model.getPortfolioValueAtDate(portfolioName, date);
-        IView valueFrame = new viewPortfolioValueForm(pNames, portfolioName,
+        IView valueFrame = new ViewPortfolioValueForm(pNames, portfolioName,
                 dateString, String.valueOf(value));
         this.setView(valueFrame);
       } catch (Exception e) {
-        IView valueFrame = new viewPortfolioValueForm(pNames, "",
+        IView valueFrame = new ViewPortfolioValueForm(pNames, "",
                 "", "");
         this.setView(valueFrame);
         this.view.displayErrorMessage("Error While Getting Value: " + e.getMessage());
       }
     } else {
-      IView valueFrame = new viewPortfolioValueForm(pNames, "", "", "");
+      IView valueFrame = new ViewPortfolioValueForm(pNames, "", "", "");
       this.setView(valueFrame);
     }
   }
@@ -205,7 +205,7 @@ public class GUIController implements Features {
   }
 
   @Override
-  public void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
+  public void addTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
                                         float quantity, String txnDate, float commission) {
     try {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");

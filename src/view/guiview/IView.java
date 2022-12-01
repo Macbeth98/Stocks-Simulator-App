@@ -7,12 +7,6 @@ import controller.guicontroller.Features;
  */
 public interface IView {
 
-//  /**
-//   * Method to output the composition of the portfolio on the screen.
-//   * @param s String containing portfolio composition
-//   */
-//  void showPortfolioComposition(String s);
-
   /**
    * Method to add the features of the buttons on the view.
    *
@@ -21,14 +15,14 @@ public interface IView {
   void addFeatures(Features features);
 
   /**
-   * Method to output success messages on the screen
+   * Method to output success messages on the screen.
    *
    * @param successMessage message to be displayed as string
    */
   void displaySuccessMessage(String successMessage);
 
   /**
-   * Method to output error messages on the screen
+   * Method to output error messages on the screen.
    *
    * @param errorMessage message to be displayed
    */

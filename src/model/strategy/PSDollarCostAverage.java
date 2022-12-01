@@ -17,12 +17,12 @@ public class PSDollarCostAverage implements PortfolioStrategy {
   private void addTransactionsToPortfolio(FlexiblePortfolio portfolio,
                                           Map<String, Float> stocksDistribution,
                                           float amount, float commission, LocalDate currentDate)
-          throws IllegalArgumentException  {
+          throws IllegalArgumentException {
     try {
       for (String ticker : stocksDistribution.keySet()) {
         float stockAmount = (stocksDistribution.get(ticker) / 100) * amount - commission;
         float stockPrice = new StockObjectImpl(ticker).getCurrentPriceAtDate(currentDate);
-        float quantity = stockAmount/stockPrice;
+        float quantity = stockAmount / stockPrice;
         portfolio.addStock(ticker, quantity, currentDate, commission);
       }
     } catch (FileNotFoundException e) {
@@ -31,11 +31,11 @@ public class PSDollarCostAverage implements PortfolioStrategy {
     }
   }
 
-  private float getTotalPercentage(Collection<Float> values)  throws IllegalArgumentException {
+  private float getTotalPercentage(Collection<Float> values) throws IllegalArgumentException {
     float totalValue = 0;
 
     for (Float value : values) {
-      if(value <= 0) {
+      if (value <= 0) {
         throw new IllegalArgumentException("The percentage given in the Stocks "
                 + "Distribution must be greater than 0");
       }
@@ -51,19 +51,19 @@ public class PSDollarCostAverage implements PortfolioStrategy {
                                                  float commission)
           throws IllegalArgumentException {
 
-    if(stocksDistribution == null) {
+    if (stocksDistribution == null) {
       throw new IllegalArgumentException("The Stocks Distribution must be given.");
     }
 
-    if(!(amount > 0)) {
+    if (!(amount > 0)) {
       throw new IllegalArgumentException("The Amount value given is not valid.");
     }
 
-    if(date == null) {
+    if (date == null) {
       throw new IllegalArgumentException("Date must be given.");
     }
 
-    if(commission < 0) {
+    if (commission < 0) {
       throw new IllegalArgumentException("The commission value given is not valid.");
     }
 
@@ -73,7 +73,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
       throw new IllegalArgumentException("The sum of given stock distribution is not 100%.");
     }
 
-    if(date.isAfter(LocalDate.now())) {
+    if (date.isAfter(LocalDate.now())) {
       // store the strategy on a file and then
       return;
     }
@@ -84,37 +84,37 @@ public class PSDollarCostAverage implements PortfolioStrategy {
 
   @Override
   public void periodicInvestmentPortfolioStrategy(FlexiblePortfolio portfolio,
-                                                      Map<String, Float> stocksDistribution,
-                                                      float amount, int frequencyInDays,
-                                                      LocalDate startDate, LocalDate endDate,
-                                                      float commission)
+                                                  Map<String, Float> stocksDistribution,
+                                                  float amount, int frequencyInDays,
+                                                  LocalDate startDate, LocalDate endDate,
+                                                  float commission)
           throws IllegalArgumentException {
 
-    if(stocksDistribution == null) {
+    if (stocksDistribution == null) {
       throw new IllegalArgumentException("The Stocks Distribution must be given.");
     }
 
-    if(amount <= 0) {
+    if (amount <= 0) {
       throw new IllegalArgumentException("The Amount given is not valid.");
     }
 
-    if(frequencyInDays < 1) {
+    if (frequencyInDays < 1) {
       throw new IllegalArgumentException("The frequency given is not valid.");
     }
 
-    if(endDate != null) {
-      if(startDate.isAfter(endDate) || startDate.isEqual(endDate)) {
+    if (endDate != null) {
+      if (startDate.isAfter(endDate) || startDate.isEqual(endDate)) {
         throw new IllegalArgumentException("The end date given is not valid.");
       }
     }
 
-    if(commission < 0) {
+    if (commission < 0) {
       throw new IllegalArgumentException("The commission value given is not valid.");
     }
 
     float totalPercentage = this.getTotalPercentage(stocksDistribution.values());
 
-    if(totalPercentage != 100f) {
+    if (totalPercentage != 100f) {
       throw new IllegalArgumentException("The sum of given stocks distribution is not 100%.");
     }
 
@@ -126,7 +126,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
 
     while (!currentDate.isAfter(now)) {
 
-      if(endDate != null && (currentDate.isAfter(endDate))) {
+      if (endDate != null && (currentDate.isAfter(endDate))) {
         finished = true;
         break;
       }
@@ -136,7 +136,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
       currentDate = currentDate.plusDays(frequencyInDays);
     }
 
-    if(!finished) {
+    if (!finished) {
       // Implying this is either a future end date or null.
       // store the strategy.
     }

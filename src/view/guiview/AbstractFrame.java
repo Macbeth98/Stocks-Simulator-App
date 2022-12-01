@@ -12,6 +12,9 @@ import javax.swing.*;
  */
 public abstract class AbstractFrame extends JFrame implements IView {
 
+  protected JButton backButton;
+  protected JButton submitButton;
+
   protected JRadioButton[] radioButtons;
 
   protected JSpinner dateSpinner;

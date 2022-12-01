@@ -143,7 +143,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
   @Override
   public void addFeatures(Features features) {
-    addStockDistButton.addActionListener(evt -> this.AddStockToList());
+    addStockDistButton.addActionListener(evt -> this.addStockToList());
     submitButton.addActionListener(evt -> this.handleSubmitButton(features));
     backButton.addActionListener(evt -> this.setVisible(false));
   }
@@ -179,7 +179,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     tableModel.addRow(new Object[]{ticker, percentage});
   }
 
-  private void AddStockToList() {
+  private void addStockToList() {
     String ticker = stockTickerField.getText().toUpperCase();
     if (ticker.length() == 0) {
       this.displayErrorMessage("The ticker symbol is not given.");

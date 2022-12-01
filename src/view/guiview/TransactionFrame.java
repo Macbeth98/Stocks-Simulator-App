@@ -15,12 +15,6 @@ import model.TransactionType;
 public class TransactionFrame extends AbstractFrame {
 
   private final JLabel pNameDisplay;
-  private final JLabel snamePrompt;
-  private final JLabel squantityPrompt;
-  private final JLabel txnDatePrompt;
-  private final JLabel commissionPrompt;
-
-  private final JLabel txnTypePrompt;
 
   private final JComboBox<TransactionType> txnType;
 
@@ -29,9 +23,6 @@ public class TransactionFrame extends AbstractFrame {
   private final JSpinner commissionSpinner;
 
   private final JTextField stockNameInput;
-
-  private final JButton backButton;
-  private final JButton submitButton;
 
   /**
    * Constructs the frame to add a transaction to a specific portfolio.
@@ -49,20 +40,20 @@ public class TransactionFrame extends AbstractFrame {
     pNameDisplay = new JLabel(portfolioName);
     formPanel.add(pNameDisplay);
 
-    txnTypePrompt = new JLabel("Transaction Type: ");
+    JLabel txnTypePrompt = new JLabel("Transaction Type: ");
     formPanel.add(txnTypePrompt);
 
     txnType = new JComboBox<>(TransactionType.values());
     formPanel.add(txnType);
 
-    snamePrompt = new JLabel("Enter stock ticker name:");
+    JLabel snamePrompt = new JLabel("Enter stock ticker name:");
     formPanel.add(snamePrompt);
 
     // enter portfolio name field
     stockNameInput = new JTextField();
     formPanel.add(stockNameInput);
 
-    squantityPrompt = new JLabel("Enter quantity:");
+    JLabel squantityPrompt = new JLabel("Enter quantity:");
     formPanel.add(squantityPrompt);
 
     SpinnerModel qtyValue = new SpinnerNumberModel(0, 0, 10000, 1);
@@ -70,7 +61,7 @@ public class TransactionFrame extends AbstractFrame {
     formPanel.add(qtySpinner);
 
     // date prompt
-    txnDatePrompt = new JLabel("Enter transaction date:");
+    JLabel txnDatePrompt = new JLabel("Enter transaction date:");
     formPanel.add(txnDatePrompt);
 
     Date today = new Date();
@@ -79,7 +70,7 @@ public class TransactionFrame extends AbstractFrame {
     dateSpinner.setEditor(editor);
     formPanel.add(dateSpinner);
 
-    commissionPrompt = new JLabel("Enter commission fees:");
+    JLabel commissionPrompt = new JLabel("Enter commission fees:");
     formPanel.add(commissionPrompt);
 
     SpinnerModel commissionValue = new SpinnerNumberModel(0.0, 0.0,
@@ -122,7 +113,7 @@ public class TransactionFrame extends AbstractFrame {
         JOptionPane.showMessageDialog(this, "Invalid Commission!!",
                 "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
       } else {
-        features.AddTransactionToPortfolio(
+        features.addTransactionToPortfolio(
                 pNameDisplay.getText(),
                 (TransactionType) txnType.getSelectedItem(),
                 stockNameInput.getText().toUpperCase(),

@@ -79,11 +79,11 @@ public interface Features {
    * @param txnDate    date of transaction
    * @param commission commission fee for transaction
    */
-  void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
+  void addTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
                                  float quantity, String txnDate, float commission);
 
   /**
-   * Create an empty Flexible Portfolio before adding transactions to it
+   * Create an empty Flexible Portfolio before adding transactions to it.
    *
    * @param pName name of portfolio
    */
