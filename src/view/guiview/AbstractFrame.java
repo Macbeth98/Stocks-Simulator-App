@@ -4,8 +4,11 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public abstract class AbstractFrame extends JFrame implements IView {
 
@@ -16,6 +19,16 @@ public abstract class AbstractFrame extends JFrame implements IView {
   protected ButtonGroup rGroup;
 
   protected boolean pnRadioButtonSelected;
+
+  protected JTable dataTable;
+
+  protected JTextField stockTickerField;
+
+  protected JSpinner stockDistSpinner;
+
+  protected JButton addStockDistButton;
+
+  protected Map<String, Float> stocksDist;
 
   public AbstractFrame(String caption) {
     super(caption);
@@ -84,5 +97,88 @@ public abstract class AbstractFrame extends JFrame implements IView {
   protected String getDateSpinnerValue(JSpinner dateSpinner) {
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
     return formatter.format(dateSpinner.getValue());
+  }
+
+  protected JPanel getViewStocksDistTableData() {
+    JPanel leftSecondHalf = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+    JLabel display =  new JLabel("Stocks Distribution Selected:");
+    leftSecondHalf.add(display);
+
+    dataTable = new JTable(new DefaultTableModel(new Object[]{"Ticker", "Distribution Percentage"},
+            0));
+    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
+    tableModel.addRow(new Object[]{"Ticker", "Distribution Percentage"});
+    leftSecondHalf.add(dataTable);
+
+    return leftSecondHalf;
+  }
+
+  protected JPanel getStockFormGridPanel() {
+    JPanel stockFormPanel = new JPanel(new GridLayout(7, 2));
+    JLabel display = new JLabel("Enter Stocks Distribution:");
+    stockFormPanel.add(display);
+
+    display = new JLabel("Enter Stock Ticker: ");
+    stockFormPanel.add(display);
+
+    // Enter Stock Ticker
+    stockTickerField = new JTextField();
+    stockFormPanel.add(stockTickerField);
+
+    display = new JLabel("Enter Distribution Percentage: ");
+    stockFormPanel.add(display);
+
+    SpinnerModel distValue = new SpinnerNumberModel(0, 0, 100, 0.01);
+    stockDistSpinner = new JSpinner(distValue);
+    stockFormPanel.add(stockDistSpinner);
+
+    addStockDistButton = new JButton("Add");
+    addStockDistButton.setActionCommand("Add");
+    stockFormPanel.add(addStockDistButton);
+
+    return stockFormPanel;
+  }
+
+  protected void removeFromTable(DefaultTableModel tableModel, String ticker) {
+    Vector<Vector> tableData = tableModel.getDataVector();
+    int count = 0;
+    int row = -1;
+    for (Vector tableDatum : tableData) {
+      if(tableDatum.contains(ticker)) {
+        row = count;
+        break;
+      }
+      count++;
+    }
+    if(row >= 0) {
+      tableModel.removeRow(row);
+    }
+  }
+
+  protected void addDataToTable(String ticker, float percentage) {
+    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
+    if(stocksDist.containsKey(ticker)) {
+      this.removeFromTable(tableModel, ticker);
+    }
+    stocksDist.put(ticker, percentage);
+    tableModel.addRow(new Object[]{ticker, percentage});
+  }
+
+  protected void AddStockToList() {
+    String ticker = stockTickerField.getText().toUpperCase();
+    if(ticker.length() == 0) {
+      this.displayErrorMessage("The ticker symbol is not given.");
+      return;
+    }
+
+    float percentage = Float.parseFloat(stockDistSpinner.getValue().toString());
+    if(percentage <= 0) {
+      this.displayErrorMessage("The percentage given is not valid.");
+      return;
+    }
+
+    this.addDataToTable(ticker, percentage);
+
   }
 }

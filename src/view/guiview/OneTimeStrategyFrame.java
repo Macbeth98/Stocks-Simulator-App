@@ -24,19 +24,9 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
   private final JSpinner comSpinner;
 
-  private final JTextField stockTickerField;
-
-  private final JSpinner stockDistSpinner;
-
-  private final JButton addStockDistButton;
-
-  private final JTable dataTable;
-
   private final JButton submitButton;
 
   private final JButton backButton;
-
-  private final Map<String, Float> stocksDist;
 
   /**
    * Initiates and constructs the OneTimeStrategyFame view with a Flow layout and the
@@ -57,7 +47,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     backButton = new JButton("Back");
     topGridPanel.add(backButton);
 
-    topGridPanel.add(createPortfoliosListRadio(portfolioNames));
+    topGridPanel.add(new JScrollPane(createPortfoliosListRadio(portfolioNames)));
 
     this.add(topGridPanel);
 
@@ -66,7 +56,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     JPanel rightSecondHalf = new JPanel(new GridLayout(3, 1, 10, 0));
     //rightSecondHalf.setLayout(new BoxLayout(rightSecondHalf, BoxLayout.PAGE_AXIS));
 
-    JPanel leftSecondHalf = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel leftSecondHalf = this.getViewStocksDistTableData();
 
     JPanel formPanel = new JPanel(new GridLayout(8, 2));
 
@@ -94,28 +84,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
     rightSecondHalf.add(formPanel);
 
-    JPanel stockFormPanel = new JPanel(new GridLayout(7, 2));
-    display = new JLabel("Enter Stocks Distribution:");
-    stockFormPanel.add(display);
-
-    display = new JLabel("Enter Stock Ticker: ");
-    stockFormPanel.add(display);
-
-    // Enter Stock Ticker
-    stockTickerField = new JTextField();
-    stockFormPanel.add(stockTickerField);
-
-    display = new JLabel("Enter Distribution Percentage: ");
-    stockFormPanel.add(display);
-
-    SpinnerModel distValue = new SpinnerNumberModel(0, 0, 100, 0.01);
-    stockDistSpinner = new JSpinner(distValue);
-    stockFormPanel.add(stockDistSpinner);
-
-    addStockDistButton = new JButton("Add");
-    addStockDistButton.setActionCommand("Add");
-    stockFormPanel.add(addStockDistButton);
-
+    JPanel stockFormPanel = this.getStockFormGridPanel();
 
     rightSecondHalf.add(stockFormPanel);
 
@@ -125,14 +94,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     buttonPanel.add(submitButton);
     rightSecondHalf.add(buttonPanel);
 
-    display =  new JLabel("Stocks Distribution Selected:");
-    leftSecondHalf.add(display);
 
-    dataTable = new JTable(new DefaultTableModel(new Object[]{"Ticker", "Distribution Percentage"},
-            0));
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    tableModel.addRow(new Object[]{"Ticker", "Distribution Percentage"});
-    leftSecondHalf.add(dataTable);
 
     secondGridPanel.add(leftSecondHalf);
     secondGridPanel.add(rightSecondHalf);
@@ -156,45 +118,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
     portfolioSelected.setText("Portfolio Selected: " + name);
   }
 
-  private void removeFromTable(DefaultTableModel tableModel, String ticker) {
-    Vector<Vector> tableData = tableModel.getDataVector();
-    int count = 0;
-    int row = -1;
-    for (Vector tableDatum : tableData) {
-      if(tableDatum.contains(ticker)) {
-        row = count;
-        break;
-      }
-      count++;
-    }
-    if(row >= 0) {
-      tableModel.removeRow(row);
-    }
-  }
 
-  private void addDataToTable(String ticker, float percentage) {
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    if(stocksDist.containsKey(ticker)) {
-      this.removeFromTable(tableModel, ticker);
-    }
-    stocksDist.put(ticker, percentage);
-    tableModel.addRow(new Object[]{ticker, percentage});
-  }
-
-  private void AddStockToList() {
-    String ticker = stockTickerField.getText().toUpperCase();
-    if(ticker.length() == 0) {
-      this.displayErrorMessage("The ticker symbol is not given.");
-    }
-
-    float percentage = Float.parseFloat(stockDistSpinner.getValue().toString());
-    if(percentage <= 0) {
-      this.displayErrorMessage("The percentage given is not valid.");
-    }
-
-    this.addDataToTable(ticker, percentage);
-
-  }
 
   private void handleSubmitButton(Features features) {
 

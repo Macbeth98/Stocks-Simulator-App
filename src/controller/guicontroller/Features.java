@@ -108,7 +108,9 @@ public interface Features {
    */
   void setViewPeriodicInvestmentStrategy();
 
-  void periodicInvestmentStrategyToPortfolio();
+  void periodicInvestmentStrategyToPortfolio(String portfolioName, Map<String, Float> stocksDist,
+                                             float amount, int frequencyInDays, String startDate,
+                                             String endDate, float commission);
 
   /**
    * Method that allows the user to modify a specific portfolio.

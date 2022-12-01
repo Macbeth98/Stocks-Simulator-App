@@ -89,8 +89,21 @@ public class GUIController implements Features {
   }
 
   @Override
-  public void periodicInvestmentStrategyToPortfolio() {
+  public void periodicInvestmentStrategyToPortfolio(String portfolioName,
+                                                    Map<String, Float> stocksDist,
+                                                    float amount, int frequencyInDays,
+                                                    String startDate, String endDate,
+                                                    float commission) {
+    LocalDate localStartDate = this.getLocalDate(startDate);
 
+    LocalDate localEndDate = null;
+
+    if(endDate != null) {
+      localEndDate = this.getLocalDate(endDate);
+    }
+
+    model.periodicInvestmentPortfolioStrategy(portfolioName, stocksDist, amount, frequencyInDays,
+            localStartDate, localEndDate, commission);
   }
 
   @Override

@@ -50,6 +50,7 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
     display = new JLabel("File Selected: ");
     formPanel.add(display);
 
+    this.fileSelected  = false;
     fileSelectedPath = new JLabel("No File has been selected.");
     formPanel.add(fileSelectedPath);
 
@@ -116,6 +117,8 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
     pFileChooser = new JFileChooser();
     pFileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "CSV"));
     pFileChooser.setCurrentDirectory(new File("."));
+
+    fileSelectedPath.setText("");
 
     this.fileChooserResponse = pFileChooser.showOpenDialog(this);
     if (this.fileChooserResponse == JFileChooser.APPROVE_OPTION) {
