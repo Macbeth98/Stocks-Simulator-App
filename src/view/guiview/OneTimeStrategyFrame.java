@@ -1,14 +1,16 @@
 package view.guiview;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+import java.awt.Dimension;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SpinnerModel;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import controller.guicontroller.Features;
 
@@ -107,7 +109,7 @@ public class OneTimeStrategyFrame extends AbstractFrame {
 
   @Override
   public void addFeatures(Features features) {
-    addStockDistButton.addActionListener(evt -> this.AddStockToList());
+    addStockDistButton.addActionListener(evt -> this.addStockToList());
     submitButton.addActionListener(evt -> this.handleSubmitButton(features));
     backButton.addActionListener(evt -> this.setVisible(false));
   }
@@ -119,10 +121,9 @@ public class OneTimeStrategyFrame extends AbstractFrame {
   }
 
 
-
   private void handleSubmitButton(Features features) {
 
-    if(!this.pnRadioButtonSelected) {
+    if (!this.pnRadioButtonSelected) {
       this.displayErrorMessage("Portfolio is not Selected.");
       return;
     }

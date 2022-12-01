@@ -1,23 +1,30 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JOptionPane;
+
 
 import controller.guicontroller.Features;
 import model.TransactionType;
 
-public class TransactionFrame extends AbstractFrame implements IView {
+/**
+ * Class consisting of the frame that shows the menu to add a transaction.
+ */
+public class TransactionFrame extends AbstractFrame {
 
   private final JLabel pNameDisplay;
-  private final JLabel snamePrompt;
-  private final JLabel squantityPrompt;
-  private final JLabel txnDatePrompt;
-  private final JLabel commissionPrompt;
-
-  private final JLabel txnTypePrompt;
 
   private final JComboBox<TransactionType> txnType;
 
@@ -27,19 +34,13 @@ public class TransactionFrame extends AbstractFrame implements IView {
 
   private final JTextField stockNameInput;
 
-  private final JButton backButton;
-  private final JButton submitButton;
-
+  /**
+   * Constructs the frame to add a transaction to a specific portfolio.
+   *
+   * @param portfolioName given portfolio's name
+   */
   public TransactionFrame(String portfolioName) {
     super("Add Transaction to Portfolio");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
@@ -49,20 +50,20 @@ public class TransactionFrame extends AbstractFrame implements IView {
     pNameDisplay = new JLabel(portfolioName);
     formPanel.add(pNameDisplay);
 
-    txnTypePrompt = new JLabel("Transaction Type: ");
+    JLabel txnTypePrompt = new JLabel("Transaction Type: ");
     formPanel.add(txnTypePrompt);
 
     txnType = new JComboBox<>(TransactionType.values());
     formPanel.add(txnType);
 
-    snamePrompt = new JLabel("Enter stock ticker name:");
+    JLabel snamePrompt = new JLabel("Enter stock ticker name:");
     formPanel.add(snamePrompt);
 
     // enter portfolio name field
     stockNameInput = new JTextField();
     formPanel.add(stockNameInput);
 
-    squantityPrompt = new JLabel("Enter quantity:");
+    JLabel squantityPrompt = new JLabel("Enter quantity:");
     formPanel.add(squantityPrompt);
 
     SpinnerModel qtyValue = new SpinnerNumberModel(0, 0, 10000, 1);
@@ -70,7 +71,7 @@ public class TransactionFrame extends AbstractFrame implements IView {
     formPanel.add(qtySpinner);
 
     // date prompt
-    txnDatePrompt = new JLabel("Enter transaction date:");
+    JLabel txnDatePrompt = new JLabel("Enter transaction date:");
     formPanel.add(txnDatePrompt);
 
     Date today = new Date();
@@ -79,7 +80,7 @@ public class TransactionFrame extends AbstractFrame implements IView {
     dateSpinner.setEditor(editor);
     formPanel.add(dateSpinner);
 
-    commissionPrompt = new JLabel("Enter commission fees:");
+    JLabel commissionPrompt = new JLabel("Enter commission fees:");
     formPanel.add(commissionPrompt);
 
     SpinnerModel commissionValue = new SpinnerNumberModel(0.0, 0.0,
@@ -122,7 +123,7 @@ public class TransactionFrame extends AbstractFrame implements IView {
         JOptionPane.showMessageDialog(this, "Invalid Commission!!",
                 "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
       } else {
-        features.AddTransactionToPortfolio(
+        features.addTransactionToPortfolio(
                 pNameDisplay.getText(),
                 (TransactionType) txnType.getSelectedItem(),
                 stockNameInput.getText().toUpperCase(),

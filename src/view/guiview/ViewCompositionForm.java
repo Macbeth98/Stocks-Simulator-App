@@ -1,44 +1,44 @@
 package view.guiview;
 
-import java.awt.*;
-import java.text.SimpleDateFormat;
+import java.awt.FlowLayout;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.JTable;
+import javax.swing.BoxLayout;
 
 import controller.guicontroller.Features;
 
 /**
  * Class that contains the frame for the view portfolio composition form.
  */
-public class viewCompositionForm extends AbstractFrame implements IView {
+public class ViewCompositionForm extends AbstractFrame implements IView {
 
   private final JButton backButton;
   private final JButton submitButton;
-  private final JLabel compositionDatePrompt;
 
   private final JSpinner dateSpinner;
 
-  private JTable data_table;
-
-  public viewCompositionForm(String[] portfolioNames, String compositionString) {
+  /**
+   * Constructs a form to view a portfolio's composition.
+   *
+   * @param portfolioNames    list of existing portfolios
+   * @param compositionString composition of given portfolio as a string
+   */
+  public ViewCompositionForm(String[] portfolioNames, String compositionString) {
     super("View Portfolio Composition");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(true);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new FlowLayout());
 
     this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter composition date
-    compositionDatePrompt = new JLabel("Enter date:");
+    JLabel compositionDatePrompt = new JLabel("Enter date:");
     formPanel.add(compositionDatePrompt);
 
     Date today = new Date();
@@ -57,8 +57,8 @@ public class viewCompositionForm extends AbstractFrame implements IView {
         data[i][1] = lines[i].split(",")[1];
       }
 
-      data_table = new JTable(data, columns);
-      formPanel.add(data_table);
+      JTable dataTable = new JTable(data, columns);
+      formPanel.add(dataTable);
     }
 
     // submit button
@@ -85,8 +85,7 @@ public class viewCompositionForm extends AbstractFrame implements IView {
     submitButton.addActionListener(evt -> {
       if (rGroup.getSelection() == null) {
         displayErrorMessage("Please select a portfolio first!");
-      }
-      else {
+      } else {
         this.setVisible(false);
         features.setViewPortfolioComposition(
                 getRadioButtonSelection(),

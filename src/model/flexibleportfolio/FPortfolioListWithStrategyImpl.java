@@ -6,11 +6,17 @@ import java.util.Map;
 import model.strategy.PSDollarCostAverage;
 import model.strategy.PortfolioStrategy;
 
+/**
+ * Class that consists of the implementations of strategies for a flexible portfolio list.
+ */
 public class FPortfolioListWithStrategyImpl extends FlexiblePortfolioListImpl
         implements FPortfolioListWithStrategy {
 
   private final PortfolioStrategy portfolioStrategy;
 
+  /**
+   * Constructs a model object of a list of flexible portfolios with strategies.
+   */
   public FPortfolioListWithStrategyImpl() {
     super();
     portfolioStrategy = new PSDollarCostAverage();

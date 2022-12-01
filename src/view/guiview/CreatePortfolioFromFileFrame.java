@@ -1,9 +1,15 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.io.File;
 
-import javax.swing.*;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.guicontroller.Features;
@@ -33,9 +39,9 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
     super("Load A Portfolio From File.");
 
 
-    this.setMinimumSize(new Dimension(1000,500));
+    this.setMinimumSize(new Dimension(1000, 500));
 
-    JPanel formPanel = new JPanel(new GridLayout(10, 1, 0,10));
+    JPanel formPanel = new JPanel(new GridLayout(10, 1, 0, 10));
 
     JLabel display = new JLabel("Create a New Portfolio From File.");
     formPanel.add(display);
@@ -50,7 +56,6 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
     display = new JLabel("File Selected: ");
     formPanel.add(display);
 
-    this.fileSelected  = false;
     fileSelectedPath = new JLabel("No File has been selected.");
     formPanel.add(fileSelectedPath);
 
@@ -90,7 +95,7 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
                   this.getSelectedFilePath()
           );
           this.displaySuccessMessage("Portfolio: " + pNameInput.getText()
-                          + ". Successfully Created.\n" + "It is stored at: "+createdFilepath);
+                  + ". Successfully Created.\n" + "It is stored at: " + createdFilepath);
           this.setVisible(false);
 
         } catch (IllegalArgumentException e) {

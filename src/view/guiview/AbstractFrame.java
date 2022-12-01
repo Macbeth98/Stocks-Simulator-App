@@ -1,16 +1,40 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
+
+/**
+ * Abstract Class that contains the common components of all the view frames.
+ */
 public abstract class AbstractFrame extends JFrame implements IView {
+
+  protected JButton backButton;
+  protected JButton submitButton;
 
   protected JRadioButton[] radioButtons;
 
@@ -30,6 +54,11 @@ public abstract class AbstractFrame extends JFrame implements IView {
 
   protected Map<String, Float> stocksDist;
 
+  /**
+   * Constructs an abstract frame object to be displayed.
+   *
+   * @param caption parameter passed to denote the title of the screen/frame
+   */
   public AbstractFrame(String caption) {
     super(caption);
 
@@ -165,7 +194,7 @@ public abstract class AbstractFrame extends JFrame implements IView {
     tableModel.addRow(new Object[]{ticker, percentage});
   }
 
-  protected void AddStockToList() {
+  protected void addStockToList() {
     String ticker = stockTickerField.getText().toUpperCase();
     if(ticker.length() == 0) {
       this.displayErrorMessage("The ticker symbol is not given.");

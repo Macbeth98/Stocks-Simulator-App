@@ -1,9 +1,20 @@
 package view.guiview;
 
-import java.awt.*;
 import java.util.HashMap;
 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JScrollPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import controller.guicontroller.Features;
 
@@ -165,7 +176,7 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame{
       this.endDateToggle = !this.endDateToggle;
       endDateSpinner.setVisible(this.endDateToggle);
     });
-    addStockDistButton.addActionListener(evt -> this.AddStockToList());
+    addStockDistButton.addActionListener(evt -> this.addStockToList());
     submitButton.addActionListener(evt -> this.handleSubmitButton(features));
     backButton.addActionListener(evt -> this.setVisible(false));
   }

@@ -1,12 +1,16 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import controller.guicontroller.Features;
 
-public class MainFrameView extends JFrame implements IView {
+/**
+ * Class that represents the Main Menu frame of the application.
+ */
+public class MainFrameView extends AbstractFrame {
 
   private final JButton exitButton;
   private final JButton compositionButton;
@@ -18,18 +22,15 @@ public class MainFrameView extends JFrame implements IView {
   private final JButton periodicStrategyButton;
   private final JButton pfValueButton;
   private final JButton costBasisButton;
-  private final JButton graphButton;
+  // private final JButton graphButton;
 
+  /**
+   * Constructs the main menu frame of the application.
+   *
+   * @param caption title of the application frame passed as a parameter
+   */
   public MainFrameView(String caption) {
     super(caption);
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 5));
 
@@ -74,9 +75,9 @@ public class MainFrameView extends JFrame implements IView {
     btnPanel.add(costBasisButton);
 
     // get portfolio performance graph
-    graphButton = new JButton("Get Performance Graph");
-    graphButton.setActionCommand("Portfolio Performance Graph");
-    btnPanel.add(graphButton);
+    // graphButton = new JButton("Get Performance Graph");
+    // graphButton.setActionCommand("Portfolio Performance Graph");
+    // btnPanel.add(graphButton);
 
     //exit button
     exitButton = new JButton("Exit");
@@ -95,22 +96,11 @@ public class MainFrameView extends JFrame implements IView {
     createPFFileButton.addActionListener(evt -> features.createPortfolioFromFile());
     modifyPFButton.addActionListener(evt -> features.modifyPortfolio());
     compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
-    pfValueButton.addActionListener(evt
-            -> features.viewPortfolioValueAtDate("", ""));
+    pfValueButton.addActionListener(evt -> features.viewPortfolioValueAtDate("", ""));
     costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
-    oneTimeStrategyButton.addActionListener(evt
-            -> features.setViewApplyOneTimeStrategyToPortfolio());
+    oneTimeStrategyButton.addActionListener(evt ->
+            features.setViewApplyOneTimeStrategyToPortfolio());
     periodicStrategyButton.addActionListener(evt -> features.setViewPeriodicInvestmentStrategy());
     exitButton.addActionListener(evt -> features.exitProgram());
-  }
-
-  @Override
-  public void displaySuccessMessage(String successMessage) {
-
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
   }
 }

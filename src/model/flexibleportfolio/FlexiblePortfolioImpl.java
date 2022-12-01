@@ -183,7 +183,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     float tillDateQuantity = 0;
 
     for (PortfolioItemTransaction txn : portfolioItemTransactions) {
-      if (txn.getDate().compareTo(saleDate) > 0) {
+      if (txn.getDate().isAfter(saleDate)) {
         break;
       }
 
@@ -219,7 +219,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
   @Override
   public float getCostBasis(LocalDate tillDate) throws IllegalArgumentException {
 
-    if(tillDate == null) {
+    if (tillDate == null) {
       throw new IllegalArgumentException("The date cannot be null.");
     }
 
@@ -240,7 +240,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     Map<String, Float> stocks = new HashMap<>();
 
     for (PortfolioItemTransaction item : portfolioItemTransactions) {
-      if (item.getDate().compareTo(date) <= 0) {
+      if (!item.getDate().isAfter(date)) {
         float stockAmount = 0;
 
         if (stocks.containsKey(item.getStock().getTicker())) {
@@ -379,7 +379,7 @@ public class FlexiblePortfolioImpl extends PortfolioImpl implements FlexiblePort
     float minValue = 0;
 
 
-    while (date.compareTo(toDate) <= 0) {
+    while (!date.isAfter(toDate)) {
       float valueAtDate = this.getPortfolioValueAtDate(date);
 
       if (maxValue == 0 && minValue == 0) {

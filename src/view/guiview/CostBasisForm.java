@@ -1,24 +1,35 @@
 package view.guiview;
 
 import java.awt.*;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.JLabel;
 
 import controller.guicontroller.Features;
 
+/**
+ * Class that implements the form to get cost basis.
+ */
 public class CostBasisForm extends AbstractFrame {
-
-  private final JButton backButton;
-  private final JButton submitButton;
-  private final JLabel valueDatePrompt;
-  private JLabel valueResultStatement;
 
   private final JSpinner dateSpinner;
 
 
+  /**
+   * Constructs a cost basis form frame with the following parameters.
+   *
+   * @param portfolioNames list of portfolios available for the user to choose from
+   * @param portfolioName  name of given portfolio
+   * @param dateString     given date as a string for cost basis
+   * @param costBasis      cost basis on the given date
+   */
   public CostBasisForm(String[] portfolioNames, String portfolioName,
                        String dateString, String costBasis) {
     super("Cost Basis of Portfolio On A Date");
@@ -26,7 +37,6 @@ public class CostBasisForm extends AbstractFrame {
     setSize(500, 300);
     setLocation(200, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
     this.setMinimumSize(new Dimension(500, 500));
 
     this.setLayout(new FlowLayout());
@@ -37,7 +47,7 @@ public class CostBasisForm extends AbstractFrame {
     this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter value date
-    valueDatePrompt = new JLabel("Enter date:");
+    JLabel valueDatePrompt = new JLabel("Enter date:");
     formPanel.add(valueDatePrompt);
 
     Date today = new Date();
@@ -48,7 +58,7 @@ public class CostBasisForm extends AbstractFrame {
 
     // display result value if passed
     if (dateString.length() > 0 && portfolioName.length() > 0 && costBasis.length() > 0) {
-      valueResultStatement = new JLabel("Cost Basis of Portfolio: "
+      JLabel valueResultStatement = new JLabel("Cost Basis of Portfolio: "
               + portfolioName
               + " on Date: "
               + dateString
@@ -72,7 +82,6 @@ public class CostBasisForm extends AbstractFrame {
 
     pack();
     setVisible(true);
-
 
   }
 

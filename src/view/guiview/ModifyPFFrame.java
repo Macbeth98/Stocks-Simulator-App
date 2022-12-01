@@ -1,26 +1,23 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import controller.guicontroller.Features;
 
-public class ModifyPFFrame extends AbstractFrame implements IView {
+/**
+ * Class that contains the frame which allows user to modify a specific portfolio.
+ */
+public class ModifyPFFrame extends AbstractFrame {
 
-  private final JButton backButton;
-  private final JButton submitButton;
-
+  /**
+   * Constructs the frame to modify a specific portfolio.
+   * @param portfolioNames list of all existing portfolio names
+   */
   public ModifyPFFrame(String[] portfolioNames) {
     super("Modify Portfolio");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
@@ -47,8 +44,7 @@ public class ModifyPFFrame extends AbstractFrame implements IView {
     submitButton.addActionListener(evt -> {
       if (rGroup.getSelection() == null) {
         displayErrorMessage("Please select a portfolio first!");
-      }
-      else {
+      } else {
         this.setVisible(false);
         features.viewTransactionForm(getRadioButtonSelection());
       }

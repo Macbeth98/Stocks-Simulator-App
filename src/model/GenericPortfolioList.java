@@ -1,8 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-import java.util.Map;
-
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioList;
 

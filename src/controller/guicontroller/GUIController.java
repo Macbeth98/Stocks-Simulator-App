@@ -4,22 +4,43 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-
 import model.TransactionType;
 import model.flexibleportfolio.FPortfolioListWithStrategy;
 import model.portfolio.PortfolioItem;
-import view.guiview.*;
+import view.guiview.CostBasisForm;
+import view.guiview.CreatePFFrame;
+import view.guiview.CreatePortfolioFromFileFrame;
+import view.guiview.IView;
+import view.guiview.ModifyPFFrame;
+import view.guiview.OneTimeStrategyFrame;
+import view.guiview.PeriodicInvestmentStrategyFrame;
+import view.guiview.TransactionFrame;
+import view.guiview.ViewCompositionForm;
+import view.guiview.ViewPortfolioValueForm;
 
+/**
+ * Class consisting implementation for the controller that takes inputs from the GUI.
+ */
 public class GUIController implements Features {
 
   private final FPortfolioListWithStrategy model;
 
   private IView view;
 
+  /**
+   * Constructs a controller object with a given model object.
+   *
+   * @param m model object of FPortfolioListWithStrategy interface type
+   */
   public GUIController(FPortfolioListWithStrategy m) {
     model = m;
   }
 
+  /**
+   * Sets view object for the controller object to use.
+   *
+   * @param v view object of IView interface type
+   */
   public void setView(IView v) {
     view = v;
     //provide view with all the callbacks
@@ -34,7 +55,7 @@ public class GUIController implements Features {
   @Override
   public void viewPortfolioComposition() {
     String[] pNames = model.getPortfolioListNames();
-    IView compositionFrame = new viewCompositionForm(pNames, "");
+    IView compositionFrame = new ViewCompositionForm(pNames, "");
     this.setView(compositionFrame);
     // model.getPortfolioCompositionAtDate()
     // view.showPortfolioComposition(portfolioName);
@@ -126,8 +147,8 @@ public class GUIController implements Features {
 
   @Override
   public void viewTransactionForm(String portfolioName) {
-     IView txnFrame = new TransactionFrame(portfolioName);
-     this.setView(txnFrame);
+    IView txnFrame = new TransactionFrame(portfolioName);
+    this.setView(txnFrame);
   }
 
   @Override
@@ -141,10 +162,10 @@ public class GUIController implements Features {
       for (PortfolioItem portfolioItem : portfolioItems) {
         s.append(portfolioItem.compositionString()).append("\n");
       }
-      IView compositionFrame = new viewCompositionForm(pNames, s.toString());
+      IView compositionFrame = new ViewCompositionForm(pNames, s.toString());
       this.setView(compositionFrame);
     } catch (Exception e) {
-      IView compositionFrame = new viewCompositionForm(pNames, "");
+      IView compositionFrame = new ViewCompositionForm(pNames, "");
       this.setView(compositionFrame);
       this.view.displayErrorMessage("Error While Getting Composition: " + e.getMessage());
     }
@@ -158,18 +179,17 @@ public class GUIController implements Features {
       LocalDate date = LocalDate.parse(dateString, formatter);
       try {
         float value = model.getPortfolioValueAtDate(portfolioName, date);
-        IView valueFrame = new viewPortfolioValueForm(pNames, portfolioName,
+        IView valueFrame = new ViewPortfolioValueForm(pNames, portfolioName,
                 dateString, String.valueOf(value));
         this.setView(valueFrame);
       } catch (Exception e) {
-        IView valueFrame = new viewPortfolioValueForm(pNames, "",
+        IView valueFrame = new ViewPortfolioValueForm(pNames, "",
                 "", "");
         this.setView(valueFrame);
         this.view.displayErrorMessage("Error While Getting Value: " + e.getMessage());
       }
-    }
-    else {
-      IView valueFrame = new viewPortfolioValueForm(pNames, "", "", "");
+    } else {
+      IView valueFrame = new ViewPortfolioValueForm(pNames, "", "", "");
       this.setView(valueFrame);
     }
   }
@@ -191,15 +211,14 @@ public class GUIController implements Features {
         this.setView(valueFrame);
         this.view.displayErrorMessage("Error While Getting Cost Basis: " + e.getMessage());
       }
-    }
-    else {
+    } else {
       IView valueFrame = new CostBasisForm(pNames, "", "", "");
       this.setView(valueFrame);
     }
   }
 
   @Override
-  public void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
+  public void addTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
                                         float quantity, String txnDate, float commission) {
     try {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");

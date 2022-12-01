@@ -1,42 +1,42 @@
 package view.guiview;
 
-import java.awt.*;
-import java.text.SimpleDateFormat;
+import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 import controller.guicontroller.Features;
 
-public class viewPortfolioValueForm extends AbstractFrame {
-
-  private final JButton backButton;
-  private final JButton submitButton;
-
-  private final JLabel valueDatePrompt;
-  private JLabel valueResultStatement;
+/**
+ * Class that contains the form to view a specific portfolio's value on a date.
+ */
+public class ViewPortfolioValueForm extends AbstractFrame {
 
   private final JSpinner dateSpinner;
 
-  public viewPortfolioValueForm(String[] portfolioNames, String portfolioName,
+  /**
+   * Constructs the portfolio value frame with the following parameters.
+   *
+   * @param portfolioNames list of existing portfolios
+   * @param portfolioName  given portfolio's name
+   * @param dateString     given date as string
+   * @param valueOnDate    value on given date
+   */
+  public ViewPortfolioValueForm(String[] portfolioNames, String portfolioName,
                                 String dateString, String valueOnDate) {
     super("Get Portfolio Value On A Date");
-
-    setSize(500, 300);
-    setLocation(200, 200);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
-    this.setMinimumSize(new Dimension(500, 500));
-
-    this.setLayout(new FlowLayout());
 
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
     this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter value date
-    valueDatePrompt = new JLabel("Enter date:");
+    JLabel valueDatePrompt = new JLabel("Enter date:");
     formPanel.add(valueDatePrompt);
 
     Date today = new Date();
@@ -47,7 +47,7 @@ public class viewPortfolioValueForm extends AbstractFrame {
 
     // display result value if passed
     if (dateString.length() > 0 && portfolioName.length() > 0 && valueOnDate.length() > 0) {
-      valueResultStatement = new JLabel("Value of Portfolio: "
+      JLabel valueResultStatement = new JLabel("Value of Portfolio: "
               + portfolioName
               + " on Date: "
               + dateString
