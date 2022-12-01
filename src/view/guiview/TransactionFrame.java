@@ -1,7 +1,6 @@
 package view.guiview;
 
 import java.awt.*;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -128,16 +127,11 @@ public class TransactionFrame extends AbstractFrame implements IView {
                 (TransactionType) txnType.getSelectedItem(),
                 stockNameInput.getText().toUpperCase(),
                 ((Integer) qtySpinner.getValue()).floatValue(),
-                getDateSpinnerValue(),
+                getDateSpinnerValue(dateSpinner),
                 ((Double) commissionSpinner.getValue()).floatValue()
         );
       }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-  private String getDateSpinnerValue() {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-    return formatter.format(this.dateSpinner.getValue());
   }
 }

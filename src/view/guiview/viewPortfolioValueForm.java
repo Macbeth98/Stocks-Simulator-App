@@ -83,16 +83,10 @@ public class viewPortfolioValueForm extends AbstractFrame {
         this.setVisible(false);
         features.viewPortfolioValueAtDate(
                 getRadioButtonSelection(),
-                getDateSpinnerValue()
+                getDateSpinnerValue(dateSpinner)
         );
       }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-  
-
-  private String getDateSpinnerValue() {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-    return formatter.format(this.dateSpinner.getValue());
   }
 }

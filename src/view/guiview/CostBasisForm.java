@@ -90,17 +90,10 @@ public class CostBasisForm extends AbstractFrame {
         this.setVisible(false);
         features.viewCostBasis(
                 getRadioButtonSelection(),
-                getDateSpinnerValue()
+                getDateSpinnerValue(dateSpinner)
         );
       }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-
-
-  private String getDateSpinnerValue() {
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-    return formatter.format(this.dateSpinner.getValue());
   }
 }
