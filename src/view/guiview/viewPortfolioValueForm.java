@@ -24,7 +24,7 @@ public class viewPortfolioValueForm extends JFrame implements IView {
 
   public viewPortfolioValueForm(String[] portfolioNames, String portfolioName,
                                 String dateString, String valueOnDate) {
-    super("Cost Basis of Portfolio On A Date");
+    super("Get Portfolio Value On A Date");
 
     setSize(500, 300);
     setLocation(200, 200);
@@ -66,7 +66,7 @@ public class viewPortfolioValueForm extends JFrame implements IView {
 
     // display result value if passed
     if (dateString.length() > 0 && portfolioName.length() > 0 && valueOnDate.length() > 0) {
-      valueResultStatement = new JLabel("Cost Basis of Portfolio: "
+      valueResultStatement = new JLabel("Value of Portfolio: "
               + portfolioName
               + " on Date: "
               + dateString
@@ -96,17 +96,35 @@ public class viewPortfolioValueForm extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      this.setVisible(false);
-      features.viewCostBasis(
-              getRadioButtonSelection(),
-              getDateSpinnerValue()
-      );
+      if (!(getRadioButtonSelection().length() > 0)) {
+        this.portfolioSelectionWarningMessage();
+      } else {
+        this.setVisible(false);
+        features.viewPortfolioValueAtDate(
+                getRadioButtonSelection(),
+                getDateSpinnerValue()
+        );
+      }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  private void portfolioSelectionWarningMessage() {
+    JOptionPane.showMessageDialog(this, "Please select a portfolio!",
+            "Portfolio is not Selected.", JOptionPane.WARNING_MESSAGE);
+  }
+
   private String getRadioButtonSelection() {
-    return rGroup.getSelection().getActionCommand();
+    try {
+      return rGroup.getSelection().getActionCommand();
+    } catch (Exception e) {
+      return "";
+    }
   }
 
   private String getDateSpinnerValue() {

@@ -18,4 +18,10 @@ public interface IView {
    * @param features features present on the gui
    */
   void addFeatures(Features features);
+
+  /**
+   * Method to output success messages on the screen
+   * @param successMessage message to be displayed as string
+   */
+  void displaySuccessMessage(String successMessage);
 }

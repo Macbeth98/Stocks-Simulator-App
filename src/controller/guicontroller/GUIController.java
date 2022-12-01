@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.swing.*;
 
+import model.TransactionType;
 import model.flexibleportfolio.FlexiblePortfolioList;
 import model.portfolio.PortfolioItem;
 import view.guiview.CostBasisForm;
@@ -83,8 +84,8 @@ public class GUIController implements Features {
   }
 
   @Override
-  public void viewTransactionForm() {
-     IView txnFrame = new TransactionFrame();
+  public void viewTransactionForm(String portfolioName) {
+     IView txnFrame = new TransactionFrame(portfolioName);
      this.setView(txnFrame);
   }
 
@@ -126,7 +127,7 @@ public class GUIController implements Features {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
       LocalDate date = LocalDate.parse(dateString, formatter);
       float costBasis = model.getCostBasis(portfolioName, date);
-      IView cbFrame = new viewPortfolioValueForm(pNames, portfolioName,
+      IView cbFrame = new CostBasisForm(pNames, portfolioName,
               dateString, String.valueOf(costBasis));
       this.setView(cbFrame);
     }
@@ -135,4 +136,18 @@ public class GUIController implements Features {
       this.setView(valueFrame);
     }
   }
+
+  @Override
+  public void AddTransactionToPortfolio(String pName, TransactionType txnType, String ticker,
+                                        float quantity, String txnDate, float commission) {
+    try {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+      LocalDate date = LocalDate.parse(txnDate, formatter);
+      model.addTransactionToPortfolio(pName, txnType, ticker, quantity, date, commission);
+      this.view.displaySuccessMessage("Successfully Executed: " + txnType + "");
+    } catch (IllegalArgumentException e) {
+      // TODO: Catch cleanly
+    }
+  }
+
 }

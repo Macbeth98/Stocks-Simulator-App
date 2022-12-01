@@ -10,6 +10,7 @@ public class MainFrameView extends JFrame implements IView {
 
   private JButton exitButton, compositionButton, createPFButton, createPFFileButton, modifyPFButton;
 
+  private JButton oneTimeStrategyButton, periodicStrategyButton;
   private JButton pfValueButton, costBasisButton, graphButton;
 
   public MainFrameView(String caption) {
@@ -39,6 +40,16 @@ public class MainFrameView extends JFrame implements IView {
     modifyPFButton = new JButton("Modify Portfolio");
     modifyPFButton.setActionCommand("Modify Portfolio");
     btnPanel.add(modifyPFButton);
+
+    // add one time strategy to portfolio button
+    oneTimeStrategyButton = new JButton("One-Time Investment Strategy");
+    oneTimeStrategyButton.setActionCommand("One-Time Investment");
+    btnPanel.add(oneTimeStrategyButton);
+
+    // add periodic strategy to portfolio button
+    periodicStrategyButton = new JButton("Periodic Investment Strategy");
+    periodicStrategyButton.setActionCommand("Periodic Investment Strategy");
+    btnPanel.add(periodicStrategyButton);
 
     // view composition button
     compositionButton = new JButton("View Portfolio's Composition");
@@ -79,5 +90,10 @@ public class MainFrameView extends JFrame implements IView {
     pfValueButton.addActionListener(evt -> features.viewPortfolioValueAtDate("", ""));
     costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
     exitButton.addActionListener(evt -> features.exitProgram());
+  }
+
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
   }
 }

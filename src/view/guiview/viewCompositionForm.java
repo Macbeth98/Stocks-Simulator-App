@@ -115,6 +115,11 @@ public class viewCompositionForm extends JFrame implements IView {
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
   private String getRadioButtonSelection() {
     return rGroup.getSelection().getActionCommand();
   }

@@ -93,6 +93,11 @@ public class CreatePortfolioFromFileFrame extends JFrame implements IView {
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
   private String getSelectedFilePath() {
     return pFileChooser.getSelectedFile().getAbsolutePath();
   }

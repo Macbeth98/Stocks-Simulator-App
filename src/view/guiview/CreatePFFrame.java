@@ -56,7 +56,24 @@ public class CreatePFFrame extends JFrame implements IView {
 
   @Override
   public void addFeatures(Features features) {
-    submitButton.addActionListener(evt -> features.viewTransactionForm());
+    submitButton.addActionListener(evt -> {
+      if (pNameInput.getText().length() == 0) {
+        this.portfolioNameErrorMessage();
+      }
+      else {
+        features.viewTransactionForm(pNameInput.getText());
+      }
+    });
     backButton.addActionListener(evt -> this.setVisible(false));
+  }
+
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  private void portfolioNameErrorMessage() {
+    JOptionPane.showMessageDialog(this, "Portfolio Name Not Entered!",
+            "Create Portfolio", JOptionPane.WARNING_MESSAGE);
   }
 }

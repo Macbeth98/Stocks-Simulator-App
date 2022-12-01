@@ -23,7 +23,7 @@ public class CostBasisForm extends JFrame implements IView {
 
   public CostBasisForm(String[] portfolioNames, String portfolioName,
                        String dateString, String costBasis) {
-    super("Get Portfolio Value On A Date");
+    super("Cost Basis of Portfolio On A Date");
 
     setSize(500, 300);
     setLocation(200, 200);
@@ -96,13 +96,33 @@ public class CostBasisForm extends JFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      this.setVisible(false);
-      features.viewCostBasis(
-              getRadioButtonSelection(),
-              getDateSpinnerValue()
-      );
+      Date inputDate = (Date) this.dateSpinner.getValue();
+      Date date = new Date();
+      if (!(getRadioButtonSelection().length() > 0)) {
+        this.portfolioSelectionWarningMessage();
+      }
+      else if(inputDate.compareTo(date) > 0) {
+        JOptionPane.showMessageDialog(this, "Invalid Future Date!",
+                "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
+      } else {
+        this.setVisible(false);
+        features.viewCostBasis(
+                getRadioButtonSelection(),
+                getDateSpinnerValue()
+        );
+      }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
+  }
+
+  @Override
+  public void displaySuccessMessage(String successMessage) {
+
+  }
+
+  private void portfolioSelectionWarningMessage() {
+    JOptionPane.showMessageDialog(this, "Please select a portfolio!",
+            "Portfolio is not Selected.", JOptionPane.WARNING_MESSAGE);
   }
 
   private String getRadioButtonSelection() {
