@@ -1,5 +1,7 @@
 package controller.guicontroller;
 
+import java.util.Map;
+
 import javax.swing.*;
 
 import model.TransactionType;
@@ -89,5 +91,15 @@ public interface Features {
    */
   void setViewApplyOneTimeStrategyToPortfolio();
 
-  void applyOneTimeStrategyToPortfolio();
+  /**
+   * Creates and applies a One time Strategy on the selected Portfolio.
+   *
+   * @param portfolioName the portfolioName on which the strategy needs to be applied.
+   * @param amount the amount to invest in portfolio.
+   * @param commission the commission that is/will be charged.
+   * @param date the date at which this investment strategy needs to be executed.
+   * @param stocksDist the map of stocks to distribution percentages.
+   */
+  void applyOneTimeStrategyToPortfolio(String portfolioName, float amount, float commission,
+                                       String date, Map<String, Float> stocksDist);
 }

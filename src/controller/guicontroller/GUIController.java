@@ -2,21 +2,21 @@ package controller.guicontroller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
-import javax.swing.*;
 
 import model.TransactionType;
-import model.flexibleportfolio.FlexiblePortfolioList;
+import model.flexibleportfolio.FPortfolioListWithStrategy;
 import model.portfolio.PortfolioItem;
 import view.guiview.*;
 
 public class GUIController implements Features {
 
-  private FlexiblePortfolioList model;
+  private final FPortfolioListWithStrategy model;
 
   private IView view;
 
-  public GUIController(FlexiblePortfolioList m) {
+  public GUIController(FPortfolioListWithStrategy m) {
     model = m;
   }
 
@@ -26,8 +26,9 @@ public class GUIController implements Features {
     view.addFeatures(this);
   }
 
-  private void showDialogBox(JFrame frame, Object message, String title, int messageType) {
-    JOptionPane.showMessageDialog(frame, message, title, messageType);
+  private LocalDate getLocalDate(String txnDate) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+    return LocalDate.parse(txnDate, formatter);
   }
 
   @Override
@@ -67,12 +68,18 @@ public class GUIController implements Features {
 
   @Override
   public void setViewApplyOneTimeStrategyToPortfolio() {
-    IView oneTimeStrategyFrame;
+    String[] portfolioNames = model.getPortfolioListNames();
+    IView oneTimeStrategyFrame = new OneTimeStrategyFrame(portfolioNames);
+    this.setView(oneTimeStrategyFrame);
   }
 
   @Override
-  public void applyOneTimeStrategyToPortfolio() {
-
+  public void applyOneTimeStrategyToPortfolio(String portfolioName, float amount, float commission,
+                                              String date, Map<String, Float> stocksDist) {
+    LocalDate localDate = this.getLocalDate(date);
+    model.applyStrategyToAnExistingPortfolio(
+            portfolioName, amount, localDate, stocksDist, commission
+    );
   }
 
   @Override

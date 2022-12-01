@@ -93,9 +93,9 @@ public class viewCompositionForm extends AbstractFrame implements IView {
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
-  private String getRadioButtonSelection() {
-    return rGroup.getSelection().getActionCommand();
-  }
+  //  private String getRadioButtonSelection() {
+  //    return rGroup.getSelection().getActionCommand();
+  //  }
 
   private String getDateSpinnerValue() {
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");

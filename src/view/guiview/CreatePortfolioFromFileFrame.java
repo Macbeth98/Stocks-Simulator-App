@@ -26,7 +26,8 @@ public class CreatePortfolioFromFileFrame extends AbstractFrame {
   private final JLabel fileSelectedPath;
 
   /**
-   * Initiates and constructs the view with a grid layout and the required fields.
+   * Initiates and constructs the CreatePortfolioFromFileFrame view with a grid layout and the
+   * required fields.
    */
   public CreatePortfolioFromFileFrame() {
     super("Load A Portfolio From File.");

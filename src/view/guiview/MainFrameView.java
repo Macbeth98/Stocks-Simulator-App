@@ -50,7 +50,7 @@ public class MainFrameView extends JFrame implements IView {
 
     // add one time strategy to portfolio button
     oneTimeStrategyButton = new JButton("One-Time Investment Strategy");
-    oneTimeStrategyButton.setActionCommand("One-Time Investment");
+    oneTimeStrategyButton.setActionCommand("One-Time Investment Strategy");
     btnPanel.add(oneTimeStrategyButton);
 
     // add periodic strategy to portfolio button
@@ -94,8 +94,11 @@ public class MainFrameView extends JFrame implements IView {
     createPFButton.addActionListener(evt -> features.createPortfolio());
     createPFFileButton.addActionListener(evt -> features.createPortfolioFromFile());
     compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
-    pfValueButton.addActionListener(evt -> features.viewPortfolioValueAtDate("", ""));
+    pfValueButton.addActionListener(evt
+            -> features.viewPortfolioValueAtDate("", ""));
     costBasisButton.addActionListener(evt -> features.viewCostBasis("", ""));
+    oneTimeStrategyButton.addActionListener(evt
+            -> features.setViewApplyOneTimeStrategyToPortfolio());
     exitButton.addActionListener(evt -> features.exitProgram());
   }
 
