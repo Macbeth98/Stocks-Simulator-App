@@ -83,15 +83,15 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
       float todayPrice = portfolioItem.getStock().getCurrentPrice();
       float quantity = portfolioItem.getQuantity();
 
-      if(!stocksDistribution.containsKey(ticker)) {
+      if (!stocksDistribution.containsKey(ticker)) {
         portfolioValue += stocks.get(ticker) * todayPrice;
         continue;
       }
 
       tickersFound++;
 
-      float investAmount = (amount * (stocksDistribution.get(ticker)/100)) - commission;
-      float expectedAmount = stocks.get(ticker) + (investAmount/price);
+      float investAmount = (amount * (stocksDistribution.get(ticker) / 100)) - commission;
+      float expectedAmount = stocks.get(ticker) + (investAmount / price);
       portfolioValue += expectedAmount * todayPrice;
 
       assertEquals(expectedAmount, quantity, 0.001);
@@ -126,7 +126,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     for (PortfolioItem portfolioItem : portfolioItems) {
       String ticker = portfolioItem.getStock().getTicker();
 
-      if(!stocksMap.containsKey(ticker)) {
+      if (!stocksMap.containsKey(ticker)) {
         continue;
       }
 
@@ -290,10 +290,10 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
 
 
   private float addStocksInPeriodicStrategy(float amount, int frequencyInDays, float commission,
-                                           float costBasis,
-                                           Map<String, Float> stocksDistribution,
-                                           Map<String, Float> stocksMap,
-                                           LocalDate startDate, LocalDate endDate) {
+                                            float costBasis,
+                                            Map<String, Float> stocksDistribution,
+                                            Map<String, Float> stocksMap,
+                                            LocalDate startDate, LocalDate endDate) {
 
     LocalDate currentDate = startDate;
     while (!currentDate.isAfter(LocalDate.now()) && !currentDate.isAfter(endDate)) {
@@ -303,13 +303,13 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
         float priceAtDate = stock.getCurrentPriceAtDate(currentDate);
         float currentStockAmount;
 
-        if(stocksMap.containsKey(ticker)) {
+        if (stocksMap.containsKey(ticker)) {
           currentStockAmount = stocksMap.get(ticker);
         } else {
           currentStockAmount = 0;
         }
 
-        float investAmount = (amount * (stocksDistribution.get(ticker)/100)) - commission;
+        float investAmount = (amount * (stocksDistribution.get(ticker) / 100)) - commission;
         float newQuantity = investAmount / priceAtDate;
 
         stocksMap.put(ticker, currentStockAmount + newQuantity);
@@ -352,12 +352,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f);
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("09/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -383,7 +383,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
             portfolioName, LocalDate.now()
     );
 
-    int tickersFound ;
+    int tickersFound;
     float portfolioValue;
 
     String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
@@ -443,7 +443,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f);
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
@@ -474,7 +474,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
             portfolioName, LocalDate.now()
     );
 
-    int tickersFound ;
+    int tickersFound;
     float portfolioValue;
 
     String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
@@ -497,12 +497,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f);
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("10/12/2022"); // Past Start Date.
-    LocalDate endDate  = this.getDate("11/12/2023"); // Future end Date.
+    LocalDate endDate = this.getDate("11/12/2023"); // Future end Date.
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -528,7 +528,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
             portfolioName, LocalDate.now()
     );
 
-    int tickersFound ;
+    int tickersFound;
     float portfolioValue;
 
     String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
@@ -578,12 +578,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f); // totals to 110 percent
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -606,12 +606,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("MSFT", -10f);
     stocksDistribution.put("COKE", 20f); // totals to 100 percent
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -628,12 +628,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
   public void testPeriodicInvestmentStrategyNullDistribution() {
     String portfolioName = "testPeriodicInvestmentStrategyNullDist" + new Date().getTime();
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -652,12 +652,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
 
     Map<String, Float> stocksDistribution = new HashMap<>();
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -679,12 +679,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f); // totals to 100 percent
 
-    float amount  = -1000f;
+    float amount = -1000f;
     int frequencyInDays = 30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     try {
       fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
@@ -722,12 +722,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f); // totals to 100 percent
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = -30;
     float commission = 5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     try {
       fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
@@ -765,12 +765,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f); // totals to 100 percent
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = -5f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -792,12 +792,12 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     stocksDistribution.put("TSLA", 39.24f);
     stocksDistribution.put("COKE", 20f); // totals to 100 percent
 
-    float amount  = 1000f;
+    float amount = 1000f;
     int frequencyInDays = 30;
     float commission = 0f;
 
     LocalDate startDate = this.getDate("05/12/2022");
-    LocalDate endDate  = this.getDate("11/12/2022");
+    LocalDate endDate = this.getDate("11/12/2022");
 
     fPortfolioListStrategy.periodicInvestmentPortfolioStrategy(
             portfolioName,
@@ -823,7 +823,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
             portfolioName, LocalDate.now()
     );
 
-    int tickersFound ;
+    int tickersFound;
     float portfolioValue;
 
     String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
