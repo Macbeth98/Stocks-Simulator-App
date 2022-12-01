@@ -93,6 +93,7 @@ public class MainFrameView extends JFrame implements IView {
   public void addFeatures(Features features) {
     createPFButton.addActionListener(evt -> features.createPortfolio());
     createPFFileButton.addActionListener(evt -> features.createPortfolioFromFile());
+    modifyPFButton.addActionListener(evt -> features.modifyPortfolio());
     compositionButton.addActionListener(evt -> features.viewPortfolioComposition());
     pfValueButton.addActionListener(evt
             -> features.viewPortfolioValueAtDate("", ""));

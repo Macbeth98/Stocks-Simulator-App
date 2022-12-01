@@ -9,20 +9,15 @@ import javax.swing.*;
 
 import controller.guicontroller.Features;
 
-public class CostBasisForm extends JFrame implements IView {
+public class CostBasisForm extends AbstractFrame {
 
   private final JButton backButton;
   private final JButton submitButton;
-
-  private final JLabel display;
   private final JLabel valueDatePrompt;
   private JLabel valueResultStatement;
 
   private final JSpinner dateSpinner;
 
-  private final JRadioButton[] radioButtons;
-
-  private final ButtonGroup rGroup;
 
   public CostBasisForm(String[] portfolioNames, String portfolioName,
                        String dateString, String costBasis) {
@@ -39,22 +34,7 @@ public class CostBasisForm extends JFrame implements IView {
     JPanel formPanel = new JPanel(new GridLayout(10, 1));
 
     // display existing portfolio names
-    JPanel radioPanel = new JPanel();
-    radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.PAGE_AXIS));
-
-    display = new JLabel("Please choose portfolio: ");
-    formPanel.add(display);
-
-    radioButtons = new JRadioButton[portfolioNames.length];
-    rGroup = new ButtonGroup();
-
-    for (int i = 0; i < radioButtons.length; i++) {
-      radioButtons[i] = new JRadioButton(portfolioNames[i]);
-      radioButtons[i].setActionCommand(radioButtons[i].getText());
-      rGroup.add(radioButtons[i]);
-      radioPanel.add(radioButtons[i]);
-    }
-    formPanel.add(radioPanel);
+    this.add(createPortfoliosListRadio(portfolioNames));
 
     // enter value date
     valueDatePrompt = new JLabel("Enter date:");
@@ -101,8 +81,8 @@ public class CostBasisForm extends JFrame implements IView {
     submitButton.addActionListener(evt -> {
       Date inputDate = (Date) this.dateSpinner.getValue();
       Date date = new Date();
-      if (!(getRadioButtonSelection().length() > 0)) {
-        this.portfolioSelectionWarningMessage();
+      if (rGroup.getSelection() == null) {
+        displayErrorMessage("Please select a portfolio first!");
       } else if (inputDate.compareTo(date) > 0) {
         JOptionPane.showMessageDialog(this, "Invalid Future Date!",
                 "Create Portfolio Error", JOptionPane.WARNING_MESSAGE);
@@ -117,24 +97,7 @@ public class CostBasisForm extends JFrame implements IView {
     backButton.addActionListener(evt -> this.setVisible(false));
   }
 
-  @Override
-  public void displaySuccessMessage(String successMessage) {
 
-  }
-
-  @Override
-  public void displayErrorMessage(String errorMessage) {
-
-  }
-
-  private void portfolioSelectionWarningMessage() {
-    JOptionPane.showMessageDialog(this, "Please select a portfolio!",
-            "Portfolio is not Selected.", JOptionPane.WARNING_MESSAGE);
-  }
-
-  private String getRadioButtonSelection() {
-    return rGroup.getSelection().getActionCommand();
-  }
 
   private String getDateSpinnerValue() {
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");

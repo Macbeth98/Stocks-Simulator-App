@@ -85,7 +85,6 @@ public interface Features {
    */
   void createEmptyPortfolio(String pName);
 
-
   /**
    * Method that allows the user to create a one time investment strategy to a Portfolio.
    */
@@ -102,4 +101,9 @@ public interface Features {
    */
   void applyOneTimeStrategyToPortfolio(String portfolioName, float amount, float commission,
                                        String date, Map<String, Float> stocksDist);
+
+  /**
+   * Method that allows the user to modify a specific portfolio.
+   */
+  void modifyPortfolio();
 }

@@ -7,7 +7,7 @@ import javax.swing.*;
 import controller.guicontroller.Features;
 
 
-public class CreatePFFrame extends AbstractFrame implements IView {
+public class CreatePFFrame extends AbstractFrame {
 
   private final JButton backButton;
   private final JButton submitButton;
@@ -57,7 +57,7 @@ public class CreatePFFrame extends AbstractFrame implements IView {
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
       if (pNameInput.getText().length() == 0) {
-        this.portfolioNameErrorMessage();
+        displayErrorMessage("Portfolio Name Not Entered!");
       } else {
         try {
           features.createEmptyPortfolio(pNameInput.getText());
@@ -71,10 +71,5 @@ public class CreatePFFrame extends AbstractFrame implements IView {
       }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
-  }
-
-  private void portfolioNameErrorMessage() {
-    JOptionPane.showMessageDialog(this, "Portfolio Name Not Entered!",
-            "Create Portfolio", JOptionPane.WARNING_MESSAGE);
   }
 }

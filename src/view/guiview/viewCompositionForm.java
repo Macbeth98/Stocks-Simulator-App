@@ -83,12 +83,16 @@ public class viewCompositionForm extends AbstractFrame implements IView {
   @Override
   public void addFeatures(Features features) {
     submitButton.addActionListener(evt -> {
-      // TODO: handle no radio selection
-      this.setVisible(false);
-      features.setViewPortfolioComposition(
-              getRadioButtonSelection(),
-              getDateSpinnerValue()
-      );
+      if (rGroup.getSelection() == null) {
+        displayErrorMessage("Please select a portfolio first!");
+      }
+      else {
+        this.setVisible(false);
+        features.setViewPortfolioComposition(
+                getRadioButtonSelection(),
+                getDateSpinnerValue()
+        );
+      }
     });
     backButton.addActionListener(evt -> this.setVisible(false));
   }
