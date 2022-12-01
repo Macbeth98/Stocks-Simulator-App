@@ -1,10 +1,14 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 import controller.guicontroller.Features;
 

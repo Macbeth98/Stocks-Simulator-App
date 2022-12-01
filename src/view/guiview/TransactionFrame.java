@@ -1,10 +1,20 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JOptionPane;
+
 
 import controller.guicontroller.Features;
 import model.TransactionType;

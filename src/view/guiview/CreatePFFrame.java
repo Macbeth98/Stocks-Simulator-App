@@ -2,7 +2,10 @@ package view.guiview;
 
 import java.awt.*;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 import controller.guicontroller.Features;
 

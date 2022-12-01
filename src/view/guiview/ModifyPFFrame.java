@@ -1,8 +1,9 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import controller.guicontroller.Features;
 

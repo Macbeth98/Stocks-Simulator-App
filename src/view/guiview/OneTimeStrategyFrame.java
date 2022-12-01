@@ -1,11 +1,21 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SpinnerModel;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 import controller.guicontroller.Features;
