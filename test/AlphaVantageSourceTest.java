@@ -91,20 +91,20 @@ public class AlphaVantageSourceTest {
 
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testMultiplePricesAtOnce() {
 
-    String[] dateStrings = new String[] { "2014-03-27", "2014-04-27", "2014-05-27", "2014-09-27",
+    String[] dateStrings = new String[]{"2014-03-27", "2014-04-27", "2014-05-27", "2014-09-27",
             "2014-06-27", "2015-10-22", "2016-11-11", "2014-12-12", "2015-10-10", "2014-10-10"};
 
-    String[] tickers = new String[] {"GOOG", "COKE", "V"};
+    String[] tickers = new String[]{"GOOG", "COKE", "V"};
 
     for (String dateString : dateStrings) {
       for (String ticker : tickers) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(dateString, formatter);
         float result = testSource.getPriceAtDate(ticker, date);
-        System.out.println(ticker +"___" + result);
+        System.out.println(ticker + "___" + result);
       }
     }
 

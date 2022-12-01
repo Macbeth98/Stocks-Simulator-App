@@ -131,7 +131,7 @@ public abstract class AbstractFrame extends JFrame implements IView {
   protected JPanel getViewStocksDistTableData() {
     JPanel leftSecondHalf = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-    JLabel display =  new JLabel("Stocks Distribution Selected:");
+    JLabel display = new JLabel("Stocks Distribution Selected:");
     leftSecondHalf.add(display);
 
     dataTable = new JTable(new DefaultTableModel(new Object[]{"Ticker", "Distribution Percentage"},
@@ -174,20 +174,20 @@ public abstract class AbstractFrame extends JFrame implements IView {
     int count = 0;
     int row = -1;
     for (Vector tableDatum : tableData) {
-      if(tableDatum.contains(ticker)) {
+      if (tableDatum.contains(ticker)) {
         row = count;
         break;
       }
       count++;
     }
-    if(row >= 0) {
+    if (row >= 0) {
       tableModel.removeRow(row);
     }
   }
 
   protected void addDataToTable(String ticker, float percentage) {
     DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    if(stocksDist.containsKey(ticker)) {
+    if (stocksDist.containsKey(ticker)) {
       this.removeFromTable(tableModel, ticker);
     }
     stocksDist.put(ticker, percentage);
@@ -196,13 +196,13 @@ public abstract class AbstractFrame extends JFrame implements IView {
 
   protected void addStockToList() {
     String ticker = stockTickerField.getText().toUpperCase();
-    if(ticker.length() == 0) {
+    if (ticker.length() == 0) {
       this.displayErrorMessage("The ticker symbol is not given.");
       return;
     }
 
     float percentage = Float.parseFloat(stockDistSpinner.getValue().toString());
-    if(percentage <= 0) {
+    if (percentage <= 0) {
       this.displayErrorMessage("The percentage given is not valid.");
       return;
     }

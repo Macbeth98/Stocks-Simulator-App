@@ -1,6 +1,6 @@
 package view.guiview;
 
-import java.awt.*;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
