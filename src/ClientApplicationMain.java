@@ -44,6 +44,5 @@ public class ClientApplicationMain {
       throw new IllegalArgumentException("Invalid Command Line Argument passed! "
               + "\nPlease pass either 'gui' or 'text' for the user interface that you need!");
     }
-
   }
 }

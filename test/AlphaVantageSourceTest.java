@@ -94,8 +94,7 @@ public class AlphaVantageSourceTest {
   @Test(expected = IllegalArgumentException.class)
   public void testMultiplePricesAtOnce() {
 
-    String[] dateStrings = new String[]{"2014-03-27", "2014-04-27", "2014-05-27", "2014-09-27",
-            "2014-06-27", "2015-10-22", "2016-11-11", "2014-12-12", "2015-10-10", "2014-10-10"};
+    String[] dateStrings = new String[]{"2014-03-27", "2014-04-27", "2014-05-27", "2014-09-27"};
 
     String[] tickers = new String[]{"GOOG", "COKE", "V"};
 
