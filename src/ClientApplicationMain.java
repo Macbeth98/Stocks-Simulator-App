@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 
 import controller.GenericPortfolioControllerImpl;
 import controller.guicontroller.GUIController;
@@ -22,23 +21,28 @@ public class ClientApplicationMain {
    * @param args parameter that is passed. Expects a single argument, either 'gui' or 'text'.
    */
   public static void main(String[] args) {
+    String cmdArg;
     if (args.length == 0) {
-      throw new IllegalArgumentException("No Command Line Argument passed! "
+      System.out.println("WARNING: No Command Line Argument passed! GUI will be rendered BY DEFAULT"
               + "\nPlease pass either 'gui' or 'text' for the user interface that you need!");
+      cmdArg = "gui";
     }
-    if (Objects.equals(args[0], "gui")) {
-      FPortfolioListWithStrategy model = new FPortfolioListWithStrategyImpl();
-      GUIController controller = new GUIController(model);
-      IView view = new MainFrameView("Portfolio Application");
-      controller.setView(view);
+    else {
+      cmdArg = args[0];
     }
-    else if (Objects.equals(args[0], "text")) {
+    if (cmdArg.equals("text")) {
       try {
         new GenericPortfolioControllerImpl(new InputStreamReader(System.in), System.out)
                 .goGenericController(new GenericPortfolioListImpl());
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
+    }
+    else if (cmdArg.equals("gui")) {
+      FPortfolioListWithStrategy model = new FPortfolioListWithStrategyImpl();
+      GUIController controller = new GUIController(model);
+      IView view = new MainFrameView("Portfolio Application");
+      controller.setView(view);
     }
     else {
       throw new IllegalArgumentException("Invalid Command Line Argument passed! "
