@@ -326,7 +326,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
 
 
   private String checkPortfolioComposition(PortfolioItem[] portfolioItems,
-                                           Map<String, Float> stocksMap) {
+                                           Map<String, Float> stocksMap, LocalDate date) {
     int tickersFound = 0;
     float portfolioValue = 0;
 
@@ -334,7 +334,7 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
       StockObject stock = portfolioItem.getStock();
       assertEquals(stocksMap.get(stock.getTicker()), portfolioItem.getQuantity(), 0.001);
       tickersFound++;
-      portfolioValue += stocksMap.get(stock.getTicker()) * stock.getCurrentPrice();
+      portfolioValue += stocksMap.get(stock.getTicker()) * stock.getCurrentPriceAtDate(date);
     }
 
     return tickersFound + "__" + portfolioValue;
@@ -379,27 +379,31 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     assertEquals(costBasis, fPortfolioListStrategy.getCostBasis(portfolioName, LocalDate.now()),
             0.001);
 
+    assertEquals(costBasis, fPortfolioListStrategy.getCostBasis(portfolioName,
+            endDate.minusDays(1)), 0.01);
+
     PortfolioItem[] portfolioItems = fPortfolioListStrategy.getPortfolioCompositionAtDate(
-            portfolioName, LocalDate.now()
+            portfolioName, endDate.minusDays(1)
     );
 
     int tickersFound;
     float portfolioValue;
 
-    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
+    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap,
+            endDate.minusDays(1)).split("__");
     tickersFound = Integer.parseInt(valueStr[0]);
     portfolioValue = Float.parseFloat(valueStr[1]);
 
     assertEquals(tickersFound, stocksDistribution.keySet().size());
     assertEquals(portfolioValue, fPortfolioListStrategy.getPortfolioValueAtDate(
-            portfolioName, LocalDate.now()), 0.001);
+            portfolioName, endDate.minusDays(1)), 0.001);
 
     // Applying the similar strategy to an existing portfolio.
 
     frequencyInDays = 15;
 
-    startDate = this.getDate("10/10/2021");
-    endDate = this.getDate("12/10/2021");
+    startDate = this.getDate("10/10/2022");
+    endDate = LocalDate.now();
 
     stocksDistribution.put("COKE", 10f);
     stocksDistribution.put("MSFT", 10f);
@@ -423,7 +427,8 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     portfolioItems = fPortfolioListStrategy.getPortfolioCompositionAtDate(portfolioName,
             LocalDate.now());
 
-    valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
+    valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap,
+            LocalDate.now()).split("__");
     tickersFound = Integer.parseInt(valueStr[0]);
     portfolioValue = Float.parseFloat(valueStr[1]);
 
@@ -477,7 +482,8 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     int tickersFound;
     float portfolioValue;
 
-    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
+    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap,
+            LocalDate.now()).split("__");
     tickersFound = Integer.parseInt(valueStr[0]);
     portfolioValue = Float.parseFloat(valueStr[1]);
 
@@ -524,6 +530,9 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     assertEquals(costBasis, fPortfolioListStrategy.getCostBasis(portfolioName, LocalDate.now()),
             0.001);
 
+    assertEquals(costBasis, fPortfolioListStrategy.getCostBasis(portfolioName,
+            LocalDate.now().minusDays(1)), 0.01);
+
     PortfolioItem[] portfolioItems = fPortfolioListStrategy.getPortfolioCompositionAtDate(
             portfolioName, LocalDate.now()
     );
@@ -531,7 +540,8 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     int tickersFound;
     float portfolioValue;
 
-    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
+    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap,
+            LocalDate.now()).split("__");
     tickersFound = Integer.parseInt(valueStr[0]);
     portfolioValue = Float.parseFloat(valueStr[1]);
 
@@ -826,7 +836,8 @@ public class FPortfolioListWithStrategyImplTest extends FlexiblePortfolioListImp
     int tickersFound;
     float portfolioValue;
 
-    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap).split("__");
+    String[] valueStr = this.checkPortfolioComposition(portfolioItems, stocksMap,
+            LocalDate.now()).split("__");
     tickersFound = Integer.parseInt(valueStr[0]);
     portfolioValue = Float.parseFloat(valueStr[1]);
 
