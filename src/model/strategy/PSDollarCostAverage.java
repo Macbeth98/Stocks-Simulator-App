@@ -55,7 +55,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
       throw new IllegalArgumentException("The Stocks Distribution must be given.");
     }
 
-    if (!(amount > 0)) {
+    if (amount <= 0) {
       throw new IllegalArgumentException("The Amount value given is not valid.");
     }
 

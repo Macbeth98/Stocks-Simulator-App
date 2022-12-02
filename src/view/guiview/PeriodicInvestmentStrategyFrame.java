@@ -172,7 +172,8 @@ public class PeriodicInvestmentStrategyFrame extends AbstractFrame {
   public void addFeatures(Features features) {
     createPortfolioButton.addActionListener(evt -> this.handleCreatePortfolioButton());
     endDateToggleButton.addActionListener(evt -> {
-      this.endDateToggleButton.setText(this.endDateToggle ? endDateButtonMsgYes : endDateButtonMsgNo);
+      this.endDateToggleButton.setText(this.endDateToggle ? endDateButtonMsgYes
+              : endDateButtonMsgNo);
       this.endDateToggle = !this.endDateToggle;
       endDateSpinner.setVisible(this.endDateToggle);
     });
