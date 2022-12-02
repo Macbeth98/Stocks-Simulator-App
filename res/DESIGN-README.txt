@@ -43,6 +43,12 @@ Changes in controller for Assignment5:
 - The commands for the Inflexible Portfolio controller reside in the (controller.portfolio.command package)
 - The commands for the Flexible Portfolio controller reside in the (controller.flexibleportfolio.command package)
 - The FlexiblePortfolioControllerImpl class also follows the command design pattern for the switch case.
+Changes in controller for Assignment6:
+- The GUI controller interface and implementation are stored in the controller.guicontroller package.
+- The Features interface contains the methods used by the controller to react to the options chosen/inputs given by the user.
+- The GUIController.java contains the implementations of these methods.
+- The previous text based UI's controller for flexible and inflexible portfolios still remain in the same controller package and are
+completely unchanged.
 
 View:
 
@@ -57,3 +63,12 @@ Changes for Assignment5:
 - The FlexiblePortfolioViewImpl class (implements FlexiblePortfolioView) also extends the PortfolioViewImpl class to inherit the implementations of the previous PortfolioView interface and override implementations as necessary.
 - The GenericPortfolioView interface contains the methods and prompts for the generic portfolio controller, in the view package.
 - The GenericPortfolioViewImpl class implements the aforementioned interface and it's methods for the menus and prompts for generic portfolios.
+Changes for Assignment6:
+- All the view frames for the gui are stored in the view.guiview package.
+- The view methods are defined in the IView interface.
+- There is an AbstractFrame class that implements the IView interface and defines a basic JFrame that is inherited by all other frames
+rendered in the GUI of our application.
+- MainFrameView.java contains the main menu rendered by our application.
+- Every menu option renders a frame defined in its own class. Ex: CostBasisForm.java is rendered when the controller clicks the
+Get Cost Basis menu option and so on.
+- The text based views are still in the views package and are completely unmodified.

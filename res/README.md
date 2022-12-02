@@ -36,3 +36,26 @@ Features of flexible portfolio:
 2. **Commission Fee**: User can specify a commission fee per transaction. Negative commission values will not be allowed.
 3. **AlphaVantage API integration**: All stock prices are fetched from the AlphaVantage open API. The API response is cached into a json file and the API is not called more than once for the same stock.
 4. **Performance Graph**: The user can query each flexible portfolio for it's performance over a given date range. The graph is generated over a horizontal and vertical scale of stars and evenly distributed timestamps respectively.
+
+### STOCKS PART III
+---
+
+Features added:
+
+1. Dollar Cost Averaging Investment Strategy: User can create a dollar cost averaging strategy of 2 types:
+      1. **One Time Investment Strategy**: Here the user can provide weights to few of the stocks present in a given portfolio.
+      An investment value is also provided and based on the weights and a transaction date, the user can execute this strategy
+      for a given portfolio.
+      2.  **Periodic Investment Strategy**: Here the user can create a new portfolio with a few stocks, provide weights for them and an investment value and execute this strategy periodically from a given start date to an end date. The strategy can be executed for two dates in the past/can be ongoing, i.e, until current date.
+
+2. **Graphical User Interface**: User can run the Graphical User Interface for this application using the `gui` command line option while running the JAR file. The GUI deals with only **flexible** portfolios. The GUI currently supports the following capabilities:
+      1. Create Portfolio Manually
+      2. Create Portfolio From File
+      3. Modify A Portfolio
+      4. Add a One Time Investment Strategy
+      5. Add a Periodic Investment Strategy
+      6. View Portfolio Composition
+      7. Get Portfolio Value On A Date
+      7. Get Portfolio Cost Basis On A Date
+
+**Limitation**: To work with inflexible portfolios, the user has to use the text based UI, as these type of portfolios aren't supported in the GUI.
