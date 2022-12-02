@@ -79,7 +79,7 @@ public class PSDollarCostAverage implements PortfolioStrategy {
 
     if (date.isAfter(LocalDate.now())) {
       // Using completable Future to execute future transaction date.
-      long deltaDays = ChronoUnit.DAYS.between(date, LocalDate.now());
+      long deltaDays = ChronoUnit.DAYS.between(LocalDate.now(), date);
       CompletableFuture.delayedExecutor(deltaDays, TimeUnit.DAYS).execute(() -> {
         applyStrategyToAnExistingPortfolio(portfolio, amount, date, stocksDistribution, commission);
       });

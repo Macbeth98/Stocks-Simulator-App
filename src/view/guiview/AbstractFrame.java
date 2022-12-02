@@ -117,7 +117,7 @@ public abstract class AbstractFrame extends JFrame implements IView {
 
   protected JSpinner getDateSpinner() {
     Date today = new Date();
-    dateSpinner = new JSpinner(new SpinnerDateModel(today, null, today, Calendar.MONTH));
+    dateSpinner = new JSpinner(new SpinnerDateModel(today, null, null, Calendar.MONTH));
     JSpinner.DateEditor editor = new JSpinner.DateEditor(dateSpinner, "dd/MMM/yyyy");
     dateSpinner.setEditor(editor);
     return dateSpinner;
