@@ -2,8 +2,11 @@ package model.strategy;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 import model.flexibleportfolio.FlexiblePortfolio;
 import model.stock.StockObjectImpl;
@@ -13,6 +16,7 @@ import model.stock.StockObjectImpl;
  * Dollar cost Averaging.
  */
 public class PSDollarCostAverage implements PortfolioStrategy {
+
 
   private void addTransactionsToPortfolio(FlexiblePortfolio portfolio,
                                           Map<String, Float> stocksDistribution,
@@ -74,12 +78,37 @@ public class PSDollarCostAverage implements PortfolioStrategy {
     }
 
     if (date.isAfter(LocalDate.now())) {
-      // store the strategy on a file and then
+      // Using completable Future to execute future transaction date.
+      long deltaDays = ChronoUnit.DAYS.between(date, LocalDate.now());
+      CompletableFuture.delayedExecutor(deltaDays, TimeUnit.DAYS).execute(() -> {
+        applyStrategyToAnExistingPortfolio(portfolio, amount, date, stocksDistribution, commission);
+      });
       return;
     }
 
     addTransactionsToPortfolio(portfolio, stocksDistribution, amount, commission, date);
 
+  }
+
+  private void applyStrategyPeriodically(FlexiblePortfolio portfolio, float amount,
+                                         LocalDate date,
+                                         Map<String, Float> stocksDistribution,
+                                         float commission, int frequencyInDays,
+                                         LocalDate endDate) {
+
+    CompletableFuture.delayedExecutor(frequencyInDays, TimeUnit.DAYS).execute(() -> {
+      applyStrategyToAnExistingPortfolio(portfolio, amount, date, stocksDistribution, commission);
+      LocalDate nextDate = date.plusDays(frequencyInDays);
+
+      if (endDate != null) {
+        if (nextDate.isAfter(endDate)) {
+          return;
+        }
+      }
+
+      applyStrategyPeriodically(portfolio, amount, date, stocksDistribution, commission,
+              frequencyInDays, endDate);
+    });
   }
 
   @Override
@@ -138,7 +167,9 @@ public class PSDollarCostAverage implements PortfolioStrategy {
 
     if (!finished) {
       // Implying this is either a future end date or null.
-      // store the strategy.
+      // Using completable future.
+      applyStrategyPeriodically(portfolio, amount, currentDate, stocksDistribution, commission,
+              frequencyInDays, endDate);
     }
 
   }
