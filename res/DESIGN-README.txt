@@ -31,6 +31,16 @@ But once a price is assigned for a stock at a date, that price will persist.
  - [ ]  Abstracted PortfolioList and PortfolioListImpl.
  - [ ]  Identified limitations of `java.util.Date` and changed to `java.time.LocalDate`
 
+ -> Changes for Assignment 6 (Stocks Part 3). Accommodating the Portfolio Strategies.
+ - Created a new Interface called FPortfolioListWithStrategy which extends the previous FlexiblePortfolioList interface.
+ - This new interface has two methods, one for applying a one time investment on a given date with the given distribution of stocks.
+ - The second is executing a portfolio investment strategy over period of time.
+ - There is a new class called FPortfolioListWithStrategyImpl which implements the FFPortfolioListWithStrategy interface. This interface is the main controller facing model interface.
+ - When the methods for Investment strategies were called, the above-mentioned class will delegate the functionality to a new interface called PortfolioStrategy which represents a methods
+   that can be executed on a Portfolio.
+ - The class called PSDollarCostAverage implements this interface and the methods that are delegated by FPortfolioListWithStrategyImpl class will be executed here.
+ - For future executed strategies, we are using CompletableFuture class which executes a given piece of code at a given time.
+
 Controller:
 - The controller interface is defined in src/FlexiblePortfolioController.java.
 - It contains only a single method(void goController()) that the controller class, src/PortfolioControllerImpl.java, implements.
