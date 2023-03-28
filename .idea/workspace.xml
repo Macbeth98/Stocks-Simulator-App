@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5f81e22-f2a5-4b77-94d3-55f8480a90d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/FlexiblePortfolioImplTest.java" afterDir="false" />
+    <list default="true" id="538c0920-bb83-4eff-bfc6-09f25677cd75" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment5.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlexiblePortfolioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlexiblePortfolioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PortfolioControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment6.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolioTxnFiles/sample_1668713504861.csv" beforeDir="false" afterPath="$PROJECT_DIR$/portfolioTxnFiles/sample_1668713504861.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -29,7 +28,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2HZdLMUGBAzvW8lljpXDBoH7ybe" />
+  <component name="ProjectId" id="2IAT9g7gn9oNEbQ5rjJq3jajzDZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -44,48 +43,77 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "last_opened_file_path": "D:/1. Northeastern University/Semester - I/Courses/PDP/IntelliJ Projects/Assignments/Assignment6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="FlexiblePortfolioImplTest.testCreationOfFlexiblePortfolio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Assignment5" />
+  <component name="RunManager" selected="JAR Application.Assignment6.jar">
+    <configuration name="GUIApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUIApplication" />
+      <module name="Assignment6" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlphaVantageSourceTest.testMultiplePricesAtOnce" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment6" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FlexiblePortfolioImplTest" />
-      <option name="METHOD_NAME" value="testCreationOfFlexiblePortfolio" />
+      <option name="MAIN_CLASS_NAME" value="AlphaVantageSourceTest" />
+      <option name="METHOD_NAME" value="testMultiplePricesAtOnce" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FPortfolioListWithStrategyImplTest.testPeriodicInvestmentStrategyWithBothDates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment6" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FPortfolioListWithStrategyImplTest" />
+      <option name="METHOD_NAME" value="testPeriodicInvestmentStrategyWithBothDates" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assignment5.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/res/Assignment5.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Assignment6.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/res/Assignment6.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FlexiblePortfolioImplTest.testCreationOfFlexiblePortfolio" />
+        <item itemvalue="JAR Application.Assignment6.jar" />
+        <item itemvalue="Application.GUIApplication" />
+        <item itemvalue="JUnit.FPortfolioListWithStrategyImplTest.testPeriodicInvestmentStrategyWithBothDates" />
+        <item itemvalue="JAR Application.Assignment5.jar" />
+        <item itemvalue="JUnit.AlphaVantageSourceTest.testMultiplePricesAtOnce" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f5f81e22-f2a5-4b77-94d3-55f8480a90d6" name="Changes" comment="" />
-      <created>1668496486125</created>
+      <changelist id="538c0920-bb83-4eff-bfc6-09f25677cd75" name="Changes" comment="" />
+      <created>1669623240879</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1668496486125</updated>
-      <workItem from="1668496488071" duration="6645000" />
+      <updated>1669623240879</updated>
+      <workItem from="1669623243646" duration="190000" />
+      <workItem from="1669623448925" duration="138000" />
+      <workItem from="1669654837440" duration="9284000" />
+      <workItem from="1669703178625" duration="9817000" />
+      <workItem from="1669764336619" duration="8732000" />
+      <workItem from="1669831110435" duration="21613000" />
+      <workItem from="1669919084039" duration="10276000" />
+      <workItem from="1669935757893" duration="10328000" />
+      <workItem from="1670736518151" duration="39000" />
+      <workItem from="1679188066210" duration="590000" />
     </task>
     <servers />
   </component>
